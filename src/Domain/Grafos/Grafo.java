@@ -1,6 +1,6 @@
-package Domain;
+package Domain.Grafos;
 
-import Domain.Arch.typeArch;
+import Domain.Grafos.Arch.typeArch;
 import java.util.ArrayList;
 import java.util.HashMap;
 

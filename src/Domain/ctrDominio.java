@@ -5,6 +5,9 @@
  */
 package Domain;
 
+import Domain.Grafos.Grafo;
+import Domain.Grafos.Grafo;
+
 /**
  *
  * @author Javier

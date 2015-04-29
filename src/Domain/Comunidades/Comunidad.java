@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package Domain.Comunidades;
 
+import Domain.Grafos.Categoria;
 import java.util.ArrayList;
 import java.util.Objects;
 

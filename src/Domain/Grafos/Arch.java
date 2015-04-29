@@ -1,4 +1,6 @@
-package Domain;
+package Domain.Grafos;
+
+import Domain.Grafos.Node;
 
 /**
  *
