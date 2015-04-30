@@ -16,4 +16,10 @@ public class Pagina extends Node
     {
         super(nombre);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+    
 }

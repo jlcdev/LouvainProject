@@ -5,8 +5,6 @@
  */
 package Domain.Grafos;
 
-import Domain.Grafos.Node;
-
 /**
  *
  * @author Javier
@@ -18,4 +16,10 @@ public class Categoria extends Node
     {
         super(nombre);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+    
 }

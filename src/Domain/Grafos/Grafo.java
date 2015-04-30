@@ -3,6 +3,8 @@ package Domain.Grafos;
 import Domain.Grafos.Arch.typeArch;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 /**
  *
@@ -44,9 +46,16 @@ public class Grafo
     }
     private void setArista(Node origin, Node destiny, typeArch type)
     {
-        if(!this.vertex.contains(origin) || !this.vertex.contains(destiny)) return;
-        this.aristas.get(origin).add(new Arch(origin, destiny, type));
+        Arch arc = new Arch(origin, destiny, type);
+        ArrayList<Arch> arcs = this.aristas.get(origin);
+        if(!arcs.contains(arc))
+        {
+            arcs.add(arc);
+            this.aristas.remove(origin);
+            this.aristas.put(origin, arcs);
+        }
     }
+    
     public void inverse(Node origin, Node destiny, typeArch type)
     {
         this.setArista(origin, destiny, type);
@@ -66,7 +75,14 @@ public class Grafo
                 break;
         }
     }
-
+    
+    public void setNewNode(Node n)
+    {
+        if(this.vertex.contains(n)) return;
+        this.vertex.add(n);
+        this.aristas.put(n, new ArrayList<Arch>());
+    }
+    
     @Override
     public boolean equals(Object o)
     {

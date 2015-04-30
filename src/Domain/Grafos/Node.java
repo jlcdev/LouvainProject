@@ -27,8 +27,7 @@ public class Node
     @Override
     public boolean equals(Object o)
     {
-        if(!(o instanceof Node)) return false;
-        Node n = (Node)o;
-        return this.Nombre.equalsIgnoreCase(n.getNombre());
+        if(!(o instanceof Node) || !(o instanceof Pagina) || !(o instanceof Categoria) ) return false;
+        return this.Nombre.equals(((Node)o).getNombre());
     }
 }
