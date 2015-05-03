@@ -1,12 +1,12 @@
 package Domain.Grafos;
 
+/**
+*
+* @author Joan
+*/
+	
 public class Filters {
 
-	/**
-	*
-	* @author Joan
-	*/
-	
 	private int[] priorities;
 
 	
