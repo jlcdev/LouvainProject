@@ -18,8 +18,14 @@ public class Pagina extends Node
     }
 
     @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
+    public boolean equals(Object obj) {
+        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }

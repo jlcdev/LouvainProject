@@ -11,9 +11,14 @@ public class Wikipedia
      */
     public static void main(String[] args)
     {
+        
         CtrDominio cd = new CtrDominio();
-        cd.leerFichero("/Users/potnox/Desktop/PROP/project/propwikipedia/external/cats.txt");
-        cd.cargar();
+        
+        String basePath = "/Users/potnox/Desktop/PROP/project/propwikipedia/external/";
+        String origin = "cats.txt";
+        String destiny = "final.txt";
+        cd.readEntryGraphFile(basePath+origin);
+        cd.saveEntryGraph(basePath+destiny);
     }
     
 }

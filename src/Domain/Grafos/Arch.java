@@ -1,59 +1,99 @@
+
 package Domain.Grafos;
 
-import Domain.Grafos.Node;
+import java.util.Objects;
 
 /**
  *
- * @author Javier
+ * @author Javier López Calderón
  */
 public class Arch
 {
-    private Node origin;
-    private Node destiny;
+    private int origin;
+    private int destiny;
+    private String sorigin;
+    private String sdestiny;
     private typeArch tipoArco;
     
     public static enum typeArch
     {
         CsubC, CsupC, CP, PC;
     }
-    
-    public Arch(){}
-    public Arch(Node origin, Node destiny, typeArch tipoArco)
+
+    public Arch(int origin, int destiny, String sorigin, String sdestiny, typeArch tipoArco)
     {
         this.origin = origin;
         this.destiny = destiny;
+        this.sorigin = sorigin;
+        this.sdestiny = sdestiny;
         this.tipoArco = tipoArco;
     }
 
-    public Node getOrigin()
+    public int getOrigin()
     {
-        return this.origin;
+        return origin;
     }
 
-    public void setOrigin(Node origin)
+    public void setOrigin(int origin)
     {
         this.origin = origin;
     }
 
-    public Node getDestiny()
+    public int getDestiny()
     {
-        return this.destiny;
+        return destiny;
     }
 
-    public void setDestiny(Node destiny)
+    public void setDestiny(int destiny)
     {
         this.destiny = destiny;
     }
 
-    public typeArch getTipoArco()
+    public typeArch getTypeArch()
     {
-        return this.tipoArco;
+        return tipoArco;
     }
 
-    public void setTipoArco(typeArch tipoArco)
+    public void setTypeArch(typeArch tipoArco)
     {
         this.tipoArco = tipoArco;
     }
-    
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 5;
+        hash = 97 * hash + this.origin;
+        hash = 97 * hash + this.destiny;
+        hash = 97 * hash + Objects.hashCode(this.tipoArco);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        final Arch other = (Arch) obj;
+        if (this.origin != other.origin)
+        {
+            return false;
+        }
+        if (this.destiny != other.destiny)
+        {
+            return false;
+        }
+        if (this.tipoArco != other.tipoArco)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Arch{" + "origin=" + origin + ", destiny=" + destiny + ", sorigin=" + sorigin + ", sdestiny=" + sdestiny + ", tipoArco=" + tipoArco + '}';
+    }
     
 }

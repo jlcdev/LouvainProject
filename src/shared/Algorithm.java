@@ -25,18 +25,7 @@ public abstract class Algorithm
      * Obtain Community list
      * @return List of communities
      */
-    public ArrayList<ArrayList<Integer>> obtain()
-    {
-        if(graphs.isEmpty() || !graphs.containsKey(p)) return null;
-        Graph<Integer, Double> g = graphs.get(p);
-        ArrayList<ArrayList<Integer>> response = new ArrayList<ArrayList<Integer>>();
-        for(Integer v : g.getVertexs())
-        {
-            ArrayList<Integer> neighbors = g.getNeighbors(v);
-            response.add(neighbors);
-        }
-        return response;
-    }
+    public abstract ArrayList<ArrayList<Integer>> obtain();
 
     /**
      * Getter for p param

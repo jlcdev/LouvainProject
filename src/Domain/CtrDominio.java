@@ -1,60 +1,174 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
+import Data.CtrData;
+import Domain.Grafos.Categoria;
 import Domain.Grafos.Grafo;
-import Domain.Grafos.Transform;
-import Optional.FileManager;
+import Domain.Grafos.Node;
+import Domain.Grafos.Pagina;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
- * @author Javier
+ * @author Javier López Calderón
  */
 public class CtrDominio
 {
-    private String filePath = null;
     private Grafo g = null;
-    private FileManager fm = null;
-    //private ctrDatos d;
-    //private Graph<....> g2;
+    private CtrData ctrData= null;
     
     public CtrDominio()
     {
         g = new Grafo();
-        //d = new ctrDatos();
-        //g2 = new GRaph();
+        ctrData = new CtrData();
     }
     
-    public void verPagGeneral()
-    {}
-    
-    public void verCatGeneral()
-    {}
-    
-    public void verPag(int num)
-    {}
-    
-    public void verCat(int num)
-    {}
-    
-    public void leerFichero(String ruta)
+    public ArrayList<String> verPagGeneral()
     {
-        this.filePath = ruta;
+        ArrayList<String> listPages = new ArrayList<>();
+        Iterator<Integer> iter = this.g.getAllVertex().iterator();
+        while(iter.hasNext())
+        {
+            Node n = this.g.getNodeNumber(iter.next());
+            if(n.getClass() == Pagina.class) listPages.add(n.getNombre());
+        }
+        return listPages;
     }
     
-    public void cargar()
+    public ArrayList<String> verCatGeneral()
     {
-        if(this.filePath != null && this.filePath.isEmpty()) return;
-        fm = new FileManager(this.filePath);
-        this.g = Transform.multipleStringToGrafo(fm.readFile());
+        ArrayList<String> listCats = new ArrayList<>();
+        Iterator<Integer> iter = this.g.getAllVertex().iterator();
+        while(iter.hasNext())
+        {
+            Node n = this.g.getNodeNumber(iter.next());
+            if(n.getClass() == Categoria.class) listCats.add(n.getNombre());
+        }
+        return listCats;
     }
     
-    public void guardar()
-    {}
+    public String verPag(int num)
+    {
+        String res = "";
+        if(num < 0) return res;
+        int cont = 0;
+        Node n;
+        Iterator<Integer> iter = this.g.getAllVertex().iterator();
+        while(iter.hasNext())
+        {
+            n = this.g.getNodeNumber(iter.next());
+            if(n.getClass() == Pagina.class)
+            {
+                if(cont == num)
+                {
+                    res = n.getNombre();
+                    break;
+                }
+                else ++cont;
+            }
+        }
+        return res;
+    }
+    
+    public String verCat(int num)
+    {
+        String res = "";
+        if(num < 0) return res;
+        Node n;
+        int cont = 0;
+        Iterator<Integer> iter = this.g.getAllVertex().iterator();
+        while(iter.hasNext())
+        {
+            n = this.g.getNodeNumber(iter.next());
+            if(n.getClass() == Categoria.class)
+            {
+                if(cont == num)
+                {
+                    res = n.getNombre();
+                    break;
+                }
+                else ++cont;
+            }
+        }
+        return res;
+    }
+    
+    public boolean modifyPage(int page, String change)
+    {
+        boolean res = false;
+        if(page < 0) return res;
+        int cont = 0;
+        Node n;
+        Iterator<Integer> iter = this.g.getAllVertex().iterator();
+        while(iter.hasNext())
+        {
+            n = this.g.getNodeNumber(iter.next());
+            if(n.getClass() == Pagina.class)
+            {
+                if(cont == page)
+                {
+                    n.setNombre(change);
+                    res = true;
+                    break;
+                }
+                else ++cont;
+            }
+        }
+        return res;
+    }
+    
+    public boolean modifyCategory(int category, String change)
+    {
+        boolean res = false;
+        if(category < 0) return res;
+        Node n;
+        int cont = 0;
+        Iterator<Integer> iter = this.g.getAllVertex().iterator();
+        while(iter.hasNext())
+        {
+            n = this.g.getNodeNumber(iter.next());
+            if(n.getClass() == Categoria.class)
+            {
+                if(cont == category)
+                {
+                    n.setNombre(change);
+                    res = true;
+                    break;
+                }
+                else ++cont;
+            }
+        }
+        return res;
+    }
+    
+    public void readEntryGraphFile(String path)
+    {
+        if(path == null || path.isEmpty()) return;
+        ctrData.setEntryPath(path);
+        this.g = ctrData.readEntryGraphFile();
+    }
+    
+    public void addToEntryGraph(String entry)
+    {
+        this.g.addNewEntry(entry);
+    }
+    
+    public boolean saveEntryGraph(String path)
+    {
+        if(path==null || path.isEmpty()) return false;
+        ctrData.setEntryPath(path);
+        return ctrData.writeEntryGraphFile(this.g);
+    }
+    
+    public void cargarAlgorithmGraph()
+    {
+        
+    }
+    
+    public boolean saveAlgorithmGraph(String path)
+    {
+        return false;
+    }
     
     public void mostrarGrafo()
     {}

@@ -3,91 +3,191 @@ package Domain.Grafos;
 import Domain.Grafos.Arch.typeArch;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
+import java.util.Objects;
 
 /**
  *
- * @author Javier
+ * @author Javier López Calderón
  */
 public class Grafo
 {
-    private ArrayList<Node> vertex;
-    private HashMap<Node, ArrayList<Arch>> aristas;
+    private int numVertex;
+    private int numAristas;
+    private ArrayList<Integer> vertexs;
+    private HashMap<Integer, Node> correspondencia;
+    private HashMap<Node, Integer> correspondencia2;
+    private HashMap<Integer, String> translator;
+    private ArrayList<ArrayList<Arch>> aristas; 
+    
     
     public Grafo()
     {
-        this.vertex = new ArrayList();
-        this.aristas = new HashMap();
+        this.vertexs = new ArrayList<>();
+        this.correspondencia = new HashMap<>();
+        this.correspondencia2 = new HashMap<>();
+        this.translator = new HashMap<>();
+        this.aristas = new ArrayList<>();
+        this.numVertex = 0;
+        this.numAristas = 0;
     }
-    public Grafo(Grafo toClone)
+    
+    public ArrayList<Integer> getAllVertex()
     {
-        this.vertex = new ArrayList(toClone.getAllVertex());
-        this.aristas = new HashMap(toClone.getAllAristas());
+        return this.vertexs;
     }
-    public ArrayList<Node> getAllVertex()
-    {
-        return this.vertex;
-    }
-    public HashMap<Node, ArrayList<Arch>> getAllAristas()
+    public ArrayList<ArrayList<Arch>> getAllEdges()
     {
         return this.aristas;
     }
-    
-    public ArrayList<Node> getAdyacentes(Node n)
+    public ArrayList<Integer> getAdyacents(Integer nodo)
     {
-        ArrayList<Node> tmp = new ArrayList();
-        for(Arch arc : this.aristas.get(n))
+        ArrayList<Integer> tmp = new ArrayList<>();
+        for(Arch arc : this.aristas.get(nodo))
         {
-            if(arc.getOrigin().equals(n)) tmp.add(arc.getDestiny());
+            if(arc.getOrigin() == nodo) tmp.add(arc.getDestiny());
             else tmp.add(arc.getOrigin());
         }
         return tmp;
     }
-    private void setArista(Node origin, Node destiny, typeArch type)
+    
+    public ArrayList<Arch> getArcsFromNode(int node)
     {
-        Arch arc = new Arch(origin, destiny, type);
+        return this.aristas.get(node);
+    }
+    
+    public int getNumberNode(Node n)
+    {
+        return this.correspondencia2.get(n);
+    }
+    
+    public Node getNodeNumber(int i)
+    {
+        return this.correspondencia.get(i);
+    }
+    
+    public String getTranslator(int i)
+    {
+        return this.translator.get(i);
+    }
+    
+    public void setEdge(int origin, int destiny, String sna, String snb, typeArch type)
+    {
         ArrayList<Arch> arcs = this.aristas.get(origin);
+        Arch arc = new Arch(origin, destiny, sna, snb, type);
         if(!arcs.contains(arc))
         {
             arcs.add(arc);
             this.aristas.remove(origin);
-            this.aristas.put(origin, arcs);
+            this.aristas.add(origin, arcs);
         }
     }
     
-    public void inverse(Node origin, Node destiny, typeArch type)
+    public int setNode(Node n)
     {
-        this.setArista(origin, destiny, type);
-        switch(type)
+        if(this.correspondencia2.containsKey(n)) return this.getNumberNode(n);
+        int cont = this.vertexs.size();
+        this.vertexs.add(cont);
+        this.correspondencia.put(cont, n);
+        this.translator.put(cont, n.getNombre());
+        this.correspondencia2.put(n, cont);
+        this.aristas.add(cont, new ArrayList<Arch>());
+        return cont;
+    }
+    
+    public void addNewEntry(String userInfo)
+    {
+        String[] data = userInfo.split("\\s+");
+        Node a, b;
+        if(data[1].equals("cat")) a = new Categoria(data[0]);
+        else a = new Pagina(data[0]);
+        if(data[4].equals("cat")) b = new Categoria(data[3]);
+        else b = new Pagina(data[3]);
+
+        int na = this.setNode(a);
+        int nb = this.setNode(b);
+            
+        switch(data[2])
         {
-            case CsupC:
-                this.setArista(destiny, origin, typeArch.CsubC);
+            case "CsupC":
+                this.setEdge(na, nb, data[0], data[3], Arch.typeArch.CsupC);
                 break;
-            case CsubC:
-                this.setArista(destiny, origin, typeArch.CsupC);
+            case "CsubC":
+                this.setEdge(na, nb, data[0], data[3], Arch.typeArch.CsubC);
                 break;
-            case PC:
-                this.setArista(destiny, origin, typeArch.CP);
+            case "CP":
+                this.setEdge(na, nb, data[0], data[3], Arch.typeArch.CP);
                 break;
-            case CP:
-                this.setArista(destiny, origin, typeArch.PC);
+            case "PC":
+                this.setEdge(na, nb, data[0], data[3], Arch.typeArch.PC);
                 break;
         }
     }
     
-    public void setNewNode(Node n)
+    public void addMultipleEntry(ArrayList<String> list)
     {
-        if(this.vertex.contains(n)) return;
-        this.vertex.add(n);
-        this.aristas.put(n, new ArrayList<Arch>());
+        for(String s : list)
+        {
+            this.addNewEntry(s);
+        }
     }
     
-    @Override
-    public boolean equals(Object o)
+    public ArrayList<String> getGraphInfo()
     {
-        if(!(o instanceof Grafo)) return false;
-        Grafo g = (Grafo)o;
-        return this.vertex.equals(g.getAllVertex()) && this.aristas.equals(g.getAllAristas());
+        ArrayList<String> listString = new ArrayList<>();
+        String na, nb, typeArch, ta, tb;
+        for(Integer n : this.getAllVertex())
+        {
+            for(Arch arc : this.getArcsFromNode(n))
+            {
+                typeArch = "CsupC";
+                ta = "cat";
+                tb = "cat";
+                
+                switch(arc.getTypeArch())
+                {
+                    case CsubC:
+                        typeArch = "CsubC";
+                        break;
+                    case CP:
+                        typeArch = "CP";
+                        tb = "page";
+                        break;
+                    case PC:
+                        typeArch = "PC";
+                        ta = "page";
+                        break;
+                }
+                listString.add(this.getTranslator(arc.getOrigin())+"  "+ta+"   "+typeArch+"   "+this.getTranslator(arc.getDestiny())+"   "+tb);
+            }
+        }
+        return listString;
     }
+    
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + this.numVertex;
+        hash = 79 * hash + this.numAristas;
+        hash = 79 * hash + Objects.hashCode(this.vertexs);
+        hash = 79 * hash + Objects.hashCode(this.translator);
+        hash = 79 * hash + Objects.hashCode(this.aristas);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == null) return false;
+        if(getClass() != obj.getClass()) return false;
+        final Grafo other = (Grafo) obj;
+        if(this.numVertex != other.numVertex) return false;
+        if(this.numAristas != other.numAristas) return false;
+        if(!Objects.equals(this.vertexs, other.vertexs)) return false;
+        if(!Objects.equals(this.translator, other.translator)) return false;
+        if(!Objects.equals(this.aristas, other.aristas)) return false;
+        return true;
+    }
+    
+    
 }
