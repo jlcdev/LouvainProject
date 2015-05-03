@@ -1,4 +1,4 @@
-package Domain.Grafos;
+package domain.grafos;
 
 /**
 *

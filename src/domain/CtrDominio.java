@@ -1,10 +1,10 @@
-package Domain;
+package domain;
 
-import Data.CtrData;
-import Domain.Grafos.Categoria;
-import Domain.Grafos.Grafo;
-import Domain.Grafos.Node;
-import Domain.Grafos.Pagina;
+import data.CtrData;
+import domain.grafos.Categoria;
+import domain.grafos.Grafo;
+import domain.grafos.Node;
+import domain.grafos.Pagina;
 import java.util.ArrayList;
 import java.util.Iterator;
 

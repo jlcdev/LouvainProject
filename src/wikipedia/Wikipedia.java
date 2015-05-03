@@ -1,6 +1,6 @@
 package wikipedia;
 
-import Domain.CtrDominio;
+import domain.CtrDominio;
 
 
 public class Wikipedia

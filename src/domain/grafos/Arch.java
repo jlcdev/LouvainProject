@@ -1,5 +1,5 @@
 
-package Domain.Grafos;
+package domain.grafos;
 
 import java.util.Objects;
 
