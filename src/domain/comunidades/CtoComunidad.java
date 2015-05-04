@@ -108,6 +108,7 @@ public class CtoComunidad
         this.algortimo = algortimo;
     }
     
+    @Override
     public String toString()
     {
         String salida;

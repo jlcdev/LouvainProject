@@ -83,6 +83,7 @@ public class Comunidad
         return ctoCategorias.size();
     }
     
+    @Override
     public String toString()
     {
         return "Comunidad{" + "Nombre=" + nombre + " Categorias = " + ctoCategorias.toString() + '}';
