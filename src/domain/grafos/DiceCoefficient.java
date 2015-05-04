@@ -9,6 +9,12 @@ import java.util.Arrays;
 
 public class DiceCoefficient {
 
+	/**
+	 * Calculate DiceCoefficient
+	 * @param s String 
+	 * @param t String
+	 * @return value between 0 to 1 (similarity between the strings) 
+	 */
 	public static double diceCoefficientOptimized(String s, String t)
 	{
 		if (s == null || t == null) return 0; //Si no hi ha res --> 0
@@ -45,10 +51,8 @@ public class DiceCoefficient {
 				i++;
 				j++;
 			}
-			else if (sPairs[i] < tPairs[j])
-				i++;
-			else
-				j++;
+			else if (sPairs[i] < tPairs[j]) i++;
+			else j++;
 		}
 		return (double)matches/(n+m);
 	}

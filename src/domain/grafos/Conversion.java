@@ -25,12 +25,18 @@ public class Conversion {
 		return g;
 	}
 	
-	public static Graph<Integer, Integer> toWeightedGraph(Grafo grafo, Filters f, Selections s)
+	/**
+	 * @param grafo, Graph to be converted
+	 * @param f, Filters (priorities)
+	 * @param s, Selections
+	 * @return Weighted graph without pages
+	 */
+	public static Graph<Integer, Double> toWeightedGraph(Grafo grafo, Filters f, Selections s)
 	{
 		int[] filters = f.getFilters();
 		Grafo g = removeSelection(grafo, s);
 		
-		Graph<Integer,Integer> gr = new Graph<Integer, Integer>();
+		Graph<Integer,Double> gr = new Graph<Integer, Double>();
 		for(int i=0; i < g.getNumVertex(); i++) 
 		{
 			double pagNode=0,catNode=0,fathersNode=0,sonsNode=0;
@@ -90,8 +96,8 @@ public class Conversion {
 							}								
 													
 							double pes_total = (pesName + pesCat + pesPage + pesCsupC + pesCsubC)*2; //*2 per fer max = 100
-							int pt = (int)pes_total;								
-							gr.addEdge(i, veins.get(j), pt);									
+							//int pt = (int)pes_total;								
+							gr.addEdge(i, veins.get(j), pes_total);									
 						}															
 					}					
 				}
