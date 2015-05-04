@@ -18,7 +18,7 @@ public class Comunidad
     private int id;
     private String nombre;
     private ArrayList<Categoria> ctoCategorias;
-
+    
     public int getId()
     {
         return id;
@@ -61,5 +61,27 @@ public class Comunidad
         }
         return true;
     }
+    
+    public void addCategoria(Categoria cat)
+    {
+        if(!ctoCategorias.contains(cat))ctoCategorias.add(cat);
+    }
+    
+    public void removeCategoria(Categoria cat)
+    {
+        if(ctoCategorias.contains(cat))ctoCategorias.remove(cat);
+    }
+    
+    public void modCategoria(Categoria cat,String nombre)
+    {
+        Integer index = ctoCategorias.indexOf(cat);
+        if(index >= 0)ctoCategorias.get(index).setNombre(nombre);  
+    }
+    
+    public String toString()
+    {
+        return "Comunidad{" + "Nombre=" + nombre + " Categorias = " + ctoCategorias.toString() + '}';
+    }
+    
 }
 
