@@ -5,6 +5,8 @@
  */
 package domain.comunidades;
 
+import domain.grafos.Filters;
+import domain.grafos.Selections;
 import java.util.ArrayList;
 
 /**
@@ -18,8 +20,8 @@ public class CtoComunidad
     private boolean modificado;
     private String algortimo;
     private ArrayList<Comunidad> ctoComunidades;
-    private ArrayList<String> selecciones;
-    private ArrayList<String> filtros;
+    Filters filtros;
+    Selections selecciones;
 
     public int getId()
     {
@@ -36,22 +38,22 @@ public class CtoComunidad
         this.ctoComunidades = ctoComunidades;
     }
 
-    public ArrayList<String> getSelecciones()
+    public Selections getSelecciones()
     {
         return selecciones;
     }
 
-    public void setSelecciones(ArrayList<String> selecciones)
+    public void setSelecciones(Selections selecciones)
     {
         this.selecciones = selecciones;
     }
 
-    public ArrayList<String> getFiltros()
+    public Filters getFiltros()
     {
         return filtros;
     }
 
-    public void setFiltros(ArrayList<String> filtros)
+    public void setFiltros(Filters filtros)
     {
         this.filtros = filtros;
     }
@@ -94,7 +96,7 @@ public class CtoComunidad
     public String toString()
     {
         String salida;
-        salida = "CtoComunidades{" + "Nombre=" + nombre + " Algoritmo=" + algortimo + " Selecciones=" + selecciones.toString() + " Filtros=" + filtros.toString() + " Comunidades=";
+        salida = "CtoComunidades{" + "Nombre=" + nombre + " Algoritmo=" + algortimo + " Selecciones=" + selecciones.getSelecion() + " Filtros=" + filtros.getAll() + " Comunidades=";
         for(int i = 0;i < ctoComunidades.size(); ++i){
             salida = salida + ctoComunidades.get(i).toString();
         }
