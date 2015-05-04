@@ -228,6 +228,7 @@ public class Grafo
             arcs.add(arc);
             this.aristas.remove(origin);
             this.aristas.add(origin, arcs);
+            ++this.numAristas;
         }
     }
     
@@ -285,6 +286,11 @@ public class Grafo
     public int getNumVertex()
     {
         return this.numVertex;
+    }
+    
+    public int getNumAristas()
+    {
+        return this.numAristas;
     }
     
     public ArrayList<String> getGraphInfo()
