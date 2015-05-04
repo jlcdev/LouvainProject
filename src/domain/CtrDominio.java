@@ -22,7 +22,10 @@ public class CtrDominio
         g = new Grafo();
         ctrData = new CtrData();
     }
-    
+    public Grafo getGrafo()
+    {
+        return this.g;
+    }
     public ArrayList<String> verPagGeneral()
     {
         ArrayList<String> listPages = new ArrayList<>();

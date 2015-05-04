@@ -17,6 +17,24 @@ public class Filters {
 	public Filters(int pname, int pcat, int ppag, int pfat, int pson) {
 		priorities = new int[]{pname,pcat,ppag,pfat,pson}; 
 	}
+        
+        public void setAll(int pname, int pcat, int ppag, int pfat, int pson)
+        {
+            priorities = new int[]{pname,pcat,ppag,pfat,pson};
+        }
+        
+        public String getAll()
+        {
+            String result = "";
+            int tam = this.priorities.length;
+            int i;
+            for(i=0;i<tam-1;++i)
+            {
+                result += this.priorities[i] + ",";
+            }
+            if(i < tam-1) result += this.priorities[i+1];
+            return result;
+        }
 	
 	
 	public int getName_priority() {

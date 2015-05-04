@@ -1,7 +1,6 @@
 package shared;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Aresta generica
@@ -37,7 +36,7 @@ public class Edge<K,T> {
 			Constructor<?> kConstructor = kClass.getConstructor(kClass);
 			this.origen = (K) kConstructor.newInstance(toClone.origen);
 			this.desti = (K) kConstructor.newInstance(toClone.desti);
-		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (Exception e) {
 			this.origen = toClone.origen;
 			this.desti = toClone.desti;
 		}
@@ -45,7 +44,7 @@ public class Edge<K,T> {
 			// Clonar valor
 			Constructor<?> vConstructor = vClass.getConstructor(vClass);
 			this.value = (T) vConstructor.newInstance(toClone.value);
-		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (Exception e) {
 			this.value = toClone.value;
 		}
 		
@@ -63,7 +62,7 @@ public class Edge<K,T> {
 			Constructor<?> kConstructor = kClass.getConstructor(kClass);
 			o = (K) kConstructor.newInstance(this.origen);
 			d = (K) kConstructor.newInstance(this.desti);
-		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (Exception e) {
 			o = this.origen;
 			d = this.desti;
 		}
@@ -71,7 +70,7 @@ public class Edge<K,T> {
 			// Clonar valor
 			Constructor<?> vConstructor = vClass.getConstructor(vClass);
 			val = (T) vConstructor.newInstance(this.value);
-		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (Exception e) {
 			val = this.value;
 		}
 
@@ -96,7 +95,9 @@ public class Edge<K,T> {
 		try {
 			// Convertir-lo a l'objecte que es realment
 			Edge<K,T> e = (Edge<K,T>) o;
-			return (e.origen == origen && e.desti == desti && e.value == value);
+			return  ((	(e.origen == origen && e.desti == desti) || 
+						(e.origen == desti && e.desti == origen)
+					 )  && e.value == value);
 		} catch (Exception e) {
 			return false;
 		}

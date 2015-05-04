@@ -17,6 +17,7 @@ public class Grafo
     private HashMap<Integer, Node> correspondencia;
     private HashMap<Node, Integer> correspondencia2;
     private HashMap<Integer, String> translator;
+    private HashMap<String, Integer> translator2;
     private ArrayList<ArrayList<Arch>> aristas; 
     
     
@@ -39,15 +40,162 @@ public class Grafo
     {
         return this.aristas;
     }
-    public ArrayList<Integer> getAdyacents(Integer nodo)
+    public ArrayList<Integer> getAdyacents(Integer node)
     {
         ArrayList<Integer> tmp = new ArrayList<>();
-        for(Arch arc : this.aristas.get(nodo))
+        for(Arch arc : this.aristas.get(node))
         {
-            if(arc.getOrigin() == nodo) tmp.add(arc.getDestiny());
+            if(arc.getOrigin() == node) tmp.add(arc.getDestiny());
             else tmp.add(arc.getOrigin());
         }
         return tmp;
+    }
+    
+    public int getNumTotalAdyacent(int node)
+    {
+        return this.aristas.get(node).size();
+    }
+    
+    public int getNumPagAdyacent(int node)
+    {
+        int cont = 0;
+        for(Arch arc : this.aristas.get(node))
+        {
+            if(arc.getOrigin() == node)
+            {
+                if(this.correspondencia.get(arc.getDestiny()).getClass() == Pagina.class) ++cont;
+            }
+            else
+            {
+                if(this.correspondencia.get(arc.getOrigin()).getClass() == Pagina.class) ++cont;
+            }
+        }
+        return cont;
+    }
+    
+    public int getNumCatAdyacent(int node)
+    {
+        int cont = 0;
+        for(Arch arc : this.aristas.get(node))
+        {
+            if(arc.getOrigin() == node)
+            {
+                if(this.correspondencia.get(arc.getDestiny()).getClass() == Categoria.class) ++cont;
+            }
+            else
+            {
+                if(this.correspondencia.get(arc.getOrigin()).getClass() == Categoria.class) ++cont;
+            }
+        }
+        return cont;
+    }
+    
+    public int getNumCsupCAdyacent(int node)
+    {
+        int cont = 0;
+        for(Arch arc : this.aristas.get(node))
+        {
+            if(arc.getTypeArch() == Arch.typeArch.CsupC) ++cont;
+        }
+        return cont;
+    }
+    
+    public int getNumCsubCAdyacent(int node)
+    {
+        int cont = 0;
+        for(Arch arc : this.aristas.get(node))
+        {
+            if(arc.getTypeArch() == Arch.typeArch.CsubC) ++cont;
+        }
+        return cont;
+    }
+    
+    public int getNumCommonCsupCAdyacent(int ni, int nj)
+    {
+        int cont = 0;
+        for(Arch arci : this.aristas.get(ni))
+        {
+            if(arci.getTypeArch() != Arch.typeArch.CsupC) continue;
+            for(Arch arcj : this.aristas.get(nj))
+            {
+                if(arcj.getTypeArch() != Arch.typeArch.CsupC) continue;
+                if(arci.getOrigin() == ni)
+                {
+                    if(arci.getDestiny() == arcj.getDestiny()) ++cont;
+                }
+                else
+                {
+                    if(arci.getOrigin() == arcj.getOrigin()) ++cont;
+                }
+            }
+        }
+        return cont;
+    }
+    
+    public int getNumCommonCsubCAdyacent(int ni, int nj)
+    {
+        int cont = 0;
+        for(Arch arci : this.aristas.get(ni))
+        {
+            if(arci.getTypeArch() != Arch.typeArch.CsubC) continue;
+            for(Arch arcj : this.aristas.get(nj))
+            {
+                if(arcj.getTypeArch() != Arch.typeArch.CsubC) continue;
+                if(arci.getOrigin() == ni)
+                {
+                    if(arci.getDestiny() == arcj.getDestiny()) ++cont;
+                }
+                else
+                {
+                    if(arci.getOrigin() == arcj.getOrigin()) ++cont;
+                }
+            }
+        }
+        return cont;
+    }
+    
+    public int getNumCommonCatAdyacent(int ni, int nj)
+    {
+        int cont = 0;
+        for(Arch arci : this.aristas.get(ni))
+        {
+            if(arci.getTypeArch() == Arch.typeArch.CP) continue;
+            for(Arch arcj : this.aristas.get(nj))
+            {
+                if(arcj.getTypeArch() == Arch.typeArch.CP) continue;
+                if(arci.getOrigin() == ni)
+                {
+                    if(this.translator.get(arci.getDestiny()).equals(this.translator.get(arcj.getDestiny()))) ++cont;
+                }
+                else
+                {
+                    if(this.translator.get(arci.getOrigin()).equals(this.translator.get(arcj.getOrigin()))) ++cont;
+                }
+            }
+        }
+        return cont;
+    }
+    
+    public int getNumCommonPagAdyacent(int ni, int nj)
+    {
+        int cont = 0;
+        for(Arch arci : this.aristas.get(ni))
+        {
+            if(arci.getTypeArch() != Arch.typeArch.CP) continue;
+            for(Arch arcj : this.aristas.get(nj))
+            {
+                if(arcj.getTypeArch() != Arch.typeArch.CP) continue;
+                if(arci.getOrigin() == ni)
+                {
+                    if(this.translator.get(arci.getDestiny()).equals(this.translator.get(arcj.getDestiny()))) ++cont;
+                }
+                else
+                {
+                    if(this.translator.get(arci.getOrigin()).equals(this.translator.get(arcj.getOrigin()))) ++cont;
+                }
+            }
+        }
+        return cont;
     }
     
     public ArrayList<Arch> getArcsFromNode(int node)
@@ -89,8 +237,10 @@ public class Grafo
         this.vertexs.add(cont);
         this.correspondencia.put(cont, n);
         this.translator.put(cont, n.getNombre());
+        this.translator2.put(n.getNombre(), cont);
         this.correspondencia2.put(n, cont);
         this.aristas.add(cont, new ArrayList<Arch>());
+        ++this.numVertex;
         return cont;
     }
     
@@ -163,7 +313,13 @@ public class Grafo
         return listString;
     }
     
-
+    public void removePage(String name)
+    {
+        int num = this.translator2.get(name);
+        this.translator2.remove(name);
+        this.translator.remove(num);
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -188,6 +344,4 @@ public class Grafo
         if(!Objects.equals(this.aristas, other.aristas)) return false;
         return true;
     }
-    
-    
 }

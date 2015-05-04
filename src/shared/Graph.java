@@ -67,6 +67,7 @@ public class Graph<K,T> {
 			K next = iKeys.next();
 			oClone.edges.put(next, (ArrayList<Edge<K, T>>) this.edges.get(next).clone());
 		}
+		
 		return oClone;
 	}
 	
@@ -118,6 +119,7 @@ public class Graph<K,T> {
 		// Obtenim la llista d'arestes que surten del vertex 'a'
 		ArrayList<Edge<K,T>> vAEdges = edges.get(a);
 		// Afegim l'aresta previament creada
+		if (vAEdges == null) vAEdges = new ArrayList<Edge<K,T>>();
 		vAEdges.add(edgeAB);
 		
 		// Creem l'aresta de vertex 'b' a 'a' amb pes 'v'
@@ -125,6 +127,7 @@ public class Graph<K,T> {
 		// Obtenim la llista d'arestes que surten del vertex 'b'
 		ArrayList<Edge<K,T>> vBEdges = edges.get(b);
 		// Afegim l'aresta previament creada
+		if (vBEdges == null) vBEdges = new ArrayList<Edge<K,T>>();
 		vBEdges.add(edgeBA);
 	}
 	
@@ -176,5 +179,34 @@ public class Graph<K,T> {
 			if (es.get(i).getDesti() == d) 
 				es.remove(i);
 		}
+	}
+	
+	/**
+	 * Elimina un vertex del graf
+	 * @param v El vertex
+	 */
+	public void removeVertex(K v) {
+		
+		if (vertexs.contains(v))
+			vertexs.remove(v);
+	}
+	
+	/**
+	 * Obte l'aresta d'un vertex origen a un vertex desti
+	 * @param o El vertex origen
+	 * @param d El vertex desti
+	 * @return ArrayList amb les arestes
+	 */
+	public Edge<K,T> getEdge(K o, K d) {
+		if (edges.containsKey(o)) {
+			ArrayList<Edge<K,T>> es = edges.get(o);
+			
+			for (Edge<K,T> edge : es) {
+				if (edge.getDesti() == d)
+					return edge;
+			}
+		}
+		
+		return null;
 	}
 }
