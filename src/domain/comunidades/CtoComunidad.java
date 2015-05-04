@@ -38,6 +38,21 @@ public class CtoComunidad
         this.ctoComunidades = ctoComunidades;
     }
 
+    public void addComunidades(Comunidad c)
+    {
+        if(!ctoComunidades.contains(c))ctoComunidades.add(c);
+    }
+    
+    public void removeComunidades(Comunidad c)
+    {
+        if(ctoComunidades.contains(c))ctoComunidades.remove(c);
+    }
+    
+    public Integer getNumComunidades()
+    {
+        return ctoComunidades.size();        
+    }
+    
     public Selections getSelecciones()
     {
         return selecciones;

@@ -78,6 +78,11 @@ public class Comunidad
         if(index >= 0)ctoCategorias.get(index).setNombre(nombre);  
     }
     
+    public Integer getNumCategorias()
+    {
+        return ctoCategorias.size();
+    }
+    
     public String toString()
     {
         return "Comunidad{" + "Nombre=" + nombre + " Categorias = " + ctoCategorias.toString() + '}';
