@@ -27,6 +27,7 @@ public class Grafo
         this.correspondencia = new HashMap<>();
         this.correspondencia2 = new HashMap<>();
         this.translator = new HashMap<>();
+        this.translator2 = new HashMap<>();
         this.aristas = new ArrayList<>();
         this.numVertex = 0;
         this.numAristas = 0;
@@ -279,6 +280,11 @@ public class Grafo
         {
             this.addNewEntry(s);
         }
+    }
+    
+    public int getNumVertex()
+    {
+        return this.numVertex;
     }
     
     public ArrayList<String> getGraphInfo()

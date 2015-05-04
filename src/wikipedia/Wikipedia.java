@@ -1,7 +1,6 @@
 package wikipedia;
 
 import domain.CtrDominio;
-import domain.grafos.Grafo;
 
 
 public class Wikipedia
@@ -12,7 +11,7 @@ public class Wikipedia
      */
     public static void main(String[] args)
     {
-        
+        /*
         CtrDominio cd = new CtrDominio();
         
         String basePath = "/Users/potnox/Desktop/PROP/project/propwikipedia/external/";
