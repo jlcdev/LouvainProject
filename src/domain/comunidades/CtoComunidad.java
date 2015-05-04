@@ -91,14 +91,4 @@ public class CtoComunidad
         this.algortimo = algortimo;
     }
     
-    public String toString()
-    {
-        String salida;
-        salida = "CtoComunidades{" + "Nombre=" + nombre + " Algoritmo=" + algortimo + " Selecciones=" + selecciones.toString() + " Filtros=" + filtros.toString() + " Comunidades=";
-        for(int i = 0;i < ctoComunidades.size(); ++i){
-            salida = salida + ctoComunidades.get(i).toString();
-        }
-        salida = salida +'}';
-        return salida;
-    }
 }
