@@ -335,14 +335,15 @@ public class Grafo
         this.translator.remove(num);
         for(ArrayList<Arch> listArch : this.aristas)
         {
-            for(Arch arc : listArch)
+            for(int i =0; i < listArch.size(); i++)
             {
-                if(arc.getOrigin() == num || arc.getDestiny() == num)
+            	Arch arc = listArch.get(i);
+            	if(arc.getOrigin() == num || arc.getDestiny() == num)
                 {
                     listArch.remove(arc);
                     --this.numAristas;
                 }
-            }
+            }        	
         }
         --this.numVertex;
         Node n = this.correspondencia.get(num);
