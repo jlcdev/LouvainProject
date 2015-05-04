@@ -6,7 +6,7 @@ import shared.Graph;
 
 /**
 *
-* @author Joan
+* @author Joan Rodas
 */
 
 public class Conversion {
@@ -17,14 +17,9 @@ public class Conversion {
 		for(int i = 0; i < g.getNumVertex(); i++)
 		{
 			String name = g.getTranslator(i);
-			if(!s.getSelecion().contains(name)) //Si el node no es troba en la selecció, l'eliminem a ell i als seus enllaços
-			{
-				ArrayList<Integer> veins = g.getAdyacents(i);
-				for(int j=0; j<veins.size(); j++)
-				{
-					//g.removeEdge(i,j);
-				}
-				//g.removeNode(i);
+			if(!s.getSelecion().contains(name)) {
+				System.out.println(name);
+				g.remove(name); //PETA
 			}
 		}
 		return g;
@@ -34,17 +29,18 @@ public class Conversion {
 	{
 		int[] filters = f.getFilters();
 		Grafo g = removeSelection(grafo, s);
+		
 		Graph<Integer,Integer> gr = new Graph<Integer, Integer>();
 		for(int i=0; i < g.getNumVertex(); i++) 
 		{
 			double pagNode=0,catNode=0,fathersNode=0,sonsNode=0;
 			Node n = g.getNodeNumber(i);
-			if(!gr.getVertexs().contains(i))
-			{
+			//if(!gr.getVertexs().contains(i))
+			//{
 				String nname = n.getNombre();
 				if(n.getClass() == Categoria.class) //Nomes volem categories
 				{
-					gr.addVertex(i);
+					if(!gr.getVertexs().contains(i)) gr.addVertex(i);
 					//gr.addEdge(i, i, 0); //Enlace a si mismo(?)
 					
 					catNode = g.getNumCatAdyacent(i);
@@ -52,53 +48,54 @@ public class Conversion {
 					fathersNode = g.getNumCsupCAdyacent(i);
 					sonsNode = g.getNumCsubCAdyacent(i);
 					ArrayList<Integer> veins = g.getAdyacents(i);
-									
+														
 					for(int j=0;j<veins.size();j++)
-					{
-						
-						
-						if(!gr.getVertexs().contains(i))
+					{						
+						Node vei = g.getNodeNumber(veins.get(j)); 
+						String veiname = vei.getNombre();
+							
+						if(vei.getClass() == Categoria.class) //Si es una pàgina ens es igual l'enllaç
 						{
-							//System.out.println("Hola");
-							Node vei = g.getNodeNumber(j); 
-							if(vei.getClass() == Categoria.class) //Si es una pàgina ens es igual l'enllaç
+							double catComu=0,pagComu=0,fathersComu=0,sonsComu=0;
+							double pesName=0,pesCat=0,pesPage=0,pesCsupC=0,pesCsubC=0;
+							double pagVei=0,catVei=0,fathersVei=0,sonsVei=0;
+								
+							//if (!gr.getVertexs().contains(veins.get(j))) gr.addVertex(j);
+							
+							if(filters[0] > 0) pesName = DiceCoefficient.diceCoefficientOptimized(nname, veiname)*filters[0]; 
+															
+							if(filters[1] > 0) 
 							{
-								//System.out.println("Hola");
-								double catComu=0,pagComu=0,fathersComu=0,sonsComu=0;
-								double pesName=0,pesCat=0,pesPage=0,pesCsupC=0,pesCsubC=0;
-								double pagVei=0,catVei=0,fathersVei=0,sonsVei=0;
-								
-								gr.addVertex(j);
-								
-								catVei = g.getNumCatAdyacent(j);
-								pagVei = g.getNumPagAdyacent(j);
-								fathersVei = g.getNumCsupCAdyacent(j);
-								sonsVei = g.getNumCsubCAdyacent(j);
-								
-								
-								String veiname = vei.getNombre();
-								
-								if(filters[0] > 0) pesName = DiceCoefficient.diceCoefficientOptimized(nname, veiname)*filters[0]; 
-								if(filters[1] > 0) catComu = g.getNumCommonCatAdyacent(i, j);
-								if(filters[2] > 0) pagComu = g.getNumCommonPagAdyacent(i, j);
-								if(filters[3] > 0) fathersComu = g.getNumCommonCsupCAdyacent(i, j);
-								if(filters[4] > 0) sonsComu = g.getNumCommonCsubCAdyacent(i, j);
-								
+								catVei = g.getNumCatAdyacent(veins.get(j));
+								catComu = g.getNumCommonCatAdyacent(i, veins.get(j));
 								pesCat = ((catComu*2)/(catNode + catVei))*filters[1]; //Max = 10 en tot
-								pesPage = ((pagComu*2)/(pagNode + pagVei))*filters[2];
+							}
+							if(filters[2] > 0)
+							{
+								pagVei = g.getNumPagAdyacent(veins.get(j));
+								pagComu = g.getNumCommonPagAdyacent(i, veins.get(j));
+								pesPage = ((pagComu*2)/(pagNode + pagVei))*filters[2];																		
+							}
+							if(filters[3] > 0) 
+							{
+								fathersVei = g.getNumCsupCAdyacent(veins.get(j));
+								fathersComu = g.getNumCommonCsupCAdyacent(i, veins.get(j));
 								pesCsupC = ((fathersComu*2)/(fathersNode + fathersVei))*filters[3];
-								pesCsubC = ((sonsComu*2)/(sonsNode + sonsVei))*filters[4];								
-								
-								double pes_total = (pesName + pesCat + pesPage + pesCsupC + pesCsubC)*2; //*2 per fer max = 100
-								int pt = (int)pes_total;
-								System.out.println(pt);
-								gr.addEdge(i, j, pt);	
-								
-							}									
-						}									
+							}
+							if(filters[4] > 0)
+							{
+								sonsVei = g.getNumCsubCAdyacent(veins.get(j));
+								sonsComu = g.getNumCommonCsubCAdyacent(i, veins.get(j));
+								pesCsubC = ((sonsComu*2)/(sonsNode + sonsVei))*filters[4];
+							}								
+													
+							double pes_total = (pesName + pesCat + pesPage + pesCsupC + pesCsubC)*2; //*2 per fer max = 100
+							int pt = (int)pes_total;								
+							gr.addEdge(i, veins.get(j), pt);									
+						}															
 					}					
 				}
-			}		
+			//}		
 		}
 		return gr;
 	}
