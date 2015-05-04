@@ -30,7 +30,7 @@ public class Conversion {
 		return g;
 	}
 	
-	public static void toWeightedGraph(Grafo grafo, Filters f, Selections s)
+	public static Graph<Integer, Integer> toWeightedGraph(Grafo grafo, Filters f, Selections s)
 	{
 		int[] filters = f.getFilters();
 		Grafo g = removeSelection(grafo, s);
@@ -59,8 +59,11 @@ public class Conversion {
 						
 						if(!gr.getVertexs().contains(i))
 						{
-							if(n.getClass() == Categoria.class) //Si es una pàgina ens es igual l'enllaç
+							//System.out.println("Hola");
+							Node vei = g.getNodeNumber(j); 
+							if(vei.getClass() == Categoria.class) //Si es una pàgina ens es igual l'enllaç
 							{
+								//System.out.println("Hola");
 								double catComu=0,pagComu=0,fathersComu=0,sonsComu=0;
 								double pesName=0,pesCat=0,pesPage=0,pesCsupC=0,pesCsubC=0;
 								double pagVei=0,catVei=0,fathersVei=0,sonsVei=0;
@@ -72,7 +75,7 @@ public class Conversion {
 								fathersVei = g.getNumCsupCAdyacent(j);
 								sonsVei = g.getNumCsubCAdyacent(j);
 								
-								Node vei = g.getNodeNumber(j); 
+								
 								String veiname = vei.getNombre();
 								
 								if(filters[0] > 0) pesName = DiceCoefficient.diceCoefficientOptimized(nname, veiname)*filters[0]; 
@@ -88,13 +91,17 @@ public class Conversion {
 								
 								double pes_total = (pesName + pesCat + pesPage + pesCsupC + pesCsubC)*2; //*2 per fer max = 100
 								int pt = (int)pes_total;
-								gr.addEdge(i, j, pt);								
+								System.out.println(pt);
+								gr.addEdge(i, j, pt);	
+								
 							}									
 						}									
 					}					
 				}
 			}		
 		}
+		return gr;
 	}
+	
 	
 }
