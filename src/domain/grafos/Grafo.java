@@ -54,11 +54,13 @@ public class Grafo
     
     public int getNumTotalAdyacent(int node)
     {
+        if(this.aristas.isEmpty()) return 0;
         return this.aristas.get(node).size();
     }
     
     public int getNumPagAdyacent(int node)
     {
+        if(this.aristas.isEmpty()) return 0;
         int cont = 0;
         for(Arch arc : this.aristas.get(node))
         {
@@ -76,6 +78,7 @@ public class Grafo
     
     public int getNumCatAdyacent(int node)
     {
+        if(this.aristas.isEmpty()) return 0;
         int cont = 0;
         for(Arch arc : this.aristas.get(node))
         {
