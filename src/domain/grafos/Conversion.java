@@ -43,64 +43,66 @@ public class Conversion {
 			Node n = g.getNodeNumber(i);
 			//if(!gr.getVertexs().contains(i))
 			//{
-				String nname = n.getNombre();
-				if(n.getClass() == Categoria.class) //Nomes volem categories
+				String nname;
+				if (n != null)
 				{
-					if(!gr.getVertexs().contains(i)) gr.addVertex(i);
-					//gr.addEdge(i, i, 0); //Enlace a si mismo(?)
-					
-					catNode = g.getNumCatAdyacent(i);
-					pagNode = g.getNumPagAdyacent(i);
-					fathersNode = g.getNumCsupCAdyacent(i);
-					sonsNode = g.getNumCsubCAdyacent(i);
-					ArrayList<Integer> veins = g.getAdyacents(i);
-														
-					for(int j=0;j<veins.size();j++)
-					{						
-						Node vei = g.getNodeNumber(veins.get(j)); 
-						String veiname = vei.getNombre();
-							
-						if(vei.getClass() == Categoria.class) //Si es una pàgina ens es igual l'enllaç
-						{
-							double catComu=0,pagComu=0,fathersComu=0,sonsComu=0;
-							double pesName=0,pesCat=0,pesPage=0,pesCsupC=0,pesCsubC=0;
-							double pagVei=0,catVei=0,fathersVei=0,sonsVei=0;
-								
-							//if (!gr.getVertexs().contains(veins.get(j))) gr.addVertex(j);
-							
-							if(filters[0] > 0) pesName = DiceCoefficient.diceCoefficientOptimized(nname, veiname)*filters[0]; 
+					nname = n.getNombre();
+					if(n.getClass() == Categoria.class) //Nomes volem categories
+					{
+						if(!gr.getVertexs().contains(i)) gr.addVertex(i);
+						//gr.addEdge(i, i, 0); //Enlace a si mismo(?)
+						
+						catNode = g.getNumCatAdyacent(i);
+						pagNode = g.getNumPagAdyacent(i);
+						fathersNode = g.getNumCsupCAdyacent(i);
+						sonsNode = g.getNumCsubCAdyacent(i);
+						ArrayList<Integer> veins = g.getAdyacents(i);
 															
-							if(filters[1] > 0) 
+						for(int j=0;j<veins.size();j++)
+						{						
+							Node vei = g.getNodeNumber(veins.get(j)); 
+							String veiname = vei.getNombre();
+								
+							if(vei.getClass() == Categoria.class) //Si es una pàgina ens es igual l'enllaç
 							{
-								catVei = g.getNumCatAdyacent(veins.get(j));
-								catComu = g.getNumCommonCatAdyacent(i, veins.get(j));
-								pesCat = ((catComu*2)/(catNode + catVei))*filters[1]; //Max = 10 en tot
-							}
-							if(filters[2] > 0)
-							{
-								pagVei = g.getNumPagAdyacent(veins.get(j));
-								pagComu = g.getNumCommonPagAdyacent(i, veins.get(j));
-								pesPage = ((pagComu*2)/(pagNode + pagVei))*filters[2];																		
-							}
-							if(filters[3] > 0) 
-							{
-								fathersVei = g.getNumCsupCAdyacent(veins.get(j));
-								fathersComu = g.getNumCommonCsupCAdyacent(i, veins.get(j));
-								pesCsupC = ((fathersComu*2)/(fathersNode + fathersVei))*filters[3];
-							}
-							if(filters[4] > 0)
-							{
-								sonsVei = g.getNumCsubCAdyacent(veins.get(j));
-								sonsComu = g.getNumCommonCsubCAdyacent(i, veins.get(j));
-								pesCsubC = ((sonsComu*2)/(sonsNode + sonsVei))*filters[4];
-							}								
-													
-							double pes_total = (pesName + pesCat + pesPage + pesCsupC + pesCsubC)*2; //*2 per fer max = 100
-							//int pt = (int)pes_total;								
-							gr.addEdge(i, veins.get(j), pes_total);									
-						}															
-					}					
+								double catComu=0,pagComu=0,fathersComu=0,sonsComu=0;
+								double pesName=0,pesCat=0,pesPage=0,pesCsupC=0,pesCsubC=0;
+								double pagVei=0,catVei=0,fathersVei=0,sonsVei=0;									
+														
+								if(filters[0] > 0) pesName = DiceCoefficient.diceCoefficientOptimized(nname, veiname)*filters[0]; 
+																
+								if(filters[1] > 0) 
+								{
+									catVei = g.getNumCatAdyacent(veins.get(j));
+									catComu = g.getNumCommonCatAdyacent(i, veins.get(j));
+									pesCat = ((catComu*2)/(catNode + catVei))*filters[1]; //Max = 10 en tot
+								}
+								if(filters[2] > 0)
+								{
+									pagVei = g.getNumPagAdyacent(veins.get(j));
+									pagComu = g.getNumCommonPagAdyacent(i, veins.get(j));
+									pesPage = ((pagComu*2)/(pagNode + pagVei))*filters[2];																		
+								}
+								if(filters[3] > 0) 
+								{
+									fathersVei = g.getNumCsupCAdyacent(veins.get(j));
+									fathersComu = g.getNumCommonCsupCAdyacent(i, veins.get(j));
+									pesCsupC = ((fathersComu*2)/(fathersNode + fathersVei))*filters[3];
+								}
+								if(filters[4] > 0)
+								{
+									sonsVei = g.getNumCsubCAdyacent(veins.get(j));
+									sonsComu = g.getNumCommonCsubCAdyacent(i, veins.get(j));
+									pesCsubC = ((sonsComu*2)/(sonsNode + sonsVei))*filters[4];
+								}								
+														
+								double pes_total = (pesName + pesCat + pesPage + pesCsupC + pesCsubC)*2; //*2 per fer max = 100
+								gr.addEdge(i, veins.get(j), pes_total);									
+							}															
+						}					
+					}
 				}
+				
 			//}		
 		}
 		return gr;
