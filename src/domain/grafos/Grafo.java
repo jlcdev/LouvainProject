@@ -325,11 +325,27 @@ public class Grafo
         return listString;
     }
     
-    public void removePage(String name)
+    public void remove(String name)
     {
         int num = this.translator2.get(name);
         this.translator2.remove(name);
         this.translator.remove(num);
+        for(ArrayList<Arch> listArch : this.aristas)
+        {
+            for(Arch arc : listArch)
+            {
+                if(arc.getOrigin() == num || arc.getDestiny() == num)
+                {
+                    listArch.remove(arc);
+                    --this.numAristas;
+                }
+            }
+        }
+        --this.numVertex;
+        Node n = this.correspondencia.get(num);
+        this.correspondencia2.remove(n);
+        this.correspondencia.remove(num);
+        this.vertexs.remove(num);
     }
     
     @Override
