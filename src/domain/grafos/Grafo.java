@@ -20,6 +20,9 @@ public class Grafo
     private HashMap<String, Integer> translator2;
     private ArrayList<ArrayList<Arch>> aristas; 
     
+    /**
+     * Constructor por defecto
+     */
     public Grafo()
     {
         this.vertexs = new ArrayList<>();
@@ -32,14 +35,29 @@ public class Grafo
         this.numAristas = 0;
     }
     
+    /**
+     * Obtiene los id de todos los vertices
+     * @return lista de id de vertices
+     */
     public ArrayList<Integer> getAllVertex()
     {
         return this.vertexs;
     }
+    
+    /**
+     * Obtiene todos las aristas
+     * @return lista de lista de aristas
+     */
     public ArrayList<ArrayList<Arch>> getAllEdges()
     {
         return this.aristas;
     }
+    
+    /**
+     * Obtiene los id de los nodos adyacentes al nodo pasado por parametro
+     * @param node
+     * @return lista de id de nodos adyacentes
+     */
     public ArrayList<Integer> getAdyacents(Integer node)
     {
         ArrayList<Integer> tmp = new ArrayList<>();
@@ -51,6 +69,11 @@ public class Grafo
         return tmp;
     }
     
+    /**
+     * 
+     * @param node
+     * @return 
+     */
     public int getNumTotalAdyacent(int node)
     {
         if(this.aristas.isEmpty()) return 0;
@@ -350,8 +373,13 @@ public class Grafo
         this.vertexs.remove(num);
     }
     
+    /**
+     * Devuelve el valor del hash code del objeto
+     * @return valor del hash code del objeto
+     */
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 3;
         hash = 79 * hash + this.id;
         hash = 79 * hash + this.numAristas;
@@ -361,6 +389,11 @@ public class Grafo
         return hash;
     }
 
+    /**
+     * Indica si los dos objetos son iguales
+     * @param obj
+     * @return true si los objetos son iguales, false en caso contrario
+     */
     @Override
     public boolean equals(Object obj)
     {
