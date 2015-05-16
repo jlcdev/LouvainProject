@@ -32,6 +32,7 @@ public class Wikipedia
             System.out.println("8. Ejecutar");
            
             System.out.println("0. Salir");            
+<<<<<<< HEAD
             x = teclat.nextInt();
             String ruta, linia;
             
@@ -53,7 +54,7 @@ public class Wikipedia
                 case 4:
                     //System.out.println("");
                     linia = teclat.next();
-                    var2.setFilters(linia);
+                  var2.setFilters(linia);
                     break;
                 case 5:
                     System.out.println("P: numero entre 0-100");
@@ -73,10 +74,6 @@ public class Wikipedia
                     break;
                     
             }
-            
-            
-            
         }
     }
-    
 }
