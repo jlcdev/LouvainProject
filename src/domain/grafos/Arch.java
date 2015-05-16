@@ -31,29 +31,29 @@ public class Arch
 
     public int getOrigin()
     {
-        return origin;
+        return this.origin;
+    }
+    
+    public int getDestiny()
+    {
+        return this.destiny;
+    }
+    
+    public typeArch getTypeArch()
+    {
+        return this.tipoArco;
     }
 
     public void setOrigin(int origin)
     {
         this.origin = origin;
     }
-
-    public int getDestiny()
-    {
-        return destiny;
-    }
-
+    
     public void setDestiny(int destiny)
     {
         this.destiny = destiny;
     }
-
-    public typeArch getTypeArch()
-    {
-        return tipoArco;
-    }
-
+    
     public void setTypeArch(typeArch tipoArco)
     {
         this.tipoArco = tipoArco;
@@ -72,21 +72,12 @@ public class Arch
     @Override
     public boolean equals(Object obj)
     {
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if(obj == null) return false;
+        if(getClass() != obj.getClass()) return false;
         final Arch other = (Arch) obj;
-        if (this.origin != other.origin)
-        {
-            return false;
-        }
-        if (this.destiny != other.destiny)
-        {
-            return false;
-        }
-        if (this.tipoArco != other.tipoArco)
-        {
-            return false;
-        }
+        if(this.origin != other.origin) return false;
+        if(this.destiny != other.destiny) return false;
+        if(this.tipoArco != other.tipoArco) return false;
         return true;
     }
 
@@ -95,5 +86,4 @@ public class Arch
     {
         return "Arch{" + "origin=" + origin + ", destiny=" + destiny + ", sorigin=" + sorigin + ", sdestiny=" + sdestiny + ", tipoArco=" + tipoArco + '}';
     }
-    
 }

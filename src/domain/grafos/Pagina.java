@@ -11,20 +11,25 @@ package domain.grafos;
  */
 public class Pagina extends Node
 {
-    public Pagina(){}
+    public Pagina()
+    {
+        super();
+    }
     public Pagina(String nombre)
     {
         super(nombre);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
+    public boolean equals(Object obj)
+    {
+        return super.equals(obj);
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    public int hashCode()
+    {
+        return super.hashCode();
     }
     
     

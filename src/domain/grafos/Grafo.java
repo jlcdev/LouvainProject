@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 public class Grafo
 {
-    private int numVertex;
+    private int id;
     private int numAristas;
     private ArrayList<Integer> vertexs;
     private HashMap<Integer, Node> correspondencia;
@@ -19,7 +19,6 @@ public class Grafo
     private HashMap<Integer, String> translator;
     private HashMap<String, Integer> translator2;
     private ArrayList<ArrayList<Arch>> aristas; 
-    
     
     public Grafo()
     {
@@ -29,7 +28,7 @@ public class Grafo
         this.translator = new HashMap<>();
         this.translator2 = new HashMap<>();
         this.aristas = new ArrayList<>();
-        this.numVertex = 0;
+        this.id = 0;
         this.numAristas = 0;
     }
     
@@ -238,14 +237,14 @@ public class Grafo
     public int setNode(Node n)
     {
         if(this.correspondencia2.containsKey(n)) return this.getNumberNode(n);
-        int cont = this.vertexs.size();
+        int cont = this.id;
         this.vertexs.add(cont);
         this.correspondencia.put(cont, n);
         this.translator.put(cont, n.getNombre());
         this.translator2.put(n.getNombre(), cont);
         this.correspondencia2.put(n, cont);
         this.aristas.add(cont, new ArrayList<Arch>());
-        ++this.numVertex;
+        ++this.id;
         return cont;
     }
     
@@ -288,7 +287,7 @@ public class Grafo
     
     public int getNumVertex()
     {
-        return this.numVertex;
+        return this.vertexs.size();
     }
     
     public int getNumAristas()
@@ -345,7 +344,6 @@ public class Grafo
                 }
             }        	
         }
-        --this.numVertex;
         Node n = this.correspondencia.get(num);
         this.correspondencia2.remove(n);
         this.correspondencia.remove(num);
@@ -355,7 +353,7 @@ public class Grafo
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + this.numVertex;
+        hash = 79 * hash + this.id;
         hash = 79 * hash + this.numAristas;
         hash = 79 * hash + Objects.hashCode(this.vertexs);
         hash = 79 * hash + Objects.hashCode(this.translator);
@@ -369,7 +367,7 @@ public class Grafo
         if(obj == null) return false;
         if(getClass() != obj.getClass()) return false;
         final Grafo other = (Grafo) obj;
-        if(this.numVertex != other.numVertex) return false;
+        if(this.id != other.id) return false;
         if(this.numAristas != other.numAristas) return false;
         if(!Objects.equals(this.vertexs, other.vertexs)) return false;
         if(!Objects.equals(this.translator, other.translator)) return false;

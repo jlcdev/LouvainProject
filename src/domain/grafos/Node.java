@@ -27,24 +27,20 @@ public class Node
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 3;
         hash = 97 * hash + Objects.hashCode(this.Nombre);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+    public boolean equals(Object obj)
+    {
+        if(obj == null) return false;
+        if(getClass() != obj.getClass()) return false;
         final Node other = (Node) obj;
-        if (!Objects.equals(this.Nombre, other.Nombre)) {
-            return false;
-        }
+        if (!Objects.equals(this.Nombre, other.Nombre)) return false;
         return true;
     }
 

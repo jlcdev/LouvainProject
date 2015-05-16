@@ -11,26 +11,56 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Javier
+ * @author Javier López Calderón
  */
 public class CtoComunidad
 {
-    private int id;
     private String nombre;
     private boolean modificado;
     private String algortimo;
     private ArrayList<Comunidad> ctoComunidades;
     Filters filtros;
-    Selections selecciones;
+    Selections selectCategories;
+    Selections selectPages;
 
-    public int getId()
+    public boolean isModificado()
     {
-        return id;
+        return this.modificado;
     }
-
+    
     public ArrayList<Comunidad> getCtoComunidades()
     {
         return ctoComunidades;
+    }
+    
+    public Integer getNumComunidades()
+    {
+        return ctoComunidades.size();        
+    }
+    
+    public Selections getCatSelections()
+    {
+        return this.selectCategories;
+    }
+    
+    public Selections getPagSelections()
+    {
+        return this.selectPages;
+    }
+    
+    public Filters getFiltros()
+    {
+        return filtros;
+    }
+    
+    public String getNombre()
+    {
+        return nombre;
+    }
+    
+    public String getAlgortimo()
+    {
+        return this.algortimo;
     }
 
     public void setCtoComunidades(ArrayList<Comunidad> ctoComunidades)
@@ -48,49 +78,24 @@ public class CtoComunidad
         if(ctoComunidades.contains(c))ctoComunidades.remove(c);
     }
     
-    public Integer getNumComunidades()
+    public void setCatSelections(Selections selectCategories)
     {
-        return ctoComunidades.size();        
+        this.selectCategories = selectCategories;
     }
     
-    public Selections getSelecciones()
+    public void setPagSelections(Selections selectPages)
     {
-        return selecciones;
-    }
-
-    public void setSelecciones(Selections selecciones)
-    {
-        this.selecciones = selecciones;
-    }
-
-    public Filters getFiltros()
-    {
-        return filtros;
+        this.selectPages = selectPages;
     }
 
     public void setFiltros(Filters filtros)
     {
         this.filtros = filtros;
     }
-
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-
-    public String getNombre()
-    {
-        return nombre;
-    }
-
+    
     public void setNombre(String nombre)
     {
         this.nombre = nombre;
-    }
-
-    public boolean isModificado()
-    {
-        return modificado;
     }
 
     public void setModificado(boolean modificado)
@@ -98,25 +103,14 @@ public class CtoComunidad
         this.modificado = modificado;
     }
 
-    public String getAlgortimo()
-    {
-        return algortimo;
-    }
-
     public void setAlgortimo(String algortimo)
     {
         this.algortimo = algortimo;
     }
-    
+
     @Override
     public String toString()
     {
-        String salida;
-        salida = "CtoComunidades{" + "Nombre=" + nombre + " Algoritmo=" + algortimo + " Selecciones=" + selecciones.getSelecion() + " Filtros=" + filtros.getAll() + " Comunidades=";
-        for(int i = 0;i < ctoComunidades.size(); ++i){
-            salida = salida + ctoComunidades.get(i).toString();
-        }
-        salida = salida +'}';
-        return salida;
+        return "CtoComunidad{" + "nombre=" + nombre + ", modificado=" + modificado + ", algortimo=" + algortimo + ", ctoComunidades=" + ctoComunidades + ", filtros=" + filtros + ", selectCategories=" + selectCategories + ", selectPages=" + selectPages + '}';
     }
 }

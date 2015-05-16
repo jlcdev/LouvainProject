@@ -36,7 +36,6 @@ public class CtrData
     public Grafo readEntryGraphFile()
     {
         Grafo g = new Grafo();
-        if(this.entryPath == null || this.entryPath.isEmpty()) return g;
         fm.setPath(this.entryPath);
         g.addMultipleEntry(fm.readFile());
         return g;
