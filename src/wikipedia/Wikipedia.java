@@ -31,8 +31,7 @@ public class Wikipedia
             System.out.println("7. Generar grafo");
             System.out.println("8. Ejecutar");
            
-            System.out.println("0. Salir");            
-<<<<<<< HEAD
+            System.out.println("0. Salir");
             x = teclat.nextInt();
             String ruta, linia;
             
