@@ -241,11 +241,14 @@ public class CtrlPresentacion {
    * @param anterior
    * @param nuevo 
    */
-  public void modGrafoNombre (Integer anterior, String nuevo, Boolean tipus)
+  public void modGrafoNombre (String anterior, String nuevo, Boolean tipus)
   {
+      //***************************************************
+      //***************************************************
+      int a = 0; //ELIMINAR
       Boolean error;
-      if(tipus)error = ctrlDominio.modifyCategory(anterior,nuevo);
-      else error = ctrlDominio.modifyPage(anterior, nuevo);
+      if(tipus)error = ctrlDominio.modifyCategory(a,nuevo);
+      else error = ctrlDominio.modifyPage(a, nuevo);
       if(!error)sincronizacionVistaPrincipal_a_Error("La categoria indicada no existe");
   }
   
@@ -285,12 +288,12 @@ public class CtrlPresentacion {
       //ctrlAlgoritmo.ejecutar(ctrlDominio.getGrafo());
   }
   
-  public void aplicarSelPag ()
+  public void aplicarSelPag (ArrayList<String> al)
   {
     //?????  
   }
   
-  public void aplicarSelCat ()
+  public void aplicarSelCat (ArrayList<String> al)
   {
       //?????
   }

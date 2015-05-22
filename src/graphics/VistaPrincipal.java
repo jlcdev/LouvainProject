@@ -188,6 +188,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Wiki");
         setMinimumSize(new java.awt.Dimension(900, 520));
+        setPreferredSize(new java.awt.Dimension(996, 520));
         setResizable(false);
 
         btnImportarGrafo.setText("Importar grafo");
@@ -1315,7 +1316,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImportarConjActionPerformed
 
     private void btnChangeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameActionPerformed
-        iCtrlPresentacion.modGrafoNombre(txtNombreNodoAnterior.getText(), txtNombreNodoNuevo.getText());
+        iCtrlPresentacion.modGrafoNombre(txtNombreNodoAnterior.getText(), txtNombreNodoNuevo.getText(), comboTipoNodo.getSelectedIndex() != 0);
     }//GEN-LAST:event_btnChangeNameActionPerformed
 
     private void btnRmvCatFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromGraphActionPerformed
