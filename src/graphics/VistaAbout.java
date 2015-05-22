@@ -21,11 +21,8 @@ public class VistaAbout extends javax.swing.JFrame {
     public VistaAbout(CtrlPresentacion pCtrlPresentacion) {
         iCtrlPresentacion = pCtrlPresentacion;
         initComponents();
-        this.setMinimumSize(new Dimension(500,400));
-        this.setPreferredSize(this.getMinimumSize());
-        this.setResizable(false);
         // Posicion y operaciones por defecto
-        this.setLocationRelativeTo(null);        
+        //this.setLocationRelativeTo(null);        
     }
     
     public void hacerVisible() {
