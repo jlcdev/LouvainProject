@@ -102,6 +102,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         txtNombreNodoNuevo = new javax.swing.JTextField();
         btnImportarGrafo1 = new javax.swing.JButton();
         btnNuevoGrafo1 = new javax.swing.JButton();
+        comboTipoNodo = new javax.swing.JComboBox();
         panelAlgoritmo = new javax.swing.JPanel();
         radioGirvan = new javax.swing.JRadioButton();
         radioLouvain = new javax.swing.JRadioButton();
@@ -163,14 +164,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         panelComparacion = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         txtListGraph1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        btnCompararComunidades = new javax.swing.JButton();
+        comboTipoCom1 = new javax.swing.JComboBox();
+        comboTipoCom2 = new javax.swing.JComboBox();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnCompararConjuntos = new javax.swing.JButton();
         barraMenu = new javax.swing.JMenuBar();
         menuFichero = new javax.swing.JMenu();
         mItemImportarGrafo = new javax.swing.JMenuItem();
@@ -382,6 +383,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        comboTipoNodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Página", "Categoria" }));
+        comboTipoNodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoNodoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelGrafoLayout = new javax.swing.GroupLayout(panelGrafo);
         panelGrafo.setLayout(panelGrafoLayout);
         panelGrafoLayout.setHorizontalGroup(
@@ -435,7 +443,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addComponent(btnNuevoGrafo1))
                     .addGroup(panelGrafoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnExportarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnExportarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelGrafoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(comboTipoNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 42, Short.MAX_VALUE)
                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelGrafoLayout.createSequentialGroup()
@@ -499,6 +510,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(btnChangeName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNombreNodoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboTipoNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExportarGrafo))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
@@ -874,7 +887,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        comboTipoNombreSet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categoria", "Comunidad", "Conjunto" }));
+        comboTipoNombreSet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conjunto", "Comunidad", "Categoria" }));
         comboTipoNombreSet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboTipoNombreSetActionPerformed(evt);
@@ -1003,11 +1016,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         txtListGraph1.setRows(5);
         jScrollPane6.setViewportView(txtListGraph1);
 
-        jButton1.setText("Comparar");
+        btnCompararComunidades.setText("Comparar");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Importado", "Creado" }));
+        comboTipoCom1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Importado", "Creado" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Importado", "Creado" }));
+        comboTipoCom2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Importado", "Creado" }));
 
         jTextField1.setText("jTextField1");
 
@@ -1017,7 +1030,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jLabel20.setText("Comparar 2 conjuntos");
 
-        jButton2.setText("Comparar");
+        btnCompararConjuntos.setText("Comparar");
 
         javax.swing.GroupLayout panelComparacionLayout = new javax.swing.GroupLayout(panelComparacion);
         panelComparacion.setLayout(panelComparacionLayout);
@@ -1029,16 +1042,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelComparacionLayout.createSequentialGroup()
                         .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(comboTipoCom1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboTipoCom2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(12, 12, 12)
                         .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                             .addComponent(jTextField2))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCompararComunidades, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCompararConjuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
@@ -1052,17 +1065,17 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel17)
                         .addGap(22, 22, 22)
                         .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboTipoCom1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboTipoCom2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCompararComunidades, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(47, 47, 47)
                         .addComponent(jLabel20)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCompararConjuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1345,6 +1358,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         iCtrlPresentacion.modCtoNombre(comboTipoNombreSet.getSelectedIndex(), txtNombreAnterior.getText(), txtNombreNuevo.getText(), comboTipoSet.getSelectedIndex() != 0);
     }//GEN-LAST:event_btnChangeNameSetActionPerformed
 
+    private void comboTipoNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoNodoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboTipoNodoActionPerformed
+
  //   /**
  //    * @param args the command line arguments
  //    */
@@ -1394,6 +1411,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAplicarSelPag;
     private javax.swing.JButton btnChangeName;
     private javax.swing.JButton btnChangeNameSet;
+    private javax.swing.JButton btnCompararComunidades;
+    private javax.swing.JButton btnCompararConjuntos;
     private javax.swing.JButton btnEjecutar;
     private javax.swing.JButton btnExportSet;
     private javax.swing.JButton btnExportarGrafo;
@@ -1416,14 +1435,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnShowSet;
     private javax.swing.JCheckBox ckTodasCategorias;
     private javax.swing.JCheckBox ckTodasPaginas;
+    private javax.swing.JComboBox comboTipoCom1;
+    private javax.swing.JComboBox comboTipoCom2;
     private javax.swing.JComboBox comboTipoEnlace;
+    private javax.swing.JComboBox comboTipoNodo;
     private javax.swing.JComboBox comboTipoNombreSet;
     private javax.swing.JComboBox comboTipoSet;
     private javax.swing.ButtonGroup grupoAlgoritmos;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

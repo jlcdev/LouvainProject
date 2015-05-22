@@ -289,6 +289,10 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnExportarGrafo" min="-2" pref="105" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="comboTipoNodo" min="-2" pref="195" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="25" pref="42" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -369,6 +373,8 @@
                                   </Group>
                                   <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="comboTipoNodo" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnExportarGrafo" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -573,6 +579,19 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoGrafo1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboTipoNodo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="P&#xe1;gina"/>
+                    <StringItem index="1" value="Categoria"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboTipoNodoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1340,9 +1359,9 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="Categoria"/>
+                    <StringItem index="0" value="Conjunto"/>
                     <StringItem index="1" value="Comunidad"/>
-                    <StringItem index="2" value="Conjunto"/>
+                    <StringItem index="2" value="Categoria"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1385,8 +1404,8 @@
                           <Component id="jLabel17" min="-2" pref="225" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jComboBox1" max="32767" attributes="0"/>
-                                  <Component id="jComboBox2" max="32767" attributes="0"/>
+                                  <Component id="comboTipoCom1" max="32767" attributes="0"/>
+                                  <Component id="comboTipoCom2" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1394,10 +1413,10 @@
                                   <Component id="jTextField2" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="91" max="-2" attributes="0"/>
+                              <Component id="btnCompararComunidades" min="-2" pref="91" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel20" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="btnCompararConjuntos" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="77" max="32767" attributes="0"/>
                       <Component id="jScrollPane6" min="-2" pref="457" max="-2" attributes="0"/>
@@ -1414,19 +1433,19 @@
                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jComboBox1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="comboTipoCom1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jComboBox2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="comboTipoCom2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="btnCompararComunidades" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                               <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="btnCompararConjuntos" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane6" pref="442" max="32767" attributes="0"/>
@@ -1452,12 +1471,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btnCompararComunidades">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Comparar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="comboTipoCom1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -1467,7 +1486,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox2">
+            <Component class="javax.swing.JComboBox" name="comboTipoCom2">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -1497,7 +1516,7 @@
                 <Property name="text" type="java.lang.String" value="Comparar 2 conjuntos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="btnCompararConjuntos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Comparar"/>
               </Properties>
