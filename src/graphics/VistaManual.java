@@ -71,11 +71,14 @@ public class VistaManual extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(719, 520));
+        setResizable(false);
 
         panel.setLayout(new java.awt.CardLayout());
 
         card1.setVerifyInputWhenFocusTarget(false);
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("Importar grafo\n--------------\n\nAl iniciar el programa tendremos la opción de crear un nuevo grafo vacío\nal que añadir los nodos manualmente o por otro lado la opción de importar\nun grafo previamente guardado en formato .txt.\n\nPara importar el grafo simplemente hay que pulsar el botón\n\"Importar grafo\" de la pestaña Inicio y seleccionar el fichero deseado.\n\nTambién es posible acceder a esta opción desde la pestaña Grafo,\nque nos permite substituir el grafo actual por el importado\n\n\n\nImportar conjunto\n------------------\n\nAl iniciar el programa tendremos la opción de importar un conjunto\nde comunidades en formato .txt desde la opción \"Importar conjunto\".\n\nTambién es posible acceder a esta opción desde la pestaña conjunto.\n\nUna vez importado el conjunto, podrá ser modificado, guardado y comparado\ncon otro.");
@@ -99,6 +102,7 @@ public class VistaManual extends javax.swing.JFrame {
 
         panel.add(card1, "card1");
 
+        jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jTextArea2.setText("Modificar grafo\n---------------\n\nEl programa dispone de varias opciones para crear y modificar un grafo,\naccesibles desde la pestaña Grafo (hay que crear un nuevo grafo o\nimportar uno existente para poder acceder a estas opciones).\n\nAñadir/Eliminar categoria:\n\nAñadir/Eliminar página:\n\nAñadir/Eliminar enlace:\n\nCambiar nombre nodo:\n");
@@ -122,6 +126,7 @@ public class VistaManual extends javax.swing.JFrame {
 
         panel.add(card2, "card2");
 
+        jTextArea3.setEditable(false);
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jTextArea3.setText("Ver grafo\n----------");
@@ -145,6 +150,7 @@ public class VistaManual extends javax.swing.JFrame {
 
         panel.add(card3, "card3");
 
+        jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
         jTextArea4.setText("Algoritmo\n----------");
@@ -168,6 +174,7 @@ public class VistaManual extends javax.swing.JFrame {
 
         panel.add(card4, "card4");
 
+        jTextArea5.setEditable(false);
         jTextArea5.setColumns(20);
         jTextArea5.setRows(5);
         jTextArea5.setText("Modificar conjunto\n-------------------");
@@ -191,6 +198,7 @@ public class VistaManual extends javax.swing.JFrame {
 
         panel.add(card5, "card5");
 
+        jTextArea6.setEditable(false);
         jTextArea6.setColumns(20);
         jTextArea6.setRows(5);
         jTextArea6.setText("Ver conjunto\n------------");
@@ -214,6 +222,7 @@ public class VistaManual extends javax.swing.JFrame {
 
         panel.add(card6, "card6");
 
+        jTextArea7.setEditable(false);
         jTextArea7.setColumns(20);
         jTextArea7.setRows(5);
         jTextArea7.setText("Comparar\n----------");
@@ -237,6 +246,7 @@ public class VistaManual extends javax.swing.JFrame {
 
         panel.add(card7, "card7");
 
+        jTextArea8.setEditable(false);
         jTextArea8.setColumns(20);
         jTextArea8.setRows(5);
         jTextArea8.setText("Guardar grafo\n--------------\n\n\n\n\n\n\nGuardar conjunto\n-----------------");
@@ -260,6 +270,7 @@ public class VistaManual extends javax.swing.JFrame {
 
         panel.add(card8, "card8");
 
+        jTextArea9.setEditable(false);
         jTextArea9.setColumns(20);
         jTextArea9.setRows(5);
 

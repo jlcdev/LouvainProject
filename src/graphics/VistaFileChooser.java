@@ -24,8 +24,10 @@ public class VistaFileChooser extends javax.swing.JFrame {
     }
     
     public void hacerVisible() {
+        if(this.tipus == false) fileChooser.setApproveButtonText("Import");
+        else fileChooser.setApproveButtonText("Export");
         this.pack();
-        this.setVisible(true);
+        this.setVisible(true);        
     }
 
     public void hacerInvisible() {
@@ -44,9 +46,6 @@ public class VistaFileChooser extends javax.swing.JFrame {
         fileChooser = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        if(this.tipus == false) fileChooser.setApproveButtonText("Import");
-        else fileChooser.setApproveButtonText("Export");
 
         fileChooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

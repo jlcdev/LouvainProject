@@ -37,9 +37,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fileChooserActionPerformed"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(this.tipus == false) fileChooser.setApproveButtonText(&quot;Import&quot;);&#xa;else fileChooser.setApproveButtonText(&quot;Export&quot;);&#xa;&#xa;"/>
-      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

@@ -3,6 +3,10 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[719, 520]"/>
+    </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -111,6 +115,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="jTextArea1">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Importar grafo&#xa;--------------&#xa;&#xa;Al iniciar el programa tendremos la opci&#xf3;n de crear un nuevo grafo vac&#xed;o&#xa;al que a&#xf1;adir los nodos manualmente o por otro lado la opci&#xf3;n de importar&#xa;un grafo previamente guardado en formato .txt.&#xa;&#xa;Para importar el grafo simplemente hay que pulsar el bot&#xf3;n&#xa;&quot;Importar grafo&quot; de la pesta&#xf1;a Inicio y seleccionar el fichero deseado.&#xa;&#xa;Tambi&#xe9;n es posible acceder a esta opci&#xf3;n desde la pesta&#xf1;a Grafo,&#xa;que nos permite substituir el grafo actual por el importado&#xa;&#xa;&#xa;&#xa;Importar conjunto&#xa;------------------&#xa;&#xa;Al iniciar el programa tendremos la opci&#xf3;n de importar un conjunto&#xa;de comunidades en formato .txt desde la opci&#xf3;n &quot;Importar conjunto&quot;.&#xa;&#xa;Tambi&#xe9;n es posible acceder a esta opci&#xf3;n desde la pesta&#xf1;a conjunto.&#xa;&#xa;Una vez importado el conjunto, podr&#xe1; ser modificado, guardado y comparado&#xa;con otro."/>
@@ -148,6 +153,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="jTextArea2">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Modificar grafo&#xa;---------------&#xa;&#xa;El programa dispone de varias opciones para crear y modificar un grafo,&#xa;accesibles desde la pesta&#xf1;a Grafo (hay que crear un nuevo grafo o&#xa;importar uno existente para poder acceder a estas opciones).&#xa;&#xa;A&#xf1;adir/Eliminar categoria:&#xa;&#xa;A&#xf1;adir/Eliminar p&#xe1;gina:&#xa;&#xa;A&#xf1;adir/Eliminar enlace:&#xa;&#xa;Cambiar nombre nodo:&#xa;"/>
@@ -185,6 +191,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="jTextArea3">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Ver grafo&#xa;----------"/>
@@ -222,6 +229,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="jTextArea4">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Algoritmo&#xa;----------"/>
@@ -259,6 +267,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="jTextArea5">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Modificar conjunto&#xa;-------------------"/>
@@ -296,6 +305,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="jTextArea6">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Ver conjunto&#xa;------------"/>
@@ -333,6 +343,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="jTextArea7">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Comparar&#xa;----------"/>
@@ -370,6 +381,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="jTextArea8">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Guardar grafo&#xa;--------------&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;Guardar conjunto&#xa;-----------------"/>
@@ -407,6 +419,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="jTextArea9">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>

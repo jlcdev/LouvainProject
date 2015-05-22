@@ -5,57 +5,60 @@
  */
 package graphics;
 
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Joan Rodas
  */
-public class VistaPrincipal extends javax.swing.JFrame {
+public class VistaPrincipal extends javax.swing.JFrame 
+{
     
     // Controlador de presentacion
-  private final CtrlPresentacion iCtrlPresentacion;
-
- //   /**
- //    * Creates new form Ventana
- //    */
-  //  public VistaPrincipal() {
-  //      initComponents();
-  //  }
+    private final CtrlPresentacion iCtrlPresentacion;
     
-     public VistaPrincipal (CtrlPresentacion pCtrlPresentacion) {
-    System.out.println
-      ("isEventDispatchThread: " + SwingUtilities.isEventDispatchThread());
-    iCtrlPresentacion = pCtrlPresentacion;
+    public VistaPrincipal (CtrlPresentacion pCtrlPresentacion) 
+    {
+        System.out.println("isEventDispatchThread: " + SwingUtilities.isEventDispatchThread());
+        iCtrlPresentacion = pCtrlPresentacion;
+
+        //this.setMinimumSize(new Dimension(1200,520));
+        //this.setPreferredSize(this.getMinimumSize());
+        //this.setResizable(false);
+        // Posicion y operaciones por defecto
+        //this.setLocationRelativeTo(null);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        initComponents();
+    }
+
+    public void hacerVisible() 
+    {
+        System.out.println("isEventDispatchThread: " + SwingUtilities.isEventDispatchThread());
+        this.pack();
+        this.setVisible(true);
+    }
+
+    public void activar() 
+    {
+        this.setEnabled(true);
+    }
+
+    public void desactivar() 
+    {
+        this.setEnabled(false);
+    }
     
-    this.setMinimumSize(new Dimension(1200,520));
-    this.setPreferredSize(this.getMinimumSize());
-    this.setResizable(false);
-    // Posicion y operaciones por defecto
-    this.setLocationRelativeTo(null);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    initComponents();
-  }
-
-  public void hacerVisible() {
-    System.out.println
-      ("isEventDispatchThread: " + SwingUtilities.isEventDispatchThread());
+    public void actualizarSeleccionPag()
+    {
+        listPaginas.setListData(iCtrlPresentacion.mostrarGrafoPag().toArray());
+    }
     
-    this.pack();
-    this.setVisible(true);
-  }
-
-  public void activar() {
-    this.setEnabled(true);
-  }
-
-  public void desactivar() {
-    this.setEnabled(false);
-  }
+    public void actualizarSeleccionCat()
+    {
+        listCategorias.setListData(iCtrlPresentacion.mostrarGrafoCat().toArray());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -187,8 +190,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Wiki");
-        setMinimumSize(new java.awt.Dimension(900, 520));
-        setPreferredSize(new java.awt.Dimension(996, 520));
+        setMinimumSize(new java.awt.Dimension(996, 519));
         setResizable(false);
 
         btnImportarGrafo.setText("Importar grafo");
@@ -358,6 +360,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        txtListGraph.setEditable(false);
         txtListGraph.setColumns(20);
         txtListGraph.setRows(5);
         jScrollPane4.setViewportView(txtListGraph);
@@ -895,6 +898,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        txtListSet.setEditable(false);
         txtListSet.setColumns(20);
         txtListSet.setRows(5);
         jScrollPane5.setViewportView(txtListSet);
@@ -1013,6 +1017,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         tabsPrincipal.addTab("Conjunto", panelComunidades);
 
+        txtListGraph1.setEditable(false);
         txtListGraph1.setColumns(20);
         txtListGraph1.setRows(5);
         jScrollPane6.setViewportView(txtListGraph1);
@@ -1380,42 +1385,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
        iCtrlPresentacion.sincronizacionVistaPrincipal_a_Manual();
     }//GEN-LAST:event_mItemManualActionPerformed
 
- //   /**
- //    * @param args the command line arguments
- //    */
-    
-    
- //   public static void main(String args[]) {
- //       /* Set the Nimbus look and feel */
- //       //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
- //      try {
- //           for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
- //               if ("Nimbus".equals(info.getName())) {
- //                   javax.swing.UIManager.setLookAndFeel(info.getClassName());
- //                   break;
- //               }
- //          }
- //       } catch (ClassNotFoundException ex) {
- //           java.util.logging.Logger.getLogger(VistaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-  //      } catch (InstantiationException ex) {
-  //          java.util.logging.Logger.getLogger(VistaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-  //      } catch (IllegalAccessException ex) {
-  //          java.util.logging.Logger.getLogger(VistaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-  //      } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-  //          java.util.logging.Logger.getLogger(VistaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
- //       }
-        //</editor-fold>
-  //      //</editor-fold>
-//        /* Create and display the form */
-  //      java.awt.EventQueue.invokeLater(new Runnable() {
-    //        public void run() {
-      //          new VistaPrincipal().setVisible(true);
-       //     }
-   //     });
-  //  }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
