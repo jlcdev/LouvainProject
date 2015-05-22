@@ -396,6 +396,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCatToAddRmv">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre categoria"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
@@ -618,13 +619,11 @@
                           <Component id="radioLouvain" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="radioGirvan" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="radioClique" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btnEjecutar" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtValorP" min="-2" pref="40" max="-2" attributes="0"/>
-                              </Group>
+                          <Component id="btnEjecutar" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="spinP" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -645,7 +644,7 @@
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtValorP" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spinP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnEjecutar" min="-2" max="-2" attributes="0"/>
@@ -653,7 +652,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabsAlgoritmo" pref="0" max="32767" attributes="0"/>
+                      <Component id="tabsAlgoritmo" pref="448" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -692,14 +691,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Valor P:"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtValorP">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="1"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtValorPActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnEjecutar">
               <Properties>
@@ -1056,6 +1047,13 @@
                 </Container>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JSpinner" name="spinP">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="0" maximum="100" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                </Property>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="panelComunidades">
@@ -1133,7 +1131,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="jScrollPane5" min="-2" pref="457" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

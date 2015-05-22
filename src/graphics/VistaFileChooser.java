@@ -12,7 +12,7 @@ package graphics;
 public class VistaFileChooser extends javax.swing.JFrame {
 
     private final Boolean tipus;
-    private CtrlPresentacion iCtrlPresentacion;
+    private final CtrlPresentacion iCtrlPresentacion;
     /**
      * Creates new form VistaManual
      * @param pCtrlPresentacion
@@ -21,6 +21,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
         iCtrlPresentacion = pCtrlPresentacion;        
         this.tipus = false;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     public void hacerVisible() {
@@ -46,6 +47,9 @@ public class VistaFileChooser extends javax.swing.JFrame {
         fileChooser = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(719, 520));
+        setMinimumSize(new java.awt.Dimension(719, 520));
+        setResizable(false);
 
         fileChooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

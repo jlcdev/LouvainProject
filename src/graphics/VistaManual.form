@@ -31,18 +31,18 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButton2" max="32767" attributes="0"/>
-                  <Component id="jButton3" alignment="0" pref="167" max="32767" attributes="0"/>
-                  <Component id="jButton4" alignment="0" pref="167" max="32767" attributes="0"/>
+                  <Component id="jButton3" alignment="0" pref="168" max="32767" attributes="0"/>
+                  <Component id="jButton4" alignment="0" pref="168" max="32767" attributes="0"/>
                   <Component id="jButton7" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jButton6" alignment="0" pref="167" max="32767" attributes="0"/>
-                  <Component id="jButton5" alignment="0" pref="167" max="32767" attributes="0"/>
-                  <Component id="jButton8" alignment="0" pref="167" max="32767" attributes="0"/>
-                  <Component id="jButton9" alignment="0" pref="167" max="32767" attributes="0"/>
-                  <Component id="jButton10" alignment="0" pref="167" max="32767" attributes="0"/>
+                  <Component id="jButton6" alignment="0" pref="168" max="32767" attributes="0"/>
+                  <Component id="jButton5" alignment="0" pref="168" max="32767" attributes="0"/>
+                  <Component id="jButton8" alignment="0" pref="168" max="32767" attributes="0"/>
+                  <Component id="jButton9" alignment="0" pref="168" max="32767" attributes="0"/>
+                  <Component id="jButton10" alignment="0" pref="168" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="panel" min="-2" pref="522" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Component id="panel" min="-2" pref="480" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -96,9 +96,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                      <Component id="jTextArea1" min="-2" pref="519" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jTextArea1" min="-2" pref="480" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -117,8 +117,11 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Importar grafo&#xa;--------------&#xa;&#xa;Al iniciar el programa tendremos la opci&#xf3;n de crear un nuevo grafo vac&#xed;o&#xa;al que a&#xf1;adir los nodos manualmente o por otro lado la opci&#xf3;n de importar&#xa;un grafo previamente guardado en formato .txt.&#xa;&#xa;Para importar el grafo simplemente hay que pulsar el bot&#xf3;n&#xa;&quot;Importar grafo&quot; de la pesta&#xf1;a Inicio y seleccionar el fichero deseado.&#xa;&#xa;Tambi&#xe9;n es posible acceder a esta opci&#xf3;n desde la pesta&#xf1;a Grafo,&#xa;que nos permite substituir el grafo actual por el importado&#xa;&#xa;&#xa;&#xa;Importar conjunto&#xa;------------------&#xa;&#xa;Al iniciar el programa tendremos la opci&#xf3;n de importar un conjunto&#xa;de comunidades en formato .txt desde la opci&#xf3;n &quot;Importar conjunto&quot;.&#xa;&#xa;Tambi&#xe9;n es posible acceder a esta opci&#xf3;n desde la pesta&#xf1;a conjunto.&#xa;&#xa;Una vez importado el conjunto, podr&#xe1; ser modificado, guardado y comparado&#xa;con otro."/>
+                <Property name="text" type="java.lang.String" value="Importar grafo&#xa;--------------&#xa;&#xa;Al iniciar el programa tendremos la opci&#xf3;n de crear un nuevo grafo vac&#xed;o al que a&#xf1;adir los nodos manualmente o por otro lado la opci&#xf3;n de importar un grafo previamente guardado en formato .txt.&#xa;&#xa;Para importar el grafo simplemente hay que pulsar el bot&#xf3;n &quot;Importar grafo&quot; de la pesta&#xf1;a Inicio y seleccionar el fichero deseado.&#xa;&#xa;Tambi&#xe9;n es posible acceder a esta opci&#xf3;n desde la pesta&#xf1;a Grafo,&#xa;que nos permite substituir el grafo actual por el importado&#xa;&#xa;&#xa;&#xa;Importar conjunto&#xa;------------------&#xa;&#xa;Al iniciar el programa tendremos la opci&#xf3;n de importar un conjunto&#xa;de comunidades en formato .txt desde la opci&#xf3;n &quot;Importar conjunto&quot;.&#xa;&#xa;Tambi&#xe9;n es posible acceder a esta opci&#xf3;n desde la pesta&#xf1;a conjunto.&#xa;&#xa;Una vez importado el conjunto, podr&#xe1; ser modificado, guardado y comparado con otro."/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -134,9 +137,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                      <Component id="jTextArea2" min="-2" pref="519" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jTextArea2" min="-2" pref="480" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -155,8 +158,11 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Modificar grafo&#xa;---------------&#xa;&#xa;El programa dispone de varias opciones para crear y modificar un grafo,&#xa;accesibles desde la pesta&#xf1;a Grafo (hay que crear un nuevo grafo o&#xa;importar uno existente para poder acceder a estas opciones).&#xa;&#xa;A&#xf1;adir/Eliminar categoria:&#xa;&#xa;A&#xf1;adir/Eliminar p&#xe1;gina:&#xa;&#xa;A&#xf1;adir/Eliminar enlace:&#xa;&#xa;Cambiar nombre nodo:&#xa;"/>
+                <Property name="text" type="java.lang.String" value="Modificar grafo&#xa;---------------&#xa;&#xa;El programa dispone de varias opciones para crear y modificar un grafo, accesibles desde la pesta&#xf1;a Grafo (hay que crear un nuevo grafo o importar uno existente para poder acceder a estas opciones).&#xa;&#xa;A&#xf1;adir/Eliminar categoria:&#xa;&#xa;A&#xf1;adir/Eliminar p&#xe1;gina:&#xa;&#xa;A&#xf1;adir/Eliminar enlace:&#xa;&#xa;Cambiar nombre nodo:&#xa;"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -172,9 +178,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                      <Component id="jTextArea3" min="-2" pref="519" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jTextArea3" min="-2" pref="480" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -193,8 +199,11 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Ver grafo&#xa;----------"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -210,9 +219,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                      <Component id="jTextArea4" min="-2" pref="519" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jTextArea4" min="-2" pref="480" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -231,8 +240,11 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Algoritmo&#xa;----------"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -248,9 +260,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                      <Component id="jTextArea5" min="-2" pref="519" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jTextArea5" min="-2" pref="480" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -269,8 +281,11 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Modificar conjunto&#xa;-------------------"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -286,9 +301,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                      <Component id="jTextArea6" min="-2" pref="519" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jTextArea6" min="-2" pref="480" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -307,8 +322,11 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Ver conjunto&#xa;------------"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -324,9 +342,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                      <Component id="jTextArea7" min="-2" pref="519" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jTextArea7" min="-2" pref="480" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -345,8 +363,11 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Comparar&#xa;----------"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -362,9 +383,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                      <Component id="jTextArea8" min="-2" pref="519" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jTextArea8" min="-2" pref="480" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -383,8 +404,11 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Guardar grafo&#xa;--------------&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;Guardar conjunto&#xa;-----------------"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -400,9 +424,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                      <Component id="jTextArea9" min="-2" pref="519" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jTextArea9" min="-2" pref="480" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -421,7 +445,10 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>

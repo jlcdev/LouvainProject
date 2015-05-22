@@ -14,13 +14,15 @@ import java.awt.CardLayout;
 public class VistaManual extends javax.swing.JFrame {
 
     
-    private CtrlPresentacion iCtrlPresentacion;
+    private final CtrlPresentacion iCtrlPresentacion;
     /**
      * Creates new form VistaManual
+     * @param pCtrlPresentacion
      */
     public VistaManual(CtrlPresentacion pCtrlPresentacion) {
         iCtrlPresentacion = pCtrlPresentacion;  
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
      public void hacerVisible() {
@@ -80,17 +82,20 @@ public class VistaManual extends javax.swing.JFrame {
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Importar grafo\n--------------\n\nAl iniciar el programa tendremos la opción de crear un nuevo grafo vacío\nal que añadir los nodos manualmente o por otro lado la opción de importar\nun grafo previamente guardado en formato .txt.\n\nPara importar el grafo simplemente hay que pulsar el botón\n\"Importar grafo\" de la pestaña Inicio y seleccionar el fichero deseado.\n\nTambién es posible acceder a esta opción desde la pestaña Grafo,\nque nos permite substituir el grafo actual por el importado\n\n\n\nImportar conjunto\n------------------\n\nAl iniciar el programa tendremos la opción de importar un conjunto\nde comunidades en formato .txt desde la opción \"Importar conjunto\".\n\nTambién es posible acceder a esta opción desde la pestaña conjunto.\n\nUna vez importado el conjunto, podrá ser modificado, guardado y comparado\ncon otro.");
+        jTextArea1.setText("Importar grafo\n--------------\n\nAl iniciar el programa tendremos la opción de crear un nuevo grafo vacío al que añadir los nodos manualmente o por otro lado la opción de importar un grafo previamente guardado en formato .txt.\n\nPara importar el grafo simplemente hay que pulsar el botón \"Importar grafo\" de la pestaña Inicio y seleccionar el fichero deseado.\n\nTambién es posible acceder a esta opción desde la pestaña Grafo,\nque nos permite substituir el grafo actual por el importado\n\n\n\nImportar conjunto\n------------------\n\nAl iniciar el programa tendremos la opción de importar un conjunto\nde comunidades en formato .txt desde la opción \"Importar conjunto\".\n\nTambién es posible acceder a esta opción desde la pestaña conjunto.\n\nUna vez importado el conjunto, podrá ser modificado, guardado y comparado con otro.");
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setOpaque(false);
 
         javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
         card1.setLayout(card1Layout);
         card1Layout.setHorizontalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card1Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         card1Layout.setVerticalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,17 +109,20 @@ public class VistaManual extends javax.swing.JFrame {
 
         jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
-        jTextArea2.setText("Modificar grafo\n---------------\n\nEl programa dispone de varias opciones para crear y modificar un grafo,\naccesibles desde la pestaña Grafo (hay que crear un nuevo grafo o\nimportar uno existente para poder acceder a estas opciones).\n\nAñadir/Eliminar categoria:\n\nAñadir/Eliminar página:\n\nAñadir/Eliminar enlace:\n\nCambiar nombre nodo:\n");
+        jTextArea2.setText("Modificar grafo\n---------------\n\nEl programa dispone de varias opciones para crear y modificar un grafo, accesibles desde la pestaña Grafo (hay que crear un nuevo grafo o importar uno existente para poder acceder a estas opciones).\n\nAñadir/Eliminar categoria:\n\nAñadir/Eliminar página:\n\nAñadir/Eliminar enlace:\n\nCambiar nombre nodo:\n");
+        jTextArea2.setWrapStyleWord(true);
+        jTextArea2.setOpaque(false);
 
         javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
         card2.setLayout(card2Layout);
         card2Layout.setHorizontalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card2Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,17 +136,20 @@ public class VistaManual extends javax.swing.JFrame {
 
         jTextArea3.setEditable(false);
         jTextArea3.setColumns(20);
+        jTextArea3.setLineWrap(true);
         jTextArea3.setRows(5);
         jTextArea3.setText("Ver grafo\n----------");
+        jTextArea3.setWrapStyleWord(true);
+        jTextArea3.setOpaque(false);
 
         javax.swing.GroupLayout card3Layout = new javax.swing.GroupLayout(card3);
         card3.setLayout(card3Layout);
         card3Layout.setHorizontalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card3Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jTextArea3, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextArea3, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         card3Layout.setVerticalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,17 +163,20 @@ public class VistaManual extends javax.swing.JFrame {
 
         jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
+        jTextArea4.setLineWrap(true);
         jTextArea4.setRows(5);
         jTextArea4.setText("Algoritmo\n----------");
+        jTextArea4.setWrapStyleWord(true);
+        jTextArea4.setOpaque(false);
 
         javax.swing.GroupLayout card4Layout = new javax.swing.GroupLayout(card4);
         card4.setLayout(card4Layout);
         card4Layout.setHorizontalGroup(
             card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card4Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jTextArea4, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextArea4, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         card4Layout.setVerticalGroup(
             card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,17 +190,20 @@ public class VistaManual extends javax.swing.JFrame {
 
         jTextArea5.setEditable(false);
         jTextArea5.setColumns(20);
+        jTextArea5.setLineWrap(true);
         jTextArea5.setRows(5);
         jTextArea5.setText("Modificar conjunto\n-------------------");
+        jTextArea5.setWrapStyleWord(true);
+        jTextArea5.setOpaque(false);
 
         javax.swing.GroupLayout card5Layout = new javax.swing.GroupLayout(card5);
         card5.setLayout(card5Layout);
         card5Layout.setHorizontalGroup(
             card5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card5Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jTextArea5, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextArea5, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         card5Layout.setVerticalGroup(
             card5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,17 +217,20 @@ public class VistaManual extends javax.swing.JFrame {
 
         jTextArea6.setEditable(false);
         jTextArea6.setColumns(20);
+        jTextArea6.setLineWrap(true);
         jTextArea6.setRows(5);
         jTextArea6.setText("Ver conjunto\n------------");
+        jTextArea6.setWrapStyleWord(true);
+        jTextArea6.setOpaque(false);
 
         javax.swing.GroupLayout card6Layout = new javax.swing.GroupLayout(card6);
         card6.setLayout(card6Layout);
         card6Layout.setHorizontalGroup(
             card6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card6Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jTextArea6, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextArea6, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         card6Layout.setVerticalGroup(
             card6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,17 +244,20 @@ public class VistaManual extends javax.swing.JFrame {
 
         jTextArea7.setEditable(false);
         jTextArea7.setColumns(20);
+        jTextArea7.setLineWrap(true);
         jTextArea7.setRows(5);
         jTextArea7.setText("Comparar\n----------");
+        jTextArea7.setWrapStyleWord(true);
+        jTextArea7.setOpaque(false);
 
         javax.swing.GroupLayout card7Layout = new javax.swing.GroupLayout(card7);
         card7.setLayout(card7Layout);
         card7Layout.setHorizontalGroup(
             card7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card7Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jTextArea7, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextArea7, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         card7Layout.setVerticalGroup(
             card7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,17 +271,20 @@ public class VistaManual extends javax.swing.JFrame {
 
         jTextArea8.setEditable(false);
         jTextArea8.setColumns(20);
+        jTextArea8.setLineWrap(true);
         jTextArea8.setRows(5);
         jTextArea8.setText("Guardar grafo\n--------------\n\n\n\n\n\n\nGuardar conjunto\n-----------------");
+        jTextArea8.setWrapStyleWord(true);
+        jTextArea8.setOpaque(false);
 
         javax.swing.GroupLayout card8Layout = new javax.swing.GroupLayout(card8);
         card8.setLayout(card8Layout);
         card8Layout.setHorizontalGroup(
             card8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card8Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jTextArea8, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextArea8, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         card8Layout.setVerticalGroup(
             card8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,16 +298,19 @@ public class VistaManual extends javax.swing.JFrame {
 
         jTextArea9.setEditable(false);
         jTextArea9.setColumns(20);
+        jTextArea9.setLineWrap(true);
         jTextArea9.setRows(5);
+        jTextArea9.setWrapStyleWord(true);
+        jTextArea9.setOpaque(false);
 
         javax.swing.GroupLayout card9Layout = new javax.swing.GroupLayout(card9);
         card9.setLayout(card9Layout);
         card9Layout.setHorizontalGroup(
             card9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card9Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jTextArea9, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextArea9, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         card9Layout.setVerticalGroup(
             card9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,17 +393,17 @@ public class VistaManual extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

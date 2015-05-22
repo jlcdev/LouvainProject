@@ -5,11 +5,9 @@
  */
 package graphics;
 
-import java.awt.Dimension;
-
 /**
  *
- * @author joan
+ * @author Joan Rodas
  */
 public class VistaAbout extends javax.swing.JFrame {
 
@@ -22,7 +20,7 @@ public class VistaAbout extends javax.swing.JFrame {
         iCtrlPresentacion = pCtrlPresentacion;
         initComponents();
         // Posicion y operaciones por defecto
-        //this.setLocationRelativeTo(null);        
+        this.setLocationRelativeTo(null);        
     }
     
     public void hacerVisible() {

@@ -31,6 +31,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         //this.setLocationRelativeTo(null);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public void hacerVisible() 
@@ -111,7 +112,6 @@ public class VistaPrincipal extends javax.swing.JFrame
         radioLouvain = new javax.swing.JRadioButton();
         radioClique = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        txtValorP = new javax.swing.JTextField();
         btnEjecutar = new javax.swing.JButton();
         tabsAlgoritmo = new javax.swing.JTabbedPane();
         tabSelPag = new javax.swing.JPanel();
@@ -137,6 +137,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         spSubComun = new javax.swing.JSpinner();
         jLabel7 = new javax.swing.JLabel();
         btnAplicarFiltros = new javax.swing.JButton();
+        spinP = new javax.swing.JSpinner();
         panelComunidades = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -254,6 +255,7 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         jLabel8.setText("Categoria:");
 
+        txtCatToAddRmv.setText("Nombre categoria");
         txtCatToAddRmv.setToolTipText("");
         txtCatToAddRmv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -541,13 +543,6 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         jLabel1.setText("Valor P:");
 
-        txtValorP.setText("1");
-        txtValorP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorPActionPerformed(evt);
-            }
-        });
-
         btnEjecutar.setText("Ejecutar");
         btnEjecutar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -751,6 +746,8 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         tabsAlgoritmo.addTab("Filtros", tabFiltros);
 
+        spinP.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
+
         javax.swing.GroupLayout panelAlgoritmoLayout = new javax.swing.GroupLayout(panelAlgoritmo);
         panelAlgoritmo.setLayout(panelAlgoritmoLayout);
         panelAlgoritmoLayout.setHorizontalGroup(
@@ -761,12 +758,11 @@ public class VistaPrincipal extends javax.swing.JFrame
                     .addComponent(radioLouvain)
                     .addComponent(radioGirvan)
                     .addComponent(radioClique)
-                    .addGroup(panelAlgoritmoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnEjecutar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAlgoritmoLayout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtValorP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(btnEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelAlgoritmoLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(1, 1, 1)
+                        .addComponent(spinP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addComponent(tabsAlgoritmo)
                 .addContainerGap())
@@ -783,13 +779,13 @@ public class VistaPrincipal extends javax.swing.JFrame
                 .addGap(28, 28, 28)
                 .addGroup(panelAlgoritmoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtValorP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spinP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnEjecutar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelAlgoritmoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabsAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(tabsAlgoritmo, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -956,7 +952,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnShowCom, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnShowSet, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(33, 33, 33)
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1173,10 +1169,6 @@ public class VistaPrincipal extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtValorPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorPActionPerformed
-
     private void ckTodasPaginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckTodasPaginasActionPerformed
         if (ckTodasPaginas.isSelected()) listPaginas.setSelectionInterval(0, listPaginas.getModel().getSize() - 1); 
         else listPaginas.clearSelection();
@@ -1254,11 +1246,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnImportarGrafoActionPerformed
 
     private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
-        int a = 0;
-        if(radioGirvan.isSelected()) a = 1;
-        else if(radioClique.isSelected()) a = 2;
+        int alg = 0;
+        if(radioGirvan.isSelected()) alg = 1;
+        else if(radioClique.isSelected()) alg = 2;
         
-        iCtrlPresentacion.ejecutar(a, Integer.parseInt(txtValorP.getText()));          
+        iCtrlPresentacion.ejecutar(alg,  Integer.parseInt(spinP.getValue().toString()));          
     }//GEN-LAST:event_btnEjecutarActionPerformed
 
     private void comboTipoNombreSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoNombreSetActionPerformed
@@ -1484,6 +1476,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JSpinner spPagComun;
     private javax.swing.JSpinner spSubComun;
     private javax.swing.JSpinner spSuperComun;
+    private javax.swing.JSpinner spinP;
     private javax.swing.JPanel tabFiltros;
     private javax.swing.JPanel tabSelCat;
     private javax.swing.JPanel tabSelPag;
@@ -1504,6 +1497,5 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JTextField txtNombreNodoNuevo;
     private javax.swing.JTextField txtNombreNuevo;
     private javax.swing.JTextField txtPagToAddRmv;
-    private javax.swing.JTextField txtValorP;
     // End of variables declaration//GEN-END:variables
 }
