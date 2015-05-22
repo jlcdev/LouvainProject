@@ -12,7 +12,7 @@ package graphics;
 public class VistaFileChooser extends javax.swing.JFrame {
 
     private final Boolean tipus;
-    private final CtrlPresentacion iCtrlPresentacion;
+    private CtrlPresentacion iCtrlPresentacion;
     /**
      * Creates new form VistaManual
      * @param pCtrlPresentacion
@@ -76,7 +76,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
                 else iCtrlPresentacion.exportarConjunto(fileChooser.getSelectedFile().toString());
                 break;        
             case "CancelSelection":
-                iCtrlPresentacion.sincronizacionVistaSecundaria_a_Principal();
+                iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
                 break;
         }        
     }//GEN-LAST:event_fileChooserActionPerformed

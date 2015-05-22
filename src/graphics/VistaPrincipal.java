@@ -1133,6 +1133,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         menuAyuda.setText("Ayuda");
 
         mItemManual.setText("Manual");
+        mItemManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemManualActionPerformed(evt);
+            }
+        });
         menuAyuda.add(mItemManual);
 
         mItemAbout.setText("Acerca de...");
@@ -1225,7 +1230,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mItemSalirActionPerformed
 
     private void mItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemAboutActionPerformed
-       iCtrlPresentacion.sincronizacionVistaPrincipal_a_Secundaria();
+       iCtrlPresentacion.sincronizacionVistaPrincipal_a_About();
     }//GEN-LAST:event_mItemAboutActionPerformed
 
     private void radioGirvanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioGirvanActionPerformed
@@ -1237,7 +1242,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddCatToGraphActionPerformed
 
     private void btnImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafoActionPerformed
-        iCtrlPresentacion.importarGrafo(null);
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);
+        //iCtrlPresentacion.importarGrafo(null);
         tabsPrincipal.setEnabledAt(1, true);
         tabsPrincipal.setSelectedIndex(1);
     }//GEN-LAST:event_btnImportarGrafoActionPerformed
@@ -1269,7 +1275,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoGrafoActionPerformed
 
     private void mItemNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemNuevoGrafoActionPerformed
-        // TODO add your handling code here:
+        iCtrlPresentacion.crearGrafo();
+        tabsPrincipal.setEnabledAt(1, true);
+        tabsPrincipal.setSelectedIndex(1);
     }//GEN-LAST:event_mItemNuevoGrafoActionPerformed
 
     private void txtCatToAddRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCatToAddRmvActionPerformed
@@ -1288,8 +1296,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void btnAplicarSelPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelPagActionPerformed
         List l = listPaginas.getSelectedValuesList(); 
         ArrayList<String> al = new ArrayList<>(l);
-        //System.out.println(al);
         iCtrlPresentacion.aplicarSelPag(al);
+       // ArrayList<String> listData = new ArrayList<String>();
+       // listData.add("Elem1");
+       // listData.add("Elem2");
+       // listData.add("Elem3");
+       // listData.add("Elem4");
+       // listPaginas.setListData(listData.toArray());
         
     }//GEN-LAST:event_btnAplicarSelPagActionPerformed
 
@@ -1311,7 +1324,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAplicarFiltrosActionPerformed
 
     private void btnImportarConjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarConjActionPerformed
-        iCtrlPresentacion.importarConjunto(null);
+        //iCtrlPresentacion.importarConjunto(null);
         tabsPrincipal.setSelectedIndex(3);
     }//GEN-LAST:event_btnImportarConjActionPerformed
 
@@ -1362,6 +1375,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void comboTipoNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoNodoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboTipoNodoActionPerformed
+
+    private void mItemManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemManualActionPerformed
+       iCtrlPresentacion.sincronizacionVistaPrincipal_a_Manual();
+    }//GEN-LAST:event_mItemManualActionPerformed
 
  //   /**
  //    * @param args the command line arguments

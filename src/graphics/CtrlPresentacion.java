@@ -65,14 +65,14 @@ public class CtrlPresentacion {
     vistaFileChooser.hacerVisible();      
   }
   
-  /*public void sincronizacionVistaPrincipal_a_Manual()
+  public void sincronizacionVistaPrincipal_a_Manual()
   {
     vistaPrincipal.desactivar();
     // Solo se crea una vista secundaria (podria crearse una nueva cada vez)
     if (vistaManual == null)
       vistaManual = new VistaManual(this);
     vistaManual.hacerVisible();     
-  }*/
+  }
   
   public void sincronizacionVistaPrincipal_a_About()
   {
@@ -102,7 +102,7 @@ public class CtrlPresentacion {
   public void sincronizacionVistaManual_a_Principal()
   {
     // Se hace invisible la vista secundaria (podria anularse)
-    //vistaManual.hacerInvisible();
+    vistaManual.hacerInvisible();
     vistaPrincipal.activar();      
   }
     

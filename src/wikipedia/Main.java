@@ -18,7 +18,6 @@ public class Main {
         
         @Override
         public void run() {
-          //new VistaLEEME().hacerVisible();
           CtrlPresentacion ctrlPresentacion = new CtrlPresentacion();
           ctrlPresentacion.inicializarPresentacion();
     }});
