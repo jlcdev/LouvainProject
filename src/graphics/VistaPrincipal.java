@@ -7,6 +7,7 @@ package graphics;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -52,13 +53,19 @@ public class VistaPrincipal extends javax.swing.JFrame
     }
     
     public void actualizarSeleccionPag()
-    {
-        listPaginas.setListData(iCtrlPresentacion.mostrarGrafoPag().toArray());
+    {        
+        ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoPag();          
+        DefaultListModel model = (DefaultListModel) listPaginas.getModel();
+        model.clear();
+        for (String elem : lista) model.addElement(elem);
     }
     
     public void actualizarSeleccionCat()
-    {
-        listCategorias.setListData(iCtrlPresentacion.mostrarGrafoCat().toArray());
+    {           
+        ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();          
+        DefaultListModel model = (DefaultListModel) listCategorias.getModel();
+        model.clear();
+        for (String elem : lista) model.addElement(elem);
     }
 
     /**
@@ -193,6 +200,12 @@ public class VistaPrincipal extends javax.swing.JFrame
         setTitle("Wiki");
         setMinimumSize(new java.awt.Dimension(996, 519));
         setResizable(false);
+
+        tabsPrincipal.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabsPrincipalStateChanged(evt);
+            }
+        });
 
         btnImportarGrafo.setText("Importar grafo");
         btnImportarGrafo.addActionListener(new java.awt.event.ActionListener() {
@@ -554,11 +567,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         tabsAlgoritmo.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         tabsAlgoritmo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        listPaginas.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Pag1", "Pag2", "Pag3", "Pag4", "Pag5", "Pag6" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        listPaginas.setModel(new javax.swing.DefaultListModel());
         jScrollPane1.setViewportView(listPaginas);
 
         ckTodasPaginas.setText("Seleccionar todas");
@@ -603,11 +612,7 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         tabsAlgoritmo.addTab("Selección Páginas", tabSelPag);
 
-        listCategorias.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Cat1", "Cat2", "Cat3", "Cat4", "Cat5", "Cat6" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        listCategorias.setModel(new javax.swing.DefaultListModel());
         jScrollPane3.setViewportView(listCategorias);
 
         ckTodasCategorias.setText("Seleccionar todas");
@@ -1099,6 +1104,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         menuFichero.add(mItemImportarSet);
 
         mItemExportarGrafo.setText("Exportar grafo");
+        mItemExportarGrafo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemExportarGrafoActionPerformed(evt);
+            }
+        });
         menuFichero.add(mItemExportarGrafo);
 
         mItemExportarSet.setText("Exportar conjunto");
@@ -1175,7 +1185,9 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_ckTodasPaginasActionPerformed
 
     private void mItemImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemImportarGrafoActionPerformed
-        // TODO add your handling code here:
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);
+        tabsPrincipal.setEnabledAt(1, true);
+        tabsPrincipal.setSelectedIndex(1);
     }//GEN-LAST:event_mItemImportarGrafoActionPerformed
 
     private void comboTipoEnlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoEnlaceActionPerformed
@@ -1183,15 +1195,21 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_comboTipoEnlaceActionPerformed
 
     private void btnListCatGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatGraphActionPerformed
-        iCtrlPresentacion.mostrarGrafoCat();
+        txtListGraph.setText("Categorias:\n\n"); 
+        ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();
+        for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");   
     }//GEN-LAST:event_btnListCatGraphActionPerformed
 
     private void btnListPagGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListPagGraphActionPerformed
-        iCtrlPresentacion.mostrarGrafoPag();
+        txtListGraph.setText("Páginas:\n\n"); 
+        ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoPag();
+        for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");
     }//GEN-LAST:event_btnListPagGraphActionPerformed
 
     private void btnListLinksGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListLinksGraphActionPerformed
-        iCtrlPresentacion.mostrarGrafoEnlaces();
+        txtListGraph.setText("Enlaces:\n\n"); 
+        ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoEnlaces();
+        for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");
     }//GEN-LAST:event_btnListLinksGraphActionPerformed
 
     private void btnExportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarGrafoActionPerformed
@@ -1240,7 +1258,6 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafoActionPerformed
         iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);
-        //iCtrlPresentacion.importarGrafo(null);
         tabsPrincipal.setEnabledAt(1, true);
         tabsPrincipal.setSelectedIndex(1);
     }//GEN-LAST:event_btnImportarGrafoActionPerformed
@@ -1258,7 +1275,9 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_comboTipoNombreSetActionPerformed
 
     private void btnImportarGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafo1ActionPerformed
-        iCtrlPresentacion.importarGrafo(null);
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);
+        tabsPrincipal.setEnabledAt(1, true);
+        tabsPrincipal.setSelectedIndex(1);
     }//GEN-LAST:event_btnImportarGrafo1ActionPerformed
 
     private void btnNuevoGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafo1ActionPerformed
@@ -1294,6 +1313,12 @@ public class VistaPrincipal extends javax.swing.JFrame
         List l = listPaginas.getSelectedValuesList(); 
         ArrayList<String> al = new ArrayList<>(l);
         iCtrlPresentacion.aplicarSelPag(al);
+        
+        
+               
+        
+        
+        
        // ArrayList<String> listData = new ArrayList<String>();
        // listData.add("Elem1");
        // listData.add("Elem2");
@@ -1376,6 +1401,18 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void mItemManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemManualActionPerformed
        iCtrlPresentacion.sincronizacionVistaPrincipal_a_Manual();
     }//GEN-LAST:event_mItemManualActionPerformed
+
+    private void mItemExportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExportarGrafoActionPerformed
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true);        
+    }//GEN-LAST:event_mItemExportarGrafoActionPerformed
+
+    private void tabsPrincipalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsPrincipalStateChanged
+        /*if(tabsPrincipal.getSelectedIndex() == 2)
+        {
+            actualizarSeleccionPag();
+            actualizarSeleccionCat();
+        }*/
+    }//GEN-LAST:event_tabsPrincipalStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -60,7 +60,7 @@ public class VistaAbout extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("PROP\n\nAutores: Javi Lopez, Albert Campano, Alfred Parellada, \nJoan Rodas");
+        jTextArea1.setText("PROP\n\nAutores: Javi Lopez, Albert Campano, Alfred Parellada, \nJoan Rodas\n\n2015");
         jTextArea1.setAutoscrolls(false);
         jTextArea1.setOpaque(false);
 

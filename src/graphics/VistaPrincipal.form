@@ -28,6 +28,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Exportar grafo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItemExportarGrafoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mItemExportarSet">
               <Properties>
@@ -125,6 +128,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="tabsPrincipal">
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="tabsPrincipalStateChanged"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="tabsPrincipal.setEnabledAt(1, false);"/>
       </AuxValues>
@@ -766,15 +772,8 @@
                       <SubComponents>
                         <Component class="javax.swing.JList" name="listPaginas">
                           <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="6">
-                                <StringItem index="0" value="Pag1"/>
-                                <StringItem index="1" value="Pag2"/>
-                                <StringItem index="2" value="Pag3"/>
-                                <StringItem index="3" value="Pag4"/>
-                                <StringItem index="4" value="Pag5"/>
-                                <StringItem index="5" value="Pag6"/>
-                              </StringArray>
+                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="new javax.swing.DefaultListModel()" type="code"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -849,15 +848,8 @@
                       <SubComponents>
                         <Component class="javax.swing.JList" name="listCategorias">
                           <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="6">
-                                <StringItem index="0" value="Cat1"/>
-                                <StringItem index="1" value="Cat2"/>
-                                <StringItem index="2" value="Cat3"/>
-                                <StringItem index="3" value="Cat4"/>
-                                <StringItem index="4" value="Cat5"/>
-                                <StringItem index="5" value="Cat6"/>
-                              </StringArray>
+                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="new javax.swing.DefaultListModel()" type="code"/>
                             </Property>
                           </Properties>
                         </Component>

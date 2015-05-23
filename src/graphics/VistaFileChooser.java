@@ -72,16 +72,19 @@ public class VistaFileChooser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserActionPerformed
+        System.out.println(evt.getActionCommand());
         if (null != evt.getActionCommand())
-        switch (evt.getActionCommand()) {
-            case "AproveSelection":
-                if(this.tipus == false) iCtrlPresentacion.importarConjunto(fileChooser.getSelectedFile().toString());
-                else iCtrlPresentacion.exportarConjunto(fileChooser.getSelectedFile().toString());
+        switch (evt.getActionCommand()) 
+        {
+            case "ApproveSelection":
+                if(this.tipus == false) iCtrlPresentacion.importarGrafo(fileChooser.getSelectedFile().toString());
+                else iCtrlPresentacion.exportarGrafo(fileChooser.getSelectedFile().toString());
+                iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
                 break;        
             case "CancelSelection":
                 iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
                 break;
-        }        
+        }         
     }//GEN-LAST:event_fileChooserActionPerformed
 
 
