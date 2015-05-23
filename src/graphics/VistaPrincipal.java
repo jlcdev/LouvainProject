@@ -156,6 +156,12 @@ public class VistaPrincipal extends javax.swing.JFrame
         txtNameSel = new javax.swing.JTextField();
         btnRmvNameSel = new javax.swing.JToggleButton();
         btnAddNameSel = new javax.swing.JToggleButton();
+        jLabel25 = new javax.swing.JLabel();
+        txtNameSel2 = new javax.swing.JTextField();
+        btnAddNameSel2 = new javax.swing.JToggleButton();
+        btnRmvNameSel2 = new javax.swing.JToggleButton();
+        txtNameSel4 = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
         tabSelCat = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         listCategorias = new javax.swing.JList();
@@ -167,6 +173,12 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel23 = new javax.swing.JLabel();
         btnRandomSel1 = new javax.swing.JToggleButton();
         jLabel24 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        txtNameSel5 = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        txtNameSel6 = new javax.swing.JTextField();
+        btnAddNameSel4 = new javax.swing.JToggleButton();
+        btnRmvNameSel4 = new javax.swing.JToggleButton();
         tabFiltros = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         spNombre = new javax.swing.JSpinner();
@@ -631,7 +643,7 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         jLabel22.setText("Selección por nombre:");
 
-        txtNameSel.setText("jTextField3");
+        txtNameSel.setText("Nombre pag");
 
         btnRmvNameSel.setText("-");
 
@@ -641,6 +653,28 @@ public class VistaPrincipal extends javax.swing.JFrame
                 btnAddNameSelActionPerformed(evt);
             }
         });
+
+        jLabel25.setText("Selección por número de enlaces:");
+
+        txtNameSel2.setText("min");
+        txtNameSel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameSel2ActionPerformed(evt);
+            }
+        });
+
+        btnAddNameSel2.setText("+");
+        btnAddNameSel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNameSel2ActionPerformed(evt);
+            }
+        });
+
+        btnRmvNameSel2.setText("-");
+
+        txtNameSel4.setText("max");
+
+        jLabel29.setText("-");
 
         javax.swing.GroupLayout tabSelPagLayout = new javax.swing.GroupLayout(tabSelPag);
         tabSelPag.setLayout(tabSelPagLayout);
@@ -662,7 +696,18 @@ public class VistaPrincipal extends javax.swing.JFrame
                     .addGroup(tabSelPagLayout.createSequentialGroup()
                         .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRandomSel))
+                            .addComponent(btnRandomSel)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(tabSelPagLayout.createSequentialGroup()
+                                .addComponent(txtNameSel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNameSel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAddNameSel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnRmvNameSel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -695,7 +740,17 @@ public class VistaPrincipal extends javax.swing.JFrame
                                 .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnRmvNameSel)
                                     .addComponent(btnAddNameSel)
-                                    .addComponent(txtNameSel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(txtNameSel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel25)
+                        .addGap(18, 18, 18)
+                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNameSel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNameSel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29)
+                            .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnRmvNameSel2)
+                                .addComponent(btnAddNameSel2)))))
                 .addContainerGap())
         );
 
@@ -727,7 +782,7 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         btnRmvNameSel1.setText("-");
 
-        txtNameSel1.setText("jTextField3");
+        txtNameSel1.setText("Nombre cat");
 
         jLabel23.setText("Selección por nombre:");
 
@@ -740,6 +795,28 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         jLabel24.setText("Selección al azar:");
 
+        jLabel28.setText("Selección por número de enlaces:");
+
+        txtNameSel5.setText("min");
+        txtNameSel5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameSel5ActionPerformed(evt);
+            }
+        });
+
+        jLabel30.setText("-");
+
+        txtNameSel6.setText("max");
+
+        btnAddNameSel4.setText("+");
+        btnAddNameSel4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNameSel4ActionPerformed(evt);
+            }
+        });
+
+        btnRmvNameSel4.setText("-");
+
         javax.swing.GroupLayout tabSelCatLayout = new javax.swing.GroupLayout(tabSelCat);
         tabSelCat.setLayout(tabSelCatLayout);
         tabSelCatLayout.setHorizontalGroup(
@@ -747,6 +824,14 @@ public class VistaPrincipal extends javax.swing.JFrame
             .addGroup(tabSelCatLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabSelCatLayout.createSequentialGroup()
+                        .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRandomSel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(tabSelCatLayout.createSequentialGroup()
+                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(tabSelCatLayout.createSequentialGroup()
                         .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tabSelCatLayout.createSequentialGroup()
@@ -758,9 +843,15 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRmvNameSel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabSelCatLayout.createSequentialGroup()
-                        .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRandomSel1))
+                        .addComponent(txtNameSel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNameSel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAddNameSel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRmvNameSel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -793,7 +884,16 @@ public class VistaPrincipal extends javax.swing.JFrame
                                 .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnRmvNameSel1)
                                     .addComponent(btnAddNameSel1)
-                                    .addComponent(txtNameSel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(txtNameSel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel28)
+                        .addGap(18, 18, 18)
+                        .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNameSel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNameSel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel30)
+                            .addComponent(btnRmvNameSel4)
+                            .addComponent(btnAddNameSel4))))
                 .addContainerGap())
         );
 
@@ -859,7 +959,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(spNombre))))
                     .addComponent(btnAplicarFiltros))
-                .addContainerGap(567, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tabFiltrosLayout.setVerticalGroup(
             tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -888,7 +988,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                     .addComponent(jLabel6))
                 .addGap(29, 29, 29)
                 .addComponent(btnAplicarFiltros)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabsAlgoritmo.addTab("Filtros", tabFiltros);
@@ -1549,13 +1649,28 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnRandomSel1ActionPerformed
 
     private void btnAddNameSel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNameSel1ActionPerformed
-        actualizarSeleccionCat();
-        
+        actualizarSeleccionCat();        
     }//GEN-LAST:event_btnAddNameSel1ActionPerformed
 
     private void btnAddNameSelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNameSelActionPerformed
         actualizarSeleccionPag();
     }//GEN-LAST:event_btnAddNameSelActionPerformed
+
+    private void btnAddNameSel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNameSel2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddNameSel2ActionPerformed
+
+    private void txtNameSel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameSel2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameSel2ActionPerformed
+
+    private void txtNameSel5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameSel5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameSel5ActionPerformed
+
+    private void btnAddNameSel4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNameSel4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddNameSel4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1566,6 +1681,8 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JButton btnAddLinkToGraph;
     private javax.swing.JToggleButton btnAddNameSel;
     private javax.swing.JToggleButton btnAddNameSel1;
+    private javax.swing.JToggleButton btnAddNameSel2;
+    private javax.swing.JToggleButton btnAddNameSel4;
     private javax.swing.JButton btnAddPagToGraph;
     private javax.swing.JButton btnAplicarFiltros;
     private javax.swing.JButton btnAplicarSelCat;
@@ -1595,6 +1712,8 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JButton btnRmvLinkFromGraph;
     private javax.swing.JToggleButton btnRmvNameSel;
     private javax.swing.JToggleButton btnRmvNameSel1;
+    private javax.swing.JToggleButton btnRmvNameSel2;
+    private javax.swing.JToggleButton btnRmvNameSel4;
     private javax.swing.JButton btnRmvPagFromGraph;
     private javax.swing.JButton btnShowCom;
     private javax.swing.JButton btnShowSet;
@@ -1624,9 +1743,13 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1682,6 +1805,10 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JTextArea txtListSet;
     private javax.swing.JTextField txtNameSel;
     private javax.swing.JTextField txtNameSel1;
+    private javax.swing.JTextField txtNameSel2;
+    private javax.swing.JTextField txtNameSel4;
+    private javax.swing.JTextField txtNameSel5;
+    private javax.swing.JTextField txtNameSel6;
     private javax.swing.JTextField txtNodo1Enlace;
     private javax.swing.JTextField txtNodo2Enlace;
     private javax.swing.JTextField txtNombreAnterior;
