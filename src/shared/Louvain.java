@@ -6,7 +6,6 @@ package shared;
  */
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Class for applying the Louvain algorithm to a graph
@@ -14,216 +13,267 @@ import java.util.Iterator;
  * @author Cluster 7 sub 3
  * @version 1.0
  */
-public class Louvain extends Algorithm {
+public class Louvain extends Algorithm
+{
 
     private Graph<Integer, Double> graph;
+    private Graph<Integer, Double> gIntermedi;
+    
     private HashMap<Integer, ArrayList<ArrayList<Integer>>> communityList;
-    private ArrayList<ArrayList<Integer>> community;
+    
+    private ArrayList<ArrayList<Integer>> cAnterior;
+    private ArrayList<ArrayList<Integer>> cActual;
+    
     private int steps;
 
-    public Louvain() {
+    public Louvain()
+    {
+        this.graph = null;
+        this.gIntermedi = null;
+        this.communityList = new HashMap<Integer, ArrayList<ArrayList<Integer>>>();
+        this.cAnterior = new ArrayList<ArrayList<Integer>>();
+        this.cActual = new ArrayList<ArrayList<Integer>>();
     }
-
+    
+    public int getsteps()
+    {
+        return this.steps;
+    }
+    
     /**
      * Apply the Louvain algorithm
      *
      * @param g Graph<Integer, Double>
      */
-
-    @Override
     public void calc(Graph<Integer, Double> g)
     {
-        this.steps = 0;
-        this.graph = g;
-        this.community = new ArrayList<>();
-        this.communityList = new HashMap<>();
-
-        for (int vertex : this.graph.getVertexs()) {
-            ArrayList<Integer> temp = new ArrayList<>();
-            temp.add(vertex);
-            this.community.add(temp);
-        }
-        boolean control = true;
-        while(control)
+        if(g != null)
         {
-            ArrayList<ArrayList<Integer>> aux = new ArrayList<>();
-            for(ArrayList<Integer> i : this.community)
+            this.steps = 0;
+            this.graph = g;
+            this.gIntermedi = this.graph;
+            this.inicialitzarComunitats();
+            //Copiar this.cActual a this.cAnterior
+            this.cAnterior = new ArrayList<ArrayList<Integer>>();
+            for(ArrayList<Integer> i: this.cActual)
             {
-                aux.add( (ArrayList<Integer>) i.clone());
-            }
-            this.communityList.put(this.steps, aux);
-            steps++;
-            control = this.metode();
-        }
-    }
-
-    private boolean metode()
-    {
-        double qmax = -1.0;
-        int node = 0, comunidad = 0;
-        ArrayList<Integer> lvertexs = this.graph.getVertexs();
-        double sumaC, sumIncidentsCom, sumNC, sumIncidentsNode;
-        
-        //m
-        double m = pesTotal();
-
-        for (int i : lvertexs)
-        {
-            sumaC = pesCom(i);
-            sumIncidentsCom = pesIncident(i);
-            ArrayList<Integer> lvecinos = this.graph.getNeighbors(i);
-            
-            for (int j : lvecinos)
-            {
-                if(i != j)
+                ArrayList<Integer> aux = new ArrayList<Integer>();
+                for(int j: i)
                 {
-                    sumNC = pesNodeCom(j, i);
-                    sumIncidentsNode = pesIncident(j);
-
-                    double q = deltaQ(sumaC, sumIncidentsCom, sumNC, sumIncidentsNode, m);
-
-                    if (q > qmax && q > 0.0) {
-                        qmax = q;
-                        node = j;
-                        comunidad = i;
-
-                    }
+                    aux.add(j);
                 }
-
+                this.cAnterior.add(aux);
             }
+            
+            this.guardarComunitat(); //Per guardar l'estat inicial
+            this.fase2();
+            this.metode();
         }
-        if (qmax > 0.0) {
-            incluirNode(node, comunidad);
-            return true;
-        } 
-        else return false;
-
     }
     
-    @Override
-    public ArrayList<ArrayList<Integer>> obtain()
+    public void metode()
     {
-        if(this.p > 100 || this.p < 0) return null;
-        else
+        while(true)
         {
-            return this.communityList.get( (this.p * this.steps) / 100);  
+            if(! this.fase1()) break;
+            this.guardarComunitat();
+            this.fase2();
         }
     }
-
-    /**
-     *
-     * @param g
-     * @param node
-     * @param comunidad
-     */
-    private void incluirNode(int node, int comunidad) 
+    
+    private void fase2()
     {
-        //En el arrayList el primer elemento es el nodo representativo de ese conjunto de comunidades
-        ArrayList<Integer> nodeList = null;
-        int posCom = 0, posNode = 0;
-        for(int i = 0; i < this.community.size(); i++)
+        double x;
+        this.gIntermedi = new Graph<Integer, Double>();
+        for(int i = 0; i < this.cAnterior.size(); i++) this.gIntermedi.addVertex(i);
+        for(int i = 0; i < this.cAnterior.size(); i++)
         {
-            if(this.community.get(i).get(0) == node)
+            for (int j = i; j < this.cAnterior.size(); j++)
             {
-                nodeList = this.community.get(i);
-                posNode = i;
+                x = this.pesEntreComunitats(this.cAnterior.get(i), this.cAnterior.get(j));
+                if(x != 0) this.gIntermedi.addEdge(i, j, x);
             }
-            else if (this.community.get(i).get(0) == comunidad) posCom = i;
         }
-        this.community.get(posCom).addAll(nodeList);
-        this.community.remove(posNode);
+    }
+    
+    private double pesEntreComunitats(ArrayList<Integer> comunitat1, ArrayList<Integer> comunitat2)
+    {
+        double suma = 0.0;
+        for(int i: comunitat1)
+        {
+            for(int j: comunitat2)
+            {
+                Edge<Integer, Double> k = this.graph.getEdge(i, j);
+                if(k != null) suma += k.getValue();
+            }
+        }
+        if(comunitat1.equals(comunitat2)) return suma / 2.0;
+        else return suma;
+    }
+    
+    private void guardarComunitat()
+    {
+        //Creamos la nueva lista de comunidades
+        ArrayList<ArrayList<Integer>> guardar = new ArrayList<ArrayList<Integer>>();
+        for(ArrayList<Integer> i: this.cActual)
+        {
+            ArrayList<Integer> nou = new ArrayList<Integer>();
+            for(int j: i)
+            {
+                nou.addAll(new ArrayList<Integer>(this.cAnterior.get(j)) );
+            }
+            if(nou.size() > 0) guardar.add(nou);
+        }
         
+        //Guardamos la lista
+        this.communityList.put(this.steps, guardar);
+        this.steps++;
         
-        ArrayList<Integer> neighbors = this.graph.getNeighbors(node);
-        for (int i = 0; i < neighbors.size(); ++i) {
-            int vecino = neighbors.get(i);
-            Edge<Integer, Double> aVecinoNode = this.graph.getEdge(node, vecino);
-            double peso1 = aVecinoNode.getValue();
-            double peso2 = 0;
-            this.graph.removeEdge(node, vecino);
-            this.graph.removeEdge(vecino, node);
-            Edge<Integer, Double> aVecinoCom = this.graph.getEdge(vecino, comunidad);
-            if (aVecinoCom != null) {
-                if (vecino == comunidad) {
-                    Edge<Integer, Double> enode = this.graph.getEdge(node, node);
-                    if (enode != null) {
-                        peso1 = peso1 + enode.getValue();
+        //Ponemos esta lista en cAnterior
+        this.cAnterior = new ArrayList<ArrayList<Integer>>();
+        for(ArrayList<Integer> i: guardar)
+        {
+            ArrayList<Integer> aux = new ArrayList<Integer>();
+            for(int j: i)
+            {
+                aux.add(j);
+            }
+            this.cAnterior.add(aux);
+        }
+        
+    }
+    
+    private boolean fase1()
+    {
+        inicialitzarComunitats();
+        double qmax, q;
+        int comunitat, comunitatDef = 0;
+        boolean parada = false, modificat = false;
+        while(! parada)
+        {
+            parada = true;
+            for(int i: this.gIntermedi.getVertexs())
+            {
+                qmax = -1.0;
+                comunitat = trobarComunitat(i);
+                this.cActual.get(comunitat).remove((Integer) i);
+                for (int j = 0; j < this.cActual.size(); j++)
+                {
+                    if(comunitat != j && estaCon(i, j))
+                    {
+                        q = this.modularitat(i, this.cActual.get(comunitat), this.cActual.get(j));
+                        if(q > qmax)
+                        {
+                            qmax = q;
+                            comunitatDef = j;
+                        }
                     }
-                    this.graph.removeEdge(node, node);
                 }
-                peso2 = aVecinoCom.getValue();
-                this.graph.removeEdge(vecino, comunidad);
-                this.graph.removeEdge(comunidad, vecino);
+                if(qmax > 0.0)
+                {
+                    this.cActual.get(comunitatDef).add(i);
+                    parada = false;
+                    modificat = true;
+                }
+                else this.cActual.get(comunitat).add(i);
             }
-            this.graph.addEdge(vecino, comunidad, peso1 + peso2);
         }
-        this.graph.removeVertex(node);
+        return modificat;
     }
-
-    /**
-     *
-     * @param a sumaC (Ein)
-     * @param b sumIncidentsCom (Etot)
-     * @param c sumNC (ki,in)
-     * @param d sumIncidentsNode (ki)
-     * @param m m
-     * @return
-     */
-    private double deltaQ(double a, double b, double c, double d, double m) {
-        double m2 = 2 * m;
-        double uno = (a + c) / m2;
-        double dos = Math.pow((b + d) / m2, 2.0);
-        double tres = a / m2;
-        double cuatro = Math.pow((b / m2), 2.0);
-        double cinco = Math.pow((d / m2), 2.0);
-
-        return ((uno - dos) - (tres - cuatro - cinco));
-
+    
+    private void inicialitzarComunitats()
+    {
+        this.cActual = new ArrayList<ArrayList<Integer>>();
+        if(this.gIntermedi != null)
+        {
+            for (int i : this.gIntermedi.getVertexs())
+            {
+                ArrayList<Integer> aux = new ArrayList();
+                aux.add(i);
+                this.cActual.add(aux);
+            }
+        }
     }
-
-
-    //Sirve para m
+    
+    private int trobarComunitat(int vertex)
+    {
+        for (int i = 0; i < this.cActual.size(); i++) 
+        {
+            if(this.cActual.get(i).contains(vertex)) return i;
+        }
+        return 0;
+    }
+    
+    private boolean estaCon(int vertex, int comunitat)
+    {
+        for (int i: this.gIntermedi.getNeighbors(vertex))
+        {
+            if(this.cActual.get(comunitat).contains((Integer) i)) return true;
+        }
+        return false;
+    }
+    
+    private double modularitat(int vertex, ArrayList<Integer> cInici, ArrayList<Integer> cDesti)
+    {
+        double total = 0.0;
+        double m = this.pesTotal();
+        if (m == 0) return -1.0;
+        total = (this.pesVertexComunitat(vertex, cDesti) - this.pesVertexComunitat(vertex, cInici)) / (2*m);
+        double aux = this.pesIncidentsVertex(vertex)*(this.pesIncidentsComunitat(cDesti) - this.pesIncidentsComunitat(cInici));
+        return total - (aux/(2*Math.pow(m, 2)));
+    }
+    
+    private double pesIncidentsVertex(int vertex)
+    {
+        double suma = 0.0;
+        for(int j: this.gIntermedi.getNeighbors(vertex))
+        {
+            if(vertex == j) suma += this.gIntermedi.getEdge(vertex, j).getValue() /2.0;
+            else suma += this.gIntermedi.getEdge(vertex, j).getValue();
+        }
+        return suma;
+    }
+    
     private double pesTotal()
     {
-        ArrayList<Integer> lvertexs = this.graph.getVertexs();
-        double suma = 0;
-        for (int i : lvertexs) {
-            ArrayList<Edge<Integer, Double>> aux = this.graph.getEdges(i);
-            for (Edge<Integer, Double> j : aux) {
-                suma += j.getValue();
-            }
+        double suma = 0.0;
+        for (int i: this.gIntermedi.getVertexs())
+        {
+            for(int j: this.gIntermedi.getNeighbors(i)) suma += this.gIntermedi.getEdge(i, j).getValue();
         }
-
-        return suma / 2;
+        return suma / 2.0;
     }
-
-    //Sirve para ki i para Etot
-    private double pesIncident(int node)
+    
+    private double pesVertexComunitat(int vertex, ArrayList<Integer> comunitat)
     {
-        ArrayList<Edge<Integer, Double>> aux = this.graph.getEdges(node);
-        double suma = 0;
-        for (Edge<Integer, Double> i : aux) {
-            if (node != i.getDesti()) {
-                suma += i.getValue();
+        double suma = 0.0;
+        for (int i: this.gIntermedi.getNeighbors(vertex))
+        {
+            if(comunitat.contains(i)) suma += this.gIntermedi.getEdge(vertex, i).getValue();
+        }
+        return suma;
+    }
+    
+    private double pesIncidentsComunitat(ArrayList<Integer> comunitat)
+    {
+        double suma = 0.0;
+        for(int i: comunitat)
+        {
+            for(int j: this.gIntermedi.getNeighbors(i))
+            {
+                if(! comunitat.contains(j)) suma += this.gIntermedi.getEdge(i, j).getValue();
             }
         }
         return suma;
     }
-
-    //ki, in
-    private double pesNodeCom(int node, int com)
-    {
-        Edge<Integer, Double> aux = this.graph.getEdge(node, com);
-        if (aux != null) return aux.getValue();
-        else return 0;
-    }
-
-    //Ein
-    private double pesCom(int com)
-    {
-        Edge<Integer, Double> aux = this.graph.getEdge(com, com);
-        if (aux != null) return aux.getValue();
-        else return 0;
-    }
     
+    public ArrayList<ArrayList<Integer>> obtain()
+    {
+        if(this.p > 100 || this.p < 0 || this.steps < 0 || this.graph == null) return null;
+        else
+        {
+            if(p == 100) return this.communityList.get(this.steps - 1);
+            return this.communityList.get( (this.p * (this.steps)) / 100);  
+        }
+    }
 }

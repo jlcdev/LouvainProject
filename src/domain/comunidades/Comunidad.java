@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain.comunidades;
 
 import domain.grafos.Categoria;
@@ -11,7 +6,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Javier
+ * @author Javier López Calderón
  */
 public class Comunidad
 {
@@ -42,29 +37,32 @@ public class Comunidad
     @Override
     public boolean equals(Object obj)
     {
-        if (obj == null)
-        {
-            return false;
-        }
-        if (getClass() != obj.getClass())
-        {
-            return false;
-        }
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         final Comunidad other = (Comunidad) obj;
-        if (this.id != other.id)
-        {
-            return false;
-        }
-        if (!Objects.equals(this.nombre, other.nombre))
-        {
-            return false;
-        }
-        return true;
+        if (this.id != other.id) return false;
+        return Objects.equals(this.nombre, other.nombre);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 5;
+        hash = 61 * hash + this.id;
+        hash = 61 * hash + Objects.hashCode(this.nombre);
+        hash = 61 * hash + Objects.hashCode(this.ctoCategorias);
+        return hash;
     }
     
     public void addCategoria(Categoria cat)
     {
-        if(!ctoCategorias.contains(cat))ctoCategorias.add(cat);
+        if(!ctoCategorias.contains(cat)) ctoCategorias.add(cat);
+    }
+    
+    public void addCategoria(String name)
+    {
+        Categoria cat = new Categoria(name);
+        if(!ctoCategorias.contains(cat)) ctoCategorias.add(cat);
     }
     
     public void removeCategoria(Categoria cat)
@@ -83,10 +81,20 @@ public class Comunidad
         return ctoCategorias.size();
     }
     
+    public ArrayList<String> getNameCategories()
+    {
+        ArrayList<String> response = new ArrayList<>();
+        for(Categoria c : this.ctoCategorias)
+        {
+            response.add(c.getNombre());
+        }
+        return response;
+    }
+    
     @Override
     public String toString()
     {
-        return "Comunidad{" + "Nombre=" + nombre + " Categorias = " + ctoCategorias.toString() + '}';
+        return "Comunidad: "+this.id+"  Nombre: "+this.nombre+" NºCategorías: "+this.ctoCategorias.size();
     }
     
 }

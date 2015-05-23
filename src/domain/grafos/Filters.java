@@ -4,20 +4,9 @@ package domain.grafos;
  *
  * @author Joan Rodas
  */
-public class Filters
+public class Filters implements Cloneable
 {
-    private int[] priorities;
-
-    /**
-     * Init Filters with all priorities = 0
-     */
-    public Filters()
-    {
-        priorities = new int[]
-        {
-            0, 0, 0, 0, 0
-        };
-    }
+    private final int pname, pcat, ppag, pfat, pson;
 
     /**
      * Initialize Filter with priorities
@@ -30,137 +19,86 @@ public class Filters
      */
     public Filters(int pname, int pcat, int ppag, int pfat, int pson)
     {
-        priorities = new int[]
-        {
-            pname, pcat, ppag, pfat, pson
-        };
-    }
-
-    /**
-     * Set all priorities
-     *
-     * @param pname
-     * @param pcat
-     * @param ppag
-     * @param pfat
-     * @param pson
-     */
-    public void setAll(int pname, int pcat, int ppag, int pfat, int pson)
-    {
-        priorities = new int[]
-        {
-            pname, pcat, ppag, pfat, pson
-        };
+        this.pname = pname;
+        this.pcat = pcat;
+        this.ppag = ppag;
+        this.pfat = pfat;
+        this.pson = pson;
     }
 
     /**
      * @return String priorities
      */
-    public String getAll()
+    @Override
+    public String toString()
     {
-        String result = "";
-        int tam = this.priorities.length;
-        int i;
-        for(i = 0; i < tam - 1; ++i)
-            result += this.priorities[i] + ",";
-        
-        if(i < tam - 1) result += this.priorities[i + 1];
-        return result;
+        return "name: "+this.pname+" cat: "+this.pcat+" pag: "+this.ppag+" padre: "+this.pfat+" hijo: "+this.pson;
     }
 
-    /**
-     * @return name_priority
-     */
-    public int getName_priority()
-    {
-        return priorities[0];
-    }
-
-    /**
-     * @param name_priority
-     */
-    public void setName_priority(int name_priority)
-    {
-        this.priorities[0] = name_priority;
-    }
-
-    /**
-     * @return categories_priority
-     */
-    public int getCategories_priority()
-    {
-        return priorities[1];
-    }
-
-    /**
-     * @param categories_priority
-     */
-    public void setCategories_priority(int categories_priority)
-    {
-        this.priorities[1] = categories_priority;
-    }
-
-    /**
-     * @return pages_priority
-     */
-    public int getPages_priority()
-    {
-        return priorities[2];
-    }
-
-    /**
-     * @param pages_priority
-     */
-    public void setPages_priority(int pages_priority)
-    {
-        this.priorities[2] = pages_priority;
-    }
-
-    /**
-     * @return father_priority
-     */
-    public int getFather_priority()
-    {
-        return priorities[3];
-    }
-
-    /**
-     * @param father_priority
-     */
-    public void setFather_priority(int father_priority)
-    {
-        this.priorities[3] = father_priority;
-    }
-
-    /**
-     * @return son_priority
-     */
-    public int getSon_priority()
-    {
-        return priorities[4];
-    }
-
-    /**
-     * @param son_priority
-     */
-    public void setSon_priority(int son_priority)
-    {
-        this.priorities[4] = son_priority;
-    }
-
-    /**
-     * @param priorities
-     */
-    public void setFilters(int[] priorities)
-    {
-        this.priorities = priorities;
-    }
-
-    /**
-     * @return Array priorities
-     */
     public int[] getFilters()
     {
-        return priorities;
+        int[] response = {this.pname, this.pcat, this.ppag, this.pfat, this.pson};
+        return response;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 59 * hash + this.pname;
+        hash = 59 * hash + this.pcat;
+        hash = 59 * hash + this.ppag;
+        hash = 59 * hash + this.pfat;
+        hash = 59 * hash + this.pson;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == null)
+        {
+            return false;
+        }
+        if(getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final Filters other = (Filters) obj;
+        if(this.pname != other.pname)
+        {
+            return false;
+        }
+        if(this.pcat != other.pcat)
+        {
+            return false;
+        }
+        if(this.ppag != other.ppag)
+        {
+            return false;
+        }
+        if(this.pfat != other.pfat)
+        {
+            return false;
+        }
+        if(this.pson != other.pson)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
+    public Filters clone()
+    {
+        Object obj = null;
+        try
+        {
+            obj = super.clone();
+        }
+        catch(CloneNotSupportedException e)
+        {
+        }
+        return (Filters) obj;
     }
 }

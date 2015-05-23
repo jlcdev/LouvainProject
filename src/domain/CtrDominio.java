@@ -1,12 +1,14 @@
 package domain;
 
 import data.CtrData;
+import domain.comunidades.CtoComunidad;
 import domain.grafos.Categoria;
 import domain.grafos.Grafo;
 import domain.grafos.Node;
 import domain.grafos.Pagina;
 import java.util.ArrayList;
 import java.util.Iterator;
+import shared.Graph;
 
 /**
  *
@@ -16,23 +18,48 @@ public class CtrDominio
 {
     private Grafo g = null;
     private CtrData ctrData= null;
+    private Graph<Integer, Double> graph = null;
+    private CtoComunidad generatedCto= null;
     
     public CtrDominio()
     {
         g = new Grafo();
         ctrData = new CtrData();
     }
+    
     public Grafo getGrafo()
     {
         return this.g;
     }
+    
+    public void setAlgorithmGraph(Graph<Integer, Double> graph)
+    {
+        this.graph = graph;
+    }
+    
+    public Graph<Integer, Double> getAlgorithmGraph()
+    {
+        return this.graph;
+    }
+    
+    public boolean isAlgorithmGraph()
+    {
+        return (graph != null?true:false);
+    }
+    
+    public void setGeneratedCto(CtoComunidad cto)
+    {
+        this.generatedCto = cto;
+    }
+    
     public ArrayList<String> verPagGeneral()
     {
         ArrayList<String> listPages = new ArrayList<>();
         Iterator<Integer> iter = this.g.getAllVertex().iterator();
+        Node n;
         while(iter.hasNext())
         {
-            Node n = this.g.getNodeNumber(iter.next());
+            n = this.g.getNodeNumber(iter.next());
             if(n.getClass() == Pagina.class) listPages.add(n.getNombre());
         }
         return listPages;
@@ -146,9 +173,8 @@ public class CtrDominio
     
     public void readEntryGraphFile(String path)
     {
-        if(path == null || path.isEmpty()) return;
         ctrData.setEntryPath(path);
-        this.g = ctrData.readEntryGraphFile();
+        ctrData.readEntryGraphFile(this.g);
     }
     
     public void addToEntryGraph(String entry)
@@ -162,16 +188,7 @@ public class CtrDominio
         ctrData.setEntryPath(path);
         return ctrData.writeEntryGraphFile(this.g);
     }
-    
-    public void cargarAlgorithmGraph()
-    {
-        
-    }
-    
-    public boolean saveAlgorithmGraph(String path)
-    {
-        return false;
-    }
+
     
     public void mostrarGrafo()
     {}

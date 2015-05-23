@@ -1,5 +1,8 @@
 package domain;
 
+import domain.comunidades.Comunidad;
+import domain.comunidades.CtoComunidad;
+import domain.grafos.Conversion;
 import domain.grafos.Filters;
 import domain.grafos.Grafo;
 import domain.grafos.Selections;
@@ -22,19 +25,13 @@ public class CtrAlgoritmo
     
     public CtrAlgoritmo()
     {
-        this.filters = new Filters();
         this.catSelections = new Selections();
         this.pageSelections = new Selections();
-        this.p = 0;
-        this.algorithm = 0;
     }
     
-    public void setFilters(String s)
+    public void setFilters(Integer a, Integer b, Integer c, Integer d, Integer e)
     {
-        if(s == null || s.isEmpty()) return;
-        String as[] = s.split(",");
-        if(as.length < 5 || as.length > 5) return;
-        this.filters.setAll(Integer.getInteger(as[0]), Integer.getInteger(as[1]), Integer.getInteger(as[2]), Integer.getInteger(as[3]), Integer.getInteger(as[4]));
+        this.filters = new Filters(a, b, c, d, e);
     }
     
     public void setPageSelections(ArrayList<String> listString)
@@ -42,9 +39,19 @@ public class CtrAlgoritmo
         this.pageSelections.setSelection(listString);
     }
     
+    public void setConcretePageSelection(String s)
+    {
+        this.pageSelections.addToSelection(s);
+    }
+    
     public void setCatSelections(ArrayList<String> listString)
     {
         this.catSelections.setSelection(listString);
+    }
+    
+    public void setConcreteCatSelection(String s)
+    {
+        this.catSelections.addToSelection(s);
     }
     
     public void setP(int p)
@@ -56,32 +63,32 @@ public class CtrAlgoritmo
     
     public void setAlgorithm(int algorithm)
     {
-        if(algorithm < 0) this.algorithm = 0;
-        else if(algorithm > 2) this.algorithm = 2;
+        if(algorithm < 1) this.algorithm = 1;
+        else if(algorithm > 3) this.algorithm = 3;
         else this.algorithm = algorithm;
     }
     
     public Graph<Integer, Double> generate(Grafo g)
     {
-        return null;
+        return Conversion.toWeightedGraph(g, this.filters, this.catSelections, this.catSelections);
     }
     
-    public void ejecutar(Graph<Integer, Double> g)
+    public CtoComunidad ejecutar(Graph<Integer, Double> g, Grafo orig)
     {
-        Algorithm al = null;
+        Algorithm communityAlgorithm = null;
         switch(this.algorithm)
         {
-            case 0:
-                al = new Louvain();
-                break;
             case 1:
+                communityAlgorithm = new Louvain();
                 break;
             case 2:
                 break;
+            case 3:
+                break;
         }
-        if(al == null) return;
-        al.setP(this.p);
-        al.calc(g);
-        //TODO
+        if(communityAlgorithm == null) return null;
+        communityAlgorithm.setP(this.p);
+        communityAlgorithm.calc(g);
+        return new CtoComunidad(communityAlgorithm.obtain(), orig, this.algorithm, this.filters, this.catSelections, this.pageSelections);
     }
 }

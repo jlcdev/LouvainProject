@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain.comunidades;
 
 import domain.grafos.Filters;
+import domain.grafos.Grafo;
 import domain.grafos.Selections;
 import java.util.ArrayList;
 
@@ -17,11 +13,32 @@ public class CtoComunidad
 {
     private String nombre;
     private boolean modificado;
-    private String algortimo;
+    private int algoritmo;
     private ArrayList<Comunidad> ctoComunidades;
-    Filters filtros;
-    Selections selectCategories;
-    Selections selectPages;
+    private Filters filtros;
+    private Selections selectCategories;
+    private Selections selectPages;
+    
+    public CtoComunidad(ArrayList<ArrayList<Integer>> result, Grafo orig, int algorithm, Filters f, Selections cat, Selections pag)
+    {
+        this.algoritmo = algorithm;
+        this.filtros = f.clone();
+        this.selectCategories = cat.clone();
+        this.selectPages = pag.clone();
+        int size = result.size();
+        this.ctoComunidades = new ArrayList<>();
+        Comunidad c;
+        for(int i=0; i < size;++i)
+        {
+            c = new Comunidad();
+            for(int num : result.get(i))
+            {
+                c.addCategoria(orig.getTranslator(num));
+            }
+            this.ctoComunidades.add(c);
+        }
+    }
+    
 
     public boolean isModificado()
     {
@@ -58,9 +75,9 @@ public class CtoComunidad
         return nombre;
     }
     
-    public String getAlgortimo()
+    public int getAlgortimo()
     {
-        return this.algortimo;
+        return this.algoritmo;
     }
 
     public void setCtoComunidades(ArrayList<Comunidad> ctoComunidades)
@@ -103,14 +120,14 @@ public class CtoComunidad
         this.modificado = modificado;
     }
 
-    public void setAlgortimo(String algortimo)
+    public void setAlgortimo(int algoritmo)
     {
-        this.algortimo = algortimo;
+        this.algoritmo = algoritmo;
     }
 
     @Override
     public String toString()
     {
-        return "CtoComunidad{" + "nombre=" + nombre + ", modificado=" + modificado + ", algortimo=" + algortimo + ", ctoComunidades=" + ctoComunidades + ", filtros=" + filtros + ", selectCategories=" + selectCategories + ", selectPages=" + selectPages + '}';
+        return "CtoComunidad{" + "nombre=" + nombre + ", modificado=" + modificado + ", algortimo=" + algoritmo + ", ctoComunidades=" + ctoComunidades + ", filtros=" + filtros + ", selectCategories=" + selectCategories + ", selectPages=" + selectPages + '}';
     }
 }

@@ -19,6 +19,7 @@ public class Grafo
     private HashMap<Integer, String> translator;
     private HashMap<String, Integer> translator2;
     private ArrayList<ArrayList<Arch>> aristas; 
+    //private ArrayList<String> removeMarked;
     
     /**
      * Constructor por defecto
@@ -31,6 +32,7 @@ public class Grafo
         this.translator = new HashMap<>();
         this.translator2 = new HashMap<>();
         this.aristas = new ArrayList<>();
+        //this.removeMarked = new ArrayList<>();
         this.id = 0;
         this.numAristas = 0;
     }
@@ -82,17 +84,22 @@ public class Grafo
     
     public int getNumPagAdyacent(int node)
     {
+        if(!this.vertexs.contains(node)) return 0;
         if(this.aristas.isEmpty()) return 0;
-        int cont = 0;
+        int cont = 0, destiny;
         for(Arch arc : this.aristas.get(node))
         {
             if(arc.getOrigin() == node)
             {
-                if(this.correspondencia.get(arc.getDestiny()).getClass() == Pagina.class) ++cont;
+                //destiny = arc.getDestiny();
+                //if(this.correspondencia.containsKey(destiny))
+                    if(this.correspondencia.get(arc.getDestiny()).getClass() == Pagina.class) ++cont;
             }
             else
             {
-                if(this.correspondencia.get(arc.getOrigin()).getClass() == Pagina.class) ++cont;
+                //destiny = arc.getOrigin();
+                //if(this.correspondencia.containsKey(destiny))
+                    if(this.correspondencia.get(arc.getOrigin()).getClass() == Pagina.class) ++cont;
             }
         }
         return cont;
@@ -100,17 +107,22 @@ public class Grafo
     
     public int getNumCatAdyacent(int node)
     {
+        if(!this.vertexs.contains(node)) return 0;
         if(this.aristas.isEmpty()) return 0;
-        int cont = 0;
+        int cont = 0, destiny;
         for(Arch arc : this.aristas.get(node))
         {
             if(arc.getOrigin() == node)
             {
-                if(this.correspondencia.get(arc.getDestiny()).getClass() == Categoria.class) ++cont;
+                destiny = arc.getDestiny();
+                if(this.correspondencia.containsKey(destiny))
+                    if(this.correspondencia.get(destiny).getClass() == Categoria.class) ++cont;
             }
             else
             {
-                if(this.correspondencia.get(arc.getOrigin()).getClass() == Categoria.class) ++cont;
+                destiny = arc.getOrigin();
+                if(this.correspondencia.containsKey(destiny))
+                    if(this.correspondencia.get(destiny).getClass() == Categoria.class) ++cont;
             }
         }
         return cont;
@@ -118,6 +130,7 @@ public class Grafo
     
     public int getNumCsupCAdyacent(int node)
     {
+        if(!this.vertexs.contains(node)) return 0;
         int cont = 0;
         for(Arch arc : this.aristas.get(node))
         {
@@ -233,7 +246,13 @@ public class Grafo
     {
         return this.correspondencia2.get(n);
     }
-    
+    /*
+    public boolean isRemoved(int i)
+    {
+        String name = this.translator.get(i);
+        return this.removeMarked.contains(name);
+    }
+    */
     public Node getNodeNumber(int i)
     {
         return this.correspondencia.get(i);
@@ -350,26 +369,37 @@ public class Grafo
         return listString;
     }
     
+    public void remove(int i)
+    {
+        this.remove(this.translator.get(i));
+    }
+    
     public void remove(String name)
     {
+        if(!this.translator2.containsKey(name)) return;
         int num = this.translator2.get(name);
-        this.translator2.remove(name);
-        this.translator.remove(num);
-        for(ArrayList<Arch> listArch : this.aristas)
+        int size = this.aristas.size();
+        int size2;
+        for(int i=size-1; i > 0;--i)
         {
-            for(int i =0; i < listArch.size(); i++)
+            ArrayList<Arch> listArch = this.aristas.get(i);
+            size2 = listArch.size();
+            for(int j=size2-1; j > 0;--j)
             {
-            	Arch arc = listArch.get(i);
-            	if(arc.getOrigin() == num || arc.getDestiny() == num)
+                Arch arc = listArch.get(j);
+                if(arc.getDestiny() == num || arc.getOrigin() == num)
                 {
-                    listArch.remove(arc);
+                    listArch.remove(j);
                     --this.numAristas;
                 }
-            }        	
+            }
         }
+        
         Node n = this.correspondencia.get(num);
         this.correspondencia2.remove(n);
         this.correspondencia.remove(num);
+        this.translator2.remove(name);
+        this.translator.remove(num);
         this.vertexs.remove(num);
     }
     
