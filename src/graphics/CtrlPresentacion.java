@@ -174,8 +174,8 @@ public class CtrlPresentacion {
   public void exportarConjunto(String path)
   {
       Boolean error;
-      error = ctrlDominio.saveAlgorithmGraph(path);
-      if(!error)sincronizacionVistaPrincipal_a_Error("El path esta vacío");
+      //error = ctrlDominio.saveAlgorithmGraph(path);
+      //if(!error)sincronizacionVistaPrincipal_a_Error("El path esta vacío");
   }
   //PESTAÑA GRAFO
   
@@ -299,9 +299,9 @@ public class CtrlPresentacion {
       //?????
   }
   
-  public void aplicarFiltros (String filtros)
+  public void aplicarFiltros (int a, int b, int c, int d, int e)
   {
-      ctrlAlgoritmo.setFilters(filtros);
+      ctrlAlgoritmo.setFilters(a,b,c,d,e);
   }
   
   //pestaña comunidades
