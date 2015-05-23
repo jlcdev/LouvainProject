@@ -33,6 +33,7 @@ public class CtrlPresentacion {
 
   public CtrlPresentacion() {
     ctrlDominio = new CtrDominio();
+    ctrlAlgoritmo = new CtrAlgoritmo();
     if (vistaPrincipal == null)  // innecesario
       vistaPrincipal = new VistaPrincipal(this);
   }

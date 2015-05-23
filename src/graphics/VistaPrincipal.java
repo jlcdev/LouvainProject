@@ -7,6 +7,7 @@ package graphics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
 
@@ -22,22 +23,15 @@ public class VistaPrincipal extends javax.swing.JFrame
     
     public VistaPrincipal (CtrlPresentacion pCtrlPresentacion) 
     {
-        System.out.println("isEventDispatchThread: " + SwingUtilities.isEventDispatchThread());
-        iCtrlPresentacion = pCtrlPresentacion;
-
-        //this.setMinimumSize(new Dimension(1200,520));
-        //this.setPreferredSize(this.getMinimumSize());
-        //this.setResizable(false);
-        // Posicion y operaciones por defecto
-        //this.setLocationRelativeTo(null);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //System.out.println("isEventDispatchThread: " + SwingUtilities.isEventDispatchThread());
+        iCtrlPresentacion = pCtrlPresentacion;        
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
     public void hacerVisible() 
     {
-        System.out.println("isEventDispatchThread: " + SwingUtilities.isEventDispatchThread());
+        //System.out.println("isEventDispatchThread: " + SwingUtilities.isEventDispatchThread());
         this.pack();
         this.setVisible(true);
     }
@@ -52,12 +46,31 @@ public class VistaPrincipal extends javax.swing.JFrame
         this.setEnabled(false);
     }
     
+    private void randomSel(Boolean pag)
+    {
+        Random r = new Random();
+        if(pag)
+        {            
+            int max = r.nextInt(listPaginas.getModel().getSize() + 1);
+            int[] indices = new int[max];
+            for(int i = 0; i < max; i++) indices[i] = r.nextInt(listPaginas.getModel().getSize());
+            listPaginas.setSelectedIndices(indices);
+        }
+        else
+        {
+            int max = r.nextInt(listCategorias.getModel().getSize() + 1);
+            int[] indices = new int[max];
+            for(int i = 0; i < max; i++) indices[i] = r.nextInt(listCategorias.getModel().getSize());
+            listCategorias.setSelectedIndices(indices);
+        }
+    }
+    
     public void actualizarSeleccionPag()
     {        
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoPag();          
         DefaultListModel model = (DefaultListModel) listPaginas.getModel();
         model.clear();
-        for (String elem : lista) model.addElement(elem);
+        for(String elem : lista) model.addElement(elem);
     }
     
     public void actualizarSeleccionCat()
@@ -65,7 +78,18 @@ public class VistaPrincipal extends javax.swing.JFrame
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();          
         DefaultListModel model = (DefaultListModel) listCategorias.getModel();
         model.clear();
-        for (String elem : lista) model.addElement(elem);
+        for(String elem : lista) model.addElement(elem);
+    }
+    
+    public void clearTxtAreas()
+    {
+        DefaultListModel model = (DefaultListModel) listCategorias.getModel();
+        model.clear();
+        model = (DefaultListModel) listPaginas.getModel();
+        model.clear();
+        txtListGraph.setText(null);
+        txtListSet.setText(null);
+        txtListComp.setText(null);       
     }
 
     /**
@@ -126,11 +150,23 @@ public class VistaPrincipal extends javax.swing.JFrame
         listPaginas = new javax.swing.JList();
         ckTodasPaginas = new javax.swing.JCheckBox();
         btnAplicarSelPag = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        btnRandomSel = new javax.swing.JToggleButton();
+        jLabel22 = new javax.swing.JLabel();
+        txtNameSel = new javax.swing.JTextField();
+        btnRmvNameSel = new javax.swing.JToggleButton();
+        btnAddNameSel = new javax.swing.JToggleButton();
         tabSelCat = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         listCategorias = new javax.swing.JList();
         ckTodasCategorias = new javax.swing.JCheckBox();
         btnAplicarSelCat = new javax.swing.JButton();
+        btnAddNameSel1 = new javax.swing.JToggleButton();
+        btnRmvNameSel1 = new javax.swing.JToggleButton();
+        txtNameSel1 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        btnRandomSel1 = new javax.swing.JToggleButton();
+        jLabel24 = new javax.swing.JLabel();
         tabFiltros = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         spNombre = new javax.swing.JSpinner();
@@ -174,7 +210,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         txtListSet = new javax.swing.JTextArea();
         panelComparacion = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        txtListGraph1 = new javax.swing.JTextArea();
+        txtListComp = new javax.swing.JTextArea();
         btnCompararComunidades = new javax.swing.JButton();
         comboTipoCom1 = new javax.swing.JComboBox();
         comboTipoCom2 = new javax.swing.JComboBox();
@@ -584,12 +620,51 @@ public class VistaPrincipal extends javax.swing.JFrame
             }
         });
 
+        jLabel21.setText("Selección al azar:");
+
+        btnRandomSel.setText("Seleccionar");
+        btnRandomSel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRandomSelActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Selección por nombre:");
+
+        txtNameSel.setText("jTextField3");
+
+        btnRmvNameSel.setText("-");
+
+        btnAddNameSel.setText("+");
+        btnAddNameSel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNameSelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tabSelPagLayout = new javax.swing.GroupLayout(tabSelPag);
         tabSelPag.setLayout(tabSelPagLayout);
         tabSelPagLayout.setHorizontalGroup(
             tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabSelPagLayout.createSequentialGroup()
-                .addContainerGap(398, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabSelPagLayout.createSequentialGroup()
+                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabSelPagLayout.createSequentialGroup()
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 95, Short.MAX_VALUE))
+                            .addComponent(txtNameSel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAddNameSel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRmvNameSel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabSelPagLayout.createSequentialGroup()
+                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRandomSel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabSelPagLayout.createSequentialGroup()
@@ -606,7 +681,21 @@ public class VistaPrincipal extends javax.swing.JFrame
                     .addComponent(btnAplicarSelPag)
                     .addComponent(ckTodasPaginas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(tabSelPagLayout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRandomSel)
+                        .addGap(31, 31, 31)
+                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addGroup(tabSelPagLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnRmvNameSel)
+                                    .addComponent(btnAddNameSel)
+                                    .addComponent(txtNameSel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
 
@@ -629,12 +718,51 @@ public class VistaPrincipal extends javax.swing.JFrame
             }
         });
 
+        btnAddNameSel1.setText("+");
+        btnAddNameSel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNameSel1ActionPerformed(evt);
+            }
+        });
+
+        btnRmvNameSel1.setText("-");
+
+        txtNameSel1.setText("jTextField3");
+
+        jLabel23.setText("Selección por nombre:");
+
+        btnRandomSel1.setText("Seleccionar");
+        btnRandomSel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRandomSel1ActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setText("Selección al azar:");
+
         javax.swing.GroupLayout tabSelCatLayout = new javax.swing.GroupLayout(tabSelCat);
         tabSelCat.setLayout(tabSelCatLayout);
         tabSelCatLayout.setHorizontalGroup(
             tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabSelCatLayout.createSequentialGroup()
-                .addContainerGap(398, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabSelCatLayout.createSequentialGroup()
+                        .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabSelCatLayout.createSequentialGroup()
+                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 95, Short.MAX_VALUE))
+                            .addComponent(txtNameSel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAddNameSel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRmvNameSel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabSelCatLayout.createSequentialGroup()
+                        .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRandomSel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabSelCatLayout.createSequentialGroup()
@@ -651,7 +779,21 @@ public class VistaPrincipal extends javax.swing.JFrame
                     .addComponent(btnAplicarSelCat)
                     .addComponent(ckTodasCategorias))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(tabSelCatLayout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRandomSel1)
+                        .addGap(31, 31, 31)
+                        .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addGroup(tabSelCatLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnRmvNameSel1)
+                                    .addComponent(btnAddNameSel1)
+                                    .addComponent(txtNameSel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
 
@@ -1018,10 +1160,10 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         tabsPrincipal.addTab("Conjunto", panelComunidades);
 
-        txtListGraph1.setEditable(false);
-        txtListGraph1.setColumns(20);
-        txtListGraph1.setRows(5);
-        jScrollPane6.setViewportView(txtListGraph1);
+        txtListComp.setEditable(false);
+        txtListComp.setColumns(20);
+        txtListComp.setRows(5);
+        jScrollPane6.setViewportView(txtListComp);
 
         btnCompararComunidades.setText("Comparar");
 
@@ -1029,9 +1171,9 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         comboTipoCom2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Importado", "Creado" }));
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("Nombre com1");
 
-        jTextField2.setText("jTextField2");
+        jTextField2.setText("Nombre com2");
 
         jLabel17.setText("Comparar 2 comunidades");
 
@@ -1282,18 +1424,21 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnNuevoGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafo1ActionPerformed
         iCtrlPresentacion.crearGrafo();
+        clearTxtAreas();
     }//GEN-LAST:event_btnNuevoGrafo1ActionPerformed
 
     private void btnNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafoActionPerformed
-        iCtrlPresentacion.crearGrafo();
+        iCtrlPresentacion.crearGrafo();  
+        clearTxtAreas();
         tabsPrincipal.setEnabledAt(1, true);
-        tabsPrincipal.setSelectedIndex(1);        
+        tabsPrincipal.setSelectedIndex(1);         
     }//GEN-LAST:event_btnNuevoGrafoActionPerformed
 
     private void mItemNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemNuevoGrafoActionPerformed
         iCtrlPresentacion.crearGrafo();
+        clearTxtAreas();
         tabsPrincipal.setEnabledAt(1, true);
-        tabsPrincipal.setSelectedIndex(1);
+        tabsPrincipal.setSelectedIndex(1);        
     }//GEN-LAST:event_mItemNuevoGrafoActionPerformed
 
     private void txtCatToAddRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCatToAddRmvActionPerformed
@@ -1312,26 +1457,12 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void btnAplicarSelPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelPagActionPerformed
         List l = listPaginas.getSelectedValuesList(); 
         ArrayList<String> al = new ArrayList<>(l);
-        iCtrlPresentacion.aplicarSelPag(al);
-        
-        
-               
-        
-        
-        
-       // ArrayList<String> listData = new ArrayList<String>();
-       // listData.add("Elem1");
-       // listData.add("Elem2");
-       // listData.add("Elem3");
-       // listData.add("Elem4");
-       // listPaginas.setListData(listData.toArray());
-        
+        iCtrlPresentacion.aplicarSelPag(al);   
     }//GEN-LAST:event_btnAplicarSelPagActionPerformed
 
     private void btnAplicarSelCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelCatActionPerformed
         List l = listCategorias.getSelectedValuesList(); 
         ArrayList<String> al = new ArrayList<>(l);
-        //System.out.println(al);
         iCtrlPresentacion.aplicarSelCat(al);
     }//GEN-LAST:event_btnAplicarSelCatActionPerformed
 
@@ -1341,7 +1472,6 @@ public class VistaPrincipal extends javax.swing.JFrame
         String catComun = spCatComun.getValue().toString();
         String superComun = spSuperComun.getValue().toString();
         String subComun = spSubComun.getValue().toString();
-        //System.out.println(name+","+pagComun+","+catComun+","+superComun+","+subComun);
         iCtrlPresentacion.aplicarFiltros(name+","+pagComun+","+catComun+","+superComun+","+subComun);
     }//GEN-LAST:event_btnAplicarFiltrosActionPerformed
 
@@ -1407,12 +1537,25 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_mItemExportarGrafoActionPerformed
 
     private void tabsPrincipalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsPrincipalStateChanged
-        /*if(tabsPrincipal.getSelectedIndex() == 2)
-        {
-            actualizarSeleccionPag();
-            actualizarSeleccionCat();
-        }*/
+       
     }//GEN-LAST:event_tabsPrincipalStateChanged
+
+    private void btnRandomSelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRandomSelActionPerformed
+        randomSel(true);
+    }//GEN-LAST:event_btnRandomSelActionPerformed
+
+    private void btnRandomSel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRandomSel1ActionPerformed
+        randomSel(false);
+    }//GEN-LAST:event_btnRandomSel1ActionPerformed
+
+    private void btnAddNameSel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNameSel1ActionPerformed
+        actualizarSeleccionCat();
+        
+    }//GEN-LAST:event_btnAddNameSel1ActionPerformed
+
+    private void btnAddNameSelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNameSelActionPerformed
+        actualizarSeleccionPag();
+    }//GEN-LAST:event_btnAddNameSelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1421,6 +1564,8 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JButton btnAddCatToGraph;
     private javax.swing.JButton btnAddComToSet;
     private javax.swing.JButton btnAddLinkToGraph;
+    private javax.swing.JToggleButton btnAddNameSel;
+    private javax.swing.JToggleButton btnAddNameSel1;
     private javax.swing.JButton btnAddPagToGraph;
     private javax.swing.JButton btnAplicarFiltros;
     private javax.swing.JButton btnAplicarSelCat;
@@ -1442,10 +1587,14 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JButton btnListPagGraph;
     private javax.swing.JButton btnNuevoGrafo;
     private javax.swing.JButton btnNuevoGrafo1;
+    private javax.swing.JToggleButton btnRandomSel;
+    private javax.swing.JToggleButton btnRandomSel1;
     private javax.swing.JButton btnRmvCatFromCom;
     private javax.swing.JButton btnRmvCatFromGraph;
     private javax.swing.JButton btnRmvComFromSet;
     private javax.swing.JButton btnRmvLinkFromGraph;
+    private javax.swing.JToggleButton btnRmvNameSel;
+    private javax.swing.JToggleButton btnRmvNameSel1;
     private javax.swing.JButton btnRmvPagFromGraph;
     private javax.swing.JButton btnShowCom;
     private javax.swing.JButton btnShowSet;
@@ -1471,6 +1620,10 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
@@ -1524,9 +1677,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JTextField txtCatToAddRmv;
     private javax.swing.JTextField txtComToAddRmvCat;
     private javax.swing.JTextField txtComToList;
+    private javax.swing.JTextArea txtListComp;
     private javax.swing.JTextArea txtListGraph;
-    private javax.swing.JTextArea txtListGraph1;
     private javax.swing.JTextArea txtListSet;
+    private javax.swing.JTextField txtNameSel;
+    private javax.swing.JTextField txtNameSel1;
     private javax.swing.JTextField txtNodo1Enlace;
     private javax.swing.JTextField txtNodo2Enlace;
     private javax.swing.JTextField txtNombreAnterior;
