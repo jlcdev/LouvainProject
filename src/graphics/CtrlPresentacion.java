@@ -297,9 +297,9 @@ public class CtrlPresentacion {
       //?????
   }
   
-  public void aplicarFiltros (String filtros)
+  public void aplicarFiltros (int a, int b, int c, int d, int e)
   {
-      //ctrlAlgoritmo.setFilters(filtros);
+      ctrlAlgoritmo.setFilters(a,b,c,d,e);
   }
   
   //pestaña comunidades

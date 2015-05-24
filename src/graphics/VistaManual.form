@@ -201,7 +201,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Ver grafo&#xa;----------"/>
+                <Property name="text" type="java.lang.String" value="Ver grafo&#xa;----------&#xa;&#xa;Desde la pesta&#xf1;a &quot;Grafo&quot; se puede visualizar el grafo en formato texto.&#xa;&#xa;Categorias: Muestra una lista con todas las categorias del grafo.&#xa;&#xa;P&#xe1;ginas: Muestra una lista con todas las p&#xe1;ginas del grafo.&#xa;&#xa;Enlaces: Muestra una lista con todos los enlaces del grafo, indicando en cada caso los 2 nodos y el tipo de enlace entre ellos."/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
@@ -242,7 +242,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Algoritmo&#xa;----------"/>
+                <Property name="text" type="java.lang.String" value="Algoritmo&#xa;----------&#xa;&#xa;Seleccionar P&#xe1;ginas: Se pueden seleccionar las p&#xe1;ginas de forma manual en la lista que aparece a la derecha en la pesta&#xf1;a &quot;Algoritmo&quot; y &quot;Seleccionar P&#xe1;ginas&quot;. Tambi&#xe9;n es posible seleccionar todas las p&#xe1;ginas, hacer una seleccion aleatoria o seleccionar las p&#xe1;ginas con un n&#xfa;mero de enlaces dentro de un rango. Una vez realizada la selecci&#xf3;n hay que pulsar el bot&#xf3;n &quot;Aplicar&quot;.&#xa;&#xa;Seleccionar Categorias: Se pueden seleccionar las categorias de forma manual en la lista que aparece a la derecha en la pesta&#xf1;a &quot;Algoritmo&quot; y &quot;Seleccionar Categorias&quot;. Tambi&#xe9;n es posible seleccionar todas las categorias, hacer una seleccion aleatoria o seleccionar las categorias con un n&#xfa;mero de enlaces dentro de un rango. Una vez realizada la selecci&#xf3;n hay que pulsar el bot&#xf3;n &quot;Aplicar&quot;.&#xa;&#xa;Escoger filtros: En la pesta&#xf1;a &quot;Algoritmo&quot; y &quot;Filtros&quot;, se pueden escoger los filtros deseados para hacer el c&#xe1;lculo de las comunidades. Cuanto m&#xe1;s prioridad tengo un filtro m&#xe1;s se tendr&#xe1; en cuenta. En caso de que la prioridad sea 0 no se aplicar&#xe1; dicho filtro. Los filtros posibles son: Nombre parecido, P&#xe1;ginas en com&#xfa;n, Categorias en com&#xfa;n, CsubC en com&#xfa;n y CsubC en com&#xfa;n.&#xa;&#xa;Escoger algoritmo: En la pantalla &quot;Algoritmo&quot; se puede escoger entre Louvain, Girvain-Newman y Clique.&#xa;&#xa;Valor de P: Valor entre 0 i 100.&#xa;&#xa;Ejecutar algoritmo: Una vez realizada la selecci&#xf3;n de p&#xe1;ginas, categorias, filtros, algoritmo y establecido un valor para P, podr&#xe1; ejecutarse el algoritmo con el bot&#xf3;n &quot;Ejecutar&quot;.&#xa;&#xa;"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>

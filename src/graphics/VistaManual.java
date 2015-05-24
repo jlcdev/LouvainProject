@@ -138,7 +138,7 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea3.setColumns(20);
         jTextArea3.setLineWrap(true);
         jTextArea3.setRows(5);
-        jTextArea3.setText("Ver grafo\n----------");
+        jTextArea3.setText("Ver grafo\n----------\n\nDesde la pestaña \"Grafo\" se puede visualizar el grafo en formato texto.\n\nCategorias: Muestra una lista con todas las categorias del grafo.\n\nPáginas: Muestra una lista con todas las páginas del grafo.\n\nEnlaces: Muestra una lista con todos los enlaces del grafo, indicando en cada caso los 2 nodos y el tipo de enlace entre ellos.");
         jTextArea3.setWrapStyleWord(true);
         jTextArea3.setOpaque(false);
 
@@ -165,7 +165,7 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea4.setColumns(20);
         jTextArea4.setLineWrap(true);
         jTextArea4.setRows(5);
-        jTextArea4.setText("Algoritmo\n----------");
+        jTextArea4.setText("Algoritmo\n----------\n\nSeleccionar Páginas: Se pueden seleccionar las páginas de forma manual en la lista que aparece a la derecha en la pestaña \"Algoritmo\" y \"Seleccionar Páginas\". También es posible seleccionar todas las páginas, hacer una seleccion aleatoria o seleccionar las páginas con un número de enlaces dentro de un rango. Una vez realizada la selección hay que pulsar el botón \"Aplicar\".\n\nSeleccionar Categorias: Se pueden seleccionar las categorias de forma manual en la lista que aparece a la derecha en la pestaña \"Algoritmo\" y \"Seleccionar Categorias\". También es posible seleccionar todas las categorias, hacer una seleccion aleatoria o seleccionar las categorias con un número de enlaces dentro de un rango. Una vez realizada la selección hay que pulsar el botón \"Aplicar\".\n\nEscoger filtros: En la pestaña \"Algoritmo\" y \"Filtros\", se pueden escoger los filtros deseados para hacer el cálculo de las comunidades. Cuanto más prioridad tengo un filtro más se tendrá en cuenta. En caso de que la prioridad sea 0 no se aplicará dicho filtro. Los filtros posibles son: Nombre parecido, Páginas en común, Categorias en común, CsubC en común y CsubC en común.\n\nEscoger algoritmo: En la pantalla \"Algoritmo\" se puede escoger entre Louvain, Girvain-Newman y Clique.\n\nValor de P: Valor entre 0 i 100.\n\nEjecutar algoritmo: Una vez realizada la selección de páginas, categorias, filtros, algoritmo y establecido un valor para P, podrá ejecutarse el algoritmo con el botón \"Ejecutar\".\n\n");
         jTextArea4.setWrapStyleWord(true);
         jTextArea4.setOpaque(false);
 
