@@ -1,7 +1,7 @@
 package domain.comunidades;
 
 import domain.grafos.Filters;
-import domain.grafos.Grafo;
+import domain.grafos.GrafoEntrada;
 import domain.grafos.Selections;
 import java.util.ArrayList;
 
@@ -16,15 +16,13 @@ public class CtoComunidad
     private int algoritmo;
     private ArrayList<Comunidad> ctoComunidades;
     private Filters filtros;
-    private Selections selectCategories;
-    private Selections selectPages;
+    private Selections selections;
     
-    public CtoComunidad(ArrayList<ArrayList<Integer>> result, Grafo orig, int algorithm, Filters f, Selections cat, Selections pag)
+    public CtoComunidad(ArrayList<ArrayList<Integer>> result, GrafoEntrada orig, int algorithm, Filters f, Selections selections)
     {
         this.algoritmo = algorithm;
         this.filtros = f.clone();
-        this.selectCategories = cat.clone();
-        this.selectPages = pag.clone();
+        this.selections = selections.clone();
         int size = result.size();
         this.ctoComunidades = new ArrayList<>();
         Comunidad c;
@@ -33,7 +31,7 @@ public class CtoComunidad
             c = new Comunidad();
             for(int num : result.get(i))
             {
-                c.addCategoria(orig.getTranslator(num));
+                c.addCategoria(orig.getNumberCategory(num));
             }
             this.ctoComunidades.add(c);
         }
@@ -55,14 +53,9 @@ public class CtoComunidad
         return ctoComunidades.size();        
     }
     
-    public Selections getCatSelections()
+    public Selections getSelections()
     {
-        return this.selectCategories;
-    }
-    
-    public Selections getPagSelections()
-    {
-        return this.selectPages;
+        return this.selections;
     }
     
     public Filters getFiltros()
@@ -95,14 +88,9 @@ public class CtoComunidad
         if(ctoComunidades.contains(c))ctoComunidades.remove(c);
     }
     
-    public void setCatSelections(Selections selectCategories)
+    public void setSelections(Selections selections)
     {
-        this.selectCategories = selectCategories;
-    }
-    
-    public void setPagSelections(Selections selectPages)
-    {
-        this.selectPages = selectPages;
+        this.selections = selections;
     }
 
     public void setFiltros(Filters filtros)
@@ -128,6 +116,6 @@ public class CtoComunidad
     @Override
     public String toString()
     {
-        return "CtoComunidad{" + "nombre=" + nombre + ", modificado=" + modificado + ", algortimo=" + algoritmo + ", ctoComunidades=" + ctoComunidades + ", filtros=" + filtros + ", selectCategories=" + selectCategories + ", selectPages=" + selectPages + '}';
+        return "CtoComunidad{" + "nombre=" + nombre + ", modificado=" + modificado + ", algortimo=" + algoritmo + ", ctoComunidades=" + ctoComunidades + ", filtros=" + filtros + "}'";
     }
 }

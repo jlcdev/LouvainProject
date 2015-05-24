@@ -1,7 +1,7 @@
 package data;
 
 import domain.comunidades.Comunidad;
-import domain.grafos.Grafo;
+import domain.grafos.GrafoEntrada;
 import java.util.ArrayList;
 import shared.FileManager;
 
@@ -30,41 +30,17 @@ public class CtrData
         this.algorithmPath = algorithmPath;
     }
     
-    public void readEntryGraphFile(Grafo g)
+    public void readEntryGraphFile(GrafoEntrada g)
     {
         fm.setPath(this.entryPath);
-        g.addMultipleEntry(fm.readFile());
+        g.loadFromFile(fm.readFile());
     }
     
-    public boolean writeEntryGraphFile(Grafo g)
+    public boolean writeEntryGraphFile(GrafoEntrada g)
     {
         if(this.entryPath == null || this.entryPath.isEmpty()) return false;
         if(!fm.existFile(this.entryPath)) fm.createFile(this.entryPath);
         fm.setPath(this.entryPath);
-        return fm.writeFile(g.getGraphInfo());
-    }
-    
-    public void readCommunityGraphFile(Comunidad c)
-    {
-        fm.setPath(this.algorithmPath);
-        ArrayList<String> dataRead = fm.readFile();
-        c.setId(Integer.parseInt(dataRead.get(0)));
-        c.setNombre(dataRead.get(1));
-        dataRead.remove(0);
-        dataRead.remove(1);
-        for(String s : dataRead)
-        {
-            c.addCategoria(s);
-        }
-    }
-    
-    public boolean writeCommunityGraphFile(Comunidad c)
-    {
-        ArrayList<String> forSave = new ArrayList<>();
-        ArrayList<String> list = c.getNameCategories();
-        forSave.add(""+c.getId());
-        forSave.add(""+c.getNombre());
-        forSave.addAll(list);
-        return fm.writeFile(forSave);
+        return fm.writeFile(g.saveToFile());
     }
 }

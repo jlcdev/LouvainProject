@@ -2,12 +2,8 @@ package domain;
 
 import data.CtrData;
 import domain.comunidades.CtoComunidad;
-import domain.grafos.Categoria;
-import domain.grafos.Grafo;
-import domain.grafos.Node;
-import domain.grafos.Pagina;
+import domain.grafos.GrafoEntrada;
 import java.util.ArrayList;
-import java.util.Iterator;
 import shared.Graph;
 
 /**
@@ -16,18 +12,25 @@ import shared.Graph;
  */
 public class CtrDominio
 {
-    private Grafo g = null;
+    private GrafoEntrada g = null;
     private CtrData ctrData= null;
     private Graph<Integer, Double> graph = null;
     private CtoComunidad generatedCto= null;
     
     public CtrDominio()
     {
-        g = new Grafo();
+        g = new GrafoEntrada();
         ctrData = new CtrData();
     }
     
-    public Grafo getGrafo()
+    public void information()
+    {
+        if(graph == null) return;
+        System.out.println("Vertices: "+graph.getVertexs().size());
+        
+    }
+    
+    public GrafoEntrada getGrafo()
     {
         return this.g;
     }
@@ -54,121 +57,62 @@ public class CtrDominio
     
     public ArrayList<String> verPagGeneral()
     {
-        ArrayList<String> listPages = new ArrayList<>();
-        Iterator<Integer> iter = this.g.getAllVertex().iterator();
-        Node n;
-        while(iter.hasNext())
+        ArrayList<String> response = new ArrayList();
+        for(Integer i : this.g.getPages())
         {
-            n = this.g.getNodeNumber(iter.next());
-            if(n.getClass() == Pagina.class) listPages.add(n.getNombre());
+            response.add(this.g.getNumberNamePage(i));
         }
-        return listPages;
+        return response;
     }
     
     public ArrayList<String> verCatGeneral()
     {
-        ArrayList<String> listCats = new ArrayList<>();
-        Iterator<Integer> iter = this.g.getAllVertex().iterator();
-        while(iter.hasNext())
+        ArrayList<String> response = new ArrayList<>();
+        for(Integer i : this.g.getCategories())
         {
-            Node n = this.g.getNodeNumber(iter.next());
-            if(n.getClass() == Categoria.class) listCats.add(n.getNombre());
+            response.add(this.g.getNumberNameCategory(i));
         }
-        return listCats;
+        return response;
     }
     
-    public String verPag(int num)
+    public ArrayList<Integer> getNumPagGeneral()
     {
-        String res = "";
-        if(num < 0) return res;
-        int cont = 0;
-        Node n;
-        Iterator<Integer> iter = this.g.getAllVertex().iterator();
-        while(iter.hasNext())
-        {
-            n = this.g.getNodeNumber(iter.next());
-            if(n.getClass() == Pagina.class)
-            {
-                if(cont == num)
-                {
-                    res = n.getNombre();
-                    break;
-                }
-                else ++cont;
-            }
-        }
-        return res;
+        return this.g.getPages();
     }
     
-    public String verCat(int num)
+    public ArrayList<Integer> getNumCatGeneral()
     {
-        String res = "";
-        if(num < 0) return res;
-        Node n;
-        int cont = 0;
-        Iterator<Integer> iter = this.g.getAllVertex().iterator();
-        while(iter.hasNext())
-        {
-            n = this.g.getNodeNumber(iter.next());
-            if(n.getClass() == Categoria.class)
-            {
-                if(cont == num)
-                {
-                    res = n.getNombre();
-                    break;
-                }
-                else ++cont;
-            }
-        }
-        return res;
+        return this.g.getCategories();
     }
     
-    public boolean modifyPage(int page, String change)
+    public String verPag(Integer page)
     {
-        boolean res = false;
-        if(page < 0) return res;
-        int cont = 0;
-        Node n;
-        Iterator<Integer> iter = this.g.getAllVertex().iterator();
-        while(iter.hasNext())
-        {
-            n = this.g.getNodeNumber(iter.next());
-            if(n.getClass() == Pagina.class)
-            {
-                if(cont == page)
-                {
-                    n.setNombre(change);
-                    res = true;
-                    break;
-                }
-                else ++cont;
-            }
-        }
-        return res;
+        return this.g.getNumberNamePage(page);
     }
     
-    public boolean modifyCategory(int category, String change)
+    public String verCat(Integer page)
     {
-        boolean res = false;
-        if(category < 0) return res;
-        Node n;
-        int cont = 0;
-        Iterator<Integer> iter = this.g.getAllVertex().iterator();
-        while(iter.hasNext())
-        {
-            n = this.g.getNodeNumber(iter.next());
-            if(n.getClass() == Categoria.class)
-            {
-                if(cont == category)
-                {
-                    n.setNombre(change);
-                    res = true;
-                    break;
-                }
-                else ++cont;
-            }
-        }
-        return res;
+        return this.g.getNumberNameCategory(page);
+    }
+    
+    public Integer verNumPag(Integer page)
+    {
+        return this.g.getPageNumber(this.g.getNumberPage(page));
+    }
+    
+    public Integer verNumCat(Integer category)
+    {
+        return this.g.getCategoryNumber(this.g.getNumberCategory(category));
+    }
+    
+    public void modifyPage(Integer page, String change)
+    {
+        this.g.changePage(page, change);
+    }
+    
+    public void modifyCategory(int category, String change)
+    {
+        this.g.changeCategory(category, change);
     }
     
     public void readEntryGraphFile(String path)
@@ -177,9 +121,9 @@ public class CtrDominio
         ctrData.readEntryGraphFile(this.g);
     }
     
-    public void addToEntryGraph(String entry)
+    public void addToEntryGraph(String nA, String tA, String tArch, String nB, String tB)
     {
-        this.g.addNewEntry(entry);
+        this.g.setData(nA, tA, tArch, nB, tB);
     }
     
     public boolean saveEntryGraph(String path)

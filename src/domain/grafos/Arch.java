@@ -128,6 +128,21 @@ public class Arch
     @Override
     public String toString()
     {
-        return "Arch{" + "origin=" + origin + ", destiny=" + destiny + ", sorigin=" + sorigin + ", sdestiny=" + sdestiny + ", tipoArco=" + tipoArco + '}';
+        if(this.tipoArco == typeArch.CsubC)
+        {
+            return this.sorigin+"   cat   CsubC   "+this.sdestiny+"   cat";
+        }
+        else if(this.tipoArco == typeArch.CsupC)
+        {
+            return this.sorigin+"   cat   CsupC   "+this.sdestiny+"   cat";
+        }
+        else if(this.tipoArco == typeArch.CP)
+        {
+            return this.sorigin+"   cat   CP   "+this.sdestiny+"   page";
+        }
+        else
+        {
+            return this.sorigin+"   page   PC   "+this.sdestiny+"   cat";
+        }
     }
 }

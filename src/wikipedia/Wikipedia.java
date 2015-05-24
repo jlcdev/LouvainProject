@@ -60,7 +60,7 @@ public class Wikipedia
                     msg("Fichero cargado con éxito");
                     break;
                 case 2:
-                    String na = "", ta = "cat", arc = "CsupC", nb = "", tb = "cat", blank = "   ";
+                    String na = "", ta = "cat", arc = "CsupC", nb = "", tb = "cat";
                     msg("--Introducir datos a la aplicación manualmente--");
                     msg("Selecciona el tipo de enlace (CsupC, CsubC, CP, PC):");
                     arc = scanner.next();
@@ -91,8 +91,7 @@ public class Wikipedia
                             nb = scanner.next();
                             break;
                     }
-                    String path = na+blank+ta+blank+arc+blank+nb+blank+tb;
-                    domainController.addToEntryGraph(path);
+                    domainController.addToEntryGraph(na, ta, arc, nb, tb);
                     msg("Nueva información introducida correctamente en el grafo");
                     break;
                 case 3:
@@ -156,7 +155,7 @@ public class Wikipedia
                                 msg("Seleccionar Categorías");
                                 msg("Elige una acción: (all(elegir todo), range(rango concreto), in(específico))");
                                 action = scanner.next();
-                                if(action.equalsIgnoreCase("all")) algorithmController.setCatSelections(domainController.verCatGeneral());
+                                if(action.equalsIgnoreCase("all")) algorithmController.setCatSelections(domainController.getNumCatGeneral());
                                 if(action.equalsIgnoreCase("range"))
                                 {
                                     msg("Introduce el rango deseado: (ejem: 3-50)");
@@ -164,19 +163,19 @@ public class Wikipedia
                                     String[] range = action.split("-");
                                     int a = Integer.parseInt(range[0]);
                                     int b = Integer.parseInt(range[1]);
-                                    algorithmController.setCatSelections(new ArrayList<>(domainController.verCatGeneral().subList(a, b)));
+                                    algorithmController.setCatSelections(new ArrayList<>(domainController.getNumCatGeneral().subList(a, b)));
                                 }
                                 if(action.equalsIgnoreCase("in"))
                                 {
                                     msg("Introduce el número de la Categoría:");
-                                    algorithmController.setConcreteCatSelection(domainController.verCat(scanner.nextInt()));
+                                    algorithmController.setCategorySelectionConcrete(domainController.verNumCat(scanner.nextInt()));
                                 }
                                 break;
                             case 4:
                                 msg("Seleccionar Paginas");
                                 msg("Elige una acción: (all(elegir todo), range(rango concreto), in(específico))");
                                 action = scanner.next();
-                                if(action.equalsIgnoreCase("all")) algorithmController.setPageSelections(domainController.verPagGeneral());
+                                if(action.equalsIgnoreCase("all")) algorithmController.setPageSelections(domainController.getNumPagGeneral());
                                 if(action.equalsIgnoreCase("range"))
                                 {
                                     msg("Introduce el rango deseado: (ejem: 3-50)");
@@ -184,12 +183,12 @@ public class Wikipedia
                                     String[] range = action.split("-");
                                     int a = Integer.parseInt(range[0]);
                                     int b = Integer.parseInt(range[1]);
-                                    algorithmController.setPageSelections(new ArrayList<>(domainController.verPagGeneral().subList(a, b)));
+                                    algorithmController.setPageSelections(new ArrayList<>(domainController.getNumPagGeneral().subList(a, b)));
                                 }
                                 if(action.equalsIgnoreCase("in"))
                                 {
                                     msg("Introduce el número de la Categoría:");
-                                    algorithmController.setConcretePageSelection(domainController.verPag(scanner.nextInt()));
+                                    algorithmController.setPageSelectionConcrete(domainController.verNumPag(scanner.nextInt()));
                                 }
                                 break;
                         }
@@ -211,6 +210,7 @@ public class Wikipedia
                 case 7:
                     msg("--Aplicando algoritmo--");
                     domainController.setAlgorithmGraph(algorithmController.generate(domainController.getGrafo()));
+                    domainController.information();
                     CtoComunidad cto = algorithmController.ejecutar(domainController.getAlgorithmGraph(), domainController.getGrafo());
                     domainController.setGeneratedCto(cto);
                     break;

@@ -1,11 +1,10 @@
 package domain;
 
-import domain.comunidades.Comunidad;
 import domain.comunidades.CtoComunidad;
-import domain.grafos.Conversion;
 import domain.grafos.Filters;
-import domain.grafos.Grafo;
+import domain.grafos.GrafoEntrada;
 import domain.grafos.Selections;
+import domain.grafos.Transformation;
 import java.util.ArrayList;
 import shared.Algorithm;
 import shared.Graph;
@@ -18,15 +17,13 @@ import shared.Louvain;
 public class CtrAlgoritmo
 {
     private Filters filters;
-    private Selections pageSelections;
-    private Selections catSelections;
+    private Selections selections;
     private int p;
     private int algorithm;
     
     public CtrAlgoritmo()
     {
-        this.catSelections = new Selections();
-        this.pageSelections = new Selections();
+        this.selections = new Selections();
     }
     
     public void setFilters(Integer a, Integer b, Integer c, Integer d, Integer e)
@@ -34,24 +31,24 @@ public class CtrAlgoritmo
         this.filters = new Filters(a, b, c, d, e);
     }
     
-    public void setPageSelections(ArrayList<String> listString)
+    public void setPageSelections(ArrayList<Integer> list)
     {
-        this.pageSelections.setSelection(listString);
+        this.selections.setPagesSelected(list);
     }
     
-    public void setConcretePageSelection(String s)
+    public void setCatSelections(ArrayList<Integer> list)
     {
-        this.pageSelections.addToSelection(s);
+        this.selections.setCategoriesSelected(list);
     }
     
-    public void setCatSelections(ArrayList<String> listString)
+    public void setPageSelectionConcrete(Integer i)
     {
-        this.catSelections.setSelection(listString);
+        this.selections.setPage(i);
     }
     
-    public void setConcreteCatSelection(String s)
+    public void setCategorySelectionConcrete(Integer i)
     {
-        this.catSelections.addToSelection(s);
+        this.selections.setCategory(i);
     }
     
     public void setP(int p)
@@ -68,12 +65,13 @@ public class CtrAlgoritmo
         else this.algorithm = algorithm;
     }
     
-    public Graph<Integer, Double> generate(Grafo g)
+    public Graph<Integer, Double> generate(GrafoEntrada g)
     {
-        return Conversion.toWeightedGraph(g, this.filters, this.catSelections, this.catSelections);
+        Transformation.clearGraph(g, this.selections);
+        return Transformation.entryToAlgorithm(g, filters);
     }
     
-    public CtoComunidad ejecutar(Graph<Integer, Double> g, Grafo orig)
+    public CtoComunidad ejecutar(Graph<Integer, Double> g, GrafoEntrada orig)
     {
         Algorithm communityAlgorithm = null;
         switch(this.algorithm)
@@ -89,6 +87,6 @@ public class CtrAlgoritmo
         if(communityAlgorithm == null) return null;
         communityAlgorithm.setP(this.p);
         communityAlgorithm.calc(g);
-        return new CtoComunidad(communityAlgorithm.obtain(), orig, this.algorithm, this.filters, this.catSelections, this.pageSelections);
+        return new CtoComunidad(communityAlgorithm.obtain(), orig, this.algorithm, this.filters, this.selections);
     }
 }

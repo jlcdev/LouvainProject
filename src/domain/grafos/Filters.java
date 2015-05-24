@@ -2,21 +2,12 @@ package domain.grafos;
 
 /**
  *
- * @author Joan Rodas
+ * @author Javier López Calderón
  */
 public class Filters implements Cloneable
 {
     private final int pname, pcat, ppag, pfat, pson;
-
-    /**
-     * Initialize Filter with priorities
-     *
-     * @param pname
-     * @param pcat
-     * @param ppag
-     * @param pfat
-     * @param pson
-     */
+    
     public Filters(int pname, int pcat, int ppag, int pfat, int pson)
     {
         this.pname = pname;
@@ -26,30 +17,40 @@ public class Filters implements Cloneable
         this.pson = pson;
     }
 
-    /**
-     * @return String priorities
-     */
-    @Override
-    public String toString()
+    public int getPname()
     {
-        return "name: "+this.pname+" cat: "+this.pcat+" pag: "+this.ppag+" padre: "+this.pfat+" hijo: "+this.pson;
+        return pname;
     }
 
-    public int[] getFilters()
+    public int getPcat()
     {
-        int[] response = {this.pname, this.pcat, this.ppag, this.pfat, this.pson};
-        return response;
+        return pcat;
+    }
+
+    public int getPpag()
+    {
+        return ppag;
+    }
+
+    public int getPfat()
+    {
+        return pfat;
+    }
+
+    public int getPson()
+    {
+        return pson;
     }
 
     @Override
     public int hashCode()
     {
         int hash = 7;
-        hash = 59 * hash + this.pname;
-        hash = 59 * hash + this.pcat;
-        hash = 59 * hash + this.ppag;
-        hash = 59 * hash + this.pfat;
-        hash = 59 * hash + this.pson;
+        hash = 79 * hash + this.pname;
+        hash = 79 * hash + this.pcat;
+        hash = 79 * hash + this.ppag;
+        hash = 79 * hash + this.pfat;
+        hash = 79 * hash + this.pson;
         return hash;
     }
 
@@ -96,9 +97,13 @@ public class Filters implements Cloneable
         {
             obj = super.clone();
         }
-        catch(CloneNotSupportedException e)
-        {
-        }
+        catch(CloneNotSupportedException e){}
         return (Filters) obj;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "name: "+this.pname+" category: "+this.pcat+" page: "+this.ppag+" father: "+this.pfat+" son: "+this.pson;
     }
 }

@@ -174,8 +174,8 @@ public class CtrlPresentacion {
   public void exportarConjunto(String path)
   {
       Boolean error;
-      error = ctrlDominio.saveAlgorithmGraph(path);
-      if(!error)sincronizacionVistaPrincipal_a_Error("El path esta vacío");
+      //error = ctrlDominio.saveAlgorithmGraph(path);
+      //if(!error)sincronizacionVistaPrincipal_a_Error("El path esta vacío");
   }
   //PESTAÑA GRAFO
   
@@ -247,10 +247,8 @@ public class CtrlPresentacion {
       //***************************************************
       //***************************************************
       int a = 0; //ELIMINAR
-      Boolean error;
-      if(tipus)error = ctrlDominio.modifyCategory(a,nuevo);
-      else error = ctrlDominio.modifyPage(a, nuevo);
-      if(!error)sincronizacionVistaPrincipal_a_Error("La categoria indicada no existe");
+      ctrlDominio.modifyCategory(a,nuevo);
+      ctrlDominio.modifyPage(a, nuevo);
   }
   
   /**
@@ -301,7 +299,7 @@ public class CtrlPresentacion {
   
   public void aplicarFiltros (String filtros)
   {
-      ctrlAlgoritmo.setFilters(filtros);
+      //ctrlAlgoritmo.setFilters(filtros);
   }
   
   //pestaña comunidades

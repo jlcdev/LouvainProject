@@ -1,47 +1,83 @@
 package domain.grafos;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
- * @author Joan Rodas
+ * @author Javier López Calderón
  */
 public class Selections implements Cloneable
 {
-    private ArrayList<String> selection;
-    private ArrayList<Integer> selectionInt;
-    
-    public Selections()
+    private ArrayList<Integer> categoriesSelected;
+    private ArrayList<Integer> pagesSelected;
+
+    public ArrayList<Integer> getCategoriesSelected()
     {
-        this.selection = new ArrayList<>();
-        this.selectionInt = new ArrayList<>();
+        return this.categoriesSelected;
     }
 
-    /**
-     * Obtain selection
-     *
-     * @return selection, an ArrayList<Strings> containing the names of the
-     * nodes to be selected.
-     */
-    public ArrayList<String> getSelecion()
+    public void setCategoriesSelected(ArrayList<Integer> categoriesSelected)
     {
-        return this.selection;
-    }
-    
-    public void addToSelection(String name)
-    {
-        this.selection.add(name);
+        this.categoriesSelected = categoriesSelected;
     }
 
-    /**
-     * Set Selection
-     *
-     * @param selection, the ArrayList<Strings> containing the name of the nodes
-     * to be selected.
-     */
-    public void setSelection(ArrayList<String> selection)
+    public ArrayList<Integer> getPagesSelected()
     {
-        this.selection.addAll(selection);
+        return this.pagesSelected;
+    }
+
+    public void setPagesSelected(ArrayList<Integer> pagesSelected)
+    {
+        this.pagesSelected = pagesSelected;
+    }
+    
+    public void setPage(Integer page)
+    {
+        if(!this.pagesSelected.contains(page))
+        {
+            this.pagesSelected.add(page);
+        }
+    }
+    
+    public void setCategory(Integer category)
+    {
+        if(!this.categoriesSelected.contains(category))
+        {
+            this.categoriesSelected.add(category);
+        }
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.categoriesSelected);
+        hash = 47 * hash + Objects.hashCode(this.pagesSelected);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == null)
+        {
+            return false;
+        }
+        if(getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final Selections other = (Selections) obj;
+        if(!Objects.equals(this.categoriesSelected, other.categoriesSelected))
+        {
+            return false;
+        }
+        if(!Objects.equals(this.pagesSelected, other.pagesSelected))
+        {
+            return false;
+        }
+        return true;
     }
     
     @Override
