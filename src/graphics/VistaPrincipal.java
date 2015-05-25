@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.DefaultListModel;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -44,6 +43,21 @@ public class VistaPrincipal extends javax.swing.JFrame
     public void desactivar() 
     {
         this.setEnabled(false);
+    }
+    
+    public void goToTab(int tab)
+    {
+        tabsPrincipal.setSelectedIndex(tab);        
+    }
+    
+    public void activarTab(int tab)
+    {
+        tabsPrincipal.setEnabledAt(tab, true);
+    }
+    
+    public void desactivarTab(int tab)
+    {
+        tabsPrincipal.setEnabledAt(tab, false);
     }
     
     private void randomSel(Boolean pag)
@@ -1415,6 +1429,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         );
 
         tabsPrincipal.setEnabledAt(1, false);
+        tabsPrincipal.setEnabledAt(2, false);
+        tabsPrincipal.setEnabledAt(3, false);
+        tabsPrincipal.setEnabledAt(4, false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1425,9 +1442,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_ckTodasPaginasActionPerformed
 
     private void mItemImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemImportarGrafoActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);
-        tabsPrincipal.setEnabledAt(1, true);
-        tabsPrincipal.setSelectedIndex(1);
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);        
     }//GEN-LAST:event_mItemImportarGrafoActionPerformed
 
     private void comboTipoEnlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoEnlaceActionPerformed
@@ -1437,7 +1452,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void btnListCatGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatGraphActionPerformed
         txtListGraph.setText("Categorias:\n\n"); 
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();
-        for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");   
+        for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");
     }//GEN-LAST:event_btnListCatGraphActionPerformed
 
     private void btnListPagGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListPagGraphActionPerformed
@@ -1497,9 +1512,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnAddCatToGraphActionPerformed
 
     private void btnImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafoActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);
-        tabsPrincipal.setEnabledAt(1, true);
-        tabsPrincipal.setSelectedIndex(1);
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);        
     }//GEN-LAST:event_btnImportarGrafoActionPerformed
 
     private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
@@ -1515,9 +1528,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_comboTipoNombreSetActionPerformed
 
     private void btnImportarGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafo1ActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);
-        tabsPrincipal.setEnabledAt(1, true);
-        tabsPrincipal.setSelectedIndex(1);
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);        
     }//GEN-LAST:event_btnImportarGrafo1ActionPerformed
 
     private void btnNuevoGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafo1ActionPerformed
@@ -1527,16 +1538,12 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafoActionPerformed
         iCtrlPresentacion.crearGrafo();  
-        clearTxtAreas();
-        tabsPrincipal.setEnabledAt(1, true);
-        tabsPrincipal.setSelectedIndex(1);         
+        clearTxtAreas();                
     }//GEN-LAST:event_btnNuevoGrafoActionPerformed
 
     private void mItemNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemNuevoGrafoActionPerformed
         iCtrlPresentacion.crearGrafo();
-        clearTxtAreas();
-        tabsPrincipal.setEnabledAt(1, true);
-        tabsPrincipal.setSelectedIndex(1);        
+        clearTxtAreas();              
     }//GEN-LAST:event_mItemNuevoGrafoActionPerformed
 
     private void txtCatToAddRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCatToAddRmvActionPerformed

@@ -47,15 +47,6 @@ public class CtrlPresentacion {
 //////////////////////// Metodos de sincronizacion entre vistas
 
 
-  public void sincronizacionVistaPrincipal_a_Secundaria()
-  {
-      
-  }
-  
-  public void sincronizacionVistaSecundaria_a_Principal()
-  {
-      
-  }
   public void sincronizacionVistaPrincipal_a_FileChooser(Boolean tipus)
   {
     vistaPrincipal.desactivar();
@@ -125,17 +116,11 @@ public class CtrlPresentacion {
 //////////////////////// Llamadas al controlador de dominio
 
 
-  /*public ArrayList<String> llamadaDominio1 (String selectedItem) {
-    return ctrlDominio.llamadaDominio1(selectedItem);
-  }
-
-  public ArrayList<String> llamadaDominio2() {
-    return ctrlDominio.llamadaDominio2();
-  }*/
-
   public void crearGrafo ()
   {
-      
+      //CREAR GRAFO VACIO ()
+      vistaPrincipal.activarTab(1); //GRAFO
+      vistaPrincipal.activarTab(2); //ALGORITMO
   }
   
   /**
@@ -145,6 +130,11 @@ public class CtrlPresentacion {
   public void importarGrafo (String path)
   {
       ctrlDominio.readEntryGraphFile(path);
+      vistaPrincipal.actualizarSeleccionCat();
+      vistaPrincipal.actualizarSeleccionPag();
+      vistaPrincipal.activarTab(1); //GRAFO
+      vistaPrincipal.activarTab(2); //ALGORITMO
+      vistaPrincipal.goToTab(1);
   }
   
   /**
@@ -154,6 +144,9 @@ public class CtrlPresentacion {
   public void importarConjunto (String path)
   {
       //ctrlDominio.cargarAlgorithmGraph(path);
+      vistaPrincipal.activarTab(3); //CONJ
+      vistaPrincipal.activarTab(4); //COMP
+      vistaPrincipal.goToTab(3);
   }
   
   /**
@@ -285,6 +278,9 @@ public class CtrlPresentacion {
       ctrlAlgoritmo.setAlgorithm(algoritmo);
       ctrlAlgoritmo.setP(p);
       //ctrlAlgoritmo.ejecutar(ctrlDominio.getGrafo());
+      vistaPrincipal.activarTab(3); //CONJ
+      vistaPrincipal.activarTab(4); //COMP
+      vistaPrincipal.goToTab(3);
   }
   
   public void aplicarSelPag (ArrayList<String> al)

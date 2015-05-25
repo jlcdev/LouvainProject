@@ -132,7 +132,7 @@
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="tabsPrincipalStateChanged"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="tabsPrincipal.setEnabledAt(1, false);"/>
+        <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="tabsPrincipal.setEnabledAt(1, false);&#xa;tabsPrincipal.setEnabledAt(2, false);&#xa;tabsPrincipal.setEnabledAt(3, false);&#xa;tabsPrincipal.setEnabledAt(4, false);"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
