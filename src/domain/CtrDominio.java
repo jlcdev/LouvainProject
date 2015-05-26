@@ -44,6 +44,28 @@ public class CtrDominio
         return this.g;
     }
     
+    public ArrayList<Integer> getCatSelection(int min, int max)
+    {
+        ArrayList<Integer> selection = new ArrayList();
+        for(int i = 0;i < g.getCategorySize();++i)
+        {
+            if(g.getCategoryArch(i).size() >= min || g.getCategoryArch(i).size() <= max)
+                selection.add(i);
+        }
+        return selection;
+    }
+  
+    public ArrayList<Integer> getPagSelection(int min, int max)
+    {
+        ArrayList<Integer> selection = new ArrayList();
+        for(int i = 0;i < g.getPageSize();++i)
+        {
+            if(g.getPageArch(i).size() >= min || g.getPageArch(i).size() <= max)
+                selection.add(i);
+        }
+        return selection;
+    }
+    
     public void setAlgorithmGraph(Graph<Integer, Double> graph)
     {
         this.graph = graph;
@@ -115,9 +137,21 @@ public class CtrDominio
         return this.g.getPageNumber(this.g.getNumberPage(page));
     }
     
+    public Integer verNumPag(String pagina)
+    {
+        Pagina pag = new Pagina(pagina);
+        return g.getPageNumber(pag);
+    }
+    
     public Integer verNumCat(Integer category)
     {
         return this.g.getCategoryNumber(this.g.getNumberCategory(category));
+    }
+    
+    public Integer verNumCat(String categoria)
+    {
+        Categoria cat = new Categoria(categoria);
+        return g.getCategoryNumber(cat);
     }
     
     public void addGrafoCat (String categoria)
@@ -150,20 +184,25 @@ public class CtrDominio
      * Borra una categoria del grafo.
      * @param categoria 
      */
-    public void rmvGrafoCat (String categoria)
+    public int rmvGrafoCat (String categoria)
     {
         Categoria c = new Categoria(categoria);
+        int r = g.getCategoryNumber(c);
         g.removeCategoria(c);
+        return r;
+        
     }
     
     /**
      * Borra una pagina del grafo.
      * @param pagina 
      */
-    public void rmvGrafoPag (String pagina)
+    public int rmvGrafoPag (String pagina)
     {
         Pagina p = new Pagina(pagina);
+        int r = g.getPageNumber(p);
         g.removePagina(p);
+        return r;// ha de retornar la pos de la pagina
     }
   
     /**

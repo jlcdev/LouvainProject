@@ -172,6 +172,24 @@ public class CtrlPresentacion {
   }
   //PESTAÑA GRAFO
   
+  public int getPagNum(String pagina)
+  {
+      return ctrlDominio.verNumPag(pagina);
+  }
+  
+  public int getCatNum(String categoria)
+  {
+      return ctrlDominio.verNumCat(categoria);
+  }
+  
+  public ArrayList<Integer> getCatSelection(int min, int max)
+  {
+  }
+  
+  public ArrayList<Integer> getPagSelection(int min, int max)
+  {
+  }
+  
   /**
    * Añade una categoria al grafo.
    * @param categoria 
@@ -205,18 +223,18 @@ public class CtrlPresentacion {
    * Borra una categoria del grafo.
    * @param categoria 
    */
-  public void rmvGrafoCat (String categoria)
+  public int rmvGrafoCat (String categoria)
   {
-      ctrlDominio.rmvGrafoCat(categoria);
+      return ctrlDominio.rmvGrafoCat(categoria);
   }
   
   /**
    * Borra una pagina del grafo.
    * @param pagina 
    */
-  public void rmvGrafoPag (String pagina)
+  public int rmvGrafoPag (String pagina)
   {
-      ctrlDominio.rmvGrafoPag(pagina);
+      return ctrlDominio.rmvGrafoPag(pagina);
   }
   
   /**
