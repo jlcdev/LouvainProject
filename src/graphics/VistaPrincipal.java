@@ -1560,15 +1560,26 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_ckTodasCategoriasActionPerformed
 
     private void btnAplicarSelPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelPagActionPerformed
-        List l = listPaginas.getSelectedValuesList(); 
-        ArrayList<String> al = new ArrayList<>(l);
-        iCtrlPresentacion.aplicarSelPag(al);   
+        //List l = listPaginas.getSelectedValuesList();
+        int[] index = listPaginas.getSelectedIndices();
+        ArrayList<Integer> intList = new ArrayList<>();
+        for(int intValue : index) intList.add(intValue);
+        //ArrayList<String> al = new ArrayList<>(l);
+        iCtrlPresentacion.aplicarSelPag(intList);   
     }//GEN-LAST:event_btnAplicarSelPagActionPerformed
 
     private void btnAplicarSelCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelCatActionPerformed
-        List l = listCategorias.getSelectedValuesList(); 
-        ArrayList<String> al = new ArrayList<>(l);
-        iCtrlPresentacion.aplicarSelCat(al);
+        //List l = listCategorias.getSelectedValuesList(); 
+        //ArrayList<String> al = new ArrayList<>(l);
+        //iCtrlPresentacion.aplicarSelCat(al);
+        
+        int[] index = listCategorias.getSelectedIndices();
+        ArrayList<Integer> intList = new ArrayList<>();
+        for(int intValue : index) intList.add(intValue);
+        iCtrlPresentacion.aplicarSelCat(intList);  
+        
+        
+        
     }//GEN-LAST:event_btnAplicarSelCatActionPerformed
 
     private void btnAplicarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarFiltrosActionPerformed
@@ -1626,7 +1637,8 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnRmvComFromSetActionPerformed
 
     private void btnChangeNameSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameSetActionPerformed
-        iCtrlPresentacion.modCtoNombre(comboTipoNombreSet.getSelectedIndex(), txtNombreAnterior.getText(), txtNombreNuevo.getText(), comboTipoSet.getSelectedIndex() != 0);
+        //PASSAR COMUNITAT
+        iCtrlPresentacion.modCtoNombre(comboTipoNombreSet.getSelectedIndex(), txtNombreAnterior.getText(), txtNombreNuevo.getText(), null, comboTipoSet.getSelectedIndex() != 0);
     }//GEN-LAST:event_btnChangeNameSetActionPerformed
 
     private void comboTipoNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoNodoActionPerformed
