@@ -320,14 +320,22 @@ public class CtrDominio
     
     public ArrayList<String> mostrarCtoComunidad(Boolean importat)
     {
-        if(importat) return null;
-        else return null;
+        if(importat) return importedCto.getNameComunidades();
+        else return generatedCto.getNameComunidades();
     }
         
     public ArrayList<String> mostrarComunidad(String comunidad, Boolean importat)
     {
-        if(importat) return null;
-        else return null;   
+        if(importat)
+        {
+            Comunidad c = importedCto.getComunidad(comunidad);
+            return c.getNameCategories();
+        }
+        else
+        {
+            Comunidad c = generatedCto.getComunidad(comunidad);
+            return c.getNameCategories();
+        }
     }
 
     public void comparar(int com1, int com2)

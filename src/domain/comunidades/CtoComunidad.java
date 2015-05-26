@@ -48,6 +48,14 @@ public class CtoComunidad
         return ctoComunidades;
     }
     
+    public ArrayList<String> getNameComunidades()
+    {
+        ArrayList<String> comunidades = new ArrayList();
+        for(int i = 0;i < ctoComunidades.size();++i)
+            comunidades.add(ctoComunidades.get(i).getNombre());
+        return comunidades;
+    }
+    
     public Integer getNumComunidades()
     {
         return ctoComunidades.size();        
