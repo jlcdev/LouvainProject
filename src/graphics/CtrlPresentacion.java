@@ -7,13 +7,14 @@ package graphics;
 
 /**
  *
- * @author alfred
+ * @author Alfred Parellada Rodriguez
  */
 
 
 import domain.CtrDominio;
 import domain.CtrAlgoritmo;
 import java.util.*;
+import shared.Graph;
 
 ////////////////////////
 
@@ -292,11 +293,23 @@ public class CtrlPresentacion {
   
   //pestaña algoritmo
   
+  public Graph<Integer, Double> algorithmGraph()
+  {
+      if(!ctrlDominio.isAlgorithmGraph())
+      {
+      Graph<Integer, Double> grafo = ctrlAlgoritmo.generate(ctrlDominio.getGrafo());
+      ctrlDominio.setAlgorithmGraph(grafo);
+      return grafo;
+      }
+      return null;
+  }
+  
   public void ejecutar (int algoritmo, int p)
   {
+      //HACER UN EQUALS CON EL GRAFO GENERADO
       ctrlAlgoritmo.setAlgorithm(algoritmo);
       ctrlAlgoritmo.setP(p);
-      ctrlAlgoritmo.ejecutar(ctrlAlgoritmo.generate(ctrlDominio.getGrafo()),ctrlDominio.getGrafo());
+      ctrlAlgoritmo.ejecutar(algorithmGraph(),ctrlDominio.getGrafo());
       vistaPrincipal.activarTab(3); //CONJ
       vistaPrincipal.activarTab(4); //COMP
       vistaPrincipal.goToTab(3);
@@ -363,6 +376,18 @@ public class CtrlPresentacion {
   public void visualizarCom (String comunidad, Boolean importat)
   {
       
+  }
+  
+  //COMPARACION
+  
+  public ArrayList<String> compararComunidades(String com1, Boolean importado1, String com2, Boolean importado2)
+  {
+      return ctrlDominio.compararComunidades(com1,importado1,com2,importado2);
+  }
+  
+  public void compararConjuntos()
+  {
+      ctrlDominio.compararConjuntos();
   }
 }
 

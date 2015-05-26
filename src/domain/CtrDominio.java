@@ -6,6 +6,7 @@ import domain.comunidades.Comunidad;
 import domain.grafos.Categoria;
 import domain.grafos.GrafoEntrada;
 import domain.grafos.Pagina;
+import domain.grafos.Arch;
 import java.util.ArrayList;
 import shared.Graph;
 
@@ -20,6 +21,7 @@ public class CtrDominio
     private Graph<Integer, Double> graph = null;
     private CtoComunidad generatedCto = null;
     private CtoComunidad importedCto = null;
+    
     
     public CtrDominio()
     {
@@ -156,7 +158,8 @@ public class CtrDominio
     
     public void addGrafoCat (String categoria)
     {
-        g.setData(categoria,"cat","0","0","0");
+        Categoria c = new Categoria(categoria);
+        g.addCategoria(c);
     }
   
     /**
@@ -165,7 +168,8 @@ public class CtrDominio
      */
     public void addGrafoPag (String pagina)
     {
-        g.setData(pagina,"pag","0","0","0");
+        Pagina p = new Pagina(pagina);
+        g.addPagina(p);
     }
   
     /**
@@ -176,18 +180,18 @@ public class CtrDominio
      */
     public void addGrafoEnlace (String node1, String node2, String tipus)
     {
-        //NO SABEMOS SI SON PAGINAS O CATEGORIAS
-        g.setData(node1,"cat",tipus,node2,"0");
+        Arch arco = new Arch(0,0,node1,node2,Arch.typeArch.valueOf(tipus));
+        g.addArch(arco);
     }
   
     /**
      * Borra una categoria del grafo.
      * @param categoria 
      */
-    public int rmvGrafoCat (String categoria)
+    public Integer rmvGrafoCat (String categoria)
     {
         Categoria c = new Categoria(categoria);
-        int r = g.getCategoryNumber(c);
+        Integer r = g.getCategoryNumber(c);
         g.removeCategoria(c);
         return r;
         
@@ -197,10 +201,10 @@ public class CtrDominio
      * Borra una pagina del grafo.
      * @param pagina 
      */
-    public int rmvGrafoPag (String pagina)
+    public Integer rmvGrafoPag (String pagina)
     {
         Pagina p = new Pagina(pagina);
-        int r = g.getPageNumber(p);
+        Integer r = g.getPageNumber(p);
         g.removePagina(p);
         return r;// ha de retornar la pos de la pagina
     }
@@ -213,8 +217,33 @@ public class CtrDominio
      */
     public void rmvGrafoEnlace (String node1, String node2, String tipus)
     {
-        //no hi ha funcio remove edge
+        Categoria c1, c2;
+        Pagina p;
+        switch(tipus)
+        {
+            case "CsubC":
+                c1 = new Categoria(node1);
+                c2 = new Categoria(node2);
+                g.removeArchCategorySubCategory(g.getCategoryNumber(c1), g.getCategoryNumber(c2));
+                break;
+            case "CsupC":
+                c1 = new Categoria(node1);
+                c2 = new Categoria(node2);
+                g.removeArchCategorySupCategory(g.getCategoryNumber(c1), g.getCategoryNumber(c2));
+                break;
+            case "PC":
+                c1 = new Categoria(node2);
+                p = new Pagina(node1);
+                g.removeArchPageCategory(g.getPageNumber(p), g.getCategoryNumber(c1));
+                break;
+            case "CP":
+                c1 = new Categoria(node1);
+                p = new Pagina(node2);
+                g.removeArchCategoryPage(g.getCategoryNumber(c1), g.getPageNumber(p));
+                break;
+        }
     }
+    
     public void modifyPage(String page, String change)
     {
         Pagina p = new Pagina(page);
@@ -229,6 +258,7 @@ public class CtrDominio
     
     public void readEntryGraphFile(String path)
     {
+        g = new GrafoEntrada();
         ctrData.setEntryPath(path);
         ctrData.readEntryGraphFile(this.g);
     }
@@ -249,7 +279,7 @@ public class CtrDominio
     
     public boolean addCtoCat (String categoria, String comunidad, Boolean importat)
     {
-        Comunidad com = new Comunidad();
+        Comunidad com;
         if(importat)
         {
             com = importedCto.getComunidad(comunidad);
@@ -275,7 +305,7 @@ public class CtrDominio
   
     public boolean rmvCtoCat (String categoria, String comunidad, Boolean importat)
     {
-        Comunidad com = new Comunidad();
+        Comunidad com;
         if(importat)
         {
             com = importedCto.getComunidad(comunidad);
@@ -338,11 +368,27 @@ public class CtrDominio
         }
     }
 
-    public void comparar(int com1, int com2)
-    {}
+    public ArrayList<String> compararComunidades(String com1, Boolean importado1, String com2, Boolean importado2)
+    {
+        Comunidad c1 = new Comunidad();
+        Comunidad c2 = new Comunidad();
+        if(importado1)c1 = importedCto.getComunidad(com1);
+        else c1 = generatedCto.getComunidad(com1);
+        if(importado2)c2 = importedCto.getComunidad(com2);
+        else c2 = generatedCto.getComunidad(com2);
+        ArrayList<String> comparacion = new ArrayList();
+        return comparacion;
+    }
+    
+    public void compararConjuntos()
+    {
+        
+    }
     
     public void estadisticas()
-    {}
+    {
+        //OPCIONAL
+    }
     
     
 }
