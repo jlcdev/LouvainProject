@@ -118,7 +118,7 @@ public class CtrlPresentacion {
 
   public void crearGrafo ()
   {
-      //CREAR GRAFO VACIO ()
+      ctrlDominio.newGrafo();
       vistaPrincipal.activarTab(1); //GRAFO
       vistaPrincipal.activarTab(2); //ALGORITMO
   }
@@ -178,7 +178,7 @@ public class CtrlPresentacion {
    */
   public void addGrafoCat (String categoria)
   {
-      
+      ctrlDominio.addGrafoCat(categoria);
   }
   
   /**
@@ -187,7 +187,7 @@ public class CtrlPresentacion {
    */
   public void addGrafoPag (String pagina)
   {
-      
+      ctrlDominio.addGrafoPag(pagina);
   }
   
   /**
@@ -198,7 +198,7 @@ public class CtrlPresentacion {
    */
   public void addGrafoEnlace (String node1, String node2, String tipus)
   {
-      
+      ctrlDominio.addGrafoEnlace(node1,node2,tipus);
   }
     
   /**
@@ -207,7 +207,7 @@ public class CtrlPresentacion {
    */
   public void rmvGrafoCat (String categoria)
   {
-      
+      ctrlDominio.rmvGrafoCat(categoria);
   }
   
   /**
@@ -216,7 +216,7 @@ public class CtrlPresentacion {
    */
   public void rmvGrafoPag (String pagina)
   {
-      
+      ctrlDominio.rmvGrafoPag(pagina);
   }
   
   /**
@@ -227,7 +227,7 @@ public class CtrlPresentacion {
    */
   public void rmvGrafoEnlace (String node1, String node2, String tipus)
   {
-      
+      ctrlDominio.rmvGrafoEnlace(node1,node2,tipus);
   }
   
   /**
@@ -239,9 +239,8 @@ public class CtrlPresentacion {
   {
       //***************************************************
       //***************************************************
-      int a = 0; //ELIMINAR
-      ctrlDominio.modifyCategory(a,nuevo);
-      ctrlDominio.modifyPage(a, nuevo);
+      if(tipus)ctrlDominio.modifyCategory(anterior,nuevo);
+      else ctrlDominio.modifyPage(anterior, nuevo);
   }
   
   /**
@@ -302,32 +301,33 @@ public class CtrlPresentacion {
   
   public void addCtoCat (String categoria, String comunidad, Boolean importat)
   {
-      
+      Boolean error = ctrlDominio.addCtoCat(categoria, comunidad, importat);
+      if(error)sincronizacionVistaPrincipal_a_Error("Comunidad no existente");
   }
   
   public void addCtoCom (String comunidad, Boolean importat)
   {
-      
+      ctrlDominio.addCtoCom(comunidad, importat);
   }
   
   public void rmvCtoCat (String categoria, String comunidad, Boolean importat)
   {
-      
+      ctrlDominio.rmvCtoCat(categoria,comunidad,importat);
   }
   
   public void rmvCtoCom (String comunidad, Boolean importat)
   {
-      
+      ctrlDominio.rmvCtoCom(comunidad, importat);
   }
   
   public void modCtoNombre (int tipus, String anterior, String nuevo, Boolean importat)
   {
-      
+      ctrlDominio.modCtoNombre(tipus, anterior, nuevo, importat);
   }
   
   public ArrayList<String> mostrarCto (Boolean importat)
   {
-      return null;
+      return ctrlDominio.mostrarCtoComunidad(importat);
   }
   
   public void visualizarCto (Boolean importat)
@@ -337,7 +337,7 @@ public class CtrlPresentacion {
   
   public ArrayList<String> mostrarCom (String comunidad, Boolean importat)
   {
-      return null;
+      return ctrlDominio.mostrarComunidad(comunidad, importat);
   }
   
   public void visualizarCom (String comunidad, Boolean importat)

@@ -70,6 +70,15 @@ public class Comunidad
         if(ctoCategorias.contains(cat))ctoCategorias.remove(cat);
     }
     
+    public void removeCategoria(String name)
+    {
+        for(int i = 0;i < ctoCategorias.size();++i)
+        {
+            if(ctoCategorias.get(i).getNombre() == name)
+                ctoCategorias.remove(ctoCategorias.get(i));
+        }
+    }
+    
     public void modCategoria(Categoria cat,String nombre)
     {
         Integer index = ctoCategorias.indexOf(cat);
