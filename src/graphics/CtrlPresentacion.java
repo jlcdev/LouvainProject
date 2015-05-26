@@ -47,15 +47,6 @@ public class CtrlPresentacion {
 //////////////////////// Metodos de sincronizacion entre vistas
 
 
-  public void sincronizacionVistaPrincipal_a_Secundaria()
-  {
-      
-  }
-  
-  public void sincronizacionVistaSecundaria_a_Principal()
-  {
-      
-  }
   public void sincronizacionVistaPrincipal_a_FileChooser(Boolean tipus)
   {
     vistaPrincipal.desactivar();
@@ -125,17 +116,11 @@ public class CtrlPresentacion {
 //////////////////////// Llamadas al controlador de dominio
 
 
-  /*public ArrayList<String> llamadaDominio1 (String selectedItem) {
-    return ctrlDominio.llamadaDominio1(selectedItem);
-  }
-
-  public ArrayList<String> llamadaDominio2() {
-    return ctrlDominio.llamadaDominio2();
-  }*/
-
   public void crearGrafo ()
   {
-      
+      ctrlDominio.newGrafo();
+      vistaPrincipal.activarTab(1); //GRAFO
+      vistaPrincipal.activarTab(2); //ALGORITMO
   }
   
   /**
@@ -145,6 +130,11 @@ public class CtrlPresentacion {
   public void importarGrafo (String path)
   {
       ctrlDominio.readEntryGraphFile(path);
+      vistaPrincipal.actualizarSeleccionCat();
+      vistaPrincipal.actualizarSeleccionPag();
+      vistaPrincipal.activarTab(1); //GRAFO
+      vistaPrincipal.activarTab(2); //ALGORITMO
+      vistaPrincipal.goToTab(1);
   }
   
   /**
@@ -154,6 +144,9 @@ public class CtrlPresentacion {
   public void importarConjunto (String path)
   {
       //ctrlDominio.cargarAlgorithmGraph(path);
+      vistaPrincipal.activarTab(3); //CONJ
+      vistaPrincipal.activarTab(4); //COMP
+      vistaPrincipal.goToTab(3);
   }
   
   /**
@@ -179,13 +172,33 @@ public class CtrlPresentacion {
   }
   //PESTAÑA GRAFO
   
+  public int getPagNum(String pagina)
+  {
+      return ctrlDominio.verNumPag(pagina);
+  }
+  
+  public int getCatNum(String categoria)
+  {
+      return ctrlDominio.verNumCat(categoria);
+  }
+  
+  public ArrayList<Integer> getCatSelection(int min, int max)
+  {
+     return ctrlDominio.getCatSelection(min, max); 
+  }
+  
+  public ArrayList<Integer> getPagSelection(int min, int max)
+  {
+     return ctrlDominio.getPagSelection(min, max); 
+  }
+  
   /**
    * Añade una categoria al grafo.
    * @param categoria 
    */
   public void addGrafoCat (String categoria)
   {
-      
+      ctrlDominio.addGrafoCat(categoria);
   }
   
   /**
@@ -194,7 +207,7 @@ public class CtrlPresentacion {
    */
   public void addGrafoPag (String pagina)
   {
-      
+      ctrlDominio.addGrafoPag(pagina);
   }
   
   /**
@@ -205,25 +218,25 @@ public class CtrlPresentacion {
    */
   public void addGrafoEnlace (String node1, String node2, String tipus)
   {
-      
+      ctrlDominio.addGrafoEnlace(node1,node2,tipus);
   }
     
   /**
    * Borra una categoria del grafo.
    * @param categoria 
    */
-  public void rmvGrafoCat (String categoria)
+  public int rmvGrafoCat (String categoria)
   {
-      
+      return ctrlDominio.rmvGrafoCat(categoria);
   }
   
   /**
    * Borra una pagina del grafo.
    * @param pagina 
    */
-  public void rmvGrafoPag (String pagina)
+  public int rmvGrafoPag (String pagina)
   {
-      
+      return ctrlDominio.rmvGrafoPag(pagina);
   }
   
   /**
@@ -234,7 +247,7 @@ public class CtrlPresentacion {
    */
   public void rmvGrafoEnlace (String node1, String node2, String tipus)
   {
-      
+      ctrlDominio.rmvGrafoEnlace(node1,node2,tipus);
   }
   
   /**
@@ -246,9 +259,8 @@ public class CtrlPresentacion {
   {
       //***************************************************
       //***************************************************
-      int a = 0; //ELIMINAR
-      ctrlDominio.modifyCategory(a,nuevo);
-      ctrlDominio.modifyPage(a, nuevo);
+      if(tipus)ctrlDominio.modifyCategory(anterior,nuevo);
+      else ctrlDominio.modifyPage(anterior, nuevo);
   }
   
   /**
@@ -284,17 +296,20 @@ public class CtrlPresentacion {
   {
       ctrlAlgoritmo.setAlgorithm(algoritmo);
       ctrlAlgoritmo.setP(p);
-      //ctrlAlgoritmo.ejecutar(ctrlDominio.getGrafo());
+      ctrlAlgoritmo.ejecutar(ctrlAlgoritmo.generate(ctrlDominio.getGrafo()),ctrlDominio.getGrafo());
+      vistaPrincipal.activarTab(3); //CONJ
+      vistaPrincipal.activarTab(4); //COMP
+      vistaPrincipal.goToTab(3);
   }
   
-  public void aplicarSelPag (ArrayList<String> al)
+  public void aplicarSelPag (ArrayList<Integer> al)
   {
-    //?????  
+      ctrlAlgoritmo.setPageSelections(al);
   }
   
-  public void aplicarSelCat (ArrayList<String> al)
+  public void aplicarSelCat (ArrayList<Integer> al)
   {
-      //?????
+      ctrlAlgoritmo.setCatSelections(al);
   }
   
   public void aplicarFiltros (int a, int b, int c, int d, int e)
@@ -306,32 +321,33 @@ public class CtrlPresentacion {
   
   public void addCtoCat (String categoria, String comunidad, Boolean importat)
   {
-      
+      Boolean error = ctrlDominio.addCtoCat(categoria, comunidad, importat);
+      if(error)sincronizacionVistaPrincipal_a_Error("Comunidad no existente");
   }
   
   public void addCtoCom (String comunidad, Boolean importat)
   {
-      
+      ctrlDominio.addCtoCom(comunidad, importat);
   }
   
   public void rmvCtoCat (String categoria, String comunidad, Boolean importat)
   {
-      
+      ctrlDominio.rmvCtoCat(categoria,comunidad,importat);
   }
   
   public void rmvCtoCom (String comunidad, Boolean importat)
   {
-      
+      ctrlDominio.rmvCtoCom(comunidad, importat);
   }
   
-  public void modCtoNombre (int tipus, String anterior, String nuevo, Boolean importat)
+  public void modCtoNombre (int tipus, String anterior, String nuevo, String comunidad, Boolean importat)
   {
-      
+      ctrlDominio.modCtoNombre(tipus, anterior, nuevo, comunidad, importat);
   }
   
   public ArrayList<String> mostrarCto (Boolean importat)
   {
-      return null;
+      return ctrlDominio.mostrarCtoComunidad(importat);
   }
   
   public void visualizarCto (Boolean importat)
@@ -341,7 +357,7 @@ public class CtrlPresentacion {
   
   public ArrayList<String> mostrarCom (String comunidad, Boolean importat)
   {
-      return null;
+      return ctrlDominio.mostrarComunidad(comunidad, importat);
   }
   
   public void visualizarCom (String comunidad, Boolean importat)

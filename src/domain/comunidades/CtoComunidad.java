@@ -48,6 +48,14 @@ public class CtoComunidad
         return ctoComunidades;
     }
     
+    public ArrayList<String> getNameComunidades()
+    {
+        ArrayList<String> comunidades = new ArrayList();
+        for(int i = 0;i < ctoComunidades.size();++i)
+            comunidades.add(ctoComunidades.get(i).getNombre());
+        return comunidades;
+    }
+    
     public Integer getNumComunidades()
     {
         return ctoComunidades.size();        
@@ -68,6 +76,16 @@ public class CtoComunidad
         return nombre;
     }
     
+    public Comunidad getComunidad(String comunidad)
+    {
+        for(int i = 0;i < ctoComunidades.size();++i)
+        {
+            if(ctoComunidades.get(i).getNombre() == comunidad)
+                return ctoComunidades.get(i);
+        }
+        return null;
+    }
+    
     public int getAlgortimo()
     {
         return this.algoritmo;
@@ -86,6 +104,16 @@ public class CtoComunidad
     public void removeComunidades(Comunidad c)
     {
         if(ctoComunidades.contains(c))ctoComunidades.remove(c);
+    }
+    
+    public void removeComunidades(String name)
+    {
+        for(int i = 0;i < ctoComunidades.size();++i)
+        {
+            if(ctoComunidades.get(i).getNombre() == name)
+                ctoComunidades.remove(ctoComunidades.get(i));
+        }
+        
     }
     
     public void setSelections(Selections selections)
