@@ -14,6 +14,11 @@ public class Comunidad
     private String nombre;
     private ArrayList<Categoria> ctoCategorias;
     
+    public Comunidad()
+    {
+        this.ctoCategorias = new ArrayList<>();
+    }
+    
     public int getId()
     {
         return id;

@@ -578,6 +578,74 @@ public class GrafoEntrada implements Cloneable
         this.pcEdges.remove(numPage);
         this.removeDestiny(numPage, this.cpEdges);
     }
+    
+    public void removeArchPageCategory(Integer page, Integer category)
+    {
+        if(this.pcEdges.containsKey(page))
+        {
+            ArrayList<Arch> arcs = this.pcEdges.get(page);
+            Iterator<Arch> it = arcs.iterator();
+            while(it.hasNext())
+            {
+                if(it.next().getDestiny() == category)
+                {
+                    it.remove();
+                    --this.edgeSize;
+                }
+            }
+        }
+    }
+    
+    public void removeArchCategoryPage(Integer category, Integer page)
+    {
+        if(this.cpEdges.containsKey(category))
+        {
+            ArrayList<Arch> arcs = this.cpEdges.get(category);
+            Iterator<Arch> it = arcs.iterator();
+            while(it.hasNext())
+            {
+                if(it.next().getDestiny() == page)
+                {
+                    it.remove();
+                    --this.edgeSize;
+                }
+            }
+        }
+    }
+    
+    public void removeArchCategorySubCategory(Integer categoryA, Integer categoryB)
+    {
+        if(this.csubcEdges.containsKey(categoryA))
+        {
+            ArrayList<Arch> arcs = this.csubcEdges.get(categoryA);
+            Iterator<Arch> it = arcs.iterator();
+            while(it.hasNext())
+            {
+                if(it.next().getDestiny() == categoryB)
+                {
+                    it.remove();
+                    --this.edgeSize;
+                }
+            }
+        }
+    }
+    
+    public void removeArchCategorySupCategory(Integer categoryA, Integer categoryB)
+    {
+        if(this.csupcEdges.containsKey(categoryA))
+        {
+            ArrayList<Arch> arcs = this.csupcEdges.get(categoryA);
+            Iterator<Arch> it = arcs.iterator();
+            while(it.hasNext())
+            {
+                if(it.next().getDestiny() == categoryB)
+                {
+                    it.remove();
+                    --this.edgeSize;
+                }
+            }
+        }
+    }
 
     @Override
     public int hashCode()
