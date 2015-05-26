@@ -85,6 +85,12 @@ public class Comunidad
         if(index >= 0)ctoCategorias.get(index).setNombre(nombre);  
     }
     
+    public void modCategoria(String cat, String nombre)
+    {
+        for(int i = 0;i < ctoCategorias.size(); ++i)
+            if(ctoCategorias.get(i).getNombre() == cat)
+                ctoCategorias.get(i).setNombre(nombre);
+    }
     public Integer getNumCategorias()
     {
         return ctoCategorias.size();

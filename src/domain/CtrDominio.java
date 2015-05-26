@@ -297,7 +297,7 @@ public class CtrDominio
         else generatedCto.removeComunidades(comunidad);
     }
   
-    public void modCtoNombre (int tipus, String anterior, String nuevo, Boolean importat)
+    public void modCtoNombre (int tipus, String anterior, String nuevo, String comunidad, Boolean importat)
     {
         if(tipus == 0)
         {
@@ -311,8 +311,8 @@ public class CtrDominio
         }
         else if(tipus == 2)
         {
-            if(importat);
-            else ;            
+            if(importat)importedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);
+            else generatedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);            
         }
     }
     public void mostrarGrafo()

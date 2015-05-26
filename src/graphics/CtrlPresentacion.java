@@ -296,20 +296,20 @@ public class CtrlPresentacion {
   {
       ctrlAlgoritmo.setAlgorithm(algoritmo);
       ctrlAlgoritmo.setP(p);
-      //ctrlAlgoritmo.ejecutar(ctrlDominio.getGrafo());
+      ctrlAlgoritmo.ejecutar(ctrlAlgoritmo.generate(ctrlDominio.getGrafo()),ctrlDominio.getGrafo());
       vistaPrincipal.activarTab(3); //CONJ
       vistaPrincipal.activarTab(4); //COMP
       vistaPrincipal.goToTab(3);
   }
   
-  public void aplicarSelPag (ArrayList<String> al)
+  public void aplicarSelPag (ArrayList<Integer> al)
   {
-    //?????  
+      ctrlAlgoritmo.setPageSelections(al);
   }
   
-  public void aplicarSelCat (ArrayList<String> al)
+  public void aplicarSelCat (ArrayList<Integer> al)
   {
-      //?????
+      ctrlAlgoritmo.setCatSelections(al);
   }
   
   public void aplicarFiltros (int a, int b, int c, int d, int e)
@@ -340,9 +340,9 @@ public class CtrlPresentacion {
       ctrlDominio.rmvCtoCom(comunidad, importat);
   }
   
-  public void modCtoNombre (int tipus, String anterior, String nuevo, Boolean importat)
+  public void modCtoNombre (int tipus, String anterior, String nuevo, String comunidad, Boolean importat)
   {
-      ctrlDominio.modCtoNombre(tipus, anterior, nuevo, importat);
+      ctrlDominio.modCtoNombre(tipus, anterior, nuevo, comunidad, importat);
   }
   
   public ArrayList<String> mostrarCto (Boolean importat)
