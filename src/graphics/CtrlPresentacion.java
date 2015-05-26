@@ -184,10 +184,12 @@ public class CtrlPresentacion {
   
   public ArrayList<Integer> getCatSelection(int min, int max)
   {
+     return ctrlDominio.getCatSelection(min, max); 
   }
   
   public ArrayList<Integer> getPagSelection(int min, int max)
   {
+     return ctrlDominio.getPagSelection(min, max); 
   }
   
   /**
