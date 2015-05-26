@@ -646,6 +646,118 @@ public class GrafoEntrada implements Cloneable
             }
         }
     }
+    
+    private void addArchPageCategory(Integer page, Integer category, Arch arc)
+    {
+        if(this.indexPagina.containsKey(page) && this.indexCategoria.containsKey(category))
+        {
+            ArrayList<Arch> arcs = this.pcEdges.get(page);
+            if(arcs.contains(arc))
+            {
+                arcs.set(arcs.indexOf(arc), arc);
+            }
+            else
+            {
+                arcs.add(arc);
+            }
+            this.pcEdges.put(page, arcs);
+        }
+    }
+    
+    private void addArchCategoryPage(Integer category, Integer page, Arch arc)
+    {
+        if(this.indexPagina.containsKey(page) && this.indexCategoria.containsKey(category))
+        {
+            ArrayList<Arch> arcs = this.cpEdges.get(page);
+            if(arcs.contains(arc))
+            {
+                arcs.set(arcs.indexOf(arc), arc);
+            }
+            else
+            {
+                arcs.add(arc);
+            }
+            this.cpEdges.put(page, arcs);
+        }
+    }
+    
+    private void addArchCategorySubCategory(Integer categoryA, Integer CategoryB, Arch arc)
+    {
+        if(this.indexCategoria.containsKey(categoryA) && this.indexCategoria.containsKey(CategoryB))
+        {
+            ArrayList<Arch> arcs = this.csubcEdges.get(categoryA);
+            if(arcs.contains(arc))
+            {
+                arcs.set(arcs.indexOf(arc), arc);
+            }
+            else
+            {
+                arcs.add(arc);
+            }
+            this.csubcEdges.put(categoryA, arcs);
+        }
+    }
+    
+    private void addArchCategorySupCategory(Integer categoryA, Integer CategoryB, Arch arc)
+    {
+        if(this.indexCategoria.containsKey(categoryA) && this.indexCategoria.containsKey(CategoryB))
+        {
+            ArrayList<Arch> arcs = this.csupcEdges.get(categoryA);
+            if(arcs.contains(arc))
+            {
+                arcs.set(arcs.indexOf(arc), arc);
+            }
+            else
+            {
+                arcs.add(arc);
+            }
+            this.csupcEdges.put(categoryA, arcs);
+        }
+    }
+    
+    public void addArch(Arch arc)
+    {
+        Integer origin = arc.getOrigin();
+        Integer destiny = arc.getDestiny();
+        Arch.typeArch tipo = arc.getTypeArch();
+        switch(tipo)
+        {
+            case CsupC:
+                this.addArchCategorySupCategory(origin, destiny, arc);
+                break;
+            case CsubC:
+                this.addArchCategorySubCategory(origin, destiny, arc);
+                break;
+            case CP:
+                this.addArchCategoryPage(origin, destiny, arc);
+                break;
+            case PC:
+                this.addArchPageCategory(origin, destiny, arc);
+                break;
+        }
+    }
+    
+    public void addCategoria(Categoria category)
+    {
+        int value = this.getCategoryNumber(category);
+        if(value == -1)
+        {
+            this.indexCategoria.put(this.categoryId, category);
+            this.categoriaIndex.put(category, this.categoryId);
+            ++this.categoryId;
+        }
+    }
+    
+    public void addPagina(Pagina page)
+    {
+        int value = this.getPageNumber(page);
+        if(value == -1)
+        {
+            this.indexPagina.put(this.pageId, page);
+            this.paginaIndex.put(page, this.pageId);
+            ++this.pageId;
+        }
+    }
 
     @Override
     public int hashCode()
