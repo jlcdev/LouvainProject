@@ -742,17 +742,17 @@
                                               <Component id="jLabel22" min="-2" pref="157" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="95" max="32767" attributes="0"/>
                                           </Group>
-                                          <Component id="txtNameSel" max="32767" attributes="0"/>
+                                          <Component id="txtNameSel" min="-2" pref="250" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Component id="btnAddCatToCom2" min="-2" pref="50" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnAddNameSel" min="-2" pref="52" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnRmvNameSel" min="-2" pref="52" max="-2" attributes="0"/>
+                                      <Component id="btnRmvCatFromGraph2" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel21" min="-2" pref="157" max="-2" attributes="0"/>
-                                          <Component id="btnRandomSel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel25" min="-2" pref="237" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="txtNameSel2" min="-2" pref="40" max="-2" attributes="0"/>
@@ -761,15 +761,15 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="txtNameSel4" min="-2" pref="40" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="btnAddNameSel2" min="-2" pref="52" max="-2" attributes="0"/>
+                                              <Component id="btnAddCatToCom1" min="-2" pref="50" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="btnRmvNameSel2" min="-2" pref="52" max="-2" attributes="0"/>
+                                              <Component id="btnRmvCatFromGraph1" min="-2" pref="50" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="btnExportSet2" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jScrollPane1" alignment="1" min="-2" pref="400" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
@@ -796,32 +796,30 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnRandomSel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnExportSet2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                                              <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="btnRmvNameSel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnAddNameSel" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="txtNameSel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                                      <Component id="btnAddCatToCom2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                                      <Component id="btnRmvCatFromGraph2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                       <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                              <Component id="btnRmvNameSel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="btnAddNameSel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="txtNameSel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtNameSel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtNameSel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtNameSel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnAddCatToCom1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="btnRmvCatFromGraph1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -868,14 +866,6 @@
                         <Property name="text" type="java.lang.String" value="Selecci&#xf3;n al azar:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="btnRandomSel">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Seleccionar"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRandomSelActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel22">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Selecci&#xf3;n por nombre:"/>
@@ -885,19 +875,6 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Nombre pag"/>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JToggleButton" name="btnRmvNameSel">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JToggleButton" name="btnAddNameSel">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddNameSelActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel25">
                       <Properties>
@@ -912,19 +889,6 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameSel2ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="btnAddNameSel2">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddNameSel2ActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JToggleButton" name="btnRmvNameSel2">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JTextField" name="txtNameSel4">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="max"/>
@@ -934,6 +898,46 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnAddCatToCom1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="+"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddCatToCom1ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnRmvCatFromGraph1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="-"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRmvCatFromGraph1ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnAddCatToCom2">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="+"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddCatToCom2ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnRmvCatFromGraph2">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="-"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRmvCatFromGraph2ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnExportSet2">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Seleccionar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportSet2ActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -952,40 +956,30 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel24" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <Component id="jLabel28" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel23" min="-2" pref="157" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="95" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="txtNameSel1" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="txtNameSel5" min="-2" pref="40" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnAddNameSel1" min="-2" pref="52" max="-2" attributes="0"/>
+                                      <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnRmvNameSel1" min="-2" pref="52" max="-2" attributes="0"/>
+                                      <Component id="txtNameSel6" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnAddCatToCom4" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnRmvCatFromGraph4" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel24" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
-                                          <Component id="btnRandomSel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel28" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="txtNameSel5" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="txtNameSel6" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="btnAddNameSel4" min="-2" pref="52" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="btnRmvNameSel4" min="-2" pref="52" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel23" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtNameSel3" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnAddCatToCom3" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnRmvCatFromGraph3" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="btnExportSet3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace pref="18" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jScrollPane3" alignment="1" min="-2" pref="400" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
@@ -1012,28 +1006,24 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnRandomSel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnExportSet3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="btnRmvNameSel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnAddNameSel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="txtNameSel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                      <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtNameSel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnAddCatToCom3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="btnRmvCatFromGraph3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                       <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="txtNameSel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtNameSel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnRmvNameSel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnAddNameSel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnAddCatToCom4" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="btnRmvCatFromGraph4" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1075,36 +1065,10 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAplicarSelCatActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="btnAddNameSel1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddNameSel1ActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JToggleButton" name="btnRmvNameSel1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="txtNameSel1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Nombre cat"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel23">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Selecci&#xf3;n por nombre:"/>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JToggleButton" name="btnRandomSel1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Seleccionar"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRandomSel1ActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel24">
                       <Properties>
@@ -1134,18 +1098,50 @@
                         <Property name="text" type="java.lang.String" value="max"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="btnAddNameSel4">
+                    <Component class="javax.swing.JTextField" name="txtNameSel3">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Nombre pag"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnAddCatToCom3">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddNameSel4ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddCatToCom3ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="btnRmvNameSel4">
+                    <Component class="javax.swing.JButton" name="btnRmvCatFromGraph3">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRmvCatFromGraph3ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnAddCatToCom4">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="+"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddCatToCom4ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnRmvCatFromGraph4">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="-"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRmvCatFromGraph4ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnExportSet3">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Seleccionar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportSet3ActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
