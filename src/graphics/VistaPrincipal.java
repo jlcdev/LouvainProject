@@ -1475,19 +1475,19 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void btnListCatGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatGraphActionPerformed
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();
         txtListGraph.setText("Categorias ("+lista.size()+"):\n\n");
-        for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");
+        for(String elem : lista) txtListGraph.append(elem+"\n");        
     }//GEN-LAST:event_btnListCatGraphActionPerformed
 
     private void btnListPagGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListPagGraphActionPerformed
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoPag();
         txtListGraph.setText("Páginas ("+lista.size()+"):\n\n"); 
-        for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");
+        for(String elem : lista) txtListGraph.append(elem+"\n");
     }//GEN-LAST:event_btnListPagGraphActionPerformed
 
     private void btnListLinksGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListLinksGraphActionPerformed
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoEnlaces();
         txtListGraph.setText("Enlaces ("+lista.size()+"):\n\n"); 
-        for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");
+        for(String elem : lista) txtListGraph.append(elem+"\n");
     }//GEN-LAST:event_btnListLinksGraphActionPerformed
 
     private void btnExportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarGrafoActionPerformed
@@ -1635,7 +1635,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         //DefaultListModel model = (DefaultListModel) listCategorias.getModel();
         //System.out.println("Eliminar Cat: " + i);
         //model.remove(i);
-        actualizarSeleccionCat();
+        //actualizarSeleccionCat();        
     }//GEN-LAST:event_btnRmvCatFromGraphActionPerformed
 
     private void btnAddPagToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPagToGraphActionPerformed
