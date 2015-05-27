@@ -1474,20 +1474,20 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_comboTipoEnlaceActionPerformed
 
     private void btnListCatGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatGraphActionPerformed
-        txtListGraph.setText("Categorias:\n\n"); 
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();
+        txtListGraph.setText("Categorias ("+lista.size()+"):\n\n");
         for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");
     }//GEN-LAST:event_btnListCatGraphActionPerformed
 
     private void btnListPagGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListPagGraphActionPerformed
-        txtListGraph.setText("Páginas:\n\n"); 
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoPag();
+        txtListGraph.setText("Páginas ("+lista.size()+"):\n\n"); 
         for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");
     }//GEN-LAST:event_btnListPagGraphActionPerformed
 
     private void btnListLinksGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListLinksGraphActionPerformed
-        txtListGraph.setText("Enlaces:\n\n"); 
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoEnlaces();
+        txtListGraph.setText("Enlaces ("+lista.size()+"):\n\n"); 
         for(int i=0; i< lista.size(); ++i) txtListGraph.append(lista.get(i)+"\n");
     }//GEN-LAST:event_btnListLinksGraphActionPerformed
 
@@ -1496,7 +1496,9 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnExportarGrafoActionPerformed
 
     private void btnListCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatFromComActionPerformed
-        iCtrlPresentacion.mostrarCom(txtComToList.getText(), comboTipoSet.getSelectedIndex() != 0);
+        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToList.getText(), comboTipoSet.getSelectedIndex() != 0);
+        txtListSet.setText("Categorias "+txtComToList.getText()+"("+lista.size()+"):\n\n"); 
+        for(int i=0; i< lista.size(); ++i) txtListSet.append(lista.get(i)+"\n");
     }//GEN-LAST:event_btnListCatFromComActionPerformed
 
     private void btnExportSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSetActionPerformed
@@ -1508,8 +1510,8 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnShowSetActionPerformed
 
     private void btnListComFromSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListComFromSetActionPerformed
-        txtListSet.setText("Comunidades:\n\n"); 
         ArrayList<String> lista = iCtrlPresentacion.mostrarCto(comboTipoSet.getSelectedIndex() != 0);
+        txtListSet.setText("Comunidades ("+lista.size()+"):\n\n");
         for(int i=0; i< lista.size(); ++i) txtListSet.append(lista.get(i)+"\n");
     }//GEN-LAST:event_btnListComFromSetActionPerformed
 

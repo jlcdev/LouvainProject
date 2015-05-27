@@ -13,6 +13,7 @@ package graphics;
 
 import domain.CtrDominio;
 import domain.CtrAlgoritmo;
+import domain.comunidades.CtoComunidad;
 import java.util.*;
 import shared.Graph;
 
@@ -309,7 +310,7 @@ public class CtrlPresentacion {
       //HACER UN EQUALS CON EL GRAFO GENERADO
       ctrlAlgoritmo.setAlgorithm(algoritmo);
       ctrlAlgoritmo.setP(p);
-      ctrlAlgoritmo.ejecutar(algorithmGraph(),ctrlDominio.getGrafo());
+      ctrlDominio.setGeneratedCto(ctrlAlgoritmo.ejecutar(algorithmGraph(),ctrlDominio.getGrafo()));
       vistaPrincipal.activarTab(3); //CONJ
       vistaPrincipal.activarTab(4); //COMP
       vistaPrincipal.goToTab(3);

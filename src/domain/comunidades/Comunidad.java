@@ -19,9 +19,15 @@ public class Comunidad
         this.ctoCategorias = new ArrayList<>();
     }
     
+    public Comunidad(int i)
+    {
+        this.ctoCategorias = new ArrayList<>();
+        this.nombre = "Comunidad"+i;
+    }
+    
     public int getId()
     {
-        return id;
+        return this.id;
     }
 
     public void setId(int id)
@@ -31,7 +37,7 @@ public class Comunidad
 
     public String getNombre()
     {
-        return nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre)
@@ -79,7 +85,7 @@ public class Comunidad
     {
         for(int i = 0;i < ctoCategorias.size();++i)
         {
-            if(ctoCategorias.get(i).getNombre() == name)
+            if(ctoCategorias.get(i).getNombre() == null ? name == null : ctoCategorias.get(i).getNombre().equals(name))
                 ctoCategorias.remove(ctoCategorias.get(i));
         }
     }
@@ -93,12 +99,12 @@ public class Comunidad
     public void modCategoria(String cat, String nombre)
     {
         for(int i = 0;i < ctoCategorias.size(); ++i)
-            if(ctoCategorias.get(i).getNombre() == cat)
+            if(ctoCategorias.get(i).getNombre() == null ? cat == null : ctoCategorias.get(i).getNombre().equals(cat))
                 ctoCategorias.get(i).setNombre(nombre);
     }
     public Integer getNumCategorias()
     {
-        return ctoCategorias.size();
+        return this.ctoCategorias.size();
     }
     
     public ArrayList<String> getNameCategories()

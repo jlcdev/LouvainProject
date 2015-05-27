@@ -28,7 +28,7 @@ public class CtoComunidad
         Comunidad c;
         for(int i=0; i < size;++i)
         {
-            c = new Comunidad();
+            c = new Comunidad(i);
             for(int num : result.get(i))
             {
                 c.addCategoria(orig.getNumberCategory(num));
@@ -45,7 +45,7 @@ public class CtoComunidad
     
     public ArrayList<Comunidad> getCtoComunidades()
     {
-        return ctoComunidades;
+        return this.ctoComunidades;
     }
     
     public ArrayList<String> getNameComunidades()
@@ -58,7 +58,7 @@ public class CtoComunidad
     
     public Integer getNumComunidades()
     {
-        return ctoComunidades.size();        
+        return this.ctoComunidades.size();        
     }
     
     public Selections getSelections()
@@ -68,19 +68,19 @@ public class CtoComunidad
     
     public Filters getFiltros()
     {
-        return filtros;
+        return this.filtros;
     }
     
     public String getNombre()
     {
-        return nombre;
+        return this.nombre;
     }
     
     public Comunidad getComunidad(String comunidad)
     {
         for(int i = 0;i < ctoComunidades.size();++i)
         {
-            if(ctoComunidades.get(i).getNombre() == comunidad)
+            if(ctoComunidades.get(i).getNombre() == null ? comunidad == null : ctoComunidades.get(i).getNombre().equals(comunidad))
                 return ctoComunidades.get(i);
         }
         return null;
@@ -110,7 +110,7 @@ public class CtoComunidad
     {
         for(int i = 0;i < ctoComunidades.size();++i)
         {
-            if(ctoComunidades.get(i).getNombre() == name)
+            if(ctoComunidades.get(i).getNombre() == null ? name == null : ctoComunidades.get(i).getNombre().equals(name))
                 ctoComunidades.remove(ctoComunidades.get(i));
         }
         

@@ -1,5 +1,7 @@
 package shared;
 
+
+
 /**
  *
  * @author albert campano
@@ -35,11 +37,6 @@ public class Louvain extends Algorithm
         this.cActual = new ArrayList<ArrayList<Integer>>();
     }
     
-    public int getsteps()
-    {
-        return this.steps;
-    }
-    
     /**
      * Apply the Louvain algorithm
      *
@@ -51,22 +48,19 @@ public class Louvain extends Algorithm
         {
             this.steps = 0;
             this.graph = g;
-            this.gIntermedi = this.graph;
-            this.inicialitzarComunitats();
-            //Copiar this.cActual a this.cAnterior
-            this.cAnterior = new ArrayList<ArrayList<Integer>>();
-            for(ArrayList<Integer> i: this.cActual)
-            {
-                ArrayList<Integer> aux = new ArrayList<Integer>();
-                for(int j: i)
-                {
-                    aux.add(j);
-                }
-                this.cAnterior.add(aux);
-            }
             
+            this.cAnterior = new ArrayList<ArrayList<Integer>>();
+            for(int i: this.graph.getVertexs())
+            {
+                ArrayList<Integer> x = new ArrayList<Integer>();
+                x.add(i);
+                this.cAnterior.add(x);
+            }
+            this.fase2();
+            this.inicialitzarComunitats();
             this.guardarComunitat(); //Per guardar l'estat inicial
             this.fase2();
+
             this.metode();
         }
     }
@@ -120,7 +114,8 @@ public class Louvain extends Algorithm
             ArrayList<Integer> nou = new ArrayList<Integer>();
             for(int j: i)
             {
-                nou.addAll(new ArrayList<Integer>(this.cAnterior.get(j)) );
+                ArrayList<Integer> x = new ArrayList<Integer>(this.cAnterior.get(j));
+                nou.addAll(x);
             }
             if(nou.size() > 0) guardar.add(nou);
         }
@@ -149,6 +144,10 @@ public class Louvain extends Algorithm
         double qmax, q;
         int comunitat, comunitatDef = 0;
         boolean parada = false, modificat = false;
+        double m = this.pesTotal();
+        double m2 = 2*m;
+        double mqua2 = 2*m*m;
+        double ki, sumtot2, kin2, kin, sumtot;
         while(! parada)
         {
             parada = true;
@@ -157,11 +156,17 @@ public class Louvain extends Algorithm
                 qmax = -1.0;
                 comunitat = trobarComunitat(i);
                 this.cActual.get(comunitat).remove((Integer) i);
+                
+                ki = this.pesIncidentsVertex(i);
+                sumtot2 = this.pesIncidentsComunitat(this.cActual.get(comunitat));
+                kin2 = this.pesVertexComunitat(i, this.cActual.get(comunitat));
+                        
                 for (int j = 0; j < this.cActual.size(); j++)
                 {
                     if(comunitat != j && estaCon(i, j))
                     {
-                        q = this.modularitat(i, this.cActual.get(comunitat), this.cActual.get(j));
+                        q = (this.pesVertexComunitat(i, this.cActual.get(j)) - kin2)/m2;
+                        q -= ki*(this.pesIncidentsComunitat(this.cActual.get(j))-sumtot2) / mqua2;
                         if(q > qmax)
                         {
                             qmax = q;
@@ -180,7 +185,7 @@ public class Louvain extends Algorithm
         }
         return modificat;
     }
-    
+
     private void inicialitzarComunitats()
     {
         this.cActual = new ArrayList<ArrayList<Integer>>();
@@ -213,23 +218,17 @@ public class Louvain extends Algorithm
         return false;
     }
     
-    private double modularitat(int vertex, ArrayList<Integer> cInici, ArrayList<Integer> cDesti)
-    {
-        double total = 0.0;
-        double m = this.pesTotal();
-        if (m == 0) return -1.0;
-        total = (this.pesVertexComunitat(vertex, cDesti) - this.pesVertexComunitat(vertex, cInici)) / (2*m);
-        double aux = this.pesIncidentsVertex(vertex)*(this.pesIncidentsComunitat(cDesti) - this.pesIncidentsComunitat(cInici));
-        return total - (aux/(2*Math.pow(m, 2)));
-    }
-    
     private double pesIncidentsVertex(int vertex)
     {
         double suma = 0.0;
         for(int j: this.gIntermedi.getNeighbors(vertex))
         {
             if(vertex == j) suma += this.gIntermedi.getEdge(vertex, j).getValue() /2.0;
-            else suma += this.gIntermedi.getEdge(vertex, j).getValue();
+            else
+            {
+                Edge<Integer, Double> x = this.gIntermedi.getEdge(vertex, j);
+                if(x != null) suma += x.getValue();
+            }
         }
         return suma;
     }
@@ -239,7 +238,11 @@ public class Louvain extends Algorithm
         double suma = 0.0;
         for (int i: this.gIntermedi.getVertexs())
         {
-            for(int j: this.gIntermedi.getNeighbors(i)) suma += this.gIntermedi.getEdge(i, j).getValue();
+            for(int j: this.gIntermedi.getNeighbors(i))
+            {
+                Edge<Integer, Double> x = this.gIntermedi.getEdge(i, j);
+                if(x != null) suma += x.getValue();
+            }
         }
         return suma / 2.0;
     }
@@ -249,7 +252,11 @@ public class Louvain extends Algorithm
         double suma = 0.0;
         for (int i: this.gIntermedi.getNeighbors(vertex))
         {
-            if(comunitat.contains(i)) suma += this.gIntermedi.getEdge(vertex, i).getValue();
+            if(comunitat.contains(i))
+            {
+                Edge<Integer, Double> x = this.gIntermedi.getEdge(vertex, i);
+                if(x != null) suma += x.getValue();
+            }
         }
         return suma;
     }
@@ -261,7 +268,11 @@ public class Louvain extends Algorithm
         {
             for(int j: this.gIntermedi.getNeighbors(i))
             {
-                if(! comunitat.contains(j)) suma += this.gIntermedi.getEdge(i, j).getValue();
+                if(! comunitat.contains(j))
+                {
+                    Edge<Integer, Double> x = this.gIntermedi.getEdge(i, j);
+                    if(x != null) suma += x.getValue();
+                }
             }
         }
         return suma;
@@ -276,4 +287,5 @@ public class Louvain extends Algorithm
             return this.communityList.get( (this.p * (this.steps)) / 100);  
         }
     }
+
 }
