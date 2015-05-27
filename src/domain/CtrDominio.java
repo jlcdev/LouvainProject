@@ -51,7 +51,7 @@ public class CtrDominio
         ArrayList<Integer> selection = new ArrayList();
         for(int i = 0;i < g.getCategorySize();++i)
         {
-            if(g.getCategoryArch(i).size() >= min || g.getCategoryArch(i).size() <= max)
+            if(g.getCategoryArch(i).size() >= min && g.getCategoryArch(i).size() <= max)
                 selection.add(i);
         }
         return selection;
@@ -62,7 +62,7 @@ public class CtrDominio
         ArrayList<Integer> selection = new ArrayList();
         for(int i = 0;i < g.getPageSize();++i)
         {
-            if(g.getPageArch(i).size() >= min || g.getPageArch(i).size() <= max)
+            if(g.getPageArch(i).size() >= min && g.getPageArch(i).size() <= max)
                 selection.add(i);
         }
         return selection;
