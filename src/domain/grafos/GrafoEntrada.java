@@ -657,16 +657,15 @@ public class GrafoEntrada implements Cloneable
     {
         if(this.indexPagina.containsKey(page) && this.indexCategoria.containsKey(category))
         {
-            ArrayList<Arch> arcs = this.pcEdges.get(page);
-            if(arcs.contains(arc))
+            if(this.pcEdges.get(page).contains(arc))
             {
-                arcs.set(arcs.indexOf(arc), arc);
+                this.pcEdges.get(page).set(this.pcEdges.get(page).indexOf(arc), arc);
             }
             else
             {
-                arcs.add(arc);
+                this.pcEdges.get(page).add(arc);
             }
-            this.pcEdges.put(page, arcs);
+            this.pcEdges.put(page, this.pcEdges.get(page));
         }
     }
     
@@ -674,16 +673,15 @@ public class GrafoEntrada implements Cloneable
     {
         if(this.indexPagina.containsKey(page) && this.indexCategoria.containsKey(category))
         {
-            ArrayList<Arch> arcs = this.cpEdges.get(page);
-            if(arcs.contains(arc))
+            if(this.cpEdges.get(page).contains(arc))
             {
-                arcs.set(arcs.indexOf(arc), arc);
+                this.cpEdges.get(page).set(this.cpEdges.get(page).indexOf(arc), arc);
             }
             else
             {
-                arcs.add(arc);
+                this.cpEdges.get(page).add(arc);
             }
-            this.cpEdges.put(page, arcs);
+            this.cpEdges.put(page, this.cpEdges.get(page));
         }
     }
     
@@ -691,16 +689,15 @@ public class GrafoEntrada implements Cloneable
     {
         if(this.indexCategoria.containsKey(categoryA) && this.indexCategoria.containsKey(CategoryB))
         {
-            ArrayList<Arch> arcs = this.csubcEdges.get(categoryA);
-            if(arcs.contains(arc))
+            if(this.csubcEdges.get(categoryA).contains(arc))
             {
-                arcs.set(arcs.indexOf(arc), arc);
+                this.csubcEdges.get(categoryA).set(this.csubcEdges.get(categoryA).indexOf(arc), arc);
             }
             else
             {
-                arcs.add(arc);
+                this.csubcEdges.get(categoryA).add(arc);
             }
-            this.csubcEdges.put(categoryA, arcs);
+            this.csubcEdges.put(categoryA, this.csubcEdges.get(categoryA));
         }
     }
     
@@ -708,16 +705,15 @@ public class GrafoEntrada implements Cloneable
     {
         if(this.indexCategoria.containsKey(categoryA) && this.indexCategoria.containsKey(CategoryB))
         {
-            ArrayList<Arch> arcs = this.csupcEdges.get(categoryA);
-            if(arcs.contains(arc))
+            if(this.csupcEdges.get(categoryA).contains(arc))
             {
-                arcs.set(arcs.indexOf(arc), arc);
+                this.csupcEdges.get(categoryA).set(this.csupcEdges.get(categoryA).indexOf(arc), arc);
             }
             else
             {
-                arcs.add(arc);
+                this.csupcEdges.get(categoryA).add(arc);
             }
-            this.csupcEdges.put(categoryA, arcs);
+            this.csupcEdges.put(categoryA, this.csupcEdges.get(categoryA));
         }
     }
     
