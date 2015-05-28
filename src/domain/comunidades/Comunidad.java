@@ -8,7 +8,7 @@ import java.util.Objects;
  *
  * @author Javier López Calderón
  */
-public class Comunidad
+public class Comunidad implements Cloneable
 {
     private int id;
     private String nombre;
@@ -29,21 +29,102 @@ public class Comunidad
     {
         return this.id;
     }
+    
+    public String getNombre()
+    {
+        return this.nombre;
+    }
+    
+    public Integer getNumCategorias()
+    {
+        return this.ctoCategorias.size();
+    }
+    
+    public ArrayList<String> getNameCategories()
+    {
+        ArrayList<String> response = new ArrayList<>();
+        for(Categoria c : this.ctoCategorias)
+        {
+            response.add(c.getNombre());
+        }
+        return response;
+    }
 
     public void setId(int id)
     {
         this.id = id;
     }
-
-    public String getNombre()
-    {
-        return this.nombre;
-    }
-
+    
     public void setNombre(String nombre)
     {
         this.nombre = nombre;
     }
+    
+    public void addCategoria(Categoria category)
+    {
+        if(!this.ctoCategorias.contains(category))
+        {
+            this.ctoCategorias.add(category);
+        }
+    }
+    
+    public void addCategoria(String name)
+    {
+        this.addCategoria(new Categoria(name));
+    }
+    
+    public void modCategoria(Categoria category, String newName)
+    {
+        if(this.ctoCategorias.contains(category))
+        {
+            this.ctoCategorias.get(this.ctoCategorias.indexOf(category)).setNombre(newName);
+        } 
+    }
+    
+    public void modCategoria(String categoryName, String newName)
+    {
+        this.modCategoria(new Categoria(categoryName), newName);
+    }
+    
+    public void removeCategoria(Categoria category)
+    {
+        if(this.ctoCategorias.contains(category))
+        {
+            this.ctoCategorias.remove(category);
+        }
+    }
+    
+    public void removeCategoria(String name)
+    {
+        this.removeCategoria(new Categoria(name));
+    }
+    
+    public ArrayList<String> saveToFile()
+    {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("NEWCOMMUNITY");
+        list.add("id:"+this.id);
+        list.add("name:"+this.nombre);
+        list.add("size:"+this.ctoCategorias.size());
+        for(Categoria category : this.ctoCategorias)
+        {
+            list.add(category.getNombre());
+        }
+        list.add("ENDCOMMUNITY");
+        return list;
+    }
+    
+    public void loadFromFile(ArrayList<String> data)
+    {
+        this.id = Integer.parseInt(data.get(1).replaceFirst("id:", ""));
+        this.nombre = data.get(2).replaceFirst("name:", "");
+        int size = Integer.parseInt(data.get(3).replaceFirst("size:", ""));
+        for(int i=4; i < size;++i)
+        {
+            this.addCategoria(data.get(i));
+        }
+    }
+    
     
     @Override
     public boolean equals(Object obj)
@@ -65,56 +146,20 @@ public class Comunidad
         return hash;
     }
     
-    public void addCategoria(Categoria cat)
+    @Override
+    public Comunidad clone()
     {
-        if(!ctoCategorias.contains(cat)) ctoCategorias.add(cat);
-    }
-    
-    public void addCategoria(String name)
-    {
-        Categoria cat = new Categoria(name);
-        if(!ctoCategorias.contains(cat)) ctoCategorias.add(cat);
-    }
-    
-    public void removeCategoria(Categoria cat)
-    {
-        if(ctoCategorias.contains(cat))ctoCategorias.remove(cat);
-    }
-    
-    public void removeCategoria(String name)
-    {
-        for(int i = 0;i < ctoCategorias.size();++i)
+        Comunidad obj = null;
+        try
         {
-            if(ctoCategorias.get(i).getNombre() == null ? name == null : ctoCategorias.get(i).getNombre().equals(name))
-                ctoCategorias.remove(ctoCategorias.get(i));
-        }
-    }
-    
-    public void modCategoria(Categoria cat,String nombre)
-    {
-        Integer index = ctoCategorias.indexOf(cat);
-        if(index >= 0)ctoCategorias.get(index).setNombre(nombre);  
-    }
-    
-    public void modCategoria(String cat, String nombre)
-    {
-        for(int i = 0;i < ctoCategorias.size(); ++i)
-            if(ctoCategorias.get(i).getNombre() == null ? cat == null : ctoCategorias.get(i).getNombre().equals(cat))
-                ctoCategorias.get(i).setNombre(nombre);
-    }
-    public Integer getNumCategorias()
-    {
-        return this.ctoCategorias.size();
-    }
-    
-    public ArrayList<String> getNameCategories()
-    {
-        ArrayList<String> response = new ArrayList<>();
-        for(Categoria c : this.ctoCategorias)
+            obj = (Comunidad) super.clone();
+            obj.id = this.id;
+            obj.nombre = this.nombre;
+            obj.ctoCategorias = (ArrayList<Categoria>)this.ctoCategorias.clone();
+        }catch(CloneNotSupportedException e)
         {
-            response.add(c.getNombre());
         }
-        return response;
+        return obj;
     }
     
     @Override
@@ -122,6 +167,5 @@ public class Comunidad
     {
         return "Comunidad: "+this.id+"  Nombre: "+this.nombre+" NºCategorías: "+this.ctoCategorias.size();
     }
-    
 }
 

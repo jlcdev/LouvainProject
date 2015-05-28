@@ -150,16 +150,14 @@ public class CtrDominio
         return this.g.getCategoryNumber(this.g.getNumberCategory(category));
     }
     
-    public Integer verNumCat(String categoria)
+    public Integer verNumCat(String category)
     {
-        Categoria cat = new Categoria(categoria);
-        return g.getCategoryNumber(cat);
+        return g.getCategoryNumber(new Categoria(category));
     }
     
-    public void addGrafoCat (String categoria)
+    public void addGrafoCat (String category)
     {
-        Categoria c = new Categoria(categoria);
-        g.addCategoria(c);
+        g.addCategoria(new Categoria(category));
     }
   
     /**
@@ -188,9 +186,9 @@ public class CtrDominio
      * Borra una categoria del grafo.
      * @param categoria 
      */
-    public Integer rmvGrafoCat (String categoria)
+    public Integer rmvGrafoCat (String category)
     {
-        Categoria c = new Categoria(categoria);
+        Categoria c = new Categoria(category);
         Integer r = g.getCategoryNumber(c);
         g.removeCategoria(c);
         return r;
@@ -277,20 +275,20 @@ public class CtrDominio
     
     //TRATAMIENTO DE LOS CONJUNTOS
     
-    public boolean addCtoCat (String categoria, String comunidad, Boolean importat)
+    public boolean addCtoCat (String category, String comunidad, Boolean importat)
     {
         Comunidad com;
         if(importat)
         {
             com = importedCto.getComunidad(comunidad);
             if(com == null)return true;
-            com.addCategoria(categoria);
+            com.addCategoria(category);
         }
         else
         {
             com = generatedCto.getComunidad(comunidad);
             if(com == null)return true;
-            com.addCategoria(categoria);
+            com.addCategoria(category);
         }
         return false;
     }
@@ -303,20 +301,20 @@ public class CtrDominio
         else generatedCto.addComunidades(com);
     }
   
-    public boolean rmvCtoCat (String categoria, String comunidad, Boolean importat)
+    public boolean rmvCtoCat (String category, String comunidad, Boolean importat)
     {
         Comunidad com;
         if(importat)
         {
             com = importedCto.getComunidad(comunidad);
             if(com == null)return true;
-            com.removeCategoria(categoria);
+            com.removeCategoria(category);
         }
         else
         {
             com = generatedCto.getComunidad(comunidad);
             if(com == null)return true;
-            com.removeCategoria(categoria);
+            com.removeCategoria(category);
         }
         return false;
     }

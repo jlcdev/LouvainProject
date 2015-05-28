@@ -15,29 +15,27 @@ public class CtoComunidad
     private boolean modificado;
     private int algoritmo;
     private ArrayList<Comunidad> ctoComunidades;
-    private Filters filtros;
-    private Selections selections;
+    private final Filters filtros;
+    private final Selections selections;
     
     public CtoComunidad(ArrayList<ArrayList<Integer>> result, GrafoEntrada orig, int algorithm, Filters f, Selections selections)
     {
         this.algoritmo = algorithm;
         this.filtros = f.clone();
         this.selections = selections.clone();
-        int size = result.size();
-        this.ctoComunidades = new ArrayList<>();
-        Comunidad c;
-        for(int i=0; i < size;++i)
+        int cont = 0;
+        for(ArrayList<Integer> communities : result)
         {
-            c = new Comunidad(i);
-            for(int num : result.get(i))
+            Comunidad community = new Comunidad(cont);
+            for(Integer category : communities)
             {
-                c.addCategoria(orig.getNumberCategory(num));
+                community.addCategoria(orig.getNumberCategory(category));
             }
-            this.ctoComunidades.add(c);
+            this.ctoComunidades.add(community);
+            ++cont;
         }
     }
     
-
     public boolean isModificado()
     {
         return this.modificado;
@@ -50,10 +48,12 @@ public class CtoComunidad
     
     public ArrayList<String> getNameComunidades()
     {
-        ArrayList<String> comunidades = new ArrayList();
-        for(int i = 0;i < ctoComunidades.size();++i)
-            comunidades.add(ctoComunidades.get(i).getNombre());
-        return comunidades;
+        ArrayList<String> response = new ArrayList<>();
+        for(Comunidad community : this.ctoComunidades)
+        {
+            response.add(community.getNombre());
+        }
+        return response;
     }
     
     public Integer getNumComunidades()
@@ -78,12 +78,16 @@ public class CtoComunidad
     
     public Comunidad getComunidad(String comunidad)
     {
-        for(int i = 0;i < ctoComunidades.size();++i)
+        Comunidad response = null;
+        for(Comunidad community : this.ctoComunidades)
         {
-            if(ctoComunidades.get(i).getNombre() == null ? comunidad == null : ctoComunidades.get(i).getNombre().equals(comunidad))
-                return ctoComunidades.get(i);
+            if(community.getNombre().equals(comunidad))
+            {
+                response = community;
+                break;
+            }
         }
-        return null;
+        return response;
     }
     
     public int getAlgortimo()
@@ -98,32 +102,32 @@ public class CtoComunidad
 
     public void addComunidades(Comunidad c)
     {
-        if(!ctoComunidades.contains(c))ctoComunidades.add(c);
+        if(!this.ctoComunidades.contains(c))
+        {
+            this.ctoComunidades.add(c);
+        }
     }
     
     public void removeComunidades(Comunidad c)
     {
-        if(ctoComunidades.contains(c))ctoComunidades.remove(c);
+        if(this.ctoComunidades.contains(c))
+        {
+            this.ctoComunidades.remove(c);
+        }
     }
     
     public void removeComunidades(String name)
     {
-        for(int i = 0;i < ctoComunidades.size();++i)
+        int index = -1;
+        for(Comunidad community : this.ctoComunidades)
         {
-            if(ctoComunidades.get(i).getNombre() == null ? name == null : ctoComunidades.get(i).getNombre().equals(name))
-                ctoComunidades.remove(ctoComunidades.get(i));
+            if(community.getNombre().equals(name))
+            {
+                index = this.ctoComunidades.indexOf(community);
+                break;
+            }
         }
-        
-    }
-    
-    public void setSelections(Selections selections)
-    {
-        this.selections = selections;
-    }
-
-    public void setFiltros(Filters filtros)
-    {
-        this.filtros = filtros;
+        if(index != -1) this.ctoComunidades.remove(index);
     }
     
     public void setNombre(String nombre)
@@ -144,6 +148,6 @@ public class CtoComunidad
     @Override
     public String toString()
     {
-        return "CtoComunidad{" + "nombre=" + nombre + ", modificado=" + modificado + ", algortimo=" + algoritmo + ", ctoComunidades=" + ctoComunidades + ", filtros=" + filtros + "}'";
+        return "CtoComunidad{" + "nombre=" + this.nombre + ", modificado=" + this.modificado + ", algortimo=" + this.algoritmo + ", ctoComunidades=" + this.ctoComunidades.size() + ", filtros=" + this.filtros + "}'";
     }
 }
