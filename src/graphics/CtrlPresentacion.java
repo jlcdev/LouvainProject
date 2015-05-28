@@ -198,18 +198,18 @@ public class CtrlPresentacion {
    * Añade una categoria al grafo.
    * @param categoria 
    */
-  public void addGrafoCat (String categoria)
+  public int addGrafoCat (String categoria)
   {
-      ctrlDominio.addGrafoCat(categoria);
+      return ctrlDominio.addGrafoCat(categoria);
   }
   
   /**
    * Añade una pagina al grafo.
    * @param pagina 
    */
-  public void addGrafoPag (String pagina)
+  public int addGrafoPag (String pagina)
   {
-      ctrlDominio.addGrafoPag(pagina);
+      return ctrlDominio.addGrafoPag(pagina);
   }
   
   /**

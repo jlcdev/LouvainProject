@@ -18,6 +18,9 @@ public class VistaPrincipal extends javax.swing.JFrame
     
     // Controlador de presentacion
     private final CtrlPresentacion iCtrlPresentacion;
+    private ArrayList<Integer> catPosToId;
+    private ArrayList<Integer> pagPosToId;
+     
     
     public VistaPrincipal (CtrlPresentacion pCtrlPresentacion) 
     {
@@ -25,6 +28,8 @@ public class VistaPrincipal extends javax.swing.JFrame
         iCtrlPresentacion = pCtrlPresentacion;        
         initComponents();
         this.setLocationRelativeTo(null);
+        catPosToId = new ArrayList();
+        pagPosToId = new ArrayList();
     }
 
     public void hacerVisible() 
@@ -84,6 +89,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         DefaultListModel model = (DefaultListModel) listPaginas.getModel();
         model.clear();
         for(String elem : lista) model.addElement(elem);
+        pagPosToId = new ArrayList();
+        int size = lista.size();
+        for(int i = 0; i < size; i++) pagPosToId.add(i);
     }
     
     public void actualizarSeleccionCat()
@@ -92,6 +100,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         DefaultListModel model = (DefaultListModel) listCategorias.getModel();
         model.clear();
         for(String elem : lista) model.addElement(elem);
+        int size = lista.size();
+        catPosToId = new ArrayList();
+        for(int i = 0; i < size; i++) catPosToId.add(i);
     }
     
     public void clearTxtAreas()
@@ -1545,11 +1556,14 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_radioGirvanActionPerformed
 
     private void btnAddCatToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToGraphActionPerformed
-        iCtrlPresentacion.addGrafoCat(txtCatToAddRmv.getText());
-        DefaultListModel model = (DefaultListModel) listCategorias.getModel();
-        System.out.println("Afegir Cat: " + txtCatToAddRmv.getText());
-        model.addElement(txtCatToAddRmv.getText()); 
-        //actualizarSeleccionCat();
+        int id = iCtrlPresentacion.addGrafoCat(txtCatToAddRmv.getText());
+        if (id != -1)
+        {
+            catPosToId.add(id);
+            DefaultListModel model = (DefaultListModel) listCategorias.getModel();
+            System.out.println("Afegir Cat: " + txtCatToAddRmv.getText());
+            model.addElement(txtCatToAddRmv.getText()); 
+        }       
     }//GEN-LAST:event_btnAddCatToGraphActionPerformed
 
     private void btnImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafoActionPerformed
@@ -1603,7 +1617,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         //List l = listPaginas.getSelectedValuesList();
         int[] index = listPaginas.getSelectedIndices();
         ArrayList<Integer> intList = new ArrayList<>();
-        for(int intValue : index) intList.add(intValue);
+        for(int intValue : index) intList.add(pagPosToId.get(intValue));
         //ArrayList<String> al = new ArrayList<>(l);
         iCtrlPresentacion.aplicarSelPag(intList);   
     }//GEN-LAST:event_btnAplicarSelPagActionPerformed
@@ -1615,7 +1629,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         
         int[] index = listCategorias.getSelectedIndices();
         ArrayList<Integer> intList = new ArrayList<>();
-        for(int intValue : index) intList.add(intValue);
+        for(int intValue : index) intList.add(catPosToId.get(intValue));
         iCtrlPresentacion.aplicarSelCat(intList);  
         
         
@@ -1641,27 +1655,39 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnChangeNameActionPerformed
 
     private void btnRmvCatFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromGraphActionPerformed
-        int i = iCtrlPresentacion.rmvGrafoCat(txtCatToAddRmv.getText());
-        //DefaultListModel model = (DefaultListModel) listCategorias.getModel();
-        //System.out.println("Eliminar Cat: " + i);
-        //model.remove(i);
-        //actualizarSeleccionCat();        
+        int id = iCtrlPresentacion.rmvGrafoCat(txtCatToAddRmv.getText());
+        if (id != -1)
+        {
+            DefaultListModel model = (DefaultListModel) listCategorias.getModel();
+            System.out.println("Eliminar Cat: " + id);
+            model.remove(catPosToId.indexOf(id));
+            catPosToId.remove(catPosToId.indexOf(id));
+        }
+                       
     }//GEN-LAST:event_btnRmvCatFromGraphActionPerformed
 
     private void btnAddPagToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPagToGraphActionPerformed
-        iCtrlPresentacion.addGrafoPag(txtPagToAddRmv.getText());
-        DefaultListModel model = (DefaultListModel) listPaginas.getModel();
-        System.out.println("Afegir Pag: " + txtPagToAddRmv.getText());
-        model.addElement(txtPagToAddRmv.getText()); 
-        //actualizarSeleccionPag();
+        int id = iCtrlPresentacion.addGrafoPag(txtPagToAddRmv.getText());
+        if(id != -1) /////////////////////////////////// SI NO ES FA ADD HA DE RETORNAR -1
+        {
+            DefaultListModel model = (DefaultListModel) listPaginas.getModel();
+            System.out.println("Afegir Pag: " + txtPagToAddRmv.getText());
+            model.addElement(txtPagToAddRmv.getText());
+            pagPosToId.add(id);
+        }
+        
+       
     }//GEN-LAST:event_btnAddPagToGraphActionPerformed
 
     private void btnRmvPagFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvPagFromGraphActionPerformed
-        int i = iCtrlPresentacion.rmvGrafoPag(txtPagToAddRmv.getText());
-        //DefaultListModel model = (DefaultListModel) listPaginas.getModel();
-        //System.out.println("Eliminar Pag: " + i);
-        //model.remove(i);  
-        actualizarSeleccionCat();
+        int id = iCtrlPresentacion.rmvGrafoPag(txtPagToAddRmv.getText());
+        if(id != -1)
+        {
+            DefaultListModel model = (DefaultListModel) listPaginas.getModel();
+            System.out.println("Eliminar Pag: " + id);
+            model.remove(catPosToId.indexOf(id)); 
+            pagPosToId.remove(pagPosToId.indexOf(id));
+        }        
     }//GEN-LAST:event_btnRmvPagFromGraphActionPerformed
 
     private void btnAddLinkToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLinkToGraphActionPerformed
@@ -1733,6 +1759,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         ckTodasPaginas.setSelected(false); 
         
         int num = iCtrlPresentacion.getPagNum(txtPagNameSel.getText());
+        System.out.println(num);
+        num = pagPosToId.indexOf(num);
+        System.out.println(num);
         int[] indices = listPaginas.getSelectedIndices();
         int newIndices[] = new int[indices.length + 1];
         System.arraycopy(indices, 0, newIndices, 0, indices.length);
@@ -1747,7 +1776,10 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void btnAddSelCatNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelCatNameActionPerformed
         ckTodasCategorias.setSelected(false);  
         
-        int num = iCtrlPresentacion.getCatNum(txtCatNameSel.getText());
+        int num = iCtrlPresentacion.getCatNum(txtCatNameSel.getText());        
+        System.out.println(num);
+        num = catPosToId.indexOf(num);
+        System.out.println(num);
         int[] indices = listCategorias.getSelectedIndices();
         int newIndices[] = new int[indices.length + 1];
         System.arraycopy(indices, 0, newIndices, 0, indices.length);

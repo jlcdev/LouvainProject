@@ -155,19 +155,24 @@ public class CtrDominio
         return g.getCategoryNumber(new Categoria(category));
     }
     
-    public void addGrafoCat (String category)
+    public Integer addGrafoCat (String category)
     {
-        g.addCategoria(new Categoria(category));
+        Categoria c = new Categoria(category);        
+        g.addCategoria(c);
+        Integer r = g.getCategoryNumber(c);
+        return r;
     }
   
     /**
      * Añade una pagina al grafo.
      * @param pagina 
      */
-    public void addGrafoPag (String pagina)
+    public Integer addGrafoPag (String pagina)
     {
         Pagina p = new Pagina(pagina);
         g.addPagina(p);
+        Integer r = g.getPageNumber(p);
+        return r;
     }
   
     /**
