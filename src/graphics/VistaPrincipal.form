@@ -11,6 +11,14 @@
             <Property name="text" type="java.lang.String" value="Fichero"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mItemNuevoGrafo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nuevo grafo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItemNuevoGrafoActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mItemImportarGrafo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Importar grafo"/>
@@ -37,7 +45,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mItemExportarSet">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Exportar conjunto"/>
+                <Property name="text" type="java.lang.String" value="Exportar conjunto creado"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItemExportarSetActionPerformed"/>
@@ -50,21 +58,6 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mItemSalirMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItemSalirActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="menuEditar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Editar"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mItemNuevoGrafo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nuevo grafo"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItemNuevoGrafoActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

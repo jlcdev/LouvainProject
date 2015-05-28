@@ -123,6 +123,7 @@ public class CtrlPresentacion {
       ctrlDominio.newGrafo();
       vistaPrincipal.activarTab(1); //GRAFO
       vistaPrincipal.activarTab(2); //ALGORITMO
+      vistaPrincipal.goToTab(1);
   }
   
   /**
@@ -256,13 +257,23 @@ public class CtrlPresentacion {
    * Modifica el nombre de una pagina o categoria del grafo.
    * @param anterior
    * @param nuevo 
+   * @param category 
+   * @return  
    */
-  public void modGrafoNombre (String anterior, String nuevo, Boolean tipus)
-  {
-      //***************************************************
-      //***************************************************
-      if(tipus)ctrlDominio.modifyCategory(anterior,nuevo);
-      else ctrlDominio.modifyPage(anterior, nuevo);
+  public Integer modGrafoNombre (String anterior, String nuevo, Boolean category)
+  {      
+      int id = -1;
+      if(category)
+      {
+          id = ctrlDominio.verNumCat(anterior);
+          ctrlDominio.modifyCategory(anterior,nuevo);
+      }
+      else
+      {
+          id = ctrlDominio.verNumPag(anterior);
+          ctrlDominio.modifyPage(anterior, nuevo);
+      }
+      return id;
   }
   
   /**

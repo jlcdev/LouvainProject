@@ -20,6 +20,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private final CtrlPresentacion iCtrlPresentacion;
     private ArrayList<Integer> catPosToId;
     private ArrayList<Integer> pagPosToId;
+    
      
     
     public VistaPrincipal (CtrlPresentacion pCtrlPresentacion) 
@@ -88,10 +89,12 @@ public class VistaPrincipal extends javax.swing.JFrame
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoPag();          
         DefaultListModel model = (DefaultListModel) listPaginas.getModel();
         model.clear();
-        for(String elem : lista) model.addElement(elem);
         pagPosToId = new ArrayList();
-        int size = lista.size();
-        for(int i = 0; i < size; i++) pagPosToId.add(i);
+        for(String elem : lista) 
+        {
+            model.addElement(elem);
+            pagPosToId.add(iCtrlPresentacion.getPagNum(elem));
+        }        
     }
     
     public void actualizarSeleccionCat()
@@ -99,10 +102,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();          
         DefaultListModel model = (DefaultListModel) listCategorias.getModel();
         model.clear();
-        for(String elem : lista) model.addElement(elem);
-        int size = lista.size();
         catPosToId = new ArrayList();
-        for(int i = 0; i < size; i++) catPosToId.add(i);
+        for(String elem : lista) {
+            model.addElement(elem);            
+            catPosToId.add(iCtrlPresentacion.getCatNum(elem));
+        }        
     }
     
     public void clearTxtAreas()
@@ -258,13 +262,12 @@ public class VistaPrincipal extends javax.swing.JFrame
         btnCompararConjuntos = new javax.swing.JButton();
         barraMenu = new javax.swing.JMenuBar();
         menuFichero = new javax.swing.JMenu();
+        mItemNuevoGrafo = new javax.swing.JMenuItem();
         mItemImportarGrafo = new javax.swing.JMenuItem();
         mItemImportarSet = new javax.swing.JMenuItem();
         mItemExportarGrafo = new javax.swing.JMenuItem();
         mItemExportarSet = new javax.swing.JMenuItem();
         mItemSalir = new javax.swing.JMenuItem();
-        menuEditar = new javax.swing.JMenu();
-        mItemNuevoGrafo = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
         mItemManual = new javax.swing.JMenuItem();
         mItemAbout = new javax.swing.JMenuItem();
@@ -1380,6 +1383,14 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         menuFichero.setText("Fichero");
 
+        mItemNuevoGrafo.setText("Nuevo grafo");
+        mItemNuevoGrafo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemNuevoGrafoActionPerformed(evt);
+            }
+        });
+        menuFichero.add(mItemNuevoGrafo);
+
         mItemImportarGrafo.setText("Importar grafo");
         mItemImportarGrafo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1404,7 +1415,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         });
         menuFichero.add(mItemExportarGrafo);
 
-        mItemExportarSet.setText("Exportar conjunto");
+        mItemExportarSet.setText("Exportar conjunto creado");
         mItemExportarSet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mItemExportarSetActionPerformed(evt);
@@ -1426,18 +1437,6 @@ public class VistaPrincipal extends javax.swing.JFrame
         menuFichero.add(mItemSalir);
 
         barraMenu.add(menuFichero);
-
-        menuEditar.setText("Editar");
-
-        mItemNuevoGrafo.setText("Nuevo grafo");
-        mItemNuevoGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mItemNuevoGrafoActionPerformed(evt);
-            }
-        });
-        menuEditar.add(mItemNuevoGrafo);
-
-        barraMenu.add(menuEditar);
 
         menuAyuda.setText("Ayuda");
 
@@ -1595,11 +1594,6 @@ public class VistaPrincipal extends javax.swing.JFrame
         clearTxtAreas();                
     }//GEN-LAST:event_btnNuevoGrafoActionPerformed
 
-    private void mItemNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemNuevoGrafoActionPerformed
-        iCtrlPresentacion.crearGrafo();
-        clearTxtAreas();              
-    }//GEN-LAST:event_mItemNuevoGrafoActionPerformed
-
     private void txtCatToAddRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCatToAddRmvActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCatToAddRmvActionPerformed
@@ -1646,12 +1640,27 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnAplicarFiltrosActionPerformed
 
     private void btnImportarConjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarConjActionPerformed
-       iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false);
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false);
         tabsPrincipal.setSelectedIndex(3);
     }//GEN-LAST:event_btnImportarConjActionPerformed
 
     private void btnChangeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameActionPerformed
-        iCtrlPresentacion.modGrafoNombre(txtNombreNodoAnterior.getText(), txtNombreNodoNuevo.getText(), comboTipoNodo.getSelectedIndex() != 0);
+        int id = iCtrlPresentacion.modGrafoNombre(txtNombreNodoAnterior.getText(), txtNombreNodoNuevo.getText(), comboTipoNodo.getSelectedIndex() != 0);
+        
+        if(comboTipoNodo.getSelectedIndex() != 0) //CATEGORIA
+        {
+            DefaultListModel model = (DefaultListModel) listCategorias.getModel();
+            model.getElementAt(catPosToId.indexOf(id));
+            model.remove(id);
+            model.add(id,txtNombreNodoNuevo.getText());
+        }
+        else //PÁGINA
+        {
+            DefaultListModel model = (DefaultListModel) listPaginas.getModel();
+            model.getElementAt(pagPosToId.indexOf(id));
+            model.remove(id);
+            model.add(id,txtNombreNodoNuevo.getText());
+        }
     }//GEN-LAST:event_btnChangeNameActionPerformed
 
     private void btnRmvCatFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromGraphActionPerformed
@@ -1661,6 +1670,8 @@ public class VistaPrincipal extends javax.swing.JFrame
             DefaultListModel model = (DefaultListModel) listCategorias.getModel();
             System.out.println("Eliminar Cat: " + id);
             model.remove(catPosToId.indexOf(id));
+            System.out.println("Posició"+catPosToId.indexOf(id));
+            System.out.println(catPosToId.size());
             catPosToId.remove(catPosToId.indexOf(id));
         }
                        
@@ -1771,6 +1782,21 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnRmvSelPagNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvSelPagNameActionPerformed
         ckTodasPaginas.setSelected(false);
+        
+        int num = iCtrlPresentacion.getPagNum(txtPagNameSel.getText());
+        num = pagPosToId.indexOf(num); //Posició a la llista
+        int[] indices = listPaginas.getSelectedIndices(); //Selecció
+        int newIndices[] = new int[indices.length - 1]; //Selecció -1
+        int j = 0;
+        for(int i = 0; i < indices.length; i++)
+        {
+            if(indices[i] != num)
+            {
+                newIndices[j] = indices[i];
+                j++;
+            }
+        }
+        listPaginas.setSelectedIndices(newIndices);
     }//GEN-LAST:event_btnRmvSelPagNameActionPerformed
 
     private void btnAddSelCatNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelCatNameActionPerformed
@@ -1790,6 +1816,21 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnRmvSelCatNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvSelCatNameActionPerformed
         ckTodasCategorias.setSelected(false);
+        
+        int num = iCtrlPresentacion.getCatNum(txtCatNameSel.getText());
+        num = catPosToId.indexOf(num); //Posició a la llista
+        int[] indices = listCategorias.getSelectedIndices(); //Selecció
+        int newIndices[] = new int[indices.length - 1]; //Selecció -1
+        int j = 0;
+        for(int i = 0; i < indices.length; i++)
+        {
+            if(indices[i] != num)
+            {
+                newIndices[j] = indices[i];
+                j++;
+            }
+        }
+        listCategorias.setSelectedIndices(newIndices);
     }//GEN-LAST:event_btnRmvSelCatNameActionPerformed
 
     private void btnAddSelCatRangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelCatRangActionPerformed
@@ -1827,6 +1868,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void mItemExportarSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExportarSetActionPerformed
        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false);
     }//GEN-LAST:event_mItemExportarSetActionPerformed
+
+    private void mItemNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemNuevoGrafoActionPerformed
+        iCtrlPresentacion.crearGrafo();
+        clearTxtAreas();
+    }//GEN-LAST:event_mItemNuevoGrafoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1930,7 +1976,6 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem mItemNuevoGrafo;
     private javax.swing.JMenuItem mItemSalir;
     private javax.swing.JMenu menuAyuda;
-    private javax.swing.JMenu menuEditar;
     private javax.swing.JMenu menuFichero;
     private javax.swing.JPanel panelAlgoritmo;
     private javax.swing.JPanel panelComparacion;
