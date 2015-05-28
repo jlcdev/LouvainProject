@@ -11,22 +11,26 @@ package graphics;
  */
 public class VistaFileChooser extends javax.swing.JFrame {
 
-    private final Boolean tipus;
+    private Boolean importar;
+    private Boolean grafo;
     private final CtrlPresentacion iCtrlPresentacion;
     /**
      * Creates new form VistaManual
      * @param pCtrlPresentacion
      */
     public VistaFileChooser(CtrlPresentacion pCtrlPresentacion) {
-        iCtrlPresentacion = pCtrlPresentacion;        
-        this.tipus = false;
+        this.iCtrlPresentacion = pCtrlPresentacion;        
+        this.importar = true;
+        this.grafo = true;
         initComponents();
         this.setLocationRelativeTo(null);
     }
     
-    public void hacerVisible() {
-        if(this.tipus == false) fileChooser.setApproveButtonText("Import");
+    public void hacerVisible(Boolean importar, Boolean grafo) {
+        if(importar) fileChooser.setApproveButtonText("Import");
         else fileChooser.setApproveButtonText("Export");
+        this.importar = importar;
+        this.grafo = grafo;
         this.pack();
         this.setVisible(true);        
     }
@@ -77,8 +81,16 @@ public class VistaFileChooser extends javax.swing.JFrame {
         switch (evt.getActionCommand()) 
         {
             case "ApproveSelection":
-                if(this.tipus == false) iCtrlPresentacion.importarGrafo(fileChooser.getSelectedFile().toString());
-                else iCtrlPresentacion.exportarGrafo(fileChooser.getSelectedFile().toString());
+                if(this.importar == true)
+                {
+                    if(this.grafo == true) iCtrlPresentacion.importarGrafo(fileChooser.getSelectedFile().toString());
+                    else iCtrlPresentacion.importarConjunto(fileChooser.getSelectedFile().toString());;
+                }
+                else
+                {
+                    if(this.grafo == true) iCtrlPresentacion.exportarGrafo(fileChooser.getSelectedFile().toString());
+                    else iCtrlPresentacion.exportarConjunto(fileChooser.getSelectedFile().toString());;
+                }
                 iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
                 break;        
             case "CancelSelection":

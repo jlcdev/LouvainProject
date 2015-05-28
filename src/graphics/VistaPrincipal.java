@@ -1378,6 +1378,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         menuFichero.add(mItemImportarGrafo);
 
         mItemImportarSet.setText("Importar conjunto");
+        mItemImportarSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemImportarSetActionPerformed(evt);
+            }
+        });
         menuFichero.add(mItemImportarSet);
 
         mItemExportarGrafo.setText("Exportar grafo");
@@ -1389,6 +1394,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         menuFichero.add(mItemExportarGrafo);
 
         mItemExportarSet.setText("Exportar conjunto");
+        mItemExportarSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemExportarSetActionPerformed(evt);
+            }
+        });
         menuFichero.add(mItemExportarSet);
 
         mItemSalir.setText("Salir");
@@ -1465,7 +1475,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_ckTodasPaginasActionPerformed
 
     private void mItemImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemImportarGrafoActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);        
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true);        
     }//GEN-LAST:event_mItemImportarGrafoActionPerformed
 
     private void comboTipoEnlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoEnlaceActionPerformed
@@ -1491,7 +1501,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnListLinksGraphActionPerformed
 
     private void btnExportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarGrafoActionPerformed
-        //iCtrlPresentacion.exportarGrafo();
+       iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, true);
     }//GEN-LAST:event_btnExportarGrafoActionPerformed
 
     private void btnListCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatFromComActionPerformed
@@ -1501,7 +1511,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnListCatFromComActionPerformed
 
     private void btnExportSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSetActionPerformed
-        //iCtrlPresentacion.exportarConjunto();
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false);
     }//GEN-LAST:event_btnExportSetActionPerformed
 
     private void btnShowSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSetActionPerformed
@@ -1543,7 +1553,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnAddCatToGraphActionPerformed
 
     private void btnImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafoActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);        
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true);       
     }//GEN-LAST:event_btnImportarGrafoActionPerformed
 
     private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
@@ -1558,7 +1568,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_comboTipoNombreSetActionPerformed
 
     private void btnImportarGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafo1ActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false);        
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true);       
     }//GEN-LAST:event_btnImportarGrafo1ActionPerformed
 
     private void btnNuevoGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafo1ActionPerformed
@@ -1622,7 +1632,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnAplicarFiltrosActionPerformed
 
     private void btnImportarConjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarConjActionPerformed
-        //iCtrlPresentacion.importarConjunto(null);
+       iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false);
         tabsPrincipal.setSelectedIndex(3);
     }//GEN-LAST:event_btnImportarConjActionPerformed
 
@@ -1691,7 +1701,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_mItemManualActionPerformed
 
     private void mItemExportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExportarGrafoActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true);        
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, true);      
     }//GEN-LAST:event_mItemExportarGrafoActionPerformed
 
     private void tabsPrincipalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsPrincipalStateChanged
@@ -1777,6 +1787,14 @@ public class VistaPrincipal extends javax.swing.JFrame
         if(comboTipoNombreSet.getSelectedIndex() == 2) txtComName.setVisible(true); //CATEGORIA
         else txtComName.setVisible(false);
     }//GEN-LAST:event_comboTipoNombreSetItemStateChanged
+
+    private void mItemImportarSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemImportarSetActionPerformed
+       iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false);
+    }//GEN-LAST:event_mItemImportarSetActionPerformed
+
+    private void mItemExportarSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExportarSetActionPerformed
+       iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false);
+    }//GEN-LAST:event_mItemExportarSetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

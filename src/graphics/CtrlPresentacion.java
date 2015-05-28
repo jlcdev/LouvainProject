@@ -49,14 +49,14 @@ public class CtrlPresentacion {
 //////////////////////// Metodos de sincronizacion entre vistas
 
 
-  public void sincronizacionVistaPrincipal_a_FileChooser(Boolean tipus)
+  public void sincronizacionVistaPrincipal_a_FileChooser(Boolean importar, Boolean grafo)
   {
     vistaPrincipal.desactivar();
     // Solo se crea una vista secundaria (podria crearse una nueva cada vez)
     if (vistaFileChooser == null)
       vistaFileChooser = new VistaFileChooser(this);
     //tipus
-    vistaFileChooser.hacerVisible();      
+    vistaFileChooser.hacerVisible(importar, grafo);      
   }
   
   public void sincronizacionVistaPrincipal_a_Manual()
