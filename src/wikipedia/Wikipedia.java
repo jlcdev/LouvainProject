@@ -26,6 +26,7 @@ public class Wikipedia
         System.out.println("6.- Escoger algoritmo de detección de comunidades.");
         System.out.println("7.- Aplicar algoritmo.");
         System.out.println("8.- Mostrar Resultados.");
+        System.out.println("9.- Guardar Conjunto de comunidad generado.");
         System.out.println("0.- Cerrar programa.");
     }
     /**
@@ -216,30 +217,14 @@ public class Wikipedia
                     break;
                 case 8:
                     System.out.println("--Mostrar resultado--");
-                    
                     break;
-                    
+                case 9:
+                    System.out.println("--Guardar conjunto de comunidad--");
+                    msg("Introduce una ruta donde guardar el fichero:");
+                    String path = scanner.next();
+                    domainController.saveCtoComunidad(path);
+                    break;
             }
-        }/*
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("A");
-        list.add("B");
-        list.add("C");
-        list.add("D");
-        list.add("E");
-        list.add("F");
-        list.add("G");
-        list.add("H");
-
-        int i[] = {5,3,1};
-
-        for (int j = 0; j < i.length; j++)
-        {
-            list.remove(i[j]);
         }
-        for(String s : list)
-        {
-            System.out.println(s);
-        }*/
     }
 }

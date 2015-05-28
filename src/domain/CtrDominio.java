@@ -383,6 +383,22 @@ public class CtrDominio
         return comparacion;
     }
     
+    public void saveCtoComunidad(String path)
+    {
+        if(path == null || this.generatedCto == null || path.isEmpty()) return;
+        this.generatedCto.savetoFile();
+        this.ctrData.setAlgorithmPath(path);
+        this.ctrData.writeCtoComunidad(this.generatedCto);
+    }
+    
+    public void loadCtoComunidad(String path)
+    {
+        if(path == null || path.isEmpty()) return;
+        this.importedCto = new CtoComunidad();
+        this.ctrData.setAlgorithmPath(path);
+        this.ctrData.readCtoComunidad(this.importedCto);
+    }
+    
     public void compararConjuntos()
     {
         

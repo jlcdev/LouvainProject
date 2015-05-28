@@ -11,7 +11,9 @@ public class Selections implements Cloneable
 {
     private ArrayList<Integer> categoriesSelected;
     private ArrayList<Integer> pagesSelected;
-
+    
+    public Selections(){}
+    
     public ArrayList<Integer> getCategoriesSelected()
     {
         return this.categoriesSelected;
@@ -78,6 +80,40 @@ public class Selections implements Cloneable
             return false;
         }
         return true;
+    }
+    
+    public ArrayList<String> saveToFile()
+    {
+        ArrayList<String> response = new ArrayList<>();
+        response.add("SELECTIONS");
+        response.add("SELECTIONCATEGORY");
+        for(Integer category : this.categoriesSelected)
+        {
+            response.add(category.toString());
+        }
+        response.add("SELECTIONPAGES");
+        for(Integer page : this.pagesSelected)
+        {
+            response.add(page.toString());
+        }
+        response.add("ENDSELECTION");
+        return response;
+    }
+    
+    public void loadFromFile(ArrayList<String> data)
+    {
+        int i = 2;
+        while(!data.get(i).equals("SELECTIONPAGES"))
+        {
+            this.categoriesSelected.add(Integer.parseInt(data.get(i)));
+            ++i;
+        }
+        ++i;
+        while(!data.get(i).equals("ENDSELECTION"))
+        {
+            this.pagesSelected.add(Integer.parseInt(data.get(i)));
+            ++i;
+        }
     }
     
     @Override

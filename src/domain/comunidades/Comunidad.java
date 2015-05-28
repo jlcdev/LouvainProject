@@ -102,7 +102,7 @@ public class Comunidad implements Cloneable
     public ArrayList<String> saveToFile()
     {
         ArrayList<String> list = new ArrayList<>();
-        list.add("NEWCOMMUNITY");
+        list.add("COMMUNITY");
         list.add("id:"+this.id);
         list.add("name:"+this.nombre);
         list.add("size:"+this.ctoCategorias.size());

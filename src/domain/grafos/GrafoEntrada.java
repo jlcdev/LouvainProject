@@ -58,12 +58,18 @@ public class GrafoEntrada implements Cloneable
     
     public void changePage(Integer page, String change)
     {
-        this.indexPagina.get(page).setNombre(change);
+        Pagina pag = this.indexPagina.get(page);
+        pag.setNombre(change);
+        this.indexPagina.put(page, pag);
+        this.paginaIndex.put(pag, page);
     }
     
     public void changeCategory(Integer category, String change)
     {
-        this.indexCategoria.get(category).setNombre(change);
+        Categoria cat = this.indexCategoria.get(category);
+        cat.setNombre(change);
+        this.indexCategoria.put(category, cat);
+        this.categoriaIndex.put(cat, category);
     }
     
     public ArrayList<Integer> getCategories()

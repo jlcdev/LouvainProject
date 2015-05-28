@@ -1,12 +1,14 @@
 package domain.grafos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Javier López Calderón
  */
 public class Filters implements Cloneable
 {
-    private final int pname, pcat, ppag, pfat, pson;
+    private int pname, pcat, ppag, pfat, pson;
     
     public Filters(int pname, int pcat, int ppag, int pfat, int pson)
     {
@@ -15,6 +17,11 @@ public class Filters implements Cloneable
         this.ppag = ppag;
         this.pfat = pfat;
         this.pson = pson;
+    }
+    
+    public Filters(ArrayList<String> filters)
+    {
+        this.loadFromFile(filters);
     }
 
     public int getPname()
@@ -101,9 +108,25 @@ public class Filters implements Cloneable
         return (Filters) obj;
     }
 
-    @Override
-    public String toString()
+    public ArrayList<String> saveToFile()
     {
-        return "name: "+this.pname+" category: "+this.pcat+" page: "+this.ppag+" father: "+this.pfat+" son: "+this.pson;
+        ArrayList<String> response = new ArrayList<>();
+        response.add("FILTER");
+        response.add("pname:"+this.pname);
+        response.add("pcat:"+this.pcat);
+        response.add("ppag:"+this.ppag);
+        response.add("pfat:"+this.pfat);
+        response.add("pson:"+this.pson);
+        response.add("ENDFILTER");
+        return response;
+    }
+    
+    public void loadFromFile(ArrayList<String> data)
+    {
+        this.pname = Integer.parseInt(data.get(1));
+        this.pcat = Integer.parseInt(data.get(2));
+        this.ppag = Integer.parseInt(data.get(3));
+        this.pfat = Integer.parseInt(data.get(4));
+        this.pson = Integer.parseInt(data.get(5));
     }
 }
