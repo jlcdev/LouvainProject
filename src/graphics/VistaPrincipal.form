@@ -744,9 +744,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="txtMaxCatLink" min="-2" pref="40" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnAddSelCatRang" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnRmvSelCatRang" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="btnAddSelCatRang" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel23" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
@@ -802,7 +800,6 @@
                                           <Component id="txtMaxCatLink" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="btnAddSelCatRang" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="btnRmvSelCatRang" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -900,18 +897,10 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnAddSelCatRang">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="Seleccionar"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddSelCatRangActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="btnRmvSelCatRang">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRmvSelCatRangActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnSelCatRand">
@@ -961,13 +950,11 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="txtMaxPagLink" min="-2" pref="40" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="btnAddSelPagRang" min="-2" pref="50" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="btnRmvSelPagRang" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Component id="btnAddSelPagRang" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="btnSelPagRand" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="146" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1017,7 +1004,6 @@
                                           <Component id="txtMaxPagLink" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="btnAddSelPagRang" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="btnRmvSelPagRang" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1099,18 +1085,10 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnAddSelPagRang">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="Seleccionar"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddSelPagRangActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="btnRmvSelPagRang">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRmvSelPagRangActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnAddSelPagName">
@@ -1331,17 +1309,16 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnExportSet" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                                   <Component id="jLabel15" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                                   <Component id="comboTipoSet" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="comboTipoNombreSet" min="-2" pref="90" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="txtNombreAnterior" min="-2" pref="135" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="txtNombreNuevo" min="-2" pref="144" max="-2" attributes="0"/>
+                                              <Component id="txtNombreNuevo" max="32767" attributes="0"/>
                                           </Group>
                                           <Component id="jLabel16" alignment="0" min="-2" pref="265" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
@@ -1373,21 +1350,23 @@
                                           <Component id="btnRmvComFromSet" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel27" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
-                                          <Component id="txtComToList" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
                                           <Component id="jLabel26" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
+                                          <Component id="txtComToList" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnListCatFromCom" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
-                                          <Component id="btnListComFromSet" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnShowCom" min="-2" pref="111" max="-2" attributes="0"/>
-                                          <Component id="btnShowSet" min="-2" pref="111" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="btnListCatFromCom" min="-2" pref="87" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btnShowCom" min="-2" pref="111" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="btnListComFromSet" min="-2" pref="87" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btnShowSet" min="-2" pref="111" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1395,6 +1374,14 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtComName" min="-2" pref="237" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnExportSet" min="-2" pref="105" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel27" min="-2" pref="168" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
@@ -1408,7 +1395,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane5" max="32767" attributes="0"/>
+                          <Component id="jScrollPane5" pref="442" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="comboTipoSet" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -1447,25 +1434,21 @@
                               </Group>
                               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Component id="txtComName" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnShowSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="btnListComFromSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnShowSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="btnShowCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <Component id="btnListCatFromCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Component id="txtComToList" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnShowCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="btnListCatFromCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="txtComToList" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="54" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnExportSet" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1581,7 +1564,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
-                <Property name="text" type="java.lang.String" value="A&#xd1;ADIR/QUITAR"/>
+                <Property name="text" type="java.lang.String" value="A&#xd1;ADIR/QUITAR "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel16">
