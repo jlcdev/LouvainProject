@@ -746,6 +746,9 @@ public class GrafoEntrada implements Cloneable
         {
             this.indexCategoria.put(this.categoryId, category);
             this.categoriaIndex.put(category, this.categoryId);
+            this.cpEdges.put(this.categoryId, new ArrayList<Arch>());
+            this.csubcEdges.put(this.categoryId, new ArrayList<Arch>());
+            this.csupcEdges.put(this.categoryId, new ArrayList<Arch>());
             ++this.categoryId;
         }
     }
@@ -757,6 +760,7 @@ public class GrafoEntrada implements Cloneable
         {
             this.indexPagina.put(this.pageId, page);
             this.paginaIndex.put(page, this.pageId);
+            this.pcEdges.put(this.pageId, new ArrayList<Arch>());
             ++this.pageId;
         }
     }
