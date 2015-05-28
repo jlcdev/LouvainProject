@@ -1740,7 +1740,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         
         ArrayList<Integer> selection = iCtrlPresentacion.getPagSelection(Integer.parseInt(txtMinPagLink.getText()), Integer.parseInt(txtMaxPagLink.getText()));
         int[] indices = new int[selection.size()];
-        for(int i = 0; i < selection.size(); i++) indices[i] = selection.get(i);
+        for(int i = 0; i < selection.size(); i++) indices[i] = pagPosToId.indexOf(selection.get(i));
         listPaginas.setSelectedIndices(indices);
     }//GEN-LAST:event_btnAddSelPagRangActionPerformed
 
@@ -1816,7 +1816,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         
         ArrayList<Integer> selection = iCtrlPresentacion.getCatSelection(Integer.parseInt(txtMinCatLink.getText()), Integer.parseInt(txtMaxCatLink.getText()));
         int[] indices = new int[selection.size()];
-        for(int i = 0; i < selection.size(); i++) indices[i] = selection.get(i);
+        for(int i = 0; i < selection.size(); i++) indices[i] = catPosToId.indexOf(selection.get(i)); //REPASSAR
         listCategorias.setSelectedIndices(indices);
     }//GEN-LAST:event_btnAddSelCatRangActionPerformed
 
