@@ -7,6 +7,8 @@ import domain.grafos.Selections;
 import domain.grafos.Transformation;
 import java.util.ArrayList;
 import shared.Algorithm;
+import shared.CliquePercolation;
+import shared.GirvanNewman;
 import shared.Graph;
 import shared.Louvain;
 
@@ -84,8 +86,10 @@ public class CtrAlgoritmo
                 communityAlgorithm = new Louvain();
                 break;
             case 2:
+                communityAlgorithm = new GirvanNewman();
                 break;
             case 3:
+                communityAlgorithm = new CliquePercolation();
                 break;
         }
         if(communityAlgorithm == null) return null;
