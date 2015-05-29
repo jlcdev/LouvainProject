@@ -310,13 +310,9 @@ public class CtrlPresentacion {
   
   public Graph<Integer, Double> algorithmGraph()
   {
-      if(!this.ctrlDominio.isAlgorithmGraph())
-      {
       Graph<Integer, Double> grafo = this.ctrlAlgoritmo.generate(this.ctrlDominio.getGrafo());
       this.ctrlDominio.setAlgorithmGraph(grafo);
       return grafo;
-      }
-      return null;
   }
   
   public void ejecutar (int algoritmo, int p)
