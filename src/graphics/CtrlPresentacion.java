@@ -13,6 +13,7 @@ package graphics;
 
 import domain.CtrDominio;
 import domain.CtrAlgoritmo;
+import domain.comunidades.CtoComunidad;
 import java.util.*;
 import shared.Graph;
 
@@ -393,14 +394,34 @@ public class CtrlPresentacion {
   
   //COMPARACION
   
-  public ArrayList<String> compararComunidades(String com1, Boolean importado1, String com2, Boolean importado2)
+  public int numCatCom (String comunidad, Boolean imported)
   {
-      return ctrlDominio.compararComunidades(com1,importado1,com2,importado2);
+      return this.ctrlDominio.numCatCom(comunidad, imported);
   }
   
-  public void compararConjuntos()
+  public ArrayList<String> commonCategories(String com1, Boolean importado1, String com2, Boolean importado2)
   {
-      ctrlDominio.compararConjuntos();
+      return ctrlDominio.commonCategories(com1,importado1,com2,importado2);
+  }
+  
+  public double getPorcentaje(String comunidad, Boolean importado)
+  {
+      return this.ctrlDominio.getPorcentaje(comunidad, importado);
+  }
+  
+  public int[] infoConjunto(Boolean imported)
+  {
+      return this.ctrlDominio.infoConjunto(imported);
+  }
+  
+  public double getTexec (Boolean imported)
+  {
+      return this.ctrlDominio.getTexec(imported);
+  }
+  
+  public String getNombreConj(Boolean imported)
+  {
+      return this.ctrlDominio.getNombreConj(imported);
   }
 }
 
