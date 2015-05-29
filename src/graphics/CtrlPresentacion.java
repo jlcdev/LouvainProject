@@ -13,7 +13,6 @@ package graphics;
 
 import domain.CtrDominio;
 import domain.CtrAlgoritmo;
-import domain.comunidades.CtoComunidad;
 import java.util.*;
 import shared.Graph;
 
@@ -34,15 +33,15 @@ public class CtrlPresentacion {
 
 
   public CtrlPresentacion() {
-    ctrlDominio = new CtrDominio();
-    ctrlAlgoritmo = new CtrAlgoritmo();
-    if (vistaPrincipal == null)  // innecesario
-      vistaPrincipal = new VistaPrincipal(this);
+    this.ctrlDominio = new CtrDominio();
+    this.ctrlAlgoritmo = new CtrAlgoritmo();
+    if (this.vistaPrincipal == null)  // innecesario
+      this.vistaPrincipal = new VistaPrincipal(this);
   }
 
   public void inicializarPresentacion() {
     //ctrlDominio.inicializarCtrDominio();
-    vistaPrincipal.hacerVisible();
+    this.vistaPrincipal.hacerVisible();
   }
 
 
@@ -51,67 +50,67 @@ public class CtrlPresentacion {
 
   public void sincronizacionVistaPrincipal_a_FileChooser(Boolean importar, Boolean grafo)
   {
-    vistaPrincipal.desactivar();
+    this.vistaPrincipal.desactivar();
     // Solo se crea una vista secundaria (podria crearse una nueva cada vez)
-    if (vistaFileChooser == null)
-      vistaFileChooser = new VistaFileChooser(this);
+    if (this.vistaFileChooser == null)
+      this.vistaFileChooser = new VistaFileChooser(this);
     //tipus
-    vistaFileChooser.hacerVisible(importar, grafo);      
+    this.vistaFileChooser.hacerVisible(importar, grafo);      
   }
   
   public void sincronizacionVistaPrincipal_a_Manual()
   {
-    vistaPrincipal.desactivar();
+    this.vistaPrincipal.desactivar();
     // Solo se crea una vista secundaria (podria crearse una nueva cada vez)
-    if (vistaManual == null)
-      vistaManual = new VistaManual(this);
-    vistaManual.hacerVisible();     
+    if (this.vistaManual == null)
+      this.vistaManual = new VistaManual(this);
+    this.vistaManual.hacerVisible();     
   }
   
   public void sincronizacionVistaPrincipal_a_About()
   {
-     vistaPrincipal.desactivar();
+     this.vistaPrincipal.desactivar();
     // Solo se crea una vista secundaria (podria crearse una nueva cada vez)
-    if (vistaAbout == null)
-      vistaAbout = new VistaAbout(this);
-    vistaAbout.hacerVisible();     
+    if (this.vistaAbout == null)
+      this.vistaAbout = new VistaAbout(this);
+    this.vistaAbout.hacerVisible();     
   }
 
   public void sincronizacionVistaPrincipal_a_Error(String msg)
   {
-     vistaPrincipal.desactivar();
+     this.vistaPrincipal.desactivar();
     // Solo se crea una vista secundaria (podria crearse una nueva cada vez)
-    if (vistaError == null)
-      vistaError = new VistaError(this);
-    vistaError.hacerVisible(msg);     
+    if (this.vistaError == null)
+      this.vistaError = new VistaError(this);
+    this.vistaError.hacerVisible(msg);     
   }
   
   public void sincronizacionVistaFileChooser_a_Principal()
   {
     // Se hace invisible la vista secundaria (podria anularse)
-    vistaFileChooser.hacerInvisible();
-    vistaPrincipal.activar();    
+    this.vistaFileChooser.hacerInvisible();
+    this.vistaPrincipal.activar();    
   }
   
   public void sincronizacionVistaManual_a_Principal()
   {
     // Se hace invisible la vista secundaria (podria anularse)
-    vistaManual.hacerInvisible();
-    vistaPrincipal.activar();      
+    this.vistaManual.hacerInvisible();
+    this.vistaPrincipal.activar();      
   }
     
   public void sincronizacionVistaAbout_a_Principal()
   {
     // Se hace invisible la vista secundaria (podria anularse)
-    vistaAbout.hacerInvisible();
-    vistaPrincipal.activar();     
+    this.vistaAbout.hacerInvisible();
+    this.vistaPrincipal.activar();     
   }
   
   public void sincronizacionVistaError_a_Principal()
   {
     // Se hace invisible la vista secundaria (podria anularse)
-    vistaError.hacerInvisible();
-    vistaPrincipal.activar();     
+    this.vistaError.hacerInvisible();
+    this.vistaPrincipal.activar();     
   }
 
 
@@ -120,10 +119,10 @@ public class CtrlPresentacion {
 
   public void crearGrafo ()
   {
-      ctrlDominio.newGrafo();
-      vistaPrincipal.activarTab(1); //GRAFO
-      vistaPrincipal.activarTab(2); //ALGORITMO
-      vistaPrincipal.goToTab(1);
+      this.ctrlDominio.newGrafo();
+      this.vistaPrincipal.activarTab(1); //GRAFO
+      this.vistaPrincipal.activarTab(2); //ALGORITMO
+      this.vistaPrincipal.goToTab(1);
   }
   
   /**
@@ -132,12 +131,12 @@ public class CtrlPresentacion {
    */
   public void importarGrafo (String path)
   {
-      ctrlDominio.readEntryGraphFile(path);
-      vistaPrincipal.actualizarSeleccionCat();
-      vistaPrincipal.actualizarSeleccionPag();
-      vistaPrincipal.activarTab(1); //GRAFO
-      vistaPrincipal.activarTab(2); //ALGORITMO
-      vistaPrincipal.goToTab(1);
+      this.ctrlDominio.readEntryGraphFile(path);
+      this.vistaPrincipal.actualizarSeleccionCat();
+      this.vistaPrincipal.actualizarSeleccionPag();
+      this.vistaPrincipal.activarTab(1); //GRAFO
+      this.vistaPrincipal.activarTab(2); //ALGORITMO
+      this.vistaPrincipal.goToTab(1);
   }
   
   /**
@@ -146,10 +145,10 @@ public class CtrlPresentacion {
    */
   public void importarConjunto (String path)
   {
-      //ctrlDominio.cargarAlgorithmGraph(path);
-      vistaPrincipal.activarTab(3); //CONJ
-      vistaPrincipal.activarTab(4); //COMP
-      vistaPrincipal.goToTab(3);
+      this.ctrlDominio.loadCtoComunidad(path);
+      this.vistaPrincipal.activarTab(3); //CONJ
+      this.vistaPrincipal.activarTab(4); //COMP
+      this.vistaPrincipal.goToTab(3);
   }
   
   /**
@@ -159,7 +158,7 @@ public class CtrlPresentacion {
   public void exportarGrafo(String path)
   {
       Boolean error;
-      error = ctrlDominio.saveEntryGraph(path);
+      error = this.ctrlDominio.saveEntryGraph(path);
       if(!error)sincronizacionVistaPrincipal_a_Error("El path esta vacío");
   }
   
@@ -169,48 +168,48 @@ public class CtrlPresentacion {
    */
   public void exportarConjunto(String path)
   {
-      Boolean error;
-      //error = ctrlDominio.saveAlgorithmGraph(path);
-      //if(!error)sincronizacionVistaPrincipal_a_Error("El path esta vacío");
+      this.ctrlDominio.saveCtoComunidad(path);
   }
   //PESTAÑA GRAFO
   
   public int getPagNum(String pagina)
   {
-      return ctrlDominio.verNumPag(pagina);
+      return this.ctrlDominio.verNumPag(pagina);
   }
   
   public int getCatNum(String categoria)
   {
-      return ctrlDominio.verNumCat(categoria);
+      return this.ctrlDominio.verNumCat(categoria);
   }
   
   public ArrayList<Integer> getCatSelection(int min, int max)
   {
-     return ctrlDominio.getCatSelection(min, max); 
+     return this.ctrlDominio.getCatSelection(min, max); 
   }
   
   public ArrayList<Integer> getPagSelection(int min, int max)
   {
-     return ctrlDominio.getPagSelection(min, max); 
+     return this.ctrlDominio.getPagSelection(min, max); 
   }
   
   /**
    * Añade una categoria al grafo.
    * @param categoria 
+   * @return
    */
   public int addGrafoCat (String categoria)
   {
-      return ctrlDominio.addGrafoCat(categoria);
+      return this.ctrlDominio.addGrafoCat(categoria);
   }
   
   /**
    * Añade una pagina al grafo.
    * @param pagina 
+   * @return
    */
   public int addGrafoPag (String pagina)
   {
-      return ctrlDominio.addGrafoPag(pagina);
+      return this.ctrlDominio.addGrafoPag(pagina);
   }
   
   /**
@@ -221,25 +220,27 @@ public class CtrlPresentacion {
    */
   public void addGrafoEnlace (String node1, String node2, String tipus)
   {
-      ctrlDominio.addGrafoEnlace(node1,node2,tipus);
+      this.ctrlDominio.addGrafoEnlace(node1,node2,tipus);
   }
     
   /**
    * Borra una categoria del grafo.
    * @param categoria 
+   * @return
    */
   public int rmvGrafoCat (String categoria)
   {
-      return ctrlDominio.rmvGrafoCat(categoria);
+      return this.ctrlDominio.rmvGrafoCat(categoria);
   }
   
   /**
    * Borra una pagina del grafo.
    * @param pagina 
+     * @return  
    */
   public int rmvGrafoPag (String pagina)
   {
-      return ctrlDominio.rmvGrafoPag(pagina);
+      return this.ctrlDominio.rmvGrafoPag(pagina);
   }
   
   /**
@@ -250,7 +251,7 @@ public class CtrlPresentacion {
    */
   public void rmvGrafoEnlace (String node1, String node2, String tipus)
   {
-      ctrlDominio.rmvGrafoEnlace(node1,node2,tipus);
+      this.ctrlDominio.rmvGrafoEnlace(node1,node2,tipus);
   }
   
   /**
@@ -265,13 +266,15 @@ public class CtrlPresentacion {
       int id = -1;
       if(category)
       {
-          id = ctrlDominio.verNumCat(anterior);
-          ctrlDominio.modifyCategory(anterior,nuevo);
+          id = this.ctrlDominio.verNumCat(anterior);
+          boolean error = this.ctrlDominio.modifyCategory(anterior,nuevo);
+          if(!error)sincronizacionVistaPrincipal_a_Error("El nodo " + nuevo + " ya existe");
       }
       else
       {
-          id = ctrlDominio.verNumPag(anterior);
-          ctrlDominio.modifyPage(anterior, nuevo);
+          id = this.ctrlDominio.verNumPag(anterior);
+          boolean error = this.ctrlDominio.modifyPage(anterior, nuevo);
+          if(!error)sincronizacionVistaPrincipal_a_Error("El nodo " + nuevo + " ya existe");
       }
       return id;
   }
@@ -282,7 +285,7 @@ public class CtrlPresentacion {
    */
   public ArrayList<String> mostrarGrafoCat ()
   {
-      return ctrlDominio.verCatGeneral();
+      return this.ctrlDominio.verCatGeneral();
   }
   
   /**
@@ -291,7 +294,7 @@ public class CtrlPresentacion {
    */
   public ArrayList<String> mostrarGrafoPag ()
   {
-      return ctrlDominio.verPagGeneral();
+      return this.ctrlDominio.verPagGeneral();
   }
   
   /**
@@ -307,10 +310,10 @@ public class CtrlPresentacion {
   
   public Graph<Integer, Double> algorithmGraph()
   {
-      if(!ctrlDominio.isAlgorithmGraph())
+      if(!this.ctrlDominio.isAlgorithmGraph())
       {
-      Graph<Integer, Double> grafo = ctrlAlgoritmo.generate(ctrlDominio.getGrafo());
-      ctrlDominio.setAlgorithmGraph(grafo);
+      Graph<Integer, Double> grafo = this.ctrlAlgoritmo.generate(this.ctrlDominio.getGrafo());
+      this.ctrlDominio.setAlgorithmGraph(grafo);
       return grafo;
       }
       return null;
@@ -320,61 +323,60 @@ public class CtrlPresentacion {
   {
       //HACER UN EQUALS CON EL GRAFO GENERADO
       System.out.println("SETEAR ALGORITMO");
-      ctrlAlgoritmo.setAlgorithm(algoritmo);
-      ctrlAlgoritmo.setP(p);
-      
-      ctrlDominio.setGeneratedCto(ctrlAlgoritmo.ejecutar(this.algorithmGraph(),ctrlDominio.getGrafo()));
-      vistaPrincipal.activarTab(3); //CONJ
-      vistaPrincipal.activarTab(4); //COMP
-      vistaPrincipal.goToTab(3);
+      this.ctrlAlgoritmo.setAlgorithm(algoritmo);
+      this.ctrlAlgoritmo.setP(p);
+      this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.ejecutar(this.algorithmGraph(),this.ctrlDominio.getGrafo()));
+      this.vistaPrincipal.activarTab(3); //CONJ
+      this.vistaPrincipal.activarTab(4); //COMP
+      this.vistaPrincipal.goToTab(3);
   }
   
   public void aplicarSelPag (ArrayList<Integer> al)
   {
-      ctrlAlgoritmo.setPageSelections(al);
+      this.ctrlAlgoritmo.setPageSelections(al);
   }
   
   public void aplicarSelCat (ArrayList<Integer> al)
   {
-      ctrlAlgoritmo.setCatSelections(al);
+      this.ctrlAlgoritmo.setCatSelections(al);
   }
   
   public void aplicarFiltros (int a, int b, int c, int d, int e)
   {
-      ctrlAlgoritmo.setFilters(a,b,c,d,e);
+      this.ctrlAlgoritmo.setFilters(a,b,c,d,e);
   }
   
   //pestaña comunidades
   
   public void addCtoCat (String categoria, String comunidad, Boolean importat)
   {
-      Boolean error = ctrlDominio.addCtoCat(categoria, comunidad, importat);
+      Boolean error = this.ctrlDominio.addCtoCat(categoria, comunidad, importat);
       if(error)sincronizacionVistaPrincipal_a_Error("Comunidad no existente");
   }
   
   public void addCtoCom (String comunidad, Boolean importat)
   {
-      ctrlDominio.addCtoCom(comunidad, importat);
+      this.ctrlDominio.addCtoCom(comunidad, importat);
   }
   
   public void rmvCtoCat (String categoria, String comunidad, Boolean importat)
   {
-      ctrlDominio.rmvCtoCat(categoria,comunidad,importat);
+      this.ctrlDominio.rmvCtoCat(categoria,comunidad,importat);
   }
   
   public void rmvCtoCom (String comunidad, Boolean importat)
   {
-      ctrlDominio.rmvCtoCom(comunidad, importat);
+      this.ctrlDominio.rmvCtoCom(comunidad, importat);
   }
   
   public void modCtoNombre (int tipus, String anterior, String nuevo, String comunidad, Boolean importat)
   {
-      ctrlDominio.modCtoNombre(tipus, anterior, nuevo, comunidad, importat);
+      this.ctrlDominio.modCtoNombre(tipus, anterior, nuevo, comunidad, importat);
   }
   
   public ArrayList<String> mostrarCto (Boolean importat)
   {
-      return ctrlDominio.mostrarCtoComunidad(importat);
+      return this.ctrlDominio.mostrarCtoComunidad(importat);
   }
   
   public void visualizarCto (Boolean importat)
@@ -384,7 +386,7 @@ public class CtrlPresentacion {
   
   public ArrayList<String> mostrarCom (String comunidad, Boolean importat)
   {
-      return ctrlDominio.mostrarComunidad(comunidad, importat);
+      return this.ctrlDominio.mostrarComunidad(comunidad, importat);
   }
   
   public void visualizarCom (String comunidad, Boolean importat)

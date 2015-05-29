@@ -52,9 +52,9 @@ public class CtrDominio
         int tam = this.g.getCategorySize(), tam2;
         for(int i = 0;i < tam;++i)
         {
-            tam2 = this.g.getCategoryArch(i).size();
+            tam2 = this.g.getCategoryArch(this.g.getCategories().get(i)).size();
             if(tam2 >= min && tam2 <= max)
-                selection.add(i);
+                selection.add(this.g.getCategories().get(i));
         }
         return selection;
     }
@@ -65,9 +65,9 @@ public class CtrDominio
         int tam = this.g.getPageSize(), tam2;
         for(int i = 0;i < tam;++i)
         {
-            tam2 = this.g.getPageArch(i).size();
+            tam2 = this.g.getPageArch(this.g.getPages().get(i)).size();
             if(tam2 >= min && tam2 <= max)
-                selection.add(i);
+                selection.add(this.g.getPages().get(i));
         }
         return selection;
     }
@@ -297,14 +297,20 @@ public class CtrDominio
         }
     }
     
-    public void modifyPage(String page, String change)
+    public boolean modifyPage(String page, String change)
     {
-        this.g.changePage(this.g.getPageNumber(new Pagina(page)), change);
+        Pagina p = new Pagina(change);
+        if(this.g.getPageNumber(p) != -1)return false;
+        else this.g.changePage(this.g.getPageNumber(new Pagina(page)), change);
+        return true;
     }
     
-    public void modifyCategory(String category, String change)
+    public boolean modifyCategory(String category, String change)
     {
+        Categoria c = new Categoria(category);
+        if(this.g.getCategoryNumber(c) != -1)return false;
         this.g.changeCategory(this.g.getCategoryNumber(new Categoria(category)), change);
+        return true;
     }
     
     public void readEntryGraphFile(String path)

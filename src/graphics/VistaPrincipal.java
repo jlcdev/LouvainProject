@@ -1660,7 +1660,6 @@ public class VistaPrincipal extends javax.swing.JFrame
             System.out.println("Afegir Cat: " + txtCatToAddRmv.getText());
             model.addElement(txtCatToAddRmv.getText()); 
         } 
-        this.txtListGraph.setCaretPosition(1);
     }//GEN-LAST:event_btnAddCatToGraphActionPerformed
 
     private void btnImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafoActionPerformed
