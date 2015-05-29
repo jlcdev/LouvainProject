@@ -302,7 +302,7 @@
                               <Component id="comboTipoNodo" min="-2" pref="195" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="25" pref="42" max="32767" attributes="0"/>
+                      <EmptySpace min="25" pref="66" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="btnListCatGraph" min="-2" pref="125" max="-2" attributes="0"/>
@@ -349,12 +349,10 @@
                                           <Component id="btnRmvCatFromGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                              <Component id="txtPagToAddRmv" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="btnAddPagToGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="btnRmvPagFromGraph" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtPagToAddRmv" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnAddPagToGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="btnRmvPagFromGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -383,7 +381,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="comboTipoNodo" min="-2" pref="20" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="21" max="32767" attributes="0"/>
                               <Component id="btnExportarGrafo" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane4" pref="406" max="32767" attributes="0"/>
@@ -405,7 +403,9 @@
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCatToAddRmvMouseReleased"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCatToAddRmvActionPerformed"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCatToAddRmvFocusLost"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
@@ -418,7 +418,10 @@
                 <Property name="text" type="java.lang.String" value="Nombre p&#xe1;gina"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPagToAddRmvMouseReleased"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPagToAddRmvActionPerformed"/>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtPagToAddRmvFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtPagToAddRmvFocusLost"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
@@ -430,6 +433,10 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nombre nodo1"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtNodo1EnlaceMouseReleased"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNodo1EnlaceFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnAddCatToGraph">
               <Properties>
@@ -483,6 +490,10 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nombre nodo2"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtNodo2EnlaceMouseReleased"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNodo2EnlaceFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboTipoEnlace">
               <Properties>
@@ -559,6 +570,10 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Anterior"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtNombreNodoAnteriorMouseReleased"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNombreNodoAnteriorFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
@@ -574,6 +589,10 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuevo"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtNombreNodoNuevoMouseReleased"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNombreNodoNuevoFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnImportarGrafo1">
               <Properties>
@@ -861,7 +880,9 @@
                         <Property name="text" type="java.lang.String" value="min"/>
                       </Properties>
                       <Events>
+                        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtMinCatLinkMouseReleased"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMinCatLinkActionPerformed"/>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtMinCatLinkFocusLost"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel30">
@@ -873,11 +894,20 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="max"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtMaxCatLinkMouseReleased"/>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtMaxCatLinkFocusLost"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtCatNameSel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Nombre pag"/>
+                        <Property name="text" type="java.lang.String" value="Nombre cat"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCatNameSelMouseReleased"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCatNameSelActionPerformed"/>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCatNameSelFocusLost"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnAddSelCatName">
                       <Properties>
@@ -1059,6 +1089,10 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Nombre pag"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPagNameSelMouseReleased"/>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtPagNameSelFocusLost"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel25">
                       <Properties>
@@ -1214,7 +1248,7 @@
                     <Component class="javax.swing.JSpinner" name="spNombre">
                       <Properties>
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                          <SpinnerModel initial="1" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                          <SpinnerModel initial="5" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1226,7 +1260,7 @@
                     <Component class="javax.swing.JSpinner" name="spPagComun">
                       <Properties>
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                          <SpinnerModel initial="1" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                          <SpinnerModel initial="5" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1238,7 +1272,7 @@
                     <Component class="javax.swing.JSpinner" name="spCatComun">
                       <Properties>
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                          <SpinnerModel initial="1" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                          <SpinnerModel initial="5" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1250,7 +1284,7 @@
                     <Component class="javax.swing.JSpinner" name="spSuperComun">
                       <Properties>
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                          <SpinnerModel initial="1" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                          <SpinnerModel initial="5" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1262,7 +1296,7 @@
                     <Component class="javax.swing.JSpinner" name="spSubComun">
                       <Properties>
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                          <SpinnerModel initial="1" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                          <SpinnerModel initial="5" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1286,7 +1320,7 @@
             <Component class="javax.swing.JSpinner" name="spinP">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" maximum="100" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                  <SpinnerModel initial="50" maximum="100" minimum="0" numberType="java.lang.Integer" stepSize="10" type="number"/>
                 </Property>
               </Properties>
             </Component>

@@ -318,9 +318,11 @@ public class CtrlPresentacion {
   public void ejecutar (int algoritmo, int p)
   {
       //HACER UN EQUALS CON EL GRAFO GENERADO
+      System.out.println("SETEAR ALGORITMO");
       ctrlAlgoritmo.setAlgorithm(algoritmo);
       ctrlAlgoritmo.setP(p);
-      ctrlDominio.setGeneratedCto(ctrlAlgoritmo.ejecutar(algorithmGraph(),ctrlDominio.getGrafo()));
+      
+      ctrlDominio.setGeneratedCto(ctrlAlgoritmo.ejecutar(this.algorithmGraph(),ctrlDominio.getGrafo()));
       vistaPrincipal.activarTab(3); //CONJ
       vistaPrincipal.activarTab(4); //COMP
       vistaPrincipal.goToTab(3);

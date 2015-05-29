@@ -353,6 +353,13 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         txtCatToAddRmv.setText("Nombre categoria");
         txtCatToAddRmv.setToolTipText("");
+        txtCatToAddRmv.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                txtCatToAddRmvMouseReleased(evt);
+            }
+        });
         txtCatToAddRmv.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -360,21 +367,60 @@ public class VistaPrincipal extends javax.swing.JFrame
                 txtCatToAddRmvActionPerformed(evt);
             }
         });
+        txtCatToAddRmv.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                txtCatToAddRmvFocusLost(evt);
+            }
+        });
 
         jLabel9.setText("Página:");
 
         txtPagToAddRmv.setText("Nombre página");
+        txtPagToAddRmv.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                txtPagToAddRmvMouseReleased(evt);
+            }
+        });
+        txtPagToAddRmv.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                txtPagToAddRmvActionPerformed(evt);
+            }
+        });
         txtPagToAddRmv.addFocusListener(new java.awt.event.FocusAdapter()
         {
             public void focusGained(java.awt.event.FocusEvent evt)
             {
                 txtPagToAddRmvFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                txtPagToAddRmvFocusLost(evt);
+            }
         });
 
         jLabel10.setText("Enlace:");
 
         txtNodo1Enlace.setText("Nombre nodo1");
+        txtNodo1Enlace.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                txtNodo1EnlaceMouseReleased(evt);
+            }
+        });
+        txtNodo1Enlace.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                txtNodo1EnlaceFocusLost(evt);
+            }
+        });
 
         btnAddCatToGraph.setText("+");
         btnAddCatToGraph.addActionListener(new java.awt.event.ActionListener()
@@ -431,6 +477,20 @@ public class VistaPrincipal extends javax.swing.JFrame
         });
 
         txtNodo2Enlace.setText("Nombre nodo2");
+        txtNodo2Enlace.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                txtNodo2EnlaceMouseReleased(evt);
+            }
+        });
+        txtNodo2Enlace.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                txtNodo2EnlaceFocusLost(evt);
+            }
+        });
 
         comboTipoEnlace.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CsubC", "CsupC", "CP", "PC" }));
         comboTipoEnlace.addActionListener(new java.awt.event.ActionListener()
@@ -492,12 +552,40 @@ public class VistaPrincipal extends javax.swing.JFrame
         jScrollPane4.setViewportView(txtListGraph);
 
         txtNombreNodoAnterior.setText("Anterior");
+        txtNombreNodoAnterior.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                txtNombreNodoAnteriorMouseReleased(evt);
+            }
+        });
+        txtNombreNodoAnterior.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                txtNombreNodoAnteriorFocusLost(evt);
+            }
+        });
 
         jLabel13.setText("AÑADIR/QUITAR");
 
         jLabel14.setText("CAMBIAR NOMBRE NODO");
 
         txtNombreNodoNuevo.setText("Nuevo");
+        txtNombreNodoNuevo.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                txtNombreNodoNuevoMouseReleased(evt);
+            }
+        });
+        txtNombreNodoNuevo.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                txtNombreNodoNuevoFocusLost(evt);
+            }
+        });
 
         btnImportarGrafo1.setText("Importar grafo");
         btnImportarGrafo1.addActionListener(new java.awt.event.ActionListener()
@@ -583,7 +671,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                     .addGroup(panelGrafoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(comboTipoNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 42, Short.MAX_VALUE)
+                .addGap(25, 66, Short.MAX_VALUE)
                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelGrafoLayout.createSequentialGroup()
                         .addComponent(btnListCatGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -623,10 +711,9 @@ public class VistaPrincipal extends javax.swing.JFrame
                                     .addComponent(btnAddCatToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnRmvCatFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txtPagToAddRmv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnAddPagToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtPagToAddRmv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAddPagToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnRmvPagFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -648,7 +735,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                             .addComponent(jLabel14))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboTipoNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addComponent(btnExportarGrafo))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
                 .addContainerGap())
@@ -716,6 +803,13 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel28.setText("Selección por número de enlaces:");
 
         txtMinCatLink.setText("min");
+        txtMinCatLink.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                txtMinCatLinkMouseReleased(evt);
+            }
+        });
         txtMinCatLink.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -723,12 +817,54 @@ public class VistaPrincipal extends javax.swing.JFrame
                 txtMinCatLinkActionPerformed(evt);
             }
         });
+        txtMinCatLink.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                txtMinCatLinkFocusLost(evt);
+            }
+        });
 
         jLabel30.setText("-");
 
         txtMaxCatLink.setText("max");
+        txtMaxCatLink.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                txtMaxCatLinkMouseReleased(evt);
+            }
+        });
+        txtMaxCatLink.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                txtMaxCatLinkFocusLost(evt);
+            }
+        });
 
-        txtCatNameSel.setText("Nombre pag");
+        txtCatNameSel.setText("Nombre cat");
+        txtCatNameSel.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                txtCatNameSelMouseReleased(evt);
+            }
+        });
+        txtCatNameSel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                txtCatNameSelActionPerformed(evt);
+            }
+        });
+        txtCatNameSel.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                txtCatNameSelFocusLost(evt);
+            }
+        });
 
         btnAddSelCatName.setText("+");
         btnAddSelCatName.addActionListener(new java.awt.event.ActionListener()
@@ -860,6 +996,20 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel22.setText("Selección por nombre:");
 
         txtPagNameSel.setText("Nombre pag");
+        txtPagNameSel.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                txtPagNameSelMouseReleased(evt);
+            }
+        });
+        txtPagNameSel.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                txtPagNameSelFocusLost(evt);
+            }
+        });
 
         jLabel25.setText("Selección por número de enlaces:");
 
@@ -988,23 +1138,23 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         jLabel2.setText("Nombre similar:");
 
-        spNombre.setModel(new javax.swing.SpinnerNumberModel(1, 0, 10, 1));
+        spNombre.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
 
         jLabel3.setText("Páginas en común:");
 
-        spPagComun.setModel(new javax.swing.SpinnerNumberModel(1, 0, 10, 1));
+        spPagComun.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
 
         jLabel4.setText("Categorias en común:");
 
-        spCatComun.setModel(new javax.swing.SpinnerNumberModel(1, 0, 10, 1));
+        spCatComun.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
 
         jLabel5.setText("SuperCat. en común:");
 
-        spSuperComun.setModel(new javax.swing.SpinnerNumberModel(1, 0, 10, 1));
+        spSuperComun.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
 
         jLabel6.setText("SubCat. en común:");
 
-        spSubComun.setModel(new javax.swing.SpinnerNumberModel(1, 0, 10, 1));
+        spSubComun.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
 
         jLabel7.setText("Prioridad");
 
@@ -1082,7 +1232,7 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         tabsAlgoritmo.addTab("Filtros", tabFiltros);
 
-        spinP.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
+        spinP.setModel(new javax.swing.SpinnerNumberModel(50, 0, 100, 10));
 
         javax.swing.GroupLayout panelAlgoritmoLayout = new javax.swing.GroupLayout(panelAlgoritmo);
         panelAlgoritmo.setLayout(panelAlgoritmoLayout);
@@ -1676,7 +1826,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
         int alg = 1;
         if(radioGirvan.isSelected()) alg = 2;
-        else if(radioClique.isSelected()) alg = 3;        
+        else if(radioClique.isSelected()) alg = 3;
         iCtrlPresentacion.ejecutar(alg,  Integer.parseInt(spinP.getValue().toString()));  
     }//GEN-LAST:event_btnEjecutarActionPerformed
 
@@ -1699,7 +1849,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnNuevoGrafoActionPerformed
 
     private void txtCatToAddRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCatToAddRmvActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtCatToAddRmvActionPerformed
 
     private void txtPagToAddRmvFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPagToAddRmvFocusGained
@@ -1969,6 +2119,176 @@ public class VistaPrincipal extends javax.swing.JFrame
         iCtrlPresentacion.crearGrafo();
         clearTxtAreas();
     }//GEN-LAST:event_mItemNuevoGrafoActionPerformed
+
+    private void txtCatToAddRmvMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtCatToAddRmvMouseReleased
+    {//GEN-HEADEREND:event_txtCatToAddRmvMouseReleased
+        if(this.txtCatToAddRmv.getText().equals("Nombre categoria"))
+        {
+            this.txtCatToAddRmv.setText("");
+        }
+    }//GEN-LAST:event_txtCatToAddRmvMouseReleased
+
+    private void txtPagToAddRmvActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtPagToAddRmvActionPerformed
+    {//GEN-HEADEREND:event_txtPagToAddRmvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPagToAddRmvActionPerformed
+
+    private void txtPagToAddRmvMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtPagToAddRmvMouseReleased
+    {//GEN-HEADEREND:event_txtPagToAddRmvMouseReleased
+        if(this.txtPagToAddRmv.getText().equals("Nombre página"))
+        {
+            this.txtPagToAddRmv.setText("");
+        }
+    }//GEN-LAST:event_txtPagToAddRmvMouseReleased
+
+    private void txtNodo1EnlaceMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtNodo1EnlaceMouseReleased
+    {//GEN-HEADEREND:event_txtNodo1EnlaceMouseReleased
+        if(this.txtNodo1Enlace.getText().equals("Nombre nodo1"))
+        {
+            this.txtNodo1Enlace.setText("");
+        }
+    }//GEN-LAST:event_txtNodo1EnlaceMouseReleased
+
+    private void txtNodo2EnlaceMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtNodo2EnlaceMouseReleased
+    {//GEN-HEADEREND:event_txtNodo2EnlaceMouseReleased
+        if(this.txtNodo2Enlace.getText().equals("Nombre nodo2"))
+        {
+            this.txtNodo2Enlace.setText("");
+        }
+    }//GEN-LAST:event_txtNodo2EnlaceMouseReleased
+
+    private void txtCatToAddRmvFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtCatToAddRmvFocusLost
+    {//GEN-HEADEREND:event_txtCatToAddRmvFocusLost
+        if(this.txtCatToAddRmv.getText().isEmpty())
+        {
+            this.txtCatToAddRmv.setText("Nombre categoria");
+        }
+    }//GEN-LAST:event_txtCatToAddRmvFocusLost
+
+    private void txtPagToAddRmvFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtPagToAddRmvFocusLost
+    {//GEN-HEADEREND:event_txtPagToAddRmvFocusLost
+        if(this.txtPagToAddRmv.getText().isEmpty())
+        {
+            this.txtPagToAddRmv.setText("Nombre página");
+        }
+    }//GEN-LAST:event_txtPagToAddRmvFocusLost
+
+    private void txtNodo1EnlaceFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtNodo1EnlaceFocusLost
+    {//GEN-HEADEREND:event_txtNodo1EnlaceFocusLost
+        if(this.txtNodo1Enlace.getText().isEmpty())
+        {
+            this.txtNodo1Enlace.setText("Nombre nodo1");
+        }
+    }//GEN-LAST:event_txtNodo1EnlaceFocusLost
+
+    private void txtNodo2EnlaceFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtNodo2EnlaceFocusLost
+    {//GEN-HEADEREND:event_txtNodo2EnlaceFocusLost
+        if(this.txtNodo2Enlace.getText().isEmpty())
+        {
+            this.txtNodo2Enlace.setText("Nombre nodo2");
+        }
+    }//GEN-LAST:event_txtNodo2EnlaceFocusLost
+
+    private void txtNombreNodoAnteriorMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtNombreNodoAnteriorMouseReleased
+    {//GEN-HEADEREND:event_txtNombreNodoAnteriorMouseReleased
+        if(this.txtNombreNodoAnterior.getText().equals("Anterior"))
+        {
+            this.txtNombreNodoAnterior.setText("");
+        }
+    }//GEN-LAST:event_txtNombreNodoAnteriorMouseReleased
+
+    private void txtNombreNodoAnteriorFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtNombreNodoAnteriorFocusLost
+    {//GEN-HEADEREND:event_txtNombreNodoAnteriorFocusLost
+        if(this.txtNombreNodoAnterior.getText().isEmpty())
+        {
+            this.txtNombreNodoAnterior.setText("Anterior");
+        }
+    }//GEN-LAST:event_txtNombreNodoAnteriorFocusLost
+
+    private void txtNombreNodoNuevoMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtNombreNodoNuevoMouseReleased
+    {//GEN-HEADEREND:event_txtNombreNodoNuevoMouseReleased
+        if(this.txtNombreNodoNuevo.getText().equals("Nuevo"))
+        {
+            this.txtNombreNodoNuevo.setText("");
+        }
+    }//GEN-LAST:event_txtNombreNodoNuevoMouseReleased
+
+    private void txtNombreNodoNuevoFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtNombreNodoNuevoFocusLost
+    {//GEN-HEADEREND:event_txtNombreNodoNuevoFocusLost
+        if(this.txtNombreNodoNuevo.getText().isEmpty())
+        {
+            this.txtNombreNodoNuevo.setText("Nuevo");
+        }
+    }//GEN-LAST:event_txtNombreNodoNuevoFocusLost
+
+    private void txtCatNameSelMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtCatNameSelMouseReleased
+    {//GEN-HEADEREND:event_txtCatNameSelMouseReleased
+        if(this.txtCatNameSel.getText().equals("Nombre cat"))
+        {
+            this.txtCatNameSel.setText("");
+        }
+    }//GEN-LAST:event_txtCatNameSelMouseReleased
+
+    private void txtCatNameSelFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtCatNameSelFocusLost
+    {//GEN-HEADEREND:event_txtCatNameSelFocusLost
+        if(this.txtCatNameSel.getText().isEmpty())
+        {
+            this.txtCatNameSel.setText("Nombre cat");
+        }
+    }//GEN-LAST:event_txtCatNameSelFocusLost
+
+    private void txtPagNameSelMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtPagNameSelMouseReleased
+    {//GEN-HEADEREND:event_txtPagNameSelMouseReleased
+        if(this.txtPagNameSel.getText().equals("Nombre pag"))
+        {
+            this.txtPagNameSel.setText("");
+        }
+    }//GEN-LAST:event_txtPagNameSelMouseReleased
+
+    private void txtPagNameSelFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtPagNameSelFocusLost
+    {//GEN-HEADEREND:event_txtPagNameSelFocusLost
+        if(this.txtPagNameSel.getText().isEmpty())
+        {
+            this.txtPagNameSel.setText("Nombre pag");
+        }
+    }//GEN-LAST:event_txtPagNameSelFocusLost
+
+    private void txtCatNameSelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtCatNameSelActionPerformed
+    {//GEN-HEADEREND:event_txtCatNameSelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCatNameSelActionPerformed
+
+    private void txtMinCatLinkMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtMinCatLinkMouseReleased
+    {//GEN-HEADEREND:event_txtMinCatLinkMouseReleased
+        if(this.txtMinCatLink.getText().equals("min"))
+        {
+            this.txtMinCatLink.setText("");
+        }
+    }//GEN-LAST:event_txtMinCatLinkMouseReleased
+
+    private void txtMinCatLinkFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtMinCatLinkFocusLost
+    {//GEN-HEADEREND:event_txtMinCatLinkFocusLost
+        if(this.txtMinCatLink.getText().isEmpty())
+        {
+            this.txtMinCatLink.setText("min");
+        }
+    }//GEN-LAST:event_txtMinCatLinkFocusLost
+
+    private void txtMaxCatLinkMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtMaxCatLinkMouseReleased
+    {//GEN-HEADEREND:event_txtMaxCatLinkMouseReleased
+        if(this.txtMaxCatLink.getText().equals("max"))
+        {
+            this.txtMaxCatLink.setText("");
+        }
+    }//GEN-LAST:event_txtMaxCatLinkMouseReleased
+
+    private void txtMaxCatLinkFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtMaxCatLinkFocusLost
+    {//GEN-HEADEREND:event_txtMaxCatLinkFocusLost
+        if(this.txtMaxCatLink.getText().isEmpty())
+        {
+            this.txtMaxCatLink.setText("max");
+        }
+    }//GEN-LAST:event_txtMaxCatLinkFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

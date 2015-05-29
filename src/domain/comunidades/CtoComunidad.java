@@ -39,6 +39,7 @@ public class CtoComunidad
             this.ctoComunidades.add(community);
             ++cont;
         }
+        System.out.println("TIEMPO: "+this.texec);
     }
     
     public CtoComunidad()
