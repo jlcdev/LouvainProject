@@ -207,7 +207,32 @@ public class CtrDominio
      */
     public void addGrafoEnlace (String node1, String node2, String tipus)
     {
-        this.g.addArch(new Arch(0,0,node1,node2,Arch.typeArch.valueOf(tipus)));
+        int origen = -1;
+        int destino = -1;
+        Categoria c1 = new Categoria(node1);
+        Categoria c2 = new Categoria(node2);
+        switch(tipus)
+        {            
+            case("CsubC"):
+                origen = this.g.getCategoryNumber(c1);
+                destino = this.g.getCategoryNumber(c2);
+                break;
+            case("CsupC"):
+                origen = this.g.getCategoryNumber(c1);
+                destino = this.g.getCategoryNumber(c2);
+                break;
+            case("CP"):
+                Pagina p1 = new Pagina(node2);
+                origen = this.g.getCategoryNumber(c1);
+                destino = this.g.getPageNumber(p1);
+                break;
+            case("PC"):
+                Pagina p2 = new Pagina(node1);
+                origen = this.g.getPageNumber(p2);
+                destino = this.g.getCategoryNumber(c2);
+                break;
+        }
+        this.g.addArch(new Arch(origen,destino,node1,node2,Arch.typeArch.valueOf(tipus)));
     }
   
     /**
