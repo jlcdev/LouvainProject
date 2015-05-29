@@ -182,8 +182,8 @@ public class CtrDominio
     
     public Integer addGrafoCat (String category)
     {
-        Categoria c = new Categoria(category);        
-        this.g.addCategoria(c);
+        Categoria c = new Categoria(category);
+        if(! this.g.addCategoria(c))return -1;
         return this.g.getCategoryNumber(c);
     }
   
@@ -195,7 +195,7 @@ public class CtrDominio
     public Integer addGrafoPag (String pagina)
     {
         Pagina p = new Pagina(pagina);
-        this.g.addPagina(p);
+        if(! this.g.addPagina(p))return -1;
         return this.g.getPageNumber(p);
     }
   
@@ -381,18 +381,6 @@ public class CtrDominio
         if(importat) return this.importedCto.getComunidad(comunidad).getNameCategories();
         else return this.generatedCto.getComunidad(comunidad).getNameCategories();
     }
-
-    public ArrayList<String> compararComunidades(String com1, Boolean importado1, String com2, Boolean importado2)
-    {
-        Comunidad c1 = new Comunidad();
-        Comunidad c2 = new Comunidad();
-        if(importado1)c1 = this.importedCto.getComunidad(com1);
-        else c1 = this.generatedCto.getComunidad(com1);
-        if(importado2)c2 = this.importedCto.getComunidad(com2);
-        else c2 = this.generatedCto.getComunidad(com2);
-        ArrayList<String> comparacion = new ArrayList();
-        return comparacion;
-    }
     
     public void saveCtoComunidad(String path)
     {
@@ -409,12 +397,88 @@ public class CtrDominio
         this.ctrData.setAlgorithmPath(path);
         this.ctrData.readCtoComunidad(this.importedCto);
     }
-    
-    public void compararConjuntos()
+ 
+    public int numCatCom (String comunidad, Boolean importado)
     {
-        //TODO
+        if(importado) return importedCto.getComunidad(comunidad).getNumCategorias();
+        return generatedCto.getComunidad(comunidad).getNumCategorias();
+    }
+    public ArrayList<String> commonCategories(String com1, Boolean importado1, String com2, Boolean importado2)
+    {
+        Comunidad c1 = new Comunidad();
+        Comunidad c2 = new Comunidad();
+        if(importado1)c1 = this.importedCto.getComunidad(com1);
+        else c1 = this.generatedCto.getComunidad(com1);
+        if(importado2)c2 = this.importedCto.getComunidad(com2);
+        else c2 = this.generatedCto.getComunidad(com2);
+        ArrayList<String> comparacion = new ArrayList();
+        ArrayList<String> comunidad1 = c1.getNameCategories();
+        ArrayList<String> comunidad2 = c2.getNameCategories();
+        for(String i: comunidad1)
+            if(comunidad2.contains(i))comparacion.add(i);
+        return comparacion;
     }
     
+    public double getPorcentaje(String comunidad, Boolean importado)
+    {
+        Integer com, conj;
+        if(importado)
+        {
+            com = this.importedCto.getComunidad(comunidad).getNumCategorias();
+            conj = this.importedCto.getSelections().getCategoriesSelected().size();
+        }
+        else
+        {
+            com = this.generatedCto.getComunidad(comunidad).getNumCategorias();
+            conj = this.generatedCto.getSelections().getCategoriesSelected().size();
+        }
+        return (double)((com/conj)*100);
+    }
+    
+    
+    public int[] infoConjunto(Boolean imported)
+    {
+        int[] info = new int[10];
+        if(imported)
+        {
+            info[0] = this.importedCto.getNumComunidades();
+            info[1] = this.importedCto.getAlgortimo();
+            info[2] = this.importedCto.getP();
+            info[3] =  this.importedCto.getFiltros().getPname();
+            info[4] =  this.importedCto.getFiltros().getPcat();
+            info[5] =  this.importedCto.getFiltros().getPpag();
+            info[6] = this.importedCto.getFiltros().getPfat();
+            info[7] =  this.importedCto.getFiltros().getPson();
+            info[8] =  this.importedCto.getSelections().getCategoriesSelected().size();
+            info[9] =  this.importedCto.getSelections().getPagesSelected().size();
+        }
+        else
+        {
+            info[0] = this.generatedCto.getNumComunidades();
+            info[1] = this.generatedCto.getAlgortimo();
+            info[2] = this.generatedCto.getP();
+            info[3] =  this.generatedCto.getFiltros().getPname();
+            info[4] =  this.generatedCto.getFiltros().getPcat();
+            info[5] =  this.generatedCto.getFiltros().getPpag();
+            info[6] = this.generatedCto.getFiltros().getPfat();
+            info[7] =  this.generatedCto.getFiltros().getPson();
+            info[8] =  this.generatedCto.getSelections().getCategoriesSelected().size();
+            info[9] =  this.generatedCto.getSelections().getPagesSelected().size();
+        }
+        return info;
+    }
+    
+    public double getTexec (Boolean imported)
+    {
+        if(imported)return this.importedCto.getTimeExecution();
+        return this.generatedCto.getTimeExecution();
+    }
+    
+    public String getNombreConj(Boolean imported)
+    {
+        if(imported)return this.importedCto.getNombre();
+        return this.generatedCto.getNombre();
+    }
     public void estadisticas()
     {
         //OPCIONAL

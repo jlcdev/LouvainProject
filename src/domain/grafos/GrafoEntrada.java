@@ -744,7 +744,7 @@ public class GrafoEntrada implements Cloneable
         }
     }
     
-    public void addCategoria(Categoria category)
+    public boolean addCategoria(Categoria category)
     {
         int value = this.getCategoryNumber(category);
         if(value == -1)
@@ -755,10 +755,12 @@ public class GrafoEntrada implements Cloneable
             this.csubcEdges.put(this.categoryId, new ArrayList<Arch>());
             this.csupcEdges.put(this.categoryId, new ArrayList<Arch>());
             ++this.categoryId;
+            return true;
         }
+        return false;
     }
     
-    public void addPagina(Pagina page)
+    public boolean addPagina(Pagina page)
     {
         int value = this.getPageNumber(page);
         if(value == -1)
@@ -767,7 +769,9 @@ public class GrafoEntrada implements Cloneable
             this.paginaIndex.put(page, this.pageId);
             this.pcEdges.put(this.pageId, new ArrayList<Arch>());
             ++this.pageId;
+            return true;
         }
+        return false;
     }
 
     @Override
