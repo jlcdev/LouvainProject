@@ -115,7 +115,28 @@ public class CtrDominio
     public ArrayList<String> verEnlacesGeneral()
     {
         ArrayList<String> response = new ArrayList<>();
-        //TODO
+        for(Integer i : this.g.getCategories())
+        {
+            for(Arch arc : this.g.getCsupCArch(i))
+            {
+                response.add(arc.toString());
+            }
+            for(Arch arc : this.g.getCsubCArch(i))
+            {
+                response.add(arc.toString());
+            }
+            for(Arch arc : this.g.getCPArch(i))
+            {
+                response.add(arc.toString());
+            }
+        }
+        for(Integer i : this.g.getPages())
+        {
+            for(Arch arc : this.g.getPCArch(i))
+            {
+                response.add(arc.toString());
+            }
+        }
         return response;
     }
     

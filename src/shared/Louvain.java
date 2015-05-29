@@ -24,10 +24,7 @@ public class Louvain extends Algorithm
 
     public Louvain()
     {
-        this.graph = null;
-        this.gIntermedi = null;
         this.communityList = new HashMap<>();
-        this.cAnterior = new ArrayList<>();
         this.cActual = new ArrayList<>();
     }
     
@@ -58,9 +55,8 @@ public class Louvain extends Algorithm
     
     public void metode()
     {
-        while(true)
+        while(this.fase1())
         {
-            if(! this.fase1()) break;
             this.guardarComunitat();
             this.fase2();
         }
@@ -71,12 +67,14 @@ public class Louvain extends Algorithm
         double x;
         this.gIntermedi = new Graph<>();
         int tam = this.cAnterior.size();
-        for(Integer i = 0; i < tam; i++)
+        for(Integer i = 0; i < tam; ++i)
             this.gIntermedi.addVertex(i);
-        for(Integer i = 0; i < tam; i++)
+        for(Integer i = 0; i < tam; ++i)
         {
-            for (Integer j = i; j < tam; j++)
+            this.gIntermedi.addVertex(i);
+            for (Integer j = i; j < tam; ++j)
             {
+                this.gIntermedi.addVertex(j);
                 x = this.pesEntreComunitats(this.cAnterior.get(i), this.cAnterior.get(j));
                 if(x != 0) this.gIntermedi.addEdge(i, j, x);
             }
@@ -86,11 +84,12 @@ public class Louvain extends Algorithm
     private double pesEntreComunitats(ArrayList<Integer> comunitat1, ArrayList<Integer> comunitat2)
     {
         double suma = 0.0;
+        Edge<Integer, Double> k;
         for(Integer i: comunitat1)
         {
             for(Integer j: comunitat2)
             {
-                Edge<Integer, Double> k = this.graph.getEdge(i, j);
+                k = this.graph.getEdge(i, j);
                 if(k != null) suma += k.getValue();
             }
         }
@@ -185,14 +184,11 @@ public class Louvain extends Algorithm
     private void inicialitzarComunitats()
     {
         this.cActual = new ArrayList<>();
-        if(this.gIntermedi != null)
+        for (Integer i : this.gIntermedi.getVertexs())
         {
-            for (Integer i : this.gIntermedi.getVertexs())
-            {
-                ArrayList<Integer> aux = new ArrayList();
-                aux.add(i);
-                this.cActual.add(aux);
-            }
+            ArrayList<Integer> aux = new ArrayList();
+            aux.add(i);
+            this.cActual.add(aux);
         }
     }
     
@@ -275,6 +271,7 @@ public class Louvain extends Algorithm
         return suma;
     }
     
+    @Override
     public ArrayList<ArrayList<Integer>> obtain()
     {
         if(this.p > 100 || this.p < 0 || this.steps < 0 || this.graph == null) return null;
