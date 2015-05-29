@@ -1,7 +1,5 @@
 package shared;
 
-
-
 /**
  *
  * @author albert campano
@@ -17,24 +15,20 @@ import java.util.HashMap;
  */
 public class Louvain extends Algorithm
 {
-
     private Graph<Integer, Double> graph;
     private Graph<Integer, Double> gIntermedi;
-    
     private HashMap<Integer, ArrayList<ArrayList<Integer>>> communityList;
-    
     private ArrayList<ArrayList<Integer>> cAnterior;
     private ArrayList<ArrayList<Integer>> cActual;
-    
-    private int steps;
+    private Integer steps;
 
     public Louvain()
     {
         this.graph = null;
         this.gIntermedi = null;
-        this.communityList = new HashMap<Integer, ArrayList<ArrayList<Integer>>>();
-        this.cAnterior = new ArrayList<ArrayList<Integer>>();
-        this.cActual = new ArrayList<ArrayList<Integer>>();
+        this.communityList = new HashMap<>();
+        this.cAnterior = new ArrayList<>();
+        this.cActual = new ArrayList<>();
     }
     
     /**
@@ -42,27 +36,24 @@ public class Louvain extends Algorithm
      *
      * @param g Graph<Integer, Double>
      */
+    @Override
     public void calc(Graph<Integer, Double> g)
     {
-        if(g != null)
+        this.steps = 0;
+        this.graph = g;
+        this.cAnterior = new ArrayList<>();
+        ArrayList<Integer> x;
+        for(Integer i: this.graph.getVertexs())
         {
-            this.steps = 0;
-            this.graph = g;
-            
-            this.cAnterior = new ArrayList<ArrayList<Integer>>();
-            for(int i: this.graph.getVertexs())
-            {
-                ArrayList<Integer> x = new ArrayList<Integer>();
-                x.add(i);
-                this.cAnterior.add(x);
-            }
-            this.fase2();
-            this.inicialitzarComunitats();
-            this.guardarComunitat(); //Per guardar l'estat inicial
-            this.fase2();
-
-            this.metode();
+            x = new ArrayList<>();
+            x.add(i);
+            this.cAnterior.add(x);
         }
+        this.fase2();
+        this.inicialitzarComunitats();
+        this.guardarComunitat(); //Per guardar l'estat inicial
+        this.fase2();
+        this.metode();
     }
     
     public void metode()
@@ -78,11 +69,13 @@ public class Louvain extends Algorithm
     private void fase2()
     {
         double x;
-        this.gIntermedi = new Graph<Integer, Double>();
-        for(int i = 0; i < this.cAnterior.size(); i++) this.gIntermedi.addVertex(i);
-        for(int i = 0; i < this.cAnterior.size(); i++)
+        this.gIntermedi = new Graph<>();
+        int tam = this.cAnterior.size();
+        for(Integer i = 0; i < tam; i++)
+            this.gIntermedi.addVertex(i);
+        for(Integer i = 0; i < tam; i++)
         {
-            for (int j = i; j < this.cAnterior.size(); j++)
+            for (Integer j = i; j < tam; j++)
             {
                 x = this.pesEntreComunitats(this.cAnterior.get(i), this.cAnterior.get(j));
                 if(x != 0) this.gIntermedi.addEdge(i, j, x);
@@ -93,9 +86,9 @@ public class Louvain extends Algorithm
     private double pesEntreComunitats(ArrayList<Integer> comunitat1, ArrayList<Integer> comunitat2)
     {
         double suma = 0.0;
-        for(int i: comunitat1)
+        for(Integer i: comunitat1)
         {
-            for(int j: comunitat2)
+            for(Integer j: comunitat2)
             {
                 Edge<Integer, Double> k = this.graph.getEdge(i, j);
                 if(k != null) suma += k.getValue();
@@ -108,13 +101,15 @@ public class Louvain extends Algorithm
     private void guardarComunitat()
     {
         //Creamos la nueva lista de comunidades
-        ArrayList<ArrayList<Integer>> guardar = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> guardar = new ArrayList<>();
+        ArrayList<Integer> nou;
+        ArrayList<Integer> x;
         for(ArrayList<Integer> i: this.cActual)
         {
-            ArrayList<Integer> nou = new ArrayList<Integer>();
-            for(int j: i)
+            nou = new ArrayList<>();
+            for(Integer j: i)
             {
-                ArrayList<Integer> x = new ArrayList<Integer>(this.cAnterior.get(j));
+                x = new ArrayList<>(this.cAnterior.get(j));
                 nou.addAll(x);
             }
             if(nou.size() > 0) guardar.add(nou);
@@ -125,11 +120,12 @@ public class Louvain extends Algorithm
         this.steps++;
         
         //Ponemos esta lista en cAnterior
-        this.cAnterior = new ArrayList<ArrayList<Integer>>();
+        this.cAnterior = new ArrayList<>();
+        ArrayList<Integer> aux;
         for(ArrayList<Integer> i: guardar)
         {
-            ArrayList<Integer> aux = new ArrayList<Integer>();
-            for(int j: i)
+            aux = new ArrayList<>();
+            for(Integer j: i)
             {
                 aux.add(j);
             }
@@ -142,7 +138,7 @@ public class Louvain extends Algorithm
     {
         inicialitzarComunitats();
         double qmax, q;
-        int comunitat, comunitatDef = 0;
+        Integer comunitat, comunitatDef = 0;
         boolean parada = false, modificat = false;
         double m = this.pesTotal();
         double m2 = 2*m;
@@ -151,19 +147,19 @@ public class Louvain extends Algorithm
         while(! parada)
         {
             parada = true;
-            for(int i: this.gIntermedi.getVertexs())
+            for(Integer i: this.gIntermedi.getVertexs())
             {
                 qmax = -1.0;
                 comunitat = trobarComunitat(i);
-                this.cActual.get(comunitat).remove((Integer) i);
+                this.cActual.get(comunitat).remove(i);
                 
                 ki = this.pesIncidentsVertex(i);
                 sumtot2 = this.pesIncidentsComunitat(this.cActual.get(comunitat));
                 kin2 = this.pesVertexComunitat(i, this.cActual.get(comunitat));
-                        
-                for (int j = 0; j < this.cActual.size(); j++)
+                int tam = this.cActual.size();
+                for (Integer j = 0; j < tam; j++)
                 {
-                    if(comunitat != j && estaCon(i, j))
+                    if(!comunitat.equals(j) && estaCon(i, j))
                     {
                         q = (this.pesVertexComunitat(i, this.cActual.get(j)) - kin2)/m2;
                         q -= ki*(this.pesIncidentsComunitat(this.cActual.get(j))-sumtot2) / mqua2;
@@ -188,10 +184,10 @@ public class Louvain extends Algorithm
 
     private void inicialitzarComunitats()
     {
-        this.cActual = new ArrayList<ArrayList<Integer>>();
+        this.cActual = new ArrayList<>();
         if(this.gIntermedi != null)
         {
-            for (int i : this.gIntermedi.getVertexs())
+            for (Integer i : this.gIntermedi.getVertexs())
             {
                 ArrayList<Integer> aux = new ArrayList();
                 aux.add(i);
@@ -200,30 +196,31 @@ public class Louvain extends Algorithm
         }
     }
     
-    private int trobarComunitat(int vertex)
+    private Integer trobarComunitat(Integer vertex)
     {
-        for (int i = 0; i < this.cActual.size(); i++) 
+        int tam = this.cActual.size();
+        for (Integer i = 0; i < tam; i++) 
         {
             if(this.cActual.get(i).contains(vertex)) return i;
         }
         return 0;
     }
     
-    private boolean estaCon(int vertex, int comunitat)
+    private boolean estaCon(Integer vertex, Integer comunitat)
     {
-        for (int i: this.gIntermedi.getNeighbors(vertex))
+        for (Integer i: this.gIntermedi.getNeighbors(vertex))
         {
-            if(this.cActual.get(comunitat).contains((Integer) i)) return true;
+            if(this.cActual.get(comunitat).contains(i)) return true;
         }
         return false;
     }
     
-    private double pesIncidentsVertex(int vertex)
+    private double pesIncidentsVertex(Integer vertex)
     {
         double suma = 0.0;
-        for(int j: this.gIntermedi.getNeighbors(vertex))
+        for(Integer j: this.gIntermedi.getNeighbors(vertex))
         {
-            if(vertex == j) suma += this.gIntermedi.getEdge(vertex, j).getValue() /2.0;
+            if(vertex.equals(j)) suma += this.gIntermedi.getEdge(vertex, j).getValue() /2.0;
             else
             {
                 Edge<Integer, Double> x = this.gIntermedi.getEdge(vertex, j);
@@ -236,9 +233,9 @@ public class Louvain extends Algorithm
     private double pesTotal()
     {
         double suma = 0.0;
-        for (int i: this.gIntermedi.getVertexs())
+        for (Integer i: this.gIntermedi.getVertexs())
         {
-            for(int j: this.gIntermedi.getNeighbors(i))
+            for(Integer j: this.gIntermedi.getNeighbors(i))
             {
                 Edge<Integer, Double> x = this.gIntermedi.getEdge(i, j);
                 if(x != null) suma += x.getValue();
@@ -247,10 +244,10 @@ public class Louvain extends Algorithm
         return suma / 2.0;
     }
     
-    private double pesVertexComunitat(int vertex, ArrayList<Integer> comunitat)
+    private double pesVertexComunitat(Integer vertex, ArrayList<Integer> comunitat)
     {
         double suma = 0.0;
-        for (int i: this.gIntermedi.getNeighbors(vertex))
+        for (Integer i: this.gIntermedi.getNeighbors(vertex))
         {
             if(comunitat.contains(i))
             {
@@ -264,9 +261,9 @@ public class Louvain extends Algorithm
     private double pesIncidentsComunitat(ArrayList<Integer> comunitat)
     {
         double suma = 0.0;
-        for(int i: comunitat)
+        for(Integer i: comunitat)
         {
-            for(int j: this.gIntermedi.getNeighbors(i))
+            for(Integer j: this.gIntermedi.getNeighbors(i))
             {
                 if(! comunitat.contains(j))
                 {

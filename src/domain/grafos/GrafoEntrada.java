@@ -85,11 +85,12 @@ public class GrafoEntrada implements Cloneable
     public ArrayList<Integer> getCategoriesAdyacentCategories(Integer node)
     {
         ArrayList<Integer> response = new ArrayList();
+        int temp;
         if(this.csubcEdges.containsKey(node))
         {
             for(Arch arc : this.csubcEdges.get(node))
             {
-                int temp = arc.getDestiny();
+                temp = arc.getDestiny();
                 if(!response.contains(temp))
                     response.add((Integer)temp);
             }
@@ -98,7 +99,7 @@ public class GrafoEntrada implements Cloneable
         {
             for(Arch arc : this.csupcEdges.get(node))
             {
-                int temp = arc.getDestiny();
+                temp = arc.getDestiny();
                 if(!response.contains(temp))
                     response.add((Integer)temp);
             }
@@ -790,60 +791,20 @@ public class GrafoEntrada implements Cloneable
     @Override
     public boolean equals(Object obj)
     {
-        if(obj == null)
-        {
-            return false;
-        }
-        if(getClass() != obj.getClass())
-        {
-            return false;
-        }
+        if(obj == null) return false;
+        if(getClass() != obj.getClass()) return false;
         final GrafoEntrada other = (GrafoEntrada) obj;
-        if(!Objects.equals(this.categoryId, other.categoryId))
-        {
-            return false;
-        }
-        if(!Objects.equals(this.pageId, other.pageId))
-        {
-            return false;
-        }
-        if(this.edgeSize != other.edgeSize)
-        {
-            return false;
-        }
-        if(!Objects.equals(this.indexCategoria, other.indexCategoria))
-        {
-            return false;
-        }
-        if(!Objects.equals(this.indexPagina, other.indexPagina))
-        {
-            return false;
-        }
-        if(!Objects.equals(this.categoriaIndex, other.categoriaIndex))
-        {
-            return false;
-        }
-        if(!Objects.equals(this.paginaIndex, other.paginaIndex))
-        {
-            return false;
-        }
-        if(!Objects.equals(this.csupcEdges, other.csupcEdges))
-        {
-            return false;
-        }
-        if(!Objects.equals(this.csubcEdges, other.csubcEdges))
-        {
-            return false;
-        }
-        if(!Objects.equals(this.cpEdges, other.cpEdges))
-        {
-            return false;
-        }
-        if(!Objects.equals(this.pcEdges, other.pcEdges))
-        {
-            return false;
-        }
-        return true;
+        if(!Objects.equals(this.categoryId, other.categoryId)) return false;
+        if(!Objects.equals(this.pageId, other.pageId)) return false;
+        if(this.edgeSize != other.edgeSize) return false;
+        if(!Objects.equals(this.indexCategoria, other.indexCategoria)) return false;
+        if(!Objects.equals(this.indexPagina, other.indexPagina)) return false;
+        if(!Objects.equals(this.categoriaIndex, other.categoriaIndex)) return false;
+        if(!Objects.equals(this.paginaIndex, other.paginaIndex)) return false;
+        if(!Objects.equals(this.csupcEdges, other.csupcEdges)) return false;
+        if(!Objects.equals(this.csubcEdges, other.csubcEdges)) return false;
+        if(!Objects.equals(this.cpEdges, other.cpEdges)) return false;
+        return Objects.equals(this.pcEdges, other.pcEdges);
     }
     
     @Override
@@ -853,17 +814,17 @@ public class GrafoEntrada implements Cloneable
         try
         {
             obj = (GrafoEntrada)super.clone();
-            obj.categoriaIndex = (HashMap<Categoria, Integer>) categoriaIndex.clone();
-            obj.categoryId = new Integer(categoryId);
-            obj.cpEdges = (HashMap<Integer, ArrayList<Arch>>) cpEdges.clone();
-            obj.csubcEdges = (HashMap<Integer, ArrayList<Arch>>) csubcEdges.clone();
-            obj.csupcEdges = (HashMap<Integer, ArrayList<Arch>>) csupcEdges.clone();
-            obj.edgeSize = edgeSize;
-            obj.indexCategoria = (HashMap<Integer, Categoria>) indexCategoria.clone();
-            obj.indexPagina = (HashMap<Integer, Pagina>) indexPagina.clone();
-            obj.pageId = new Integer(pageId);
-            obj.paginaIndex = (HashMap<Pagina, Integer>) paginaIndex.clone();
-            obj.pcEdges = (HashMap<Integer, ArrayList<Arch>>) pcEdges.clone();
+            obj.categoriaIndex = (HashMap<Categoria, Integer>) this.categoriaIndex.clone();
+            obj.categoryId = this.categoryId;
+            obj.cpEdges = (HashMap<Integer, ArrayList<Arch>>) this.cpEdges.clone();
+            obj.csubcEdges = (HashMap<Integer, ArrayList<Arch>>) this.csubcEdges.clone();
+            obj.csupcEdges = (HashMap<Integer, ArrayList<Arch>>) this.csupcEdges.clone();
+            obj.edgeSize = this.edgeSize;
+            obj.indexCategoria = (HashMap<Integer, Categoria>) this.indexCategoria.clone();
+            obj.indexPagina = (HashMap<Integer, Pagina>) this.indexPagina.clone();
+            obj.pageId = this.pageId;
+            obj.paginaIndex = (HashMap<Pagina, Integer>) this.paginaIndex.clone();
+            obj.pcEdges = (HashMap<Integer, ArrayList<Arch>>) this.pcEdges.clone();
         }
         catch(CloneNotSupportedException e){}
         return obj;

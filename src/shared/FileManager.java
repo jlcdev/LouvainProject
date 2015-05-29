@@ -101,13 +101,16 @@ public class FileManager
     
     public void createFile(String path)
     {
-        PrintWriter writer = null;
-        try {
-            writer = new PrintWriter(path, "UTF-8");
-        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+        try
+        {
+            PrintWriter writer = new PrintWriter(path, "UTF-8");
+            writer.close();
+        }
+        catch(FileNotFoundException | UnsupportedEncodingException ex)
+        {
             Logger.getLogger(CtrData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        writer.close();
+        
     }
     
     public boolean existFile(String path)

@@ -25,19 +25,19 @@ public class CtrDominio
     
     public CtrDominio()
     {
-        g = new GrafoEntrada();
-        ctrData = new CtrData();
+        this.g = new GrafoEntrada();
+        this.ctrData = new CtrData();
     }
     
     public void newGrafo()
     {
-        g = new GrafoEntrada();
+        this.g = new GrafoEntrada();
     }
     
     public void information()
     {
-        if(graph == null) return;
-        System.out.println("Vertices: "+graph.getVertexs().size());
+        if(this.graph == null) return;
+        System.out.println("Vertices: "+this.graph.getVertexs().size());
         
     }
     
@@ -49,9 +49,11 @@ public class CtrDominio
     public ArrayList<Integer> getCatSelection(int min, int max)
     {
         ArrayList<Integer> selection = new ArrayList();
-        for(int i = 0;i < g.getCategorySize();++i)
+        int tam = this.g.getCategorySize(), tam2;
+        for(int i = 0;i < tam;++i)
         {
-            if(g.getCategoryArch(i).size() >= min && g.getCategoryArch(i).size() <= max)
+            tam2 = this.g.getCategoryArch(i).size();
+            if(tam2 >= min && tam2 <= max)
                 selection.add(i);
         }
         return selection;
@@ -60,9 +62,11 @@ public class CtrDominio
     public ArrayList<Integer> getPagSelection(int min, int max)
     {
         ArrayList<Integer> selection = new ArrayList();
-        for(int i = 0;i < g.getPageSize();++i)
+        int tam = this.g.getPageSize(), tam2;
+        for(int i = 0;i < tam;++i)
         {
-            if(g.getPageArch(i).size() >= min && g.getPageArch(i).size() <= max)
+            tam2 = this.g.getPageArch(i).size();
+            if(tam2 >= min && tam2 <= max)
                 selection.add(i);
         }
         return selection;
@@ -80,7 +84,7 @@ public class CtrDominio
     
     public boolean isAlgorithmGraph()
     {
-        return (graph != null?true:false);
+        return (this.graph != null);
     }
     
     public void setGeneratedCto(CtoComunidad cto)
@@ -111,6 +115,7 @@ public class CtrDominio
     public ArrayList<String> verEnlacesGeneral()
     {
         ArrayList<String> response = new ArrayList<>();
+        //TODO
         return response;
     }
     
@@ -141,8 +146,7 @@ public class CtrDominio
     
     public Integer verNumPag(String pagina)
     {
-        Pagina pag = new Pagina(pagina);
-        return g.getPageNumber(pag);
+        return g.getPageNumber(new Pagina(pagina));
     }
     
     public Integer verNumCat(Integer category)
@@ -152,15 +156,14 @@ public class CtrDominio
     
     public Integer verNumCat(String category)
     {
-        return g.getCategoryNumber(new Categoria(category));
+        return this.g.getCategoryNumber(new Categoria(category));
     }
     
     public Integer addGrafoCat (String category)
     {
         Categoria c = new Categoria(category);        
-        g.addCategoria(c);
-        Integer r = g.getCategoryNumber(c);
-        return r;
+        this.g.addCategoria(c);
+        return this.g.getCategoryNumber(c);
     }
   
     /**
@@ -170,9 +173,8 @@ public class CtrDominio
     public Integer addGrafoPag (String pagina)
     {
         Pagina p = new Pagina(pagina);
-        g.addPagina(p);
-        Integer r = g.getPageNumber(p);
-        return r;
+        this.g.addPagina(p);
+        return this.g.getPageNumber(p);
     }
   
     /**
@@ -183,19 +185,19 @@ public class CtrDominio
      */
     public void addGrafoEnlace (String node1, String node2, String tipus)
     {
-        Arch arco = new Arch(0,0,node1,node2,Arch.typeArch.valueOf(tipus));
-        g.addArch(arco);
+        this.g.addArch(new Arch(0,0,node1,node2,Arch.typeArch.valueOf(tipus)));
     }
   
     /**
-     * Borra una categoria del grafo.
-     * @param categoria 
+     * Borra una categoria del grafo. 
+     * @param category
+     * @return 
      */
     public Integer rmvGrafoCat (String category)
     {
         Categoria c = new Categoria(category);
-        Integer r = g.getCategoryNumber(c);
-        g.removeCategoria(c);
+        Integer r = this.g.getCategoryNumber(c);
+        this.g.removeCategoria(c);
         return r;
         
     }
@@ -203,12 +205,13 @@ public class CtrDominio
     /**
      * Borra una pagina del grafo.
      * @param pagina 
+     * @return  
      */
     public Integer rmvGrafoPag (String pagina)
     {
         Pagina p = new Pagina(pagina);
-        Integer r = g.getPageNumber(p);
-        g.removePagina(p);
+        Integer r = this.g.getPageNumber(p);
+        this.g.removePagina(p);
         return r;// ha de retornar la pos de la pagina
     }
   
@@ -227,43 +230,41 @@ public class CtrDominio
             case "CsubC":
                 c1 = new Categoria(node1);
                 c2 = new Categoria(node2);
-                g.removeArchCategorySubCategory(g.getCategoryNumber(c1), g.getCategoryNumber(c2));
+                this.g.removeArchCategorySubCategory(this.g.getCategoryNumber(c1), this.g.getCategoryNumber(c2));
                 break;
             case "CsupC":
                 c1 = new Categoria(node1);
                 c2 = new Categoria(node2);
-                g.removeArchCategorySupCategory(g.getCategoryNumber(c1), g.getCategoryNumber(c2));
+                this.g.removeArchCategorySupCategory(this.g.getCategoryNumber(c1), this.g.getCategoryNumber(c2));
                 break;
             case "PC":
                 c1 = new Categoria(node2);
                 p = new Pagina(node1);
-                g.removeArchPageCategory(g.getPageNumber(p), g.getCategoryNumber(c1));
+                this.g.removeArchPageCategory(this.g.getPageNumber(p), this.g.getCategoryNumber(c1));
                 break;
             case "CP":
                 c1 = new Categoria(node1);
                 p = new Pagina(node2);
-                g.removeArchCategoryPage(g.getCategoryNumber(c1), g.getPageNumber(p));
+                this.g.removeArchCategoryPage(this.g.getCategoryNumber(c1), this.g.getPageNumber(p));
                 break;
         }
     }
     
     public void modifyPage(String page, String change)
     {
-        Pagina p = new Pagina(page);
-        this.g.changePage(g.getPageNumber(p), change);
+        this.g.changePage(this.g.getPageNumber(new Pagina(page)), change);
     }
     
     public void modifyCategory(String category, String change)
     {
-        Categoria c = new Categoria(category);
-        this.g.changeCategory(g.getCategoryNumber(c), change);
+        this.g.changeCategory(this.g.getCategoryNumber(new Categoria(category)), change);
     }
     
     public void readEntryGraphFile(String path)
     {
-        g = new GrafoEntrada();
-        ctrData.setEntryPath(path);
-        ctrData.readEntryGraphFile(this.g);
+        this.g = new GrafoEntrada();
+        this.ctrData.setEntryPath(path);
+        this.ctrData.readEntryGraphFile(this.g);
     }
     
     public void addToEntryGraph(String nA, String tA, String tArch, String nB, String tB)
@@ -274,8 +275,8 @@ public class CtrDominio
     public boolean saveEntryGraph(String path)
     {
         if(path==null || path.isEmpty()) return false;
-        ctrData.setEntryPath(path);
-        return ctrData.writeEntryGraphFile(this.g);
+        this.ctrData.setEntryPath(path);
+        return this.ctrData.writeEntryGraphFile(this.g);
     }
     
     //TRATAMIENTO DE LOS CONJUNTOS
@@ -285,13 +286,13 @@ public class CtrDominio
         Comunidad com;
         if(importat)
         {
-            com = importedCto.getComunidad(comunidad);
+            com = this.importedCto.getComunidad(comunidad);
             if(com == null)return true;
             com.addCategoria(category);
         }
         else
         {
-            com = generatedCto.getComunidad(comunidad);
+            com = this.generatedCto.getComunidad(comunidad);
             if(com == null)return true;
             com.addCategoria(category);
         }
@@ -302,8 +303,8 @@ public class CtrDominio
     {
         Comunidad com = new Comunidad();
         com.setNombre(comunidad);
-        if(importat)importedCto.addComunidades(com);
-        else generatedCto.addComunidades(com);
+        if(importat)this.importedCto.addComunidades(com);
+        else this.generatedCto.addComunidades(com);
     }
   
     public boolean rmvCtoCat (String category, String comunidad, Boolean importat)
@@ -311,13 +312,13 @@ public class CtrDominio
         Comunidad com;
         if(importat)
         {
-            com = importedCto.getComunidad(comunidad);
+            com = this.importedCto.getComunidad(comunidad);
             if(com == null)return true;
             com.removeCategoria(category);
         }
         else
         {
-            com = generatedCto.getComunidad(comunidad);
+            com = this.generatedCto.getComunidad(comunidad);
             if(com == null)return true;
             com.removeCategoria(category);
         }
@@ -326,26 +327,26 @@ public class CtrDominio
   
     public void rmvCtoCom (String comunidad, Boolean importat)
     {
-        if(importat)importedCto.removeComunidades(comunidad);
-        else generatedCto.removeComunidades(comunidad);
+        if(importat)this.importedCto.removeComunidades(comunidad);
+        else this.generatedCto.removeComunidades(comunidad);
     }
   
     public void modCtoNombre (int tipus, String anterior, String nuevo, String comunidad, Boolean importat)
     {
         if(tipus == 0)
         {
-            if(importat) importedCto.setNombre(nuevo);
-            else generatedCto.setNombre(nuevo);
+            if(importat) this.importedCto.setNombre(nuevo);
+            else this.generatedCto.setNombre(nuevo);
         }
         else if(tipus == 1)
         {
-            if(importat)importedCto.getComunidad(anterior).setNombre(nuevo);
-            else generatedCto.getComunidad(anterior).setNombre(nuevo);           
+            if(importat)this.importedCto.getComunidad(anterior).setNombre(nuevo);
+            else this.generatedCto.getComunidad(anterior).setNombre(nuevo);           
         }
         else if(tipus == 2)
         {
-            if(importat)importedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);
-            else generatedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);            
+            if(importat)this.importedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);
+            else this.generatedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);            
         }
     }
     public void mostrarGrafo()
@@ -353,20 +354,20 @@ public class CtrDominio
     
     public ArrayList<String> mostrarCtoComunidad(Boolean importat)
     {
-        if(importat) return importedCto.getNameComunidades();
-        else return generatedCto.getNameComunidades();
+        if(importat) return this.importedCto.getNameComunidades();
+        else return this.generatedCto.getNameComunidades();
     }
         
     public ArrayList<String> mostrarComunidad(String comunidad, Boolean importat)
     {
         if(importat)
         {
-            Comunidad c = importedCto.getComunidad(comunidad);
+            Comunidad c = this.importedCto.getComunidad(comunidad);
             return c.getNameCategories();
         }
         else
         {
-            Comunidad c = generatedCto.getComunidad(comunidad);
+            Comunidad c = this.generatedCto.getComunidad(comunidad);
             return c.getNameCategories();
         }
     }
@@ -375,10 +376,10 @@ public class CtrDominio
     {
         Comunidad c1 = new Comunidad();
         Comunidad c2 = new Comunidad();
-        if(importado1)c1 = importedCto.getComunidad(com1);
-        else c1 = generatedCto.getComunidad(com1);
-        if(importado2)c2 = importedCto.getComunidad(com2);
-        else c2 = generatedCto.getComunidad(com2);
+        if(importado1)c1 = this.importedCto.getComunidad(com1);
+        else c1 = this.generatedCto.getComunidad(com1);
+        if(importado2)c2 = this.importedCto.getComunidad(com2);
+        else c2 = this.generatedCto.getComunidad(com2);
         ArrayList<String> comparacion = new ArrayList();
         return comparacion;
     }
@@ -408,6 +409,4 @@ public class CtrDominio
     {
         //OPCIONAL
     }
-    
-    
 }
