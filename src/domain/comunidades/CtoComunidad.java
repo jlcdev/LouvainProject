@@ -98,6 +98,16 @@ public class CtoComunidad
         return response;
     }
     
+    public int getP()
+    {
+        return this.p;
+    }
+    
+    public double getTimeExecution()
+    {
+        return this.texec;
+    }
+    
     public int getAlgortimo()
     {
         return this.algoritmo;

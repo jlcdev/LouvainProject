@@ -190,6 +190,7 @@ public class CtrDominio
     /**
      * Añade una pagina al grafo.
      * @param pagina 
+     * @return  
      */
     public Integer addGrafoPag (String pagina)
     {
@@ -300,8 +301,6 @@ public class CtrDominio
         return this.ctrData.writeEntryGraphFile(this.g);
     }
     
-    //TRATAMIENTO DE LOS CONJUNTOS
-    
     public boolean addCtoCat (String category, String comunidad, Boolean importat)
     {
         Comunidad com;
@@ -354,24 +353,22 @@ public class CtrDominio
   
     public void modCtoNombre (int tipus, String anterior, String nuevo, String comunidad, Boolean importat)
     {
-        if(tipus == 0)
+        switch(tipus)
         {
-            if(importat) this.importedCto.setNombre(nuevo);
-            else this.generatedCto.setNombre(nuevo);
-        }
-        else if(tipus == 1)
-        {
-            if(importat)this.importedCto.getComunidad(anterior).setNombre(nuevo);
-            else this.generatedCto.getComunidad(anterior).setNombre(nuevo);           
-        }
-        else if(tipus == 2)
-        {
-            if(importat)this.importedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);
-            else this.generatedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);            
+            case 0:
+                if(importat) this.importedCto.setNombre(nuevo);
+                else this.generatedCto.setNombre(nuevo);
+                break;
+            case 1:
+                if(importat)this.importedCto.getComunidad(anterior).setNombre(nuevo);
+                else this.generatedCto.getComunidad(anterior).setNombre(nuevo);
+                break;
+            case 2:
+                if(importat)this.importedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);
+                else this.generatedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);  
+                break;
         }
     }
-    public void mostrarGrafo()
-    {}
     
     public ArrayList<String> mostrarCtoComunidad(Boolean importat)
     {
@@ -381,16 +378,8 @@ public class CtrDominio
         
     public ArrayList<String> mostrarComunidad(String comunidad, Boolean importat)
     {
-        if(importat)
-        {
-            Comunidad c = this.importedCto.getComunidad(comunidad);
-            return c.getNameCategories();
-        }
-        else
-        {
-            Comunidad c = this.generatedCto.getComunidad(comunidad);
-            return c.getNameCategories();
-        }
+        if(importat) return this.importedCto.getComunidad(comunidad).getNameCategories();
+        else return this.generatedCto.getComunidad(comunidad).getNameCategories();
     }
 
     public ArrayList<String> compararComunidades(String com1, Boolean importado1, String com2, Boolean importado2)
@@ -423,7 +412,7 @@ public class CtrDominio
     
     public void compararConjuntos()
     {
-        
+        //TODO
     }
     
     public void estadisticas()

@@ -13,7 +13,6 @@ package graphics;
 
 import domain.CtrDominio;
 import domain.CtrAlgoritmo;
-import domain.comunidades.CtoComunidad;
 import java.util.*;
 import shared.Graph;
 
@@ -300,7 +299,7 @@ public class CtrlPresentacion {
    */
   public ArrayList<String> mostrarGrafoEnlaces ()
   {
-      return null;
+      return this.ctrlDominio.verEnlacesGeneral();
   }
   
   //pestaña algoritmo
