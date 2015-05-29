@@ -17,12 +17,16 @@ public class CtoComunidad
     private ArrayList<Comunidad> ctoComunidades;
     private Filters filtros;
     private Selections selections;
+    private int p;
+    private double texec;
     
-    public CtoComunidad(ArrayList<ArrayList<Integer>> result, GrafoEntrada orig, int algorithm, Filters f, Selections selections)
+    public CtoComunidad(ArrayList<ArrayList<Integer>> result, GrafoEntrada orig, int algorithm, Filters f, Selections selections, int p, double texec)
     {
         this.algoritmo = algorithm;
         this.filtros = f.clone();
         this.selections = selections.clone();
+        this.p = p;
+        this.texec = texec;
         int cont = 0;
         if(this.ctoComunidades == null) this.ctoComunidades = new ArrayList<>();
         for(ArrayList<Integer> communities : result)

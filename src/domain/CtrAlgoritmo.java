@@ -94,7 +94,9 @@ public class CtrAlgoritmo
         }
         if(communityAlgorithm == null) return null;
         communityAlgorithm.setP(this.p);
+        double t1 = System.currentTimeMillis();
         communityAlgorithm.calc(g);
-        return new CtoComunidad(communityAlgorithm.obtain(), orig, this.algorithm, this.filters, this.selections);
+        double t2 = System.currentTimeMillis();
+        return new CtoComunidad(communityAlgorithm.obtain(), orig, this.algorithm, this.filters, this.selections, this.p, (t2-t1));
     }
 }
