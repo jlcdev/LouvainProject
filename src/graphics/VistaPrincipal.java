@@ -629,6 +629,9 @@ public class VistaPrincipal extends javax.swing.JFrame
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 listPagMousePressed(evt);
             }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listPagMouseClicked(evt);
+            }
         });
         listPag.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -1473,6 +1476,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         listSet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 listSetMouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listSetMouseClicked(evt);
             }
         });
         listSet.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -2430,33 +2436,44 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listPagValueChanged
 
     private void listCatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCatMouseClicked
-        
+        if (evt.getClickCount() == 2 && !this.listCat.isSelectionEmpty()) 
+        {
+            int index = this.listCat.locationToIndex(evt.getPoint());
+            System.out.println("index: "+index);
+        }
     }//GEN-LAST:event_listCatMouseClicked
 
     private void listCatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCatMousePressed
-        if (evt.getButton() == MouseEvent.BUTTON1) this.txtNodo1Enlace.setText(this.listCat.getSelectedValue().toString());
-        else if (evt.getButton() == MouseEvent.BUTTON3)
+        if(!this.listCat.isSelectionEmpty())
         {
-            JList list = (JList)evt.getSource();
-            int row = list.locationToIndex(evt.getPoint());
-            list.setSelectedIndex(row);
-            this.txtNodo2Enlace.setText(this.listCat.getSelectedValue().toString());
+            if (evt.getButton() == MouseEvent.BUTTON1) this.txtNodo1Enlace.setText(this.listCat.getSelectedValue().toString());
+            else if (evt.getButton() == MouseEvent.BUTTON3)
+            {
+                JList list = (JList)evt.getSource();
+                int row = list.locationToIndex(evt.getPoint());
+                list.setSelectedIndex(row);
+                this.txtNodo2Enlace.setText(this.listCat.getSelectedValue().toString());
+            } 
         }
+        
     }//GEN-LAST:event_listCatMousePressed
 
     private void listPagMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPagMousePressed
-        if (evt.getButton() == MouseEvent.BUTTON1)
+        if(!this.listPag.isSelectionEmpty())
         {
-            this.txtNodo1Enlace.setText(this.listPag.getSelectedValue().toString());
-            this.comboTipoEnlace.setSelectedIndex(3);
-        }
-        else if (evt.getButton() == MouseEvent.BUTTON3)
-        {
-            JList list = (JList)evt.getSource();
-            int row = list.locationToIndex(evt.getPoint());
-            list.setSelectedIndex(row);
-            this.txtNodo2Enlace.setText(this.listPag.getSelectedValue().toString());
-            this.comboTipoEnlace.setSelectedIndex(2);
+            if (evt.getButton() == MouseEvent.BUTTON1)
+            {
+                this.txtNodo1Enlace.setText(this.listPag.getSelectedValue().toString());
+                this.comboTipoEnlace.setSelectedIndex(3);
+            }
+            else if (evt.getButton() == MouseEvent.BUTTON3)
+            {
+                JList list = (JList)evt.getSource();
+                int row = list.locationToIndex(evt.getPoint());
+                list.setSelectedIndex(row);
+                this.txtNodo2Enlace.setText(this.listPag.getSelectedValue().toString());
+                this.comboTipoEnlace.setSelectedIndex(2);
+            }
         }
     }//GEN-LAST:event_listPagMousePressed
 
@@ -2647,6 +2664,27 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.comboTipoEnlace.setSelectedItem(data[2]);
         }
     }//GEN-LAST:event_listLinksValueChanged
+
+    private void listSetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetMouseClicked
+        if (evt.getClickCount() == 2 && !this.listSet.isSelectionEmpty()) 
+        {
+            ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(this.listSet.getSelectedValue().toString(), this.comboTipoSet.getSelectedIndex() != 0);          
+            DefaultListModel model = (DefaultListModel) this.listCom.getModel();
+            model.clear();
+            for(String elem : lista) model.addElement(elem);
+
+            CardLayout cl = (CardLayout)(this.panelC.getLayout());
+            cl.show(this.panelC, "card2");    
+        }
+    }//GEN-LAST:event_listSetMouseClicked
+
+    private void listPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPagMouseClicked
+        if (evt.getClickCount() == 2 && !this.listPag.isSelectionEmpty()) 
+        {
+            int index = this.listPag.locationToIndex(evt.getPoint());
+            System.out.println("index: "+index);
+        }
+    }//GEN-LAST:event_listPagMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
