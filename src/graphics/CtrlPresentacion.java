@@ -313,6 +313,7 @@ public class CtrlPresentacion {
   {
       Graph<Integer, Double> grafo = this.ctrlAlgoritmo.generate(this.ctrlDominio.getGrafo());
       this.ctrlDominio.setAlgorithmGraph(grafo);
+      System.out.println("FINAL TRANSFORMACIÓN");
       return grafo;
   }
   
