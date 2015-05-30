@@ -120,8 +120,8 @@ public class VistaPrincipal extends javax.swing.JFrame
     
     public void actualizarLinks()
     {           
-        ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoEnlaces();          
-        DefaultListModel model = (DefaultListModel) listLinks.getModel();
+        ArrayList<String> lista = this.iCtrlPresentacion.mostrarGrafoEnlaces();          
+        DefaultListModel model = (DefaultListModel) this.listLinks.getModel();
         model.clear();
         for(String elem : lista) model.addElement(elem);
         
@@ -641,6 +641,11 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         listLinks.setModel(new javax.swing.DefaultListModel());
         listLinks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listLinks.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listLinksValueChanged(evt);
+            }
+        });
         sclistLinks.setViewportView(listLinks);
 
         panel.add(sclistLinks, "card3");
@@ -713,14 +718,13 @@ public class VistaPrincipal extends javax.swing.JFrame
                 .addGap(45, 45, 45)
                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelInfoGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(panelGrafoLayout.createSequentialGroup()
-                            .addComponent(btnListCatGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(41, 41, 41)
-                            .addComponent(btnListPagGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(41, 41, 41)
-                            .addComponent(btnListLinksGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelGrafoLayout.createSequentialGroup()
+                        .addComponent(btnListCatGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnListPagGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnListLinksGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelGrafoLayout.setVerticalGroup(
@@ -2257,10 +2261,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_txtNodo2EnlaceMouseReleased
 
     private void btnRmvLinkFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvLinkFromGraphActionPerformed
-        iCtrlPresentacion.rmvGrafoEnlace(txtNodo1Enlace.getText(), txtNodo2Enlace.getText(), comboTipoEnlace.getSelectedItem().toString());
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card3");
+        this.iCtrlPresentacion.rmvGrafoEnlace(this.txtNodo1Enlace.getText(), this.txtNodo2Enlace.getText(), this.comboTipoEnlace.getSelectedItem().toString());
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card3");
         this.labelInfoGraf.setText("Categorias: "+this.catPosToId.size()+" | "+"Páginas: "+this.pagPosToId.size()+" | "+"Enlaces: "+ this.listLinks.getModel().getSize());
+        this.actualizarLinks();
     }//GEN-LAST:event_btnRmvLinkFromGraphActionPerformed
 
     private void btnRmvPagFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvPagFromGraphActionPerformed
@@ -2281,48 +2286,49 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnRmvPagFromGraphActionPerformed
 
     private void btnAddPagToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPagToGraphActionPerformed
-        int id = iCtrlPresentacion.addGrafoPag(txtPagToAddRmv.getText());
+        int id = this.iCtrlPresentacion.addGrafoPag(this.txtPagToAddRmv.getText());
         if(id != -1)
         {
-            DefaultListModel model = (DefaultListModel) listSelPaginas.getModel();            
-            model.addElement(txtPagToAddRmv.getText());
-            model = (DefaultListModel) listPag.getModel();            
-            model.addElement(txtPagToAddRmv.getText());
-            pagPosToId.add(id);
+            DefaultListModel model = (DefaultListModel) this.listSelPaginas.getModel();            
+            model.addElement(this.txtPagToAddRmv.getText());
+            model = (DefaultListModel) this.listPag.getModel();            
+            model.addElement(this.txtPagToAddRmv.getText());
+            this.pagPosToId.add(id);
         }
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card2");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card2");
         this.labelInfoGraf.setText("Categorias: "+this.catPosToId.size()+" | "+"Páginas: "+this.pagPosToId.size()+" | "+"Enlaces: "+ this.listLinks.getModel().getSize());
 
     }//GEN-LAST:event_btnAddPagToGraphActionPerformed
 
     private void btnAddLinkToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLinkToGraphActionPerformed
-        iCtrlPresentacion.addGrafoEnlace(txtNodo1Enlace.getText(), txtNodo2Enlace.getText(), comboTipoEnlace.getSelectedItem().toString());
+        this.iCtrlPresentacion.addGrafoEnlace(this.txtNodo1Enlace.getText(), this.txtNodo2Enlace.getText(), this.comboTipoEnlace.getSelectedItem().toString());
+        this.actualizarLinks();
         CardLayout cl = (CardLayout)(panel.getLayout());
         cl.show(panel, "card3");
         this.labelInfoGraf.setText("Categorias: "+this.catPosToId.size()+" | "+"Páginas: "+this.pagPosToId.size()+" | "+"Enlaces: "+ this.listLinks.getModel().getSize());
     }//GEN-LAST:event_btnAddLinkToGraphActionPerformed
 
     private void btnRmvCatFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromGraphActionPerformed
-        int id = iCtrlPresentacion.rmvGrafoCat(txtCatToAddRmv.getText());
+        int id = this.iCtrlPresentacion.rmvGrafoCat(this.txtCatToAddRmv.getText());
         if (id != -1)
         {
-            int pos = catPosToId.indexOf(id);
-            DefaultListModel model = (DefaultListModel) listSelCategorias.getModel();            
+            int pos = this.catPosToId.indexOf(id);
+            DefaultListModel model = (DefaultListModel) this.listSelCategorias.getModel();            
             model.remove(pos);
-            model = (DefaultListModel) listCat.getModel();            
+            model = (DefaultListModel) this.listCat.getModel();            
             model.remove(pos);
-            listCat.setSelectedIndex(pos);
-            catPosToId.remove(pos);
+            this.listCat.setSelectedIndex(pos);
+            this.catPosToId.remove(pos);
         }
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card1");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card1");
         this.labelInfoGraf.setText("Categorias: "+this.catPosToId.size()+" | "+"Páginas: "+this.pagPosToId.size()+" | "+"Enlaces: "+ this.listLinks.getModel().getSize());
 
     }//GEN-LAST:event_btnRmvCatFromGraphActionPerformed
 
     private void btnAddCatToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToGraphActionPerformed
-        int id = iCtrlPresentacion.addGrafoCat(txtCatToAddRmv.getText());
+        int id = this.iCtrlPresentacion.addGrafoCat(txtCatToAddRmv.getText());
         if (id != -1)
         {
             DefaultListModel model = (DefaultListModel) listSelCategorias.getModel();
@@ -2609,32 +2615,38 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void listSetValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listSetValueChanged
         if(!this.listSet.isSelectionEmpty())
         {
-            //this.txtCatToAddRmv.setText(this.listSet.getSelectedValue().toString());
-            //this.txtNombreNodoAnterior.setText(this.listSet.getSelectedValue().toString());            
+            this.txtComToAddRmvCat.setText(this.listSet.getSelectedValue().toString());
+            this.txtComToList.setText(this.listSet.getSelectedValue().toString());
+            this.txtNombreAnterior.setText(this.listSet.getSelectedValue().toString());
+            this.txtAddRmvCom.setText(this.listSet.getSelectedValue().toString());            
         }
     }//GEN-LAST:event_listSetValueChanged
 
     private void listSetMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetMouseReleased
-        if (evt.getButton() == MouseEvent.BUTTON1)
-        {
-            this.txtComToAddRmvCat.setText(this.listSet.getSelectedValue().toString());
-            this.txtComToList.setText(this.listSet.getSelectedValue().toString());
-            this.txtNombreAnterior.setText(this.listSet.getSelectedValue().toString());
-            this.txtAddRmvCom.setText(this.listSet.getSelectedValue().toString());
-        }
+        
     }//GEN-LAST:event_listSetMouseReleased
 
     private void listComValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listComValueChanged
         if(!this.listCom.isSelectionEmpty())
         {
-            //this.txtCatToAddRmv.setText(this.listCom.getSelectedValue().toString());
-            //this.txtNombreNodoAnterior.setText(this.listCom.getSelectedValue().toString());
+            this.txtCatAddRmvSet.setText(this.listCom.getSelectedValue().toString());
         }
     }//GEN-LAST:event_listComValueChanged
 
     private void listComMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listComMouseReleased
-        if (evt.getButton() == MouseEvent.BUTTON1) this.txtCatAddRmvSet.setText(this.listCom.getSelectedValue().toString());                  
+                        
     }//GEN-LAST:event_listComMouseReleased
+
+    private void listLinksValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listLinksValueChanged
+        if(!this.listLinks.isSelectionEmpty())
+        {
+            String s = this.listLinks.getSelectedValue().toString();
+            String data[] = s.split("\\s+");           
+            this.txtNodo1Enlace.setText(data[0]);
+            this.txtNodo2Enlace.setText(data[3]);    
+            this.comboTipoEnlace.setSelectedItem(data[2]);
+        }
+    }//GEN-LAST:event_listLinksValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
