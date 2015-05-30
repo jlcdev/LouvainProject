@@ -354,78 +354,37 @@ public class GrafoEntrada implements Cloneable
     
     public void setData(String sA, String tA, String tArch, String sB, String tB)
     {
-        Node A, B;
         Integer na, nb;
         Arch arc;
         if(tA.equals("cat"))
         {
-            A = new Categoria(sA);
-            int value = this.getCategoryNumber((Categoria) A);
-            if(value == -1)
-            {
-                na = this.categoryId;
-                this.indexCategoria.put(na, (Categoria)A);
-                this.categoriaIndex.put((Categoria)A, na);
-                ++this.categoryId;
-            }
-            else
-            {
-                na = value;
-            }
+            Categoria c = new Categoria(sA);
+            this.addCategoria(c);
+            na = this.getCategoryNumber(c);
         }
         else
         {
-            A = new Pagina(sA);
-            int value = this.getPageNumber((Pagina) A);
-            if(value == -1)
-            {
-                na = this.pageId;
-                this.indexPagina.put(na, (Pagina)A);
-                this.paginaIndex.put((Pagina)A, na);
-                ++this.pageId;
-            }
-            else
-            {
-                na = value;
-            }
+            Pagina p = new Pagina(sA);
+            this.addPagina(p);
+            na = this.getPageNumber(p);
         }
         if(tB.equals("cat"))
         {
-            B = new Categoria(sB);
-            int value = this.getCategoryNumber((Categoria) B);
-            if(value == -1)
-            {
-                nb = this.categoryId;
-                this.indexCategoria.put(nb, (Categoria)B);
-                this.categoriaIndex.put((Categoria)B, nb);
-                ++this.categoryId;
-            }
-            else
-            {
-                nb = value;
-            }
+            Categoria c = new Categoria(sB);
+            this.addCategoria(c);
+            nb = this.getCategoryNumber(c);
         }
         else
         {
-            B = new Pagina(sB);
-            int value = this.getPageNumber((Pagina) B);
-            if(value == -1)
-            {
-                nb = this.pageId;
-                this.indexPagina.put(nb, (Pagina)B);
-                this.paginaIndex.put((Pagina)B, nb);
-                ++this.pageId;
-            }
-            else
-            {
-                nb = value;
-            }
+            Pagina p = new Pagina(sA);
+            this.addPagina(p);
+            nb = this.getPageNumber(p);
         }
         
         switch(tArch)
         {
             case "CsubC":
-                arc = new Arch(na, nb, sA, sB, Arch.typeArch.CsubC);
+                arc = new Arch(na, nb, Arch.typeArch.CsubC);
                 if(this.csubcEdges.containsKey(na))
                 {
                     ArrayList<Arch> arcs = this.csubcEdges.get(na);
@@ -440,7 +399,7 @@ public class GrafoEntrada implements Cloneable
                 }
                 break;
             case "CsupC":
-                arc = new Arch(na, nb, sA, sB, Arch.typeArch.CsupC);
+                arc = new Arch(na, nb, Arch.typeArch.CsupC);
                 if(this.csupcEdges.containsKey(na))
                 {
                     ArrayList<Arch> arcs = this.csupcEdges.get(na);
@@ -455,7 +414,7 @@ public class GrafoEntrada implements Cloneable
                 }
                 break;
             case "CP":
-                arc = new Arch(na, nb, sA, sB, Arch.typeArch.CP);
+                arc = new Arch(na, nb, Arch.typeArch.CP);
                 if(this.cpEdges.containsKey(na))
                 {
                     ArrayList<Arch> arcs = this.cpEdges.get(na);
@@ -470,7 +429,7 @@ public class GrafoEntrada implements Cloneable
                 }
                 break;
             case "PC":
-                arc = new Arch(na, nb, sA, sB, Arch.typeArch.PC);
+                arc = new Arch(na, nb, Arch.typeArch.PC);
                 if(this.pcEdges.containsKey(na))
                 {
                     ArrayList<Arch> arcs = this.pcEdges.get(na);

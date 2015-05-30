@@ -199,7 +199,7 @@ public class CtrDominio
         return this.g.getPageNumber(p);
     }
   
-    /**
+     /**
      * Añade un enlace al grafo.
      * @param node1
      * @param node2
@@ -232,10 +232,10 @@ public class CtrDominio
                 destino = this.g.getCategoryNumber(c2);
                 break;
         }
-        this.g.addArch(new Arch(origen,destino,node1,node2,Arch.typeArch.valueOf(tipus)));
+        this.g.addArch(new Arch(origen,destino,Arch.typeArch.valueOf(tipus)));
     }
-  
-    /**
+    
+     /**
      * Borra una categoria del grafo. 
      * @param category
      * @return 

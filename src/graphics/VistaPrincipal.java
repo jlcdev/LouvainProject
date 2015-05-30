@@ -1799,7 +1799,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnRmvPagFromGraphActionPerformed
 
     private void btnAddLinkToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLinkToGraphActionPerformed
-        iCtrlPresentacion.addGrafoEnlace(txtNodo1Enlace.getText(), txtNodo2Enlace.getText(), comboTipoEnlace.getSelectedItem().toString());        
+        //iCtrlPresentacion.addGrafoEnlace(txtNodo1Enlace.getText(), txtNodo2Enlace.getText(), comboTipoEnlace.getSelectedItem().toString());        
     }//GEN-LAST:event_btnAddLinkToGraphActionPerformed
 
     private void btnRmvLinkFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvLinkFromGraphActionPerformed

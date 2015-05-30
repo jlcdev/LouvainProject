@@ -10,8 +10,6 @@ public class Arch
 {
     private int origin;
     private int destiny;
-    private String sorigin;
-    private String sdestiny;
     private typeArch tipoArco;
     
     public static enum typeArch
@@ -23,16 +21,12 @@ public class Arch
      * Constructor de la clase
      * @param origin
      * @param destiny
-     * @param sorigin
-     * @param sdestiny
      * @param tipoArco 
      */
-    public Arch(int origin, int destiny, String sorigin, String sdestiny, typeArch tipoArco)
+    public Arch(int origin, int destiny, typeArch tipoArco)
     {
         this.origin = origin;
         this.destiny = destiny;
-        this.sorigin = sorigin;
-        this.sdestiny = sdestiny;
         this.tipoArco = tipoArco;
     }
 
@@ -117,32 +111,6 @@ public class Arch
         final Arch other = (Arch) obj;
         if(this.origin != other.origin) return false;
         if(this.destiny != other.destiny) return false;
-        if(this.tipoArco != other.tipoArco) return false;
-        return true;
-    }
-
-    /**
-     * Devuelve una representacion del objeto
-     * @return una representacion del objeto en formato string
-     */
-    @Override
-    public String toString()
-    {
-        if(this.tipoArco == typeArch.CsubC)
-        {
-            return this.sorigin+"   cat   CsubC   "+this.sdestiny+"   cat";
-        }
-        else if(this.tipoArco == typeArch.CsupC)
-        {
-            return this.sorigin+"   cat   CsupC   "+this.sdestiny+"   cat";
-        }
-        else if(this.tipoArco == typeArch.CP)
-        {
-            return this.sorigin+"   cat   CP   "+this.sdestiny+"   page";
-        }
-        else
-        {
-            return this.sorigin+"   page   PC   "+this.sdestiny+"   cat";
-        }
+        return this.tipoArco == other.tipoArco;
     }
 }
