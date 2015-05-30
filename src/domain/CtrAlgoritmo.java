@@ -79,6 +79,7 @@ public class CtrAlgoritmo
     
     public CtoComunidad ejecutar(Graph<Integer, Double> g, GrafoEntrada orig)
     {
+        Graph<Integer, Double> copy = g.clone();
         Algorithm communityAlgorithm = null;
         switch(this.algorithm)
         {
@@ -95,7 +96,7 @@ public class CtrAlgoritmo
         if(communityAlgorithm == null) return null;
         communityAlgorithm.setP(this.p);
         double t1 = System.currentTimeMillis();
-        communityAlgorithm.calc(g);
+        communityAlgorithm.calc(copy);
         double t2 = System.currentTimeMillis();
         return new CtoComunidad(communityAlgorithm.obtain(), orig, this.algorithm, this.filters, this.selections, this.p, (t2-t1));
     }
