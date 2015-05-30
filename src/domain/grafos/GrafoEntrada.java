@@ -360,25 +360,25 @@ public class GrafoEntrada implements Cloneable
         {
             Categoria c = new Categoria(sA);
             this.addCategoria(c);
-            na = this.getCategoryNumber(c);
+            na = this.categoriaIndex.get(c);
         }
         else
         {
             Pagina p = new Pagina(sA);
             this.addPagina(p);
-            na = this.getPageNumber(p);
+            na = this.paginaIndex.get(p);
         }
         if(tB.equals("cat"))
         {
             Categoria c = new Categoria(sB);
             this.addCategoria(c);
-            nb = this.getCategoryNumber(c);
+            nb = this.categoriaIndex.get(c);
         }
         else
         {
             Pagina p = new Pagina(sA);
             this.addPagina(p);
-            nb = this.getPageNumber(p);
+            nb = this.paginaIndex.get(p);
         }
         
         switch(tArch)
