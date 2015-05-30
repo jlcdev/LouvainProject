@@ -5,9 +5,13 @@
  */
 package graphics;
 
+import java.awt.CardLayout;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -70,53 +74,85 @@ public class VistaPrincipal extends javax.swing.JFrame
         Random r = new Random();
         if(pag)
         {            
-            int max = r.nextInt(listPaginas.getModel().getSize() + 1);
+            int max = r.nextInt(listSelPaginas.getModel().getSize() + 1);
             int[] indices = new int[max];
-            for(int i = 0; i < max; i++) indices[i] = r.nextInt(listPaginas.getModel().getSize());
-            listPaginas.setSelectedIndices(indices);
+            for(int i = 0; i < max; i++) indices[i] = r.nextInt(listSelPaginas.getModel().getSize());
+            listSelPaginas.setSelectedIndices(indices);
         }
         else
         {
-            int max = r.nextInt(listCategorias.getModel().getSize() + 1);
+            int max = r.nextInt(listSelCategorias.getModel().getSize() + 1);
             int[] indices = new int[max];
-            for(int i = 0; i < max; i++) indices[i] = r.nextInt(listCategorias.getModel().getSize());
-            listCategorias.setSelectedIndices(indices);
+            for(int i = 0; i < max; i++) indices[i] = r.nextInt(listSelCategorias.getModel().getSize());
+            listSelCategorias.setSelectedIndices(indices);
         }
     }
     
-    public void actualizarSeleccionPag()
+    public void actualizarPag()
     {        
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoPag();          
-        DefaultListModel model = (DefaultListModel) listPaginas.getModel();
+        DefaultListModel model = (DefaultListModel) listSelPaginas.getModel();
         model.clear();
+        DefaultListModel model2 = (DefaultListModel) listPag.getModel();
+        model2.clear();
         pagPosToId = new ArrayList();
         for(String elem : lista) 
         {
             model.addElement(elem);
+            model2.addElement(elem);
             pagPosToId.add(iCtrlPresentacion.getPagNum(elem));
         }        
     }
     
-    public void actualizarSeleccionCat()
+    public void actualizarCat()
     {           
         ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();          
-        DefaultListModel model = (DefaultListModel) listCategorias.getModel();
+        DefaultListModel model = (DefaultListModel) listSelCategorias.getModel();
         model.clear();
+        DefaultListModel model2 = (DefaultListModel) listCat.getModel();
+        model2.clear();
         catPosToId = new ArrayList();
         for(String elem : lista) {
-            model.addElement(elem);            
+            model.addElement(elem);
+            model2.addElement(elem);
             catPosToId.add(iCtrlPresentacion.getCatNum(elem));
         }        
     }
     
+    public void actualizarLinks()
+    {           
+        ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoEnlaces();          
+        DefaultListModel model = (DefaultListModel) listLinks.getModel();
+        model.clear();
+        for(String elem : lista) model.addElement(elem);
+    }
+    
+    public void actualizarSet(Boolean importado)
+    {           
+        ArrayList<String> lista = iCtrlPresentacion.mostrarCto(importado);         
+        DefaultListModel model = (DefaultListModel) listSet.getModel();
+        model.clear();
+        for(String elem : lista) model.addElement(elem);
+    }  
+       
     public void clearTxtAreas()
     {
-        DefaultListModel model = (DefaultListModel) listCategorias.getModel();
+        DefaultListModel model = (DefaultListModel) listSelCategorias.getModel();
         model.clear();
-        model = (DefaultListModel) listPaginas.getModel();
+        model = (DefaultListModel) listSelPaginas.getModel();
         model.clear();
-        txtListGraph.setText(null);
-        txtListSet.setText(null);
+        model = (DefaultListModel) listCat.getModel();
+        model.clear();
+        model = (DefaultListModel) listPag.getModel();
+        model.clear();
+        model = (DefaultListModel) listLinks.getModel();
+        model.clear();
+        model = (DefaultListModel) listSet.getModel();
+        model.clear();
+        model = (DefaultListModel) listCom.getModel();
+        model.clear();
+        
+        //txtListSet.setText(null);
         txtListComp.setText(null);       
     }
 
@@ -130,6 +166,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void initComponents() {
 
         grupoAlgoritmos = new javax.swing.ButtonGroup();
+        grupoTipoNodo = new javax.swing.ButtonGroup();
         tabsPrincipal = new javax.swing.JTabbedPane();
         panelImportar = new javax.swing.JPanel();
         btnImportarGrafo = new javax.swing.JButton();
@@ -157,15 +194,22 @@ public class VistaPrincipal extends javax.swing.JFrame
         btnListPagGraph = new javax.swing.JButton();
         btnListLinksGraph = new javax.swing.JButton();
         btnExportarGrafo = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        txtListGraph = new javax.swing.JTextArea();
         txtNombreNodoAnterior = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txtNombreNodoNuevo = new javax.swing.JTextField();
         btnImportarGrafo1 = new javax.swing.JButton();
         btnNuevoGrafo1 = new javax.swing.JButton();
-        comboTipoNodo = new javax.swing.JComboBox();
+        radioCategoria = new javax.swing.JRadioButton();
+        radioPagina = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        panel = new javax.swing.JPanel();
+        sclistCat = new javax.swing.JScrollPane();
+        listCat = new javax.swing.JList();
+        sclistPag = new javax.swing.JScrollPane();
+        listPag = new javax.swing.JList();
+        sclistLinks = new javax.swing.JScrollPane();
+        listLinks = new javax.swing.JList();
         panelAlgoritmo = new javax.swing.JPanel();
         radioGirvan = new javax.swing.JRadioButton();
         radioLouvain = new javax.swing.JRadioButton();
@@ -175,7 +219,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         tabsAlgoritmo = new javax.swing.JTabbedPane();
         tabSelCat = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        listCategorias = new javax.swing.JList();
+        listSelCategorias = new javax.swing.JList();
         ckTodasCategorias = new javax.swing.JCheckBox();
         btnAplicarSelCat = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
@@ -191,7 +235,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         btnSelCatRand = new javax.swing.JButton();
         tabSelPag = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listPaginas = new javax.swing.JList();
+        listSelPaginas = new javax.swing.JList();
         ckTodasPaginas = new javax.swing.JCheckBox();
         btnAplicarSelPag = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
@@ -243,18 +287,19 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         btnShowCom = new javax.swing.JButton();
-        comboTipoNombreSet = new javax.swing.JComboBox();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        txtListSet = new javax.swing.JTextArea();
-        txtComName = new javax.swing.JTextField();
+        panelC = new javax.swing.JPanel();
+        scListSet = new javax.swing.JScrollPane();
+        listSet = new javax.swing.JList();
+        scListCom = new javax.swing.JScrollPane();
+        listCom = new javax.swing.JList();
         panelComparacion = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         txtListComp = new javax.swing.JTextArea();
         btnCompararComunidades = new javax.swing.JButton();
         comboTipoCom1 = new javax.swing.JComboBox();
         comboTipoCom2 = new javax.swing.JComboBox();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtCompCom1 = new javax.swing.JTextField();
+        txtCompCom2 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         btnCompararConjuntos = new javax.swing.JButton();
@@ -318,7 +363,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevoGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(772, Short.MAX_VALUE))
+                .addContainerGap(785, Short.MAX_VALUE))
         );
         panelImportarLayout.setVerticalGroup(
             panelImportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -492,11 +537,6 @@ public class VistaPrincipal extends javax.swing.JFrame
             }
         });
 
-        txtListGraph.setEditable(false);
-        txtListGraph.setColumns(20);
-        txtListGraph.setRows(5);
-        jScrollPane4.setViewportView(txtListGraph);
-
         txtNombreNodoAnterior.setText("Anterior");
         txtNombreNodoAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -539,31 +579,90 @@ public class VistaPrincipal extends javax.swing.JFrame
             }
         });
 
-        comboTipoNodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Página", "Categoria" }));
-        comboTipoNodo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboTipoNodoActionPerformed(evt);
+        grupoTipoNodo.add(radioCategoria);
+        radioCategoria.setSelected(true);
+        radioCategoria.setText("Categoria");
+
+        grupoTipoNodo.add(radioPagina);
+        radioPagina.setText("Página");
+
+        jScrollPane2.setMaximumSize(new java.awt.Dimension(80, 80));
+        jScrollPane2.setMinimumSize(new java.awt.Dimension(80, 80));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(80, 80));
+
+        panel.setMaximumSize(new java.awt.Dimension(80, 80));
+        panel.setPreferredSize(new java.awt.Dimension(80, 80));
+        panel.setLayout(new java.awt.CardLayout());
+
+        sclistCat.setMaximumSize(new java.awt.Dimension(80, 80));
+        sclistCat.setMinimumSize(new java.awt.Dimension(80, 80));
+        sclistCat.setPreferredSize(new java.awt.Dimension(80, 80));
+
+        listCat.setModel(new javax.swing.DefaultListModel());
+        listCat.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listCat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listCatMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listCatMouseClicked(evt);
             }
         });
+        listCat.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listCatValueChanged(evt);
+            }
+        });
+        sclistCat.setViewportView(listCat);
+
+        panel.add(sclistCat, "card1");
+
+        listPag.setModel(new javax.swing.DefaultListModel());
+        listPag.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listPag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listPagMousePressed(evt);
+            }
+        });
+        listPag.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listPagValueChanged(evt);
+            }
+        });
+        sclistPag.setViewportView(listPag);
+
+        panel.add(sclistPag, "card2");
+
+        listLinks.setModel(new javax.swing.DefaultListModel());
+        listLinks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        sclistLinks.setViewportView(listLinks);
+
+        panel.add(sclistLinks, "card3");
+
+        jScrollPane2.setViewportView(panel);
 
         javax.swing.GroupLayout panelGrafoLayout = new javax.swing.GroupLayout(panelGrafo);
         panelGrafo.setLayout(panelGrafoLayout);
         panelGrafoLayout.setHorizontalGroup(
             panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGrafoLayout.createSequentialGroup()
-                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelGrafoLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreNodoAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelGrafoLayout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(radioCategoria)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioPagina))
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelGrafoLayout.createSequentialGroup()
                                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(3, 3, 3)
                                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(panelGrafoLayout.createSequentialGroup()
                                         .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -584,14 +683,10 @@ public class VistaPrincipal extends javax.swing.JFrame
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnRmvPagFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelGrafoLayout.createSequentialGroup()
-                                        .addGap(111, 111, 111)
-                                        .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(btnAddLinkToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtNombreNodoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(256, 256, 256)
+                                        .addComponent(btnAddLinkToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnChangeName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnRmvLinkFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(btnRmvLinkFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(panelGrafoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnImportarGrafo1)
@@ -602,8 +697,12 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addComponent(btnExportarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelGrafoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(comboTipoNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 66, Short.MAX_VALUE)
+                        .addComponent(txtNombreNodoAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreNodoNuevo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnChangeName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45)
                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelGrafoLayout.createSequentialGroup()
                         .addComponent(btnListCatGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -611,8 +710,8 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addComponent(btnListPagGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(btnListLinksGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4))
-                .addGap(25, 25, 25))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         panelGrafoLayout.setVerticalGroup(
             panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -624,19 +723,13 @@ public class VistaPrincipal extends javax.swing.JFrame
                     .addComponent(btnListLinksGraph)
                     .addComponent(btnImportarGrafo1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevoGrafo1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelGrafoLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(52, 52, 52)
                         .addComponent(jLabel13)
                         .addGap(21, 21, 21)
                         .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelGrafoLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9)
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel10))
+                            .addComponent(jLabel8)
                             .addGroup(panelGrafoLayout.createSequentialGroup()
                                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtCatToAddRmv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -646,30 +739,33 @@ public class VistaPrincipal extends javax.swing.JFrame
                                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtPagToAddRmv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnAddPagToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnRmvPagFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnRmvPagFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtNodo1Enlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboTipoEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(comboTipoEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtNodo2Enlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnAddLinkToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnRmvLinkFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(55, 55, 55)
-                        .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelGrafoLayout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNombreNodoAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnChangeName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombreNodoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel14))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboTipoNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addGap(51, 51, 51)
+                        .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(radioCategoria)
+                            .addComponent(radioPagina))
+                        .addGap(21, 21, 21)
+                        .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombreNodoAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreNodoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnChangeName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExportarGrafo))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
+                    .addGroup(panelGrafoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -703,8 +799,8 @@ public class VistaPrincipal extends javax.swing.JFrame
         tabsAlgoritmo.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         tabsAlgoritmo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        listCategorias.setModel(new javax.swing.DefaultListModel());
-        jScrollPane3.setViewportView(listCategorias);
+        listSelCategorias.setModel(new javax.swing.DefaultListModel());
+        jScrollPane3.setViewportView(listSelCategorias);
 
         ckTodasCategorias.setText("Seleccionar todas");
         ckTodasCategorias.addActionListener(new java.awt.event.ActionListener() {
@@ -810,7 +906,6 @@ public class VistaPrincipal extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tabSelCatLayout.createSequentialGroup()
                         .addComponent(txtMinCatLink, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -820,14 +915,16 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addComponent(btnAddSelCatRang))
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelCatRand)
                     .addGroup(tabSelCatLayout.createSequentialGroup()
-                        .addComponent(txtCatNameSel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtCatNameSel)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAddSelCatName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRmvSelCatName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSelCatRand))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(btnRmvSelCatName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabSelCatLayout.createSequentialGroup()
@@ -870,8 +967,8 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         tabsAlgoritmo.addTab("Selección Categorias", tabSelCat);
 
-        listPaginas.setModel(new javax.swing.DefaultListModel());
-        jScrollPane1.setViewportView(listPaginas);
+        listSelPaginas.setModel(new javax.swing.DefaultListModel());
+        jScrollPane1.setViewportView(listSelPaginas);
 
         ckTodasPaginas.setText("Seleccionar todas");
         ckTodasPaginas.addActionListener(new java.awt.event.ActionListener() {
@@ -906,13 +1003,38 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel25.setText("Selección por número de enlaces:");
 
         txtMinPagLink.setText("min");
+        txtMinPagLink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtMinPagLinkMouseReleased(evt);
+            }
+        });
         txtMinPagLink.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMinPagLinkActionPerformed(evt);
             }
         });
+        txtMinPagLink.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtMinPagLinkFocusLost(evt);
+            }
+        });
 
         txtMaxPagLink.setText("max");
+        txtMaxPagLink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtMaxPagLinkMouseReleased(evt);
+            }
+        });
+        txtMaxPagLink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaxPagLinkActionPerformed(evt);
+            }
+        });
+        txtMaxPagLink.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtMaxPagLinkFocusLost(evt);
+            }
+        });
 
         jLabel29.setText("-");
 
@@ -951,29 +1073,26 @@ public class VistaPrincipal extends javax.swing.JFrame
             .addGroup(tabSelPagLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tabSelPagLayout.createSequentialGroup()
-                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPagNameSel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 12, Short.MAX_VALUE)
+                        .addComponent(txtMinPagLink, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMaxPagLink, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAddSelPagRang))
+                    .addComponent(btnSelPagRand)
+                    .addGroup(tabSelPagLayout.createSequentialGroup()
+                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtPagNameSel)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAddSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRmvSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(tabSelPagLayout.createSequentialGroup()
-                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(tabSelPagLayout.createSequentialGroup()
-                                .addComponent(txtMinPagLink, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel29)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMaxPagLink, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAddSelPagRang))
-                            .addComponent(btnSelPagRand))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)))
+                        .addComponent(btnRmvSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabSelPagLayout.createSequentialGroup()
@@ -1161,7 +1280,17 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         jLabel19.setText("Comunidad:");
 
-        txtAddRmvCom.setText("Nombre Comunidad");
+        txtAddRmvCom.setText("Nombre comunidad");
+        txtAddRmvCom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtAddRmvComMouseReleased(evt);
+            }
+        });
+        txtAddRmvCom.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAddRmvComFocusLost(evt);
+            }
+        });
 
         btnAddCatToCom.setText("+");
         btnAddCatToCom.addActionListener(new java.awt.event.ActionListener() {
@@ -1213,10 +1342,40 @@ public class VistaPrincipal extends javax.swing.JFrame
         });
 
         txtCatAddRmvSet.setText("Categoria");
+        txtCatAddRmvSet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtCatAddRmvSetMouseReleased(evt);
+            }
+        });
+        txtCatAddRmvSet.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCatAddRmvSetFocusLost(evt);
+            }
+        });
 
         txtComToAddRmvCat.setText("Comunidad");
+        txtComToAddRmvCat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtComToAddRmvCatMouseReleased(evt);
+            }
+        });
+        txtComToAddRmvCat.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtComToAddRmvCatFocusLost(evt);
+            }
+        });
 
         txtComToList.setText("Nombre comunidad");
+        txtComToList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtComToListMouseReleased(evt);
+            }
+        });
+        txtComToList.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtComToListFocusLost(evt);
+            }
+        });
 
         btnListCatFromCom.setText("Listar");
         btnListCatFromCom.addActionListener(new java.awt.event.ActionListener() {
@@ -1229,11 +1388,31 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         jLabel15.setText("AÑADIR/QUITAR ");
 
-        jLabel16.setText("CAMBIAR NOMBRE");
+        jLabel16.setText("CAMBIAR NOMBRE COMUNIDAD");
 
         txtNombreAnterior.setText("Anterior");
+        txtNombreAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtNombreAnteriorMouseReleased(evt);
+            }
+        });
+        txtNombreAnterior.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreAnteriorFocusLost(evt);
+            }
+        });
 
         txtNombreNuevo.setText("Nuevo");
+        txtNombreNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtNombreNuevoMouseReleased(evt);
+            }
+        });
+        txtNombreNuevo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreNuevoFocusLost(evt);
+            }
+        });
 
         btnChangeNameSet.setText("OK");
         btnChangeNameSet.addActionListener(new java.awt.event.ActionListener() {
@@ -1253,25 +1432,19 @@ public class VistaPrincipal extends javax.swing.JFrame
             }
         });
 
-        comboTipoNombreSet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conjunto", "Comunidad", "Categoria" }));
-        comboTipoNombreSet.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboTipoNombreSetItemStateChanged(evt);
-            }
-        });
-        comboTipoNombreSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboTipoNombreSetActionPerformed(evt);
-            }
-        });
+        panelC.setLayout(new java.awt.CardLayout());
 
-        txtListSet.setEditable(false);
-        txtListSet.setColumns(20);
-        txtListSet.setRows(5);
-        jScrollPane5.setViewportView(txtListSet);
+        listSet.setModel(new javax.swing.DefaultListModel());
+        listSet.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scListSet.setViewportView(listSet);
 
-        txtComName.setText("Nombre comunidad");
-        txtComName.setVisible(false);
+        panelC.add(scListSet, "card1");
+
+        listCom.setModel(new javax.swing.DefaultListModel());
+        listCom.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scListCom.setViewportView(listCom);
+
+        panelC.add(scListCom, "card2");
 
         javax.swing.GroupLayout panelComunidadesLayout = new javax.swing.GroupLayout(panelComunidades);
         panelComunidades.setLayout(panelComunidadesLayout);
@@ -1280,38 +1453,44 @@ public class VistaPrincipal extends javax.swing.JFrame
             .addGroup(panelComunidadesLayout.createSequentialGroup()
                 .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelComunidadesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnExportSet, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelComunidadesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelComunidadesLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboTipoSet, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelComunidadesLayout.createSequentialGroup()
-                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelComunidadesLayout.createSequentialGroup()
-                                        .addComponent(comboTipoNombreSet, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtNombreAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNombreNuevo))
+                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(panelComunidadesLayout.createSequentialGroup()
                                         .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelComunidadesLayout.createSequentialGroup()
+                                                .addComponent(txtNombreAnterior)
+                                                .addGap(183, 183, 183))
                                             .addGroup(panelComunidadesLayout.createSequentialGroup()
-                                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtCatAddRmvSet, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtComToAddRmvCat, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(panelComunidadesLayout.createSequentialGroup()
-                                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtAddRmvCom, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(panelComunidadesLayout.createSequentialGroup()
+                                                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtCatAddRmvSet, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(txtComToAddRmvCat, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(panelComunidadesLayout.createSequentialGroup()
+                                                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtAddRmvCom, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(txtNombreNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnChangeNameSet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(btnAddCatToCom, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(btnAddComToSet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnChangeNameSet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnRmvCatFromCom, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnRmvComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelComunidadesLayout.createSequentialGroup()
@@ -1327,18 +1506,9 @@ public class VistaPrincipal extends javax.swing.JFrame
                                     .addGroup(panelComunidadesLayout.createSequentialGroup()
                                         .addComponent(btnListComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnShowSet, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(panelComunidadesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtComName, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelComunidadesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnExportSet, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelComunidadesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnShowSet, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(panelC, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panelComunidadesLayout.setVerticalGroup(
@@ -1346,7 +1516,6 @@ public class VistaPrincipal extends javax.swing.JFrame
             .addGroup(panelComunidadesLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
                     .addGroup(panelComunidadesLayout.createSequentialGroup()
                         .addComponent(comboTipoSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
@@ -1366,20 +1535,17 @@ public class VistaPrincipal extends javax.swing.JFrame
                                     .addComponent(btnAddComToSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(35, 35, 35)
                                 .addComponent(jLabel16)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtNombreAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNombreNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboTipoNombreSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btnChangeNameSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(65, 65, 65))
                             .addGroup(panelComunidadesLayout.createSequentialGroup()
                                 .addComponent(btnRmvCatFromCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnRmvComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)
-                                .addComponent(btnChangeNameSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(7, 7, 7)
-                        .addComponent(txtComName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                                .addGap(146, 146, 146)))
                         .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnShowSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnListComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1391,8 +1557,9 @@ public class VistaPrincipal extends javax.swing.JFrame
                             .addComponent(btnShowCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnListCatFromCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtComToList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExportSet)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(btnExportSet))
+                    .addComponent(panelC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1409,9 +1576,29 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         comboTipoCom2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Importado", "Creado" }));
 
-        jTextField1.setText("Nombre com1");
+        txtCompCom1.setText("Nombre comunidad 1");
+        txtCompCom1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtCompCom1MouseReleased(evt);
+            }
+        });
+        txtCompCom1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCompCom1FocusLost(evt);
+            }
+        });
 
-        jTextField2.setText("Nombre com2");
+        txtCompCom2.setText("Nombre comunidad 2");
+        txtCompCom2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtCompCom2MouseReleased(evt);
+            }
+        });
+        txtCompCom2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCompCom2FocusLost(evt);
+            }
+        });
 
         jLabel17.setText("Comparar 2 comunidades");
 
@@ -1438,15 +1625,15 @@ public class VistaPrincipal extends javax.swing.JFrame
                             .addComponent(comboTipoCom2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(12, 12, 12)
                         .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                            .addComponent(jTextField2))
+                            .addComponent(txtCompCom1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(txtCompCom2))
                         .addGap(18, 18, 18)
                         .addComponent(btnCompararComunidades, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCompararConjuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap())
         );
         panelComparacionLayout.setVerticalGroup(
             panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1458,11 +1645,11 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addGap(22, 22, 22)
                         .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboTipoCom1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCompCom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboTipoCom2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCompCom2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCompararComunidades, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(47, 47, 47)
                         .addComponent(jLabel20)
@@ -1573,67 +1760,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ckTodasPaginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckTodasPaginasActionPerformed
-        if (ckTodasPaginas.isSelected()) listPaginas.setSelectionInterval(0, listPaginas.getModel().getSize() - 1); 
-        else listPaginas.clearSelection();
-    }//GEN-LAST:event_ckTodasPaginasActionPerformed
-
     private void mItemImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemImportarGrafoActionPerformed
         iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true);        
     }//GEN-LAST:event_mItemImportarGrafoActionPerformed
-
-    private void comboTipoEnlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoEnlaceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboTipoEnlaceActionPerformed
-
-    private void btnListCatGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatGraphActionPerformed
-        ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();
-        txtListGraph.setText("Categorias ("+lista.size()+"):\n\n");
-        for(String elem : lista) txtListGraph.append(elem+"\n");  
-        this.txtListGraph.setCaretPosition(0);
-    }//GEN-LAST:event_btnListCatGraphActionPerformed
-
-    private void btnListPagGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListPagGraphActionPerformed
-        ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoPag();
-        txtListGraph.setText("Páginas ("+lista.size()+"):\n\n"); 
-        for(String elem : lista) txtListGraph.append(elem+"\n");
-        this.txtListGraph.setCaretPosition(0);
-    }//GEN-LAST:event_btnListPagGraphActionPerformed
-
-    private void btnListLinksGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListLinksGraphActionPerformed
-        ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoEnlaces();
-        txtListGraph.setText("Enlaces ("+lista.size()+"):\n\n"); 
-        for(String elem : lista) txtListGraph.append(elem+"\n");
-        this.txtListGraph.setCaretPosition(0);
-    }//GEN-LAST:event_btnListLinksGraphActionPerformed
-
-    private void btnExportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarGrafoActionPerformed
-       iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, true);
-    }//GEN-LAST:event_btnExportarGrafoActionPerformed
-
-    private void btnListCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatFromComActionPerformed
-        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToList.getText(), comboTipoSet.getSelectedIndex() != 0);
-        txtListSet.setText("Categorias "+txtComToList.getText()+"("+lista.size()+"):\n\n"); 
-        for(int i=0; i< lista.size(); ++i) txtListSet.append(lista.get(i)+"\n");
-    }//GEN-LAST:event_btnListCatFromComActionPerformed
-
-    private void btnExportSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSetActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false);
-    }//GEN-LAST:event_btnExportSetActionPerformed
-
-    private void btnShowSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnShowSetActionPerformed
-
-    private void btnListComFromSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListComFromSetActionPerformed
-        ArrayList<String> lista = iCtrlPresentacion.mostrarCto(comboTipoSet.getSelectedIndex() != 0);
-        txtListSet.setText("Comunidades ("+lista.size()+"):\n\n");
-        for(int i=0; i< lista.size(); ++i) txtListSet.append(lista.get(i)+"\n");
-    }//GEN-LAST:event_btnListComFromSetActionPerformed
-
-    private void btnShowComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowComActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnShowComActionPerformed
 
     private void mItemSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemSalirMouseClicked
         // TODO add your handling code here:
@@ -1647,189 +1776,6 @@ public class VistaPrincipal extends javax.swing.JFrame
        iCtrlPresentacion.sincronizacionVistaPrincipal_a_About();
     }//GEN-LAST:event_mItemAboutActionPerformed
 
-    private void radioGirvanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioGirvanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioGirvanActionPerformed
-
-    private void btnAddCatToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToGraphActionPerformed
-        int id = iCtrlPresentacion.addGrafoCat(txtCatToAddRmv.getText());
-        if (id != -1)
-        {
-            catPosToId.add(id);
-            DefaultListModel model = (DefaultListModel) listCategorias.getModel();
-            System.out.println("Afegir Cat: " + txtCatToAddRmv.getText());
-            model.addElement(txtCatToAddRmv.getText()); 
-        } 
-    }//GEN-LAST:event_btnAddCatToGraphActionPerformed
-
-    private void btnImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafoActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true);       
-    }//GEN-LAST:event_btnImportarGrafoActionPerformed
-
-    private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
-        int alg = 1;
-        if(radioGirvan.isSelected()) alg = 2;
-        else if(radioClique.isSelected()) alg = 3;
-        iCtrlPresentacion.ejecutar(alg,  Integer.parseInt(spinP.getValue().toString()));  
-    }//GEN-LAST:event_btnEjecutarActionPerformed
-
-    private void comboTipoNombreSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoNombreSetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboTipoNombreSetActionPerformed
-
-    private void btnImportarGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafo1ActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true);       
-    }//GEN-LAST:event_btnImportarGrafo1ActionPerformed
-
-    private void btnNuevoGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafo1ActionPerformed
-        iCtrlPresentacion.crearGrafo();
-        clearTxtAreas();
-    }//GEN-LAST:event_btnNuevoGrafo1ActionPerformed
-
-    private void btnNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafoActionPerformed
-        iCtrlPresentacion.crearGrafo();  
-        clearTxtAreas();                
-    }//GEN-LAST:event_btnNuevoGrafoActionPerformed
-
-    private void txtCatToAddRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCatToAddRmvActionPerformed
-        
-    }//GEN-LAST:event_txtCatToAddRmvActionPerformed
-
-    private void txtPagToAddRmvFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPagToAddRmvFocusGained
-        
-    }//GEN-LAST:event_txtPagToAddRmvFocusGained
-
-    private void ckTodasCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckTodasCategoriasActionPerformed
-        if (ckTodasCategorias.isSelected()) listCategorias.setSelectionInterval(0, listCategorias.getModel().getSize() - 1); 
-        else listCategorias.clearSelection();
-    }//GEN-LAST:event_ckTodasCategoriasActionPerformed
-
-    private void btnAplicarSelPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelPagActionPerformed
-        //List l = listPaginas.getSelectedValuesList();
-        int[] index = listPaginas.getSelectedIndices();
-        ArrayList<Integer> intList = new ArrayList<>();
-        for(int intValue : index) intList.add(pagPosToId.get(intValue));
-        //ArrayList<String> al = new ArrayList<>(l);
-        iCtrlPresentacion.aplicarSelPag(intList);   
-    }//GEN-LAST:event_btnAplicarSelPagActionPerformed
-
-    private void btnAplicarSelCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelCatActionPerformed
-        //List l = listCategorias.getSelectedValuesList(); 
-        //ArrayList<String> al = new ArrayList<>(l);
-        //iCtrlPresentacion.aplicarSelCat(al);
-        
-        int[] index = listCategorias.getSelectedIndices();
-        ArrayList<Integer> intList = new ArrayList<>();
-        for(int intValue : index) intList.add(catPosToId.get(intValue));
-        iCtrlPresentacion.aplicarSelCat(intList);  
-        
-        
-        
-    }//GEN-LAST:event_btnAplicarSelCatActionPerformed
-
-    private void btnAplicarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarFiltrosActionPerformed
-        int name = Integer.parseInt(spNombre.getValue().toString());
-        int pagComun = Integer.parseInt(spPagComun.getValue().toString());
-        int catComun = Integer.parseInt(spCatComun.getValue().toString());
-        int superComun = Integer.parseInt(spSuperComun.getValue().toString());
-        int subComun = Integer.parseInt(spSubComun.getValue().toString());
-        iCtrlPresentacion.aplicarFiltros(name,pagComun,catComun,superComun,subComun);
-    }//GEN-LAST:event_btnAplicarFiltrosActionPerformed
-
-    private void btnImportarConjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarConjActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false);
-        tabsPrincipal.setSelectedIndex(3);
-    }//GEN-LAST:event_btnImportarConjActionPerformed
-
-    private void btnChangeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameActionPerformed
-        int id = iCtrlPresentacion.modGrafoNombre(txtNombreNodoAnterior.getText(), txtNombreNodoNuevo.getText(), comboTipoNodo.getSelectedIndex() != 0);
-        
-        if(comboTipoNodo.getSelectedIndex() != 0) //CATEGORIA
-        {
-            DefaultListModel model = (DefaultListModel) listCategorias.getModel();
-            model.getElementAt(catPosToId.indexOf(id));
-            model.remove(id);
-            model.add(id,txtNombreNodoNuevo.getText());
-        }
-        else //PÁGINA
-        {
-            DefaultListModel model = (DefaultListModel) listPaginas.getModel();
-            model.getElementAt(pagPosToId.indexOf(id));
-            model.remove(id);
-            model.add(id,txtNombreNodoNuevo.getText());
-        }
-    }//GEN-LAST:event_btnChangeNameActionPerformed
-
-    private void btnRmvCatFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromGraphActionPerformed
-        int id = iCtrlPresentacion.rmvGrafoCat(txtCatToAddRmv.getText());
-        if (id != -1)
-        {
-            DefaultListModel model = (DefaultListModel) listCategorias.getModel();
-            System.out.println("Eliminar Cat: " + id);
-            model.remove(catPosToId.indexOf(id));
-            System.out.println("Posició"+catPosToId.indexOf(id));
-            System.out.println(catPosToId.size());
-            catPosToId.remove(catPosToId.indexOf(id));
-        }
-                       
-    }//GEN-LAST:event_btnRmvCatFromGraphActionPerformed
-
-    private void btnAddPagToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPagToGraphActionPerformed
-        int id = iCtrlPresentacion.addGrafoPag(txtPagToAddRmv.getText());
-        if(id != -1) /////////////////////////////////// SI NO ES FA ADD HA DE RETORNAR -1
-        {
-            DefaultListModel model = (DefaultListModel) listPaginas.getModel();
-            System.out.println("Afegir Pag: " + txtPagToAddRmv.getText());
-            model.addElement(txtPagToAddRmv.getText());
-            pagPosToId.add(id);
-        }
-        
-       
-    }//GEN-LAST:event_btnAddPagToGraphActionPerformed
-
-    private void btnRmvPagFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvPagFromGraphActionPerformed
-        int id = iCtrlPresentacion.rmvGrafoPag(txtPagToAddRmv.getText());
-        if(id != -1)
-        {
-            DefaultListModel model = (DefaultListModel) listPaginas.getModel();
-            System.out.println("Eliminar Pag: " + id);
-            model.remove(catPosToId.indexOf(id)); 
-            pagPosToId.remove(pagPosToId.indexOf(id));
-        }        
-    }//GEN-LAST:event_btnRmvPagFromGraphActionPerformed
-
-    private void btnAddLinkToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLinkToGraphActionPerformed
-        //iCtrlPresentacion.addGrafoEnlace(txtNodo1Enlace.getText(), txtNodo2Enlace.getText(), comboTipoEnlace.getSelectedItem().toString());        
-    }//GEN-LAST:event_btnAddLinkToGraphActionPerformed
-
-    private void btnRmvLinkFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvLinkFromGraphActionPerformed
-        iCtrlPresentacion.rmvGrafoEnlace(txtNodo1Enlace.getText(), txtNodo2Enlace.getText(), comboTipoEnlace.getSelectedItem().toString());
-    }//GEN-LAST:event_btnRmvLinkFromGraphActionPerformed
-
-    private void btnAddCatToComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToComActionPerformed
-        iCtrlPresentacion.addCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);
-    }//GEN-LAST:event_btnAddCatToComActionPerformed
-
-    private void btnRmvCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromComActionPerformed
-        iCtrlPresentacion.rmvCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);
-    }//GEN-LAST:event_btnRmvCatFromComActionPerformed
-
-    private void btnAddComToSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddComToSetActionPerformed
-        iCtrlPresentacion.addCtoCom(txtAddRmvCom.getText(), comboTipoSet.getSelectedIndex() != 0);
-    }//GEN-LAST:event_btnAddComToSetActionPerformed
-
-    private void btnRmvComFromSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvComFromSetActionPerformed
-        iCtrlPresentacion.rmvCtoCom(txtAddRmvCom.getText(), comboTipoSet.getSelectedIndex() != 0);
-    }//GEN-LAST:event_btnRmvComFromSetActionPerformed
-
-    private void btnChangeNameSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameSetActionPerformed
-        iCtrlPresentacion.modCtoNombre(comboTipoNombreSet.getSelectedIndex(), txtNombreAnterior.getText(), txtNombreNuevo.getText(), txtComName.getText(), comboTipoSet.getSelectedIndex() != 0);
-    }//GEN-LAST:event_btnChangeNameSetActionPerformed
-
-    private void comboTipoNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoNodoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboTipoNodoActionPerformed
-
     private void mItemManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemManualActionPerformed
        iCtrlPresentacion.sincronizacionVistaPrincipal_a_Manual();
     }//GEN-LAST:event_mItemManualActionPerformed
@@ -1837,118 +1783,6 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void mItemExportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExportarGrafoActionPerformed
         iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, true);      
     }//GEN-LAST:event_mItemExportarGrafoActionPerformed
-
-    private void tabsPrincipalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsPrincipalStateChanged
-       
-    }//GEN-LAST:event_tabsPrincipalStateChanged
-
-    private void txtMinPagLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinPagLinkActionPerformed
-       
-    }//GEN-LAST:event_txtMinPagLinkActionPerformed
-
-    private void txtMinCatLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinCatLinkActionPerformed
-        
-    }//GEN-LAST:event_txtMinCatLinkActionPerformed
-
-    private void btnAddSelPagRangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelPagRangActionPerformed
-        ckTodasPaginas.setSelected(false);
-        
-        ArrayList<Integer> selection = iCtrlPresentacion.getPagSelection(Integer.parseInt(txtMinPagLink.getText()), Integer.parseInt(txtMaxPagLink.getText()));
-        int[] indices = new int[selection.size()];
-        for(int i = 0; i < selection.size(); i++) indices[i] = pagPosToId.indexOf(selection.get(i));
-        listPaginas.setSelectedIndices(indices);
-    }//GEN-LAST:event_btnAddSelPagRangActionPerformed
-
-    private void btnAddSelPagNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelPagNameActionPerformed
-        ckTodasPaginas.setSelected(false); 
-        
-        int num = iCtrlPresentacion.getPagNum(txtPagNameSel.getText());
-        System.out.println(num);
-        num = pagPosToId.indexOf(num);
-        System.out.println(num);
-        int[] indices = listPaginas.getSelectedIndices();
-        int newIndices[] = new int[indices.length + 1];
-        System.arraycopy(indices, 0, newIndices, 0, indices.length);
-        newIndices[indices.length] = num;
-        listPaginas.setSelectedIndices(newIndices);
-    }//GEN-LAST:event_btnAddSelPagNameActionPerformed
-
-    private void btnRmvSelPagNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvSelPagNameActionPerformed
-        ckTodasPaginas.setSelected(false);
-        
-        int num = iCtrlPresentacion.getPagNum(txtPagNameSel.getText());
-        num = pagPosToId.indexOf(num); //Posició a la llista
-        int[] indices = listPaginas.getSelectedIndices(); //Selecció
-        int newIndices[] = new int[indices.length - 1]; //Selecció -1
-        int j = 0;
-        for(int i = 0; i < indices.length; i++)
-        {
-            if(indices[i] != num)
-            {
-                newIndices[j] = indices[i];
-                j++;
-            }
-        }
-        listPaginas.setSelectedIndices(newIndices);
-    }//GEN-LAST:event_btnRmvSelPagNameActionPerformed
-
-    private void btnAddSelCatNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelCatNameActionPerformed
-        ckTodasCategorias.setSelected(false);  
-        
-        int num = iCtrlPresentacion.getCatNum(txtCatNameSel.getText());        
-        System.out.println(num);
-        num = catPosToId.indexOf(num);
-        System.out.println(num);
-        int[] indices = listCategorias.getSelectedIndices();
-        int[] newIndices = new int[indices.length + 1];
-        System.arraycopy(indices, 0, newIndices, 0, indices.length);
-        newIndices[indices.length] = num;
-        listCategorias.setSelectedIndices(newIndices);
-        
-    }//GEN-LAST:event_btnAddSelCatNameActionPerformed
-
-    private void btnRmvSelCatNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvSelCatNameActionPerformed
-        ckTodasCategorias.setSelected(false);
-        
-        int num = iCtrlPresentacion.getCatNum(txtCatNameSel.getText());
-        num = catPosToId.indexOf(num); //Posició a la llista
-        int[] indices = listCategorias.getSelectedIndices(); //Selecció
-        int[] newIndices= new int[indices.length - 1]; //Selecció -1
-        int j = 0;
-        for(int i = 0; i < indices.length; i++)
-        {
-            if(indices[i] != num)
-            {
-                newIndices[j] = indices[i];
-                j++;
-            }
-        }
-        listCategorias.setSelectedIndices(newIndices);
-    }//GEN-LAST:event_btnRmvSelCatNameActionPerformed
-
-    private void btnAddSelCatRangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelCatRangActionPerformed
-        ckTodasCategorias.setSelected(false);
-        
-        ArrayList<Integer> selection = iCtrlPresentacion.getCatSelection(Integer.parseInt(txtMinCatLink.getText()), Integer.parseInt(txtMaxCatLink.getText()));
-        int[] indices = new int[selection.size()];
-        for(int i = 0; i < selection.size(); i++) indices[i] = catPosToId.indexOf(selection.get(i)); //REPASSAR
-        listCategorias.setSelectedIndices(indices);
-    }//GEN-LAST:event_btnAddSelCatRangActionPerformed
-
-    private void btnSelPagRandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelPagRandActionPerformed
-        randomSel(true);
-        ckTodasPaginas.setSelected(false);      
-    }//GEN-LAST:event_btnSelPagRandActionPerformed
-
-    private void btnSelCatRandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelCatRandActionPerformed
-        randomSel(false);
-        ckTodasCategorias.setSelected(false);
-    }//GEN-LAST:event_btnSelCatRandActionPerformed
-
-    private void comboTipoNombreSetItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboTipoNombreSetItemStateChanged
-        if(comboTipoNombreSet.getSelectedIndex() == 2) txtComName.setVisible(true); //CATEGORIA
-        else txtComName.setVisible(false);
-    }//GEN-LAST:event_comboTipoNombreSetItemStateChanged
 
     private void mItemImportarSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemImportarSetActionPerformed
        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false);
@@ -1963,175 +1797,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         clearTxtAreas();
     }//GEN-LAST:event_mItemNuevoGrafoActionPerformed
 
-    private void txtCatToAddRmvMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtCatToAddRmvMouseReleased
-    {//GEN-HEADEREND:event_txtCatToAddRmvMouseReleased
-        if(this.txtCatToAddRmv.getText().equals("Nombre categoria"))
-        {
-            this.txtCatToAddRmv.setText("");
-        }
-    }//GEN-LAST:event_txtCatToAddRmvMouseReleased
+    private void tabsPrincipalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsPrincipalStateChanged
 
-    private void txtPagToAddRmvActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtPagToAddRmvActionPerformed
-    {//GEN-HEADEREND:event_txtPagToAddRmvActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPagToAddRmvActionPerformed
-
-    private void txtPagToAddRmvMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtPagToAddRmvMouseReleased
-    {//GEN-HEADEREND:event_txtPagToAddRmvMouseReleased
-        if(this.txtPagToAddRmv.getText().equals("Nombre página"))
-        {
-            this.txtPagToAddRmv.setText("");
-        }
-    }//GEN-LAST:event_txtPagToAddRmvMouseReleased
-
-    private void txtNodo1EnlaceMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtNodo1EnlaceMouseReleased
-    {//GEN-HEADEREND:event_txtNodo1EnlaceMouseReleased
-        if(this.txtNodo1Enlace.getText().equals("Nombre nodo1"))
-        {
-            this.txtNodo1Enlace.setText("");
-        }
-    }//GEN-LAST:event_txtNodo1EnlaceMouseReleased
-
-    private void txtNodo2EnlaceMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtNodo2EnlaceMouseReleased
-    {//GEN-HEADEREND:event_txtNodo2EnlaceMouseReleased
-        if(this.txtNodo2Enlace.getText().equals("Nombre nodo2"))
-        {
-            this.txtNodo2Enlace.setText("");
-        }
-    }//GEN-LAST:event_txtNodo2EnlaceMouseReleased
-
-    private void txtCatToAddRmvFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtCatToAddRmvFocusLost
-    {//GEN-HEADEREND:event_txtCatToAddRmvFocusLost
-        if(this.txtCatToAddRmv.getText().isEmpty())
-        {
-            this.txtCatToAddRmv.setText("Nombre categoria");
-        }
-    }//GEN-LAST:event_txtCatToAddRmvFocusLost
-
-    private void txtPagToAddRmvFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtPagToAddRmvFocusLost
-    {//GEN-HEADEREND:event_txtPagToAddRmvFocusLost
-        if(this.txtPagToAddRmv.getText().isEmpty())
-        {
-            this.txtPagToAddRmv.setText("Nombre página");
-        }
-    }//GEN-LAST:event_txtPagToAddRmvFocusLost
-
-    private void txtNodo1EnlaceFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtNodo1EnlaceFocusLost
-    {//GEN-HEADEREND:event_txtNodo1EnlaceFocusLost
-        if(this.txtNodo1Enlace.getText().isEmpty())
-        {
-            this.txtNodo1Enlace.setText("Nombre nodo1");
-        }
-    }//GEN-LAST:event_txtNodo1EnlaceFocusLost
-
-    private void txtNodo2EnlaceFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtNodo2EnlaceFocusLost
-    {//GEN-HEADEREND:event_txtNodo2EnlaceFocusLost
-        if(this.txtNodo2Enlace.getText().isEmpty())
-        {
-            this.txtNodo2Enlace.setText("Nombre nodo2");
-        }
-    }//GEN-LAST:event_txtNodo2EnlaceFocusLost
-
-    private void txtNombreNodoAnteriorMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtNombreNodoAnteriorMouseReleased
-    {//GEN-HEADEREND:event_txtNombreNodoAnteriorMouseReleased
-        if(this.txtNombreNodoAnterior.getText().equals("Anterior"))
-        {
-            this.txtNombreNodoAnterior.setText("");
-        }
-    }//GEN-LAST:event_txtNombreNodoAnteriorMouseReleased
-
-    private void txtNombreNodoAnteriorFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtNombreNodoAnteriorFocusLost
-    {//GEN-HEADEREND:event_txtNombreNodoAnteriorFocusLost
-        if(this.txtNombreNodoAnterior.getText().isEmpty())
-        {
-            this.txtNombreNodoAnterior.setText("Anterior");
-        }
-    }//GEN-LAST:event_txtNombreNodoAnteriorFocusLost
-
-    private void txtNombreNodoNuevoMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtNombreNodoNuevoMouseReleased
-    {//GEN-HEADEREND:event_txtNombreNodoNuevoMouseReleased
-        if(this.txtNombreNodoNuevo.getText().equals("Nuevo"))
-        {
-            this.txtNombreNodoNuevo.setText("");
-        }
-    }//GEN-LAST:event_txtNombreNodoNuevoMouseReleased
-
-    private void txtNombreNodoNuevoFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtNombreNodoNuevoFocusLost
-    {//GEN-HEADEREND:event_txtNombreNodoNuevoFocusLost
-        if(this.txtNombreNodoNuevo.getText().isEmpty())
-        {
-            this.txtNombreNodoNuevo.setText("Nuevo");
-        }
-    }//GEN-LAST:event_txtNombreNodoNuevoFocusLost
-
-    private void txtCatNameSelMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtCatNameSelMouseReleased
-    {//GEN-HEADEREND:event_txtCatNameSelMouseReleased
-        if(this.txtCatNameSel.getText().equals("Nombre cat"))
-        {
-            this.txtCatNameSel.setText("");
-        }
-    }//GEN-LAST:event_txtCatNameSelMouseReleased
-
-    private void txtCatNameSelFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtCatNameSelFocusLost
-    {//GEN-HEADEREND:event_txtCatNameSelFocusLost
-        if(this.txtCatNameSel.getText().isEmpty())
-        {
-            this.txtCatNameSel.setText("Nombre cat");
-        }
-    }//GEN-LAST:event_txtCatNameSelFocusLost
-
-    private void txtPagNameSelMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtPagNameSelMouseReleased
-    {//GEN-HEADEREND:event_txtPagNameSelMouseReleased
-        if(this.txtPagNameSel.getText().equals("Nombre pag"))
-        {
-            this.txtPagNameSel.setText("");
-        }
-    }//GEN-LAST:event_txtPagNameSelMouseReleased
-
-    private void txtPagNameSelFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtPagNameSelFocusLost
-    {//GEN-HEADEREND:event_txtPagNameSelFocusLost
-        if(this.txtPagNameSel.getText().isEmpty())
-        {
-            this.txtPagNameSel.setText("Nombre pag");
-        }
-    }//GEN-LAST:event_txtPagNameSelFocusLost
-
-    private void txtCatNameSelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtCatNameSelActionPerformed
-    {//GEN-HEADEREND:event_txtCatNameSelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCatNameSelActionPerformed
-
-    private void txtMinCatLinkMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtMinCatLinkMouseReleased
-    {//GEN-HEADEREND:event_txtMinCatLinkMouseReleased
-        if(this.txtMinCatLink.getText().equals("min"))
-        {
-            this.txtMinCatLink.setText("");
-        }
-    }//GEN-LAST:event_txtMinCatLinkMouseReleased
-
-    private void txtMinCatLinkFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtMinCatLinkFocusLost
-    {//GEN-HEADEREND:event_txtMinCatLinkFocusLost
-        if(this.txtMinCatLink.getText().isEmpty())
-        {
-            this.txtMinCatLink.setText("min");
-        }
-    }//GEN-LAST:event_txtMinCatLinkFocusLost
-
-    private void txtMaxCatLinkMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtMaxCatLinkMouseReleased
-    {//GEN-HEADEREND:event_txtMaxCatLinkMouseReleased
-        if(this.txtMaxCatLink.getText().equals("max"))
-        {
-            this.txtMaxCatLink.setText("");
-        }
-    }//GEN-LAST:event_txtMaxCatLinkMouseReleased
-
-    private void txtMaxCatLinkFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtMaxCatLinkFocusLost
-    {//GEN-HEADEREND:event_txtMaxCatLinkFocusLost
-        if(this.txtMaxCatLink.getText().isEmpty())
-        {
-            this.txtMaxCatLink.setText("max");
-        }
-    }//GEN-LAST:event_txtMaxCatLinkFocusLost
+    }//GEN-LAST:event_tabsPrincipalStateChanged
 
     private void btnCompararConjuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararConjuntosActionPerformed
         int[] infoC1 = iCtrlPresentacion.infoConjunto(false);
@@ -2150,6 +1818,711 @@ public class VistaPrincipal extends javax.swing.JFrame
         //this.txtListComp.setText("CONJUNTO CREADO:\n\n");
         //for(int i = 0; i<10; i++) this.txtListComp.append(""+infoC2[i]);
     }//GEN-LAST:event_btnCompararConjuntosActionPerformed
+
+    private void btnShowComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowComActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnShowComActionPerformed
+
+    private void btnChangeNameSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameSetActionPerformed
+        iCtrlPresentacion.modCtoNombre(txtNombreAnterior.getText(), txtNombreNuevo.getText(), comboTipoSet.getSelectedIndex() != 0);
+    }//GEN-LAST:event_btnChangeNameSetActionPerformed
+
+    private void btnListCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatFromComActionPerformed
+        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToList.getText(), comboTipoSet.getSelectedIndex() != 0);          
+        DefaultListModel model = (DefaultListModel) listCom.getModel();
+        model.clear();
+        for(String elem : lista) model.addElement(elem);
+            
+        CardLayout cl = (CardLayout)(panelC.getLayout());
+        cl.show(panelC, "card2");
+    }//GEN-LAST:event_btnListCatFromComActionPerformed
+
+    private void btnExportSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSetActionPerformed
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false);
+    }//GEN-LAST:event_btnExportSetActionPerformed
+
+    private void btnShowSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnShowSetActionPerformed
+
+    private void btnListComFromSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListComFromSetActionPerformed
+        actualizarSet(comboTipoSet.getSelectedIndex() != 0);
+        CardLayout cl = (CardLayout)(panelC.getLayout());
+        cl.show(panelC, "card1");
+        
+        //   ArrayList<String> lista = iCtrlPresentacion.mostrarCto(comboTipoSet.getSelectedIndex() != 0);
+     //   txtListSet.setText("Comunidades ("+lista.size()+"):\n\n");
+     //   for(int i=0; i< lista.size(); ++i) txtListSet.append(lista.get(i)+"\n");
+    }//GEN-LAST:event_btnListComFromSetActionPerformed
+
+    private void btnRmvComFromSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvComFromSetActionPerformed
+        iCtrlPresentacion.rmvCtoCom(txtAddRmvCom.getText(), comboTipoSet.getSelectedIndex() != 0);
+    }//GEN-LAST:event_btnRmvComFromSetActionPerformed
+
+    private void btnAddComToSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddComToSetActionPerformed
+        iCtrlPresentacion.addCtoCom(txtAddRmvCom.getText(), comboTipoSet.getSelectedIndex() != 0);
+    }//GEN-LAST:event_btnAddComToSetActionPerformed
+
+    private void btnRmvCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromComActionPerformed
+        iCtrlPresentacion.rmvCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);
+    }//GEN-LAST:event_btnRmvCatFromComActionPerformed
+
+    private void btnAddCatToComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToComActionPerformed
+        iCtrlPresentacion.addCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);
+    }//GEN-LAST:event_btnAddCatToComActionPerformed
+
+    private void btnAplicarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarFiltrosActionPerformed
+        int name = Integer.parseInt(spNombre.getValue().toString());
+        int pagComun = Integer.parseInt(spPagComun.getValue().toString());
+        int catComun = Integer.parseInt(spCatComun.getValue().toString());
+        int superComun = Integer.parseInt(spSuperComun.getValue().toString());
+        int subComun = Integer.parseInt(spSubComun.getValue().toString());
+        iCtrlPresentacion.aplicarFiltros(name,pagComun,catComun,superComun,subComun);
+    }//GEN-LAST:event_btnAplicarFiltrosActionPerformed
+
+    private void btnSelPagRandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelPagRandActionPerformed
+        randomSel(true);
+        ckTodasPaginas.setSelected(false);
+    }//GEN-LAST:event_btnSelPagRandActionPerformed
+
+    private void btnRmvSelPagNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvSelPagNameActionPerformed
+        ckTodasPaginas.setSelected(false);
+
+        int num = iCtrlPresentacion.getPagNum(txtPagNameSel.getText());
+        num = pagPosToId.indexOf(num); //Posició a la llista
+        int[] indices = listSelPaginas.getSelectedIndices(); //Selecció
+        int newIndices[] = new int[indices.length - 1]; //Selecció -1
+        int j = 0;
+        for(int i = 0; i < indices.length; i++)
+        {
+            if(indices[i] != num)
+            {
+                newIndices[j] = indices[i];
+                j++;
+            }
+        }
+        listSelPaginas.setSelectedIndices(newIndices);
+    }//GEN-LAST:event_btnRmvSelPagNameActionPerformed
+
+    private void btnAddSelPagNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelPagNameActionPerformed
+        ckTodasPaginas.setSelected(false);
+
+        int num = iCtrlPresentacion.getPagNum(txtPagNameSel.getText());
+        System.out.println(num);
+        num = pagPosToId.indexOf(num);
+        System.out.println(num);
+        int[] indices = listSelPaginas.getSelectedIndices();
+        int newIndices[] = new int[indices.length + 1];
+        System.arraycopy(indices, 0, newIndices, 0, indices.length);
+        newIndices[indices.length] = num;
+        listSelPaginas.setSelectedIndices(newIndices);
+    }//GEN-LAST:event_btnAddSelPagNameActionPerformed
+
+    private void btnAddSelPagRangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelPagRangActionPerformed
+        ckTodasPaginas.setSelected(false);
+
+        ArrayList<Integer> selection = iCtrlPresentacion.getPagSelection(Integer.parseInt(txtMinPagLink.getText()), Integer.parseInt(txtMaxPagLink.getText()));
+        int[] indices = new int[selection.size()];
+        for(int i = 0; i < selection.size(); i++) indices[i] = pagPosToId.indexOf(selection.get(i));
+        listSelPaginas.setSelectedIndices(indices);
+    }//GEN-LAST:event_btnAddSelPagRangActionPerformed
+
+    private void txtMinPagLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinPagLinkActionPerformed
+
+    }//GEN-LAST:event_txtMinPagLinkActionPerformed
+
+    private void txtPagNameSelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPagNameSelFocusLost
+        if(this.txtPagNameSel.getText().isEmpty())
+        {
+            this.txtPagNameSel.setText("Nombre pag");
+        }
+    }//GEN-LAST:event_txtPagNameSelFocusLost
+
+    private void txtPagNameSelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPagNameSelMouseReleased
+        if(this.txtPagNameSel.getText().equals("Nombre pag"))
+        {
+            this.txtPagNameSel.setText("");
+        }
+    }//GEN-LAST:event_txtPagNameSelMouseReleased
+
+    private void btnAplicarSelPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelPagActionPerformed
+        //List l = listPaginas.getSelectedValuesList();
+        int[] index = listSelPaginas.getSelectedIndices();
+        ArrayList<Integer> intList = new ArrayList<>();
+        for(int intValue : index) intList.add(pagPosToId.get(intValue));
+        //ArrayList<String> al = new ArrayList<>(l);
+        iCtrlPresentacion.aplicarSelPag(intList);
+    }//GEN-LAST:event_btnAplicarSelPagActionPerformed
+
+    private void ckTodasPaginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckTodasPaginasActionPerformed
+        if (ckTodasPaginas.isSelected()) listSelPaginas.setSelectionInterval(0, listSelPaginas.getModel().getSize() - 1);
+        else listSelPaginas.clearSelection();
+    }//GEN-LAST:event_ckTodasPaginasActionPerformed
+
+    private void btnSelCatRandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelCatRandActionPerformed
+        randomSel(false);
+        ckTodasCategorias.setSelected(false);
+    }//GEN-LAST:event_btnSelCatRandActionPerformed
+
+    private void btnAddSelCatRangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelCatRangActionPerformed
+        ckTodasCategorias.setSelected(false);
+
+        ArrayList<Integer> selection = iCtrlPresentacion.getCatSelection(Integer.parseInt(txtMinCatLink.getText()), Integer.parseInt(txtMaxCatLink.getText()));
+        int[] indices = new int[selection.size()];
+        for(int i = 0; i < selection.size(); i++) indices[i] = catPosToId.indexOf(selection.get(i)); //REPASSAR
+        listSelCategorias.setSelectedIndices(indices);
+    }//GEN-LAST:event_btnAddSelCatRangActionPerformed
+
+    private void btnRmvSelCatNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvSelCatNameActionPerformed
+        ckTodasCategorias.setSelected(false);
+
+        int num = iCtrlPresentacion.getCatNum(txtCatNameSel.getText());
+        num = catPosToId.indexOf(num); //Posició a la llista
+        int[] indices = listSelCategorias.getSelectedIndices(); //Selecció
+        int[] newIndices= new int[indices.length - 1]; //Selecció -1
+        int j = 0;
+        for(int i = 0; i < indices.length; i++)
+        {
+            if(indices[i] != num)
+            {
+                newIndices[j] = indices[i];
+                j++;
+            }
+        }
+        listSelCategorias.setSelectedIndices(newIndices);
+    }//GEN-LAST:event_btnRmvSelCatNameActionPerformed
+
+    private void btnAddSelCatNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelCatNameActionPerformed
+        ckTodasCategorias.setSelected(false);
+
+        int num = iCtrlPresentacion.getCatNum(txtCatNameSel.getText());
+        System.out.println(num);
+        num = catPosToId.indexOf(num);
+        System.out.println(num);
+        int[] indices = listSelCategorias.getSelectedIndices();
+        int[] newIndices = new int[indices.length + 1];
+        System.arraycopy(indices, 0, newIndices, 0, indices.length);
+        newIndices[indices.length] = num;
+        listSelCategorias.setSelectedIndices(newIndices);
+
+    }//GEN-LAST:event_btnAddSelCatNameActionPerformed
+
+    private void txtCatNameSelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCatNameSelFocusLost
+        if(this.txtCatNameSel.getText().isEmpty())
+        {
+            this.txtCatNameSel.setText("Nombre cat");
+        }
+    }//GEN-LAST:event_txtCatNameSelFocusLost
+
+    private void txtCatNameSelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCatNameSelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCatNameSelActionPerformed
+
+    private void txtCatNameSelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCatNameSelMouseReleased
+        if(this.txtCatNameSel.getText().equals("Nombre cat"))
+        {
+            this.txtCatNameSel.setText("");
+        }
+    }//GEN-LAST:event_txtCatNameSelMouseReleased
+
+    private void txtMaxCatLinkFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaxCatLinkFocusLost
+        if(this.txtMaxCatLink.getText().isEmpty())
+        {
+            this.txtMaxCatLink.setText("max");
+        }
+    }//GEN-LAST:event_txtMaxCatLinkFocusLost
+
+    private void txtMaxCatLinkMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMaxCatLinkMouseReleased
+        if(this.txtMaxCatLink.getText().equals("max"))
+        {
+            this.txtMaxCatLink.setText("");
+        }
+    }//GEN-LAST:event_txtMaxCatLinkMouseReleased
+
+    private void txtMinCatLinkFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMinCatLinkFocusLost
+        if(this.txtMinCatLink.getText().isEmpty())
+        {
+            this.txtMinCatLink.setText("min");
+        }
+    }//GEN-LAST:event_txtMinCatLinkFocusLost
+
+    private void txtMinCatLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinCatLinkActionPerformed
+
+    }//GEN-LAST:event_txtMinCatLinkActionPerformed
+
+    private void txtMinCatLinkMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMinCatLinkMouseReleased
+        if(this.txtMinCatLink.getText().equals("min"))
+        {
+            this.txtMinCatLink.setText("");
+        }
+    }//GEN-LAST:event_txtMinCatLinkMouseReleased
+
+    private void btnAplicarSelCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelCatActionPerformed
+        //List l = listCategorias.getSelectedValuesList();
+        //ArrayList<String> al = new ArrayList<>(l);
+        //iCtrlPresentacion.aplicarSelCat(al);
+
+        int[] index = listSelCategorias.getSelectedIndices();
+        ArrayList<Integer> intList = new ArrayList<>();
+        for(int intValue : index) intList.add(catPosToId.get(intValue));
+        iCtrlPresentacion.aplicarSelCat(intList);
+
+    }//GEN-LAST:event_btnAplicarSelCatActionPerformed
+
+    private void ckTodasCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckTodasCategoriasActionPerformed
+        if (ckTodasCategorias.isSelected()) listSelCategorias.setSelectionInterval(0, listSelCategorias.getModel().getSize() - 1);
+        else listSelCategorias.clearSelection();
+    }//GEN-LAST:event_ckTodasCategoriasActionPerformed
+
+    private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
+        int alg = 1;
+        if(radioGirvan.isSelected()) alg = 2;
+        else if(radioClique.isSelected()) alg = 3;
+        iCtrlPresentacion.ejecutar(alg,  Integer.parseInt(spinP.getValue().toString()));
+    }//GEN-LAST:event_btnEjecutarActionPerformed
+
+    private void radioGirvanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioGirvanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioGirvanActionPerformed
+
+    private void btnNuevoGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafo1ActionPerformed
+        iCtrlPresentacion.crearGrafo();
+        clearTxtAreas();
+    }//GEN-LAST:event_btnNuevoGrafo1ActionPerformed
+
+    private void btnImportarGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafo1ActionPerformed
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true);
+    }//GEN-LAST:event_btnImportarGrafo1ActionPerformed
+
+    private void txtNombreNodoNuevoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreNodoNuevoFocusLost
+        if(this.txtNombreNodoNuevo.getText().isEmpty())
+        {
+            this.txtNombreNodoNuevo.setText("Nuevo");
+        }
+    }//GEN-LAST:event_txtNombreNodoNuevoFocusLost
+
+    private void txtNombreNodoNuevoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreNodoNuevoMouseReleased
+        if(this.txtNombreNodoNuevo.getText().equals("Nuevo"))
+        {
+            this.txtNombreNodoNuevo.setText("");
+        }
+    }//GEN-LAST:event_txtNombreNodoNuevoMouseReleased
+
+    private void txtNombreNodoAnteriorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreNodoAnteriorFocusLost
+        if(this.txtNombreNodoAnterior.getText().isEmpty())
+        {
+            this.txtNombreNodoAnterior.setText("Anterior");
+        }
+    }//GEN-LAST:event_txtNombreNodoAnteriorFocusLost
+
+    private void txtNombreNodoAnteriorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreNodoAnteriorMouseReleased
+        if(this.txtNombreNodoAnterior.getText().equals("Anterior"))
+        {
+            this.txtNombreNodoAnterior.setText("");
+        }
+    }//GEN-LAST:event_txtNombreNodoAnteriorMouseReleased
+
+    private void btnExportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarGrafoActionPerformed
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, true);
+    }//GEN-LAST:event_btnExportarGrafoActionPerformed
+
+    private void btnListLinksGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListLinksGraphActionPerformed
+        CardLayout cl = (CardLayout)(panel.getLayout());
+        cl.show(panel, "card3");
+        
+        //ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoEnlaces();
+        //txtListGraph.setText("Enlaces ("+lista.size()+"):\n\n");
+        //for(String elem : lista) txtListGraph.append(elem+"\n");
+        //this.txtListGraph.setCaretPosition(0);
+    }//GEN-LAST:event_btnListLinksGraphActionPerformed
+
+    private void btnListPagGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListPagGraphActionPerformed
+        CardLayout cl = (CardLayout)(panel.getLayout());
+        cl.show(panel, "card2");
+
+        //ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoPag();
+        //txtListGraph.setText("Páginas ("+lista.size()+"):\n\n");
+        //for(String elem : lista) txtListGraph.append(elem+"\n");
+        //this.txtListGraph.setCaretPosition(0);
+    }//GEN-LAST:event_btnListPagGraphActionPerformed
+
+    private void btnListCatGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatGraphActionPerformed
+        CardLayout cl = (CardLayout)(panel.getLayout());
+        cl.show(panel, "card1");
+
+        //ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();
+        //txtListGraph.setText("Categorias ("+lista.size()+"):\n\n");
+        //for(String elem : lista) txtListGraph.append(elem+"\n");
+        //this.txtListGraph.setCaretPosition(0);
+    }//GEN-LAST:event_btnListCatGraphActionPerformed
+
+    private void btnChangeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameActionPerformed
+
+        if(radioCategoria.isSelected()) //CATEGORIA
+        {
+            int id = iCtrlPresentacion.modGrafoNombre(txtNombreNodoAnterior.getText(), txtNombreNodoNuevo.getText(), true);
+            if(id != -1)
+            {
+                DefaultListModel model = (DefaultListModel) listSelCategorias.getModel();
+                model.getElementAt(catPosToId.indexOf(id));
+                model.remove(id);
+                model.add(id,txtNombreNodoNuevo.getText());
+            }
+        }
+        else //PÁGINA
+        {
+            int id = iCtrlPresentacion.modGrafoNombre(txtNombreNodoAnterior.getText(), txtNombreNodoNuevo.getText(), false);
+            if(id != -1)
+            {
+                DefaultListModel model = (DefaultListModel) listSelPaginas.getModel();
+                model.getElementAt(pagPosToId.indexOf(id));
+                model.remove(id);
+                model.add(id,txtNombreNodoNuevo.getText());
+            }
+        }
+    }//GEN-LAST:event_btnChangeNameActionPerformed
+
+    private void comboTipoEnlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoEnlaceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboTipoEnlaceActionPerformed
+
+    private void txtNodo2EnlaceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNodo2EnlaceFocusLost
+        if(this.txtNodo2Enlace.getText().isEmpty())
+        {
+            this.txtNodo2Enlace.setText("Nombre nodo2");
+        }
+    }//GEN-LAST:event_txtNodo2EnlaceFocusLost
+
+    private void txtNodo2EnlaceMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNodo2EnlaceMouseReleased
+        if(this.txtNodo2Enlace.getText().equals("Nombre nodo2"))
+        {
+            this.txtNodo2Enlace.setText("");
+        }
+    }//GEN-LAST:event_txtNodo2EnlaceMouseReleased
+
+    private void btnRmvLinkFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvLinkFromGraphActionPerformed
+        iCtrlPresentacion.rmvGrafoEnlace(txtNodo1Enlace.getText(), txtNodo2Enlace.getText(), comboTipoEnlace.getSelectedItem().toString());
+    }//GEN-LAST:event_btnRmvLinkFromGraphActionPerformed
+
+    private void btnRmvPagFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvPagFromGraphActionPerformed
+        int id = iCtrlPresentacion.rmvGrafoPag(txtPagToAddRmv.getText());
+        if(id != -1)
+        {
+            int pos = pagPosToId.indexOf(id);
+            DefaultListModel model = (DefaultListModel) listSelPaginas.getModel();            
+            model.remove(pos);
+            model = (DefaultListModel) listPag.getModel();            
+            model.remove(pos);
+            listPag.setSelectedIndex(pos);
+            pagPosToId.remove(pos);
+        }
+    }//GEN-LAST:event_btnRmvPagFromGraphActionPerformed
+
+    private void btnAddPagToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPagToGraphActionPerformed
+        int id = iCtrlPresentacion.addGrafoPag(txtPagToAddRmv.getText());
+        if(id != -1)
+        {
+            DefaultListModel model = (DefaultListModel) listSelPaginas.getModel();            
+            model.addElement(txtPagToAddRmv.getText());
+            model = (DefaultListModel) listPag.getModel();            
+            model.addElement(txtPagToAddRmv.getText());
+            pagPosToId.add(id);
+        }
+
+    }//GEN-LAST:event_btnAddPagToGraphActionPerformed
+
+    private void btnAddLinkToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLinkToGraphActionPerformed
+        iCtrlPresentacion.addGrafoEnlace(txtNodo1Enlace.getText(), txtNodo2Enlace.getText(), comboTipoEnlace.getSelectedItem().toString());
+    }//GEN-LAST:event_btnAddLinkToGraphActionPerformed
+
+    private void btnRmvCatFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromGraphActionPerformed
+        int id = iCtrlPresentacion.rmvGrafoCat(txtCatToAddRmv.getText());
+        if (id != -1)
+        {
+            int pos = catPosToId.indexOf(id);
+            DefaultListModel model = (DefaultListModel) listSelCategorias.getModel();            
+            model.remove(pos);
+            model = (DefaultListModel) listCat.getModel();            
+            model.remove(pos);
+            listCat.setSelectedIndex(pos);
+            catPosToId.remove(pos);
+        }
+
+    }//GEN-LAST:event_btnRmvCatFromGraphActionPerformed
+
+    private void btnAddCatToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToGraphActionPerformed
+        int id = iCtrlPresentacion.addGrafoCat(txtCatToAddRmv.getText());
+        if (id != -1)
+        {
+            DefaultListModel model = (DefaultListModel) listSelCategorias.getModel();
+            model.addElement(txtCatToAddRmv.getText());
+            model = (DefaultListModel) listCat.getModel();
+            model.addElement(txtCatToAddRmv.getText());
+            catPosToId.add(id);
+        }
+    }//GEN-LAST:event_btnAddCatToGraphActionPerformed
+
+    private void txtNodo1EnlaceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNodo1EnlaceFocusLost
+        if(this.txtNodo1Enlace.getText().isEmpty())
+        {
+            this.txtNodo1Enlace.setText("Nombre nodo1");
+        }
+    }//GEN-LAST:event_txtNodo1EnlaceFocusLost
+
+    private void txtNodo1EnlaceMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNodo1EnlaceMouseReleased
+        if(this.txtNodo1Enlace.getText().equals("Nombre nodo1"))
+        {
+            this.txtNodo1Enlace.setText("");
+        }
+    }//GEN-LAST:event_txtNodo1EnlaceMouseReleased
+
+    private void txtPagToAddRmvFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPagToAddRmvFocusLost
+        if(this.txtPagToAddRmv.getText().isEmpty())
+        {
+            this.txtPagToAddRmv.setText("Nombre página");
+        }
+    }//GEN-LAST:event_txtPagToAddRmvFocusLost
+
+    private void txtPagToAddRmvFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPagToAddRmvFocusGained
+
+    }//GEN-LAST:event_txtPagToAddRmvFocusGained
+
+    private void txtPagToAddRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPagToAddRmvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPagToAddRmvActionPerformed
+
+    private void txtPagToAddRmvMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPagToAddRmvMouseReleased
+        if(this.txtPagToAddRmv.getText().equals("Nombre página"))
+        {
+            this.txtPagToAddRmv.setText("");
+        }
+    }//GEN-LAST:event_txtPagToAddRmvMouseReleased
+
+    private void txtCatToAddRmvFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCatToAddRmvFocusLost
+        if(this.txtCatToAddRmv.getText().isEmpty())
+        {
+            this.txtCatToAddRmv.setText("Nombre categoria");
+        }
+    }//GEN-LAST:event_txtCatToAddRmvFocusLost
+
+    private void txtCatToAddRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCatToAddRmvActionPerformed
+
+    }//GEN-LAST:event_txtCatToAddRmvActionPerformed
+
+    private void txtCatToAddRmvMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCatToAddRmvMouseReleased
+        if(this.txtCatToAddRmv.getText().equals("Nombre categoria"))
+        {
+            this.txtCatToAddRmv.setText("");
+        }
+    }//GEN-LAST:event_txtCatToAddRmvMouseReleased
+
+    private void btnNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafoActionPerformed
+        iCtrlPresentacion.crearGrafo();
+        clearTxtAreas();
+    }//GEN-LAST:event_btnNuevoGrafoActionPerformed
+
+    private void btnImportarConjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarConjActionPerformed
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false);
+        tabsPrincipal.setSelectedIndex(3);
+    }//GEN-LAST:event_btnImportarConjActionPerformed
+
+    private void btnImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafoActionPerformed
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true);
+    }//GEN-LAST:event_btnImportarGrafoActionPerformed
+
+    private void listCatValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listCatValueChanged
+        if(!this.listCat.isSelectionEmpty())
+        {
+            this.txtCatToAddRmv.setText(this.listCat.getSelectedValue().toString());////////////////////////////////***************************************
+            this.txtNombreNodoAnterior.setText(this.listCat.getSelectedValue().toString());
+            this.radioCategoria.setSelected(true);
+        }
+        
+    }//GEN-LAST:event_listCatValueChanged
+
+    private void listPagValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listPagValueChanged
+        if(!this.listPag.isSelectionEmpty())
+        {
+            this.txtPagToAddRmv.setText(this.listPag.getSelectedValue().toString());
+            this.txtNombreNodoAnterior.setText(this.listPag.getSelectedValue().toString());
+            this.radioPagina.setSelected(true);
+        }        
+    }//GEN-LAST:event_listPagValueChanged
+
+    private void listCatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCatMouseClicked
+        
+    }//GEN-LAST:event_listCatMouseClicked
+
+    private void listCatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCatMousePressed
+        if (evt.getButton() == MouseEvent.BUTTON1) this.txtNodo1Enlace.setText(this.listCat.getSelectedValue().toString());
+        else if (evt.getButton() == MouseEvent.BUTTON3)
+        {
+            JList list = (JList)evt.getSource();
+            int row = list.locationToIndex(evt.getPoint());
+            list.setSelectedIndex(row);
+            this.txtNodo2Enlace.setText(this.listCat.getSelectedValue().toString());
+        }
+    }//GEN-LAST:event_listCatMousePressed
+
+    private void listPagMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPagMousePressed
+        if (evt.getButton() == MouseEvent.BUTTON1)
+        {
+            this.txtNodo1Enlace.setText(this.listPag.getSelectedValue().toString());
+            this.comboTipoEnlace.setSelectedIndex(3);
+        }
+        else if (evt.getButton() == MouseEvent.BUTTON3)
+        {
+            JList list = (JList)evt.getSource();
+            int row = list.locationToIndex(evt.getPoint());
+            list.setSelectedIndex(row);
+            this.txtNodo2Enlace.setText(this.listPag.getSelectedValue().toString());
+            this.comboTipoEnlace.setSelectedIndex(2);
+        }
+    }//GEN-LAST:event_listPagMousePressed
+
+    private void txtMinPagLinkFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMinPagLinkFocusLost
+        if(this.txtMinPagLink.getText().isEmpty())
+        {
+            this.txtMinPagLink.setText("min");
+        }
+    }//GEN-LAST:event_txtMinPagLinkFocusLost
+
+    private void txtMinPagLinkMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMinPagLinkMouseReleased
+        if(this.txtMinPagLink.getText().equals("min"))
+        {
+            this.txtMinPagLink.setText("");
+        }
+    }//GEN-LAST:event_txtMinPagLinkMouseReleased
+
+    private void txtMaxPagLinkFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaxPagLinkFocusLost
+        if(this.txtMaxPagLink.getText().isEmpty())
+        {
+            this.txtMaxPagLink.setText("max");
+        }
+    }//GEN-LAST:event_txtMaxPagLinkFocusLost
+
+    private void txtMaxPagLinkMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMaxPagLinkMouseReleased
+        if(this.txtMaxPagLink.getText().equals("max"))
+        {
+            this.txtMaxPagLink.setText("");
+        }
+    }//GEN-LAST:event_txtMaxPagLinkMouseReleased
+
+    private void txtMaxPagLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaxPagLinkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaxPagLinkActionPerformed
+
+    private void txtCompCom1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCompCom1FocusLost
+        if(this.txtCompCom1.getText().isEmpty())
+        {
+            this.txtCompCom1.setText("Nombre comunidad 1");
+        }
+    }//GEN-LAST:event_txtCompCom1FocusLost
+
+    private void txtCompCom1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCompCom1MouseReleased
+        if(this.txtCompCom1.getText().equals("Nombre comunidad 1"))
+        {
+            this.txtCompCom1.setText("");
+        }
+    }//GEN-LAST:event_txtCompCom1MouseReleased
+
+    private void txtCompCom2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCompCom2FocusLost
+        if(this.txtCompCom2.getText().isEmpty())
+        {
+            this.txtCompCom2.setText("Nombre comunidad 2");
+        }
+    }//GEN-LAST:event_txtCompCom2FocusLost
+
+    private void txtCompCom2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCompCom2MouseReleased
+        if(this.txtCompCom2.getText().equals("Nombre comunidad 2"))
+        {
+            this.txtCompCom2.setText("");
+        }
+    }//GEN-LAST:event_txtCompCom2MouseReleased
+
+    private void txtCatAddRmvSetFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCatAddRmvSetFocusLost
+        if(this.txtCatAddRmvSet.getText().isEmpty())
+        {
+            this.txtCatAddRmvSet.setText("Categoria");
+        }
+    }//GEN-LAST:event_txtCatAddRmvSetFocusLost
+
+    private void txtCatAddRmvSetMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCatAddRmvSetMouseReleased
+        if(this.txtCatAddRmvSet.getText().equals("Categoria"))
+        {
+            this.txtCatAddRmvSet.setText("");
+        }
+    }//GEN-LAST:event_txtCatAddRmvSetMouseReleased
+
+    private void txtComToAddRmvCatFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtComToAddRmvCatFocusLost
+        if(this.txtComToAddRmvCat.getText().isEmpty())
+        {
+            this.txtComToAddRmvCat.setText("Comunidad");
+        }
+    }//GEN-LAST:event_txtComToAddRmvCatFocusLost
+
+    private void txtComToAddRmvCatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtComToAddRmvCatMouseReleased
+        if(this.txtComToAddRmvCat.getText().equals("Comunidad"))
+        {
+            this.txtComToAddRmvCat.setText("");
+        }
+    }//GEN-LAST:event_txtComToAddRmvCatMouseReleased
+
+    private void txtAddRmvComFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAddRmvComFocusLost
+        if(this.txtAddRmvCom.getText().isEmpty())
+        {
+            this.txtAddRmvCom.setText("Nombre comunidad");
+        }
+    }//GEN-LAST:event_txtAddRmvComFocusLost
+
+    private void txtAddRmvComMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAddRmvComMouseReleased
+        if(this.txtAddRmvCom.getText().equals("Nombre comunidad"))
+        {
+            this.txtAddRmvCom.setText("");
+        }
+    }//GEN-LAST:event_txtAddRmvComMouseReleased
+
+    private void txtNombreAnteriorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreAnteriorFocusLost
+        if(this.txtNombreAnterior.getText().isEmpty())
+        {
+            this.txtNombreAnterior.setText("Anterior");
+        }
+    }//GEN-LAST:event_txtNombreAnteriorFocusLost
+
+    private void txtNombreAnteriorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreAnteriorMouseReleased
+        if(this.txtNombreAnterior.getText().equals("Anterior"))
+        {
+            this.txtNombreAnterior.setText("");
+        }
+    }//GEN-LAST:event_txtNombreAnteriorMouseReleased
+
+    private void txtNombreNuevoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreNuevoFocusLost
+        if(this.txtNombreNuevo.getText().isEmpty())
+        {
+            this.txtNombreNuevo.setText("Nuevo");
+        }
+    }//GEN-LAST:event_txtNombreNuevoFocusLost
+
+    private void txtNombreNuevoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreNuevoMouseReleased
+        if(this.txtNombreNuevo.getText().equals("Nuevo"))
+        {
+            this.txtNombreNuevo.setText("");
+        }
+    }//GEN-LAST:event_txtNombreNuevoMouseReleased
+
+    private void txtComToListFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtComToListFocusLost
+        if(this.txtComToList.getText().isEmpty())
+        {
+            this.txtComToList.setText("Nombre comunidad");
+        }
+    }//GEN-LAST:event_txtComToListFocusLost
+
+    private void txtComToListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtComToListMouseReleased
+        if(this.txtComToList.getText().equals("Nombre comunidad"))
+        {
+            this.txtComToList.setText("");
+        }
+    }//GEN-LAST:event_txtComToListMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2199,10 +2572,9 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JComboBox comboTipoCom1;
     private javax.swing.JComboBox comboTipoCom2;
     private javax.swing.JComboBox comboTipoEnlace;
-    private javax.swing.JComboBox comboTipoNodo;
-    private javax.swing.JComboBox comboTipoNombreSet;
     private javax.swing.JComboBox comboTipoSet;
     private javax.swing.ButtonGroup grupoAlgoritmos;
+    private javax.swing.ButtonGroup grupoTipoNodo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2234,14 +2606,16 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JList listCategorias;
-    private javax.swing.JList listPaginas;
+    private javax.swing.JList listCat;
+    private javax.swing.JList listCom;
+    private javax.swing.JList listLinks;
+    private javax.swing.JList listPag;
+    private javax.swing.JList listSelCategorias;
+    private javax.swing.JList listSelPaginas;
+    private javax.swing.JList listSet;
     private javax.swing.JMenuItem mItemAbout;
     private javax.swing.JMenuItem mItemExportarGrafo;
     private javax.swing.JMenuItem mItemExportarSet;
@@ -2252,14 +2626,23 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem mItemSalir;
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JMenu menuFichero;
+    private javax.swing.JPanel panel;
     private javax.swing.JPanel panelAlgoritmo;
+    private javax.swing.JPanel panelC;
     private javax.swing.JPanel panelComparacion;
     private javax.swing.JPanel panelComunidades;
     private javax.swing.JPanel panelGrafo;
     private javax.swing.JPanel panelImportar;
+    private javax.swing.JRadioButton radioCategoria;
     private javax.swing.JRadioButton radioClique;
     private javax.swing.JRadioButton radioGirvan;
     private javax.swing.JRadioButton radioLouvain;
+    private javax.swing.JRadioButton radioPagina;
+    private javax.swing.JScrollPane scListCom;
+    private javax.swing.JScrollPane scListSet;
+    private javax.swing.JScrollPane sclistCat;
+    private javax.swing.JScrollPane sclistLinks;
+    private javax.swing.JScrollPane sclistPag;
     private javax.swing.JSpinner spCatComun;
     private javax.swing.JSpinner spNombre;
     private javax.swing.JSpinner spPagComun;
@@ -2275,12 +2658,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JTextField txtCatAddRmvSet;
     private javax.swing.JTextField txtCatNameSel;
     private javax.swing.JTextField txtCatToAddRmv;
-    private javax.swing.JTextField txtComName;
     private javax.swing.JTextField txtComToAddRmvCat;
     private javax.swing.JTextField txtComToList;
+    private javax.swing.JTextField txtCompCom1;
+    private javax.swing.JTextField txtCompCom2;
     private javax.swing.JTextArea txtListComp;
-    private javax.swing.JTextArea txtListGraph;
-    private javax.swing.JTextArea txtListSet;
     private javax.swing.JTextField txtMaxCatLink;
     private javax.swing.JTextField txtMaxPagLink;
     private javax.swing.JTextField txtMinCatLink;

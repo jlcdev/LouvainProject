@@ -132,8 +132,9 @@ public class CtrlPresentacion {
   public void importarGrafo (String path)
   {
       this.ctrlDominio.readEntryGraphFile(path);
-      this.vistaPrincipal.actualizarSeleccionCat();
-      this.vistaPrincipal.actualizarSeleccionPag();
+      this.vistaPrincipal.actualizarCat();
+      this.vistaPrincipal.actualizarPag();
+      this.vistaPrincipal.actualizarLinks();
       this.vistaPrincipal.activarTab(1); //GRAFO
       this.vistaPrincipal.activarTab(2); //ALGORITMO
       this.vistaPrincipal.goToTab(1);
@@ -365,9 +366,10 @@ public class CtrlPresentacion {
       this.ctrlDominio.rmvCtoCom(comunidad, importat);
   }
   
-  public void modCtoNombre (int tipus, String anterior, String nuevo, String comunidad, Boolean importat)
+  public void modCtoNombre (String anterior, String nuevo, Boolean importat) ////////////////////////////////////////////////////////////////////////////////////////
   {
-      this.ctrlDominio.modCtoNombre(tipus, anterior, nuevo, comunidad, importat);
+      //TO DO
+      this.ctrlDominio.modCtoNombre(0, anterior, nuevo, null, importat);
   }
   
   public ArrayList<String> mostrarCto (Boolean importat)
