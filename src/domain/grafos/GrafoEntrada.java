@@ -376,7 +376,7 @@ public class GrafoEntrada implements Cloneable
         }
         else
         {
-            Pagina p = new Pagina(sA);
+            Pagina p = new Pagina(sB);
             this.addPagina(p);
             nb = this.paginaIndex.get(p);
         }
