@@ -355,7 +355,7 @@ public class GrafoEntrada implements Cloneable
     public void setData(String sA, String tA, String tArch, String sB, String tB)
     {
         Integer na, nb;
-        Arch arc;
+        Arch arc = null;
         if(tA.equals("cat"))
         {
             Categoria c = new Categoria(sA);
@@ -385,65 +385,18 @@ public class GrafoEntrada implements Cloneable
         {
             case "CsubC":
                 arc = new Arch(na, nb, Arch.typeArch.CsubC);
-                if(this.csubcEdges.containsKey(na))
-                {
-                    ArrayList<Arch> arcs = this.csubcEdges.get(na);
-                    arcs.add(arc);
-                    this.csubcEdges.put(na, arcs);
-                }
-                else
-                {
-                    ArrayList<Arch> arcs = new ArrayList();
-                    arcs.add(arc);
-                    this.csubcEdges.put(na, arcs);
-                }
                 break;
             case "CsupC":
                 arc = new Arch(na, nb, Arch.typeArch.CsupC);
-                if(this.csupcEdges.containsKey(na))
-                {
-                    ArrayList<Arch> arcs = this.csupcEdges.get(na);
-                    arcs.add(arc);
-                    this.csupcEdges.put(na, arcs);
-                }
-                else
-                {
-                    ArrayList<Arch> arcs = new ArrayList();
-                    arcs.add(arc);
-                    this.csupcEdges.put(na, arcs);
-                }
                 break;
             case "CP":
                 arc = new Arch(na, nb, Arch.typeArch.CP);
-                if(this.cpEdges.containsKey(na))
-                {
-                    ArrayList<Arch> arcs = this.cpEdges.get(na);
-                    arcs.add(arc);
-                    this.cpEdges.put(na, arcs);
-                }
-                else
-                {
-                    ArrayList<Arch> arcs = new ArrayList();
-                    arcs.add(arc);
-                    this.cpEdges.put(na, arcs);
-                }
                 break;
             case "PC":
                 arc = new Arch(na, nb, Arch.typeArch.PC);
-                if(this.pcEdges.containsKey(na))
-                {
-                    ArrayList<Arch> arcs = this.pcEdges.get(na);
-                    arcs.add(arc);
-                    this.pcEdges.put(na, arcs);
-                }
-                else
-                {
-                    ArrayList<Arch> arcs = new ArrayList();
-                    arcs.add(arc);
-                    this.pcEdges.put(na, arcs);
-                }
                 break;
         }
+        this.addArch(arc);
         ++this.edgeSize;
     }
     
@@ -634,7 +587,7 @@ public class GrafoEntrada implements Cloneable
     {
         if(this.indexPagina.containsKey(page) && this.indexCategoria.containsKey(category))
         {
-            ArrayList<Arch> arcs = this.cpEdges.get(page);
+            ArrayList<Arch> arcs = this.cpEdges.get(category);
             if(arcs.contains(arc))
             {
                 arcs.set(arcs.indexOf(arc), arc);
@@ -643,7 +596,7 @@ public class GrafoEntrada implements Cloneable
             {
                 arcs.add(arc);
             }
-            this.cpEdges.put(page, arcs);
+            this.cpEdges.put(category, arcs);
         }
     }
     
@@ -721,8 +674,7 @@ public class GrafoEntrada implements Cloneable
     
     public boolean addPagina(Pagina page)
     {
-        int value = this.getPageNumber(page);
-        if(value == -1)
+        if(this.getPageNumber(page) == -1)
         {
             this.indexPagina.put(this.pageId, page);
             this.paginaIndex.put(page, this.pageId);

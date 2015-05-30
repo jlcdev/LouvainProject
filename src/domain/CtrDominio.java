@@ -46,6 +46,32 @@ public class CtrDominio
         return this.g;
     }
     
+    public String getArchInformation(Arch arc)
+    {
+        String nodeA = this.g.getNumberNameCategory(arc.getOrigin());
+        String nodeB = this.g.getNumberNameCategory(arc.getDestiny());
+        String typeA = "cat";
+        String typeB = "cat";
+        String typeArch = "CsupC";
+        switch(arc.getTypeArch())
+        {
+            case CsubC:
+                typeArch = "CsubC";
+                break;
+            case CP:
+                typeArch = "CP";
+                nodeB = this.g.getNumberNamePage(arc.getDestiny());
+                typeB = "page";
+                break;
+            case PC:
+                typeArch = "PC";
+                nodeA = this.g.getNumberNamePage(arc.getOrigin());
+                typeA = "page";
+                break;
+        }
+        return nodeA+"   "+typeA+"   "+typeArch+"   "+nodeB+"   "+typeB;
+    }
+    
     public ArrayList<Integer> getCatSelection(int min, int max)
     {
         ArrayList<Integer> selection = new ArrayList();
