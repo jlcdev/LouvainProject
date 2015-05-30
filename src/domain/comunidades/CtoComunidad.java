@@ -40,6 +40,8 @@ public class CtoComunidad
             ++cont;
         }
         System.out.println("TIEMPO: "+this.texec);
+        System.out.println("Categorias: "+this.selections.getCategoriesSelected().size());
+        
     }
     
     public CtoComunidad()

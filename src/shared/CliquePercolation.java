@@ -39,7 +39,7 @@ public class CliquePercolation extends Algorithm {
             veins = g.getNeighbors(vertexs.get(i));
             for (Integer vei : veins) {
                 if (!vertex_vist.get(vertexs.indexOf(vei))) {
-                    double pes = g.getEdge(vertexs.get(i), vei).getValue();
+                    double pes = g.getEdge(vertexs.get(i), vei);
                     suma_pes = suma_pes + pes;
                     arestes_total++;
                     if (pes < pes_min) pes_min = pes;
@@ -80,7 +80,7 @@ public class CliquePercolation extends Algorithm {
             ArrayList<Integer> veins = new ArrayList<>();
             veins = g.getNeighbors(vertexs.get(i));
             for (Integer vei : veins) {
-                if (!vertex_vist.get(vertexs.indexOf(vei)) && g.getEdge(vertexs.get(i), vei).getValue() >= W) {
+                if (!vertex_vist.get(vertexs.indexOf(vei)) && g.getEdge(vertexs.get(i), vei) >= W) {
                     graf.get(i).add(vertexs.indexOf(vei));
                     graf.get(vertexs.indexOf(vei)).add(i);
                 }

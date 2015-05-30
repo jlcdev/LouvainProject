@@ -8,18 +8,19 @@ import java.util.Set;
 /**
  * Graf generic
  * @param <T> El tipus del pes de les arestes
+ * @author Cluster 7 sub 1
  */
 public class Graph<K,T> {
 	
 	private ArrayList<K> vertexs;
-	private HashMap<K,ArrayList<Edge<K,T>>> edges;
+	private HashMap<K,HashMap<K,T>> edges;
 	
 	/**
 	 * Inicialitza les llistes de vertexs i d'arestes
 	 */
 	public Graph() {
-		vertexs = new ArrayList<K>();
-		edges = new HashMap<K,ArrayList<Edge<K,T>>>();
+		vertexs = new ArrayList<>();
+		edges = new HashMap<>();
 	}
 
 	/**
@@ -33,7 +34,7 @@ public class Graph<K,T> {
 		
 		// Clonar arestes
 		// Inicialitzar HashMap
-		edges = new HashMap<K,ArrayList<Edge<K,T>>>();
+		edges = new HashMap<>();
 		// Agafar la llista de vertexs amb arestes
 		Set<K> keys = toClone.edges.keySet();
 		
@@ -42,21 +43,22 @@ public class Graph<K,T> {
 		while (iKeys.hasNext()) {
 			// Clona la llista d'arestes
 			K next = iKeys.next();
-			edges.put(next, (ArrayList<Edge<K, T>>) toClone.edges.get(next).clone());
+			edges.put(next, new HashMap<> (toClone.edges.get(next)));
 		}
 	}
 	
 	/**
 	 * Clona el graph i el retorna
-	 */
+         * @return */
 	@SuppressWarnings("unchecked")
+        @Override
 	public Graph<K,T> clone () {
 		Graph<K,T> oClone = new Graph<K,T>();
 		// Clonar vertexs
 		oClone.vertexs = (ArrayList<K>) vertexs.clone();
 		
 		// Clonar arestes
-		oClone.edges = new HashMap<K,ArrayList<Edge<K,T>>>();
+		oClone.edges = new HashMap<K,HashMap<K,T>>();
 		// Agafar la llista de vertexs amb arestes
 		Set<K> keys = this.edges.keySet();
 		
@@ -65,7 +67,15 @@ public class Graph<K,T> {
 		while (iKeys.hasNext()) {
 			// Clona la llista d'arestes
 			K next = iKeys.next();
-			oClone.edges.put(next, (ArrayList<Edge<K, T>>) this.edges.get(next).clone());
+			HashMap<K,T> old = this.edges.get(next);
+			HashMap<K,T> newHM = new HashMap<K,T>();
+			Iterator<K> iOld = old.keySet().iterator();
+			while (iOld.hasNext()) {
+				K key = iOld.next();
+				T oldEdge = old.get(key);
+				newHM.put(key, oldEdge);
+			}
+			oClone.edges.put(next, newHM);
 		}
 		
 		return oClone;
@@ -73,6 +83,8 @@ public class Graph<K,T> {
 	
 	/**
 	 * Override de l'equal. Compara l'objecte 'o' amb el Graph<K,T> nostre.
+     * @param o
+     * @return 
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -89,7 +101,6 @@ public class Graph<K,T> {
 			return (g.vertexs.equals(vertexs) && g.edges.equals(edges));
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 	}
@@ -99,11 +110,13 @@ public class Graph<K,T> {
 	 * @param v El vertex
 	 */
 	public void addVertex(K v) {
+		if (vertexs.contains(v)) return;
+		
 		// Afegim el vertex a la llista de vertexs
 		vertexs.add(v);
 		
 		// Inicialitzem al hashMap la llista d'arestes d'aquest vertex
-		ArrayList<Edge<K,T>> vEdges = new ArrayList<Edge<K,T>>();
+		HashMap<K,T> vEdges = new HashMap<K,T>();
 		edges.put(v, vEdges);
 	}
 	
@@ -114,34 +127,38 @@ public class Graph<K,T> {
 	 * @param v El pes de l'aresta
 	 */
 	public void addEdge(K a, K b, T v) {
-		// Creem l'aresta de vertex 'a' a 'b' amb pes 'v'
-		Edge<K,T> edgeAB = new Edge<K,T>(a,b,v);
 		// Obtenim la llista d'arestes que surten del vertex 'a'
-		ArrayList<Edge<K,T>> vAEdges = edges.get(a);
-		// Afegim l'aresta previament creada
-		if (vAEdges == null) vAEdges = new ArrayList<Edge<K,T>>();
-		vAEdges.add(edgeAB);
+		HashMap<K,T> vAEdges = getEdges(a);
 		
-		// Creem l'aresta de vertex 'b' a 'a' amb pes 'v'
-		Edge<K,T> edgeBA = new Edge<K,T>(b,a,v);
-		// Obtenim la llista d'arestes que surten del vertex 'b'
-		ArrayList<Edge<K,T>> vBEdges = edges.get(b);
+		if (vAEdges.containsKey(b)) return;
+		
 		// Afegim l'aresta previament creada
-		if (vBEdges == null) vBEdges = new ArrayList<Edge<K,T>>();
-		vBEdges.add(edgeBA);
+		vAEdges.put(b, v);
+		
+		// Obtenim la llista d'arestes que surten del vertex 'b'
+		HashMap<K,T> vBEdges = getEdges(b);
+		// Afegim l'aresta previament creada
+		vBEdges.put(a, v);
+	}
+	
+	public void addEdgeUnidir(K a, K b, T v) {
+		// Obtenim la llista d'arestes que surten del vertex 'a'
+		HashMap<K,T> vAEdges = getEdges(a);
+		// Afegim l'aresta previament creada
+		vAEdges.put(b, v);
 	}
 	
 	/**
 	 * Obte la llista d'arestes del vertex 'v'
 	 * @param v El vertex
-	 * @return ArrayList amb les arestes
+	 * @return HashMap amb les arestes
 	 */
-	public ArrayList<Edge<K,T>> getEdges(K v) {
+	public HashMap<K,T> getEdges(K v) {
 		if (edges.containsKey(v))
 			return edges.get(v);
 		
-		// No existeix el vertex a la llista de vertexs, retornar ArrayList buida
-		return new ArrayList<Edge<K,T>>();
+		// No existeix el vertex a la llista de vertexs, retornar HashMap buit
+		return new HashMap<K,T>();
 	}
 	
 	/**
@@ -161,8 +178,9 @@ public class Graph<K,T> {
 		ArrayList<K> neighs = new ArrayList<K>();
 	
 		// Afegir el desti de cada aresta que surt de 'v'
-		for (Edge<K,T> edge : getEdges(v)) 
-			neighs.add(edge.getDesti());
+		Set<K> keys = getEdges(v).keySet(); 
+		for (K key: keys)
+			neighs.add(key);
 		
 		return neighs;
 	}
@@ -173,12 +191,13 @@ public class Graph<K,T> {
 	 * @param d Vertex desti de l'aresta
 	 */
 	public void removeEdge(K o, K d) {
-		ArrayList<Edge<K,T>> es = edges.get(o);
+		HashMap<K,T> edges = getEdges(o);
+		if (!edges.isEmpty() && edges.containsKey(d))
+			edges.remove(d);
 		
-		for (int i=0; i<es.size(); i++){
-			if (es.get(i).getDesti() == d) 
-				es.remove(i);
-		}
+		edges = getEdges(d);
+		if (!edges.isEmpty() && edges.containsKey(o))
+			edges.remove(o);
 	}
 	
 	/**
@@ -187,26 +206,34 @@ public class Graph<K,T> {
 	 */
 	public void removeVertex(K v) {
 		
-		if (vertexs.contains(v))
+		if (vertexs.contains(v)) {
 			vertexs.remove(v);
+			edges.remove(v);
+			Iterator<K> esI = edges.keySet().iterator();
+			
+			while (esI.hasNext()) {
+				K next = esI.next();
+				HashMap<K,T> actuals = edges.get(next);
+				
+				if (actuals.containsKey(v))
+					actuals.remove(v);
+			}
+				
+		}
 	}
 	
 	/**
 	 * Obte l'aresta d'un vertex origen a un vertex desti
 	 * @param o El vertex origen
 	 * @param d El vertex desti
-	 * @return ArrayList amb les arestes
+	 * @return El valor de l'aresta
 	 */
-	public Edge<K,T> getEdge(K o, K d) {
+	public T getEdge(K o, K d) {
 		if (edges.containsKey(o)) {
-			ArrayList<Edge<K,T>> es = edges.get(o);
-			
-			for (Edge<K,T> edge : es) {
-				if (edge.getDesti() == d)
-					return edge;
-			}
+			HashMap<K,T> es = getEdges(o);
+			if (es.containsKey(d))
+				return es.get(d);
 		}
-		
-		return null;
+                return null;
 	}
 }

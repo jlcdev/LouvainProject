@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
  * @param <K> El tipus del vertex
  * @param <T> El tipus del pes de l'aresta
  */
-public class Edge<K, T>
+public class EdgeOld<K, T>
 {
     private K origen, desti;
     private T value;
@@ -21,7 +21,7 @@ public class Edge<K, T>
      * @param d Vertex desti
      * @param v Pes de l'aresta
      */
-    public Edge(K o, K d, T v)
+    public EdgeOld(K o, K d, T v)
     {
         this.origen = o;
         this.desti = d;
@@ -34,7 +34,7 @@ public class Edge<K, T>
      * @param toClone Edge a clonar
      */
     @SuppressWarnings("unchecked")
-    public Edge(Edge<K, T> toClone)
+    public EdgeOld(EdgeOld<K, T> toClone)
     {
         Class<?> kClass = toClone.origen.getClass();
         Class<?> vClass = toClone.value.getClass();
@@ -63,7 +63,7 @@ public class Edge<K, T>
     }
 
     @Override
-    public Edge<K, T> clone()
+    public EdgeOld<K, T> clone()
     {
         K o, d;
         T val;
@@ -91,12 +91,12 @@ public class Edge<K, T>
         {
             val = this.value;
         }
-        Edge<K, T> eClone = new Edge<>(o, d, val);
+        EdgeOld<K, T> eClone = new EdgeOld<>(o, d, val);
         return eClone;
     }
 
     /**
-     * Override de l'equal. Compara l'objecte 'o' amb el Edge<K,T> nostre.
+     * Override de l'equal. Compara l'objecte 'o' amb el EdgeOld<K,T> nostre.
      * @param o
      * @return 
      */
@@ -106,12 +106,12 @@ public class Edge<K, T>
     {
         // Si son el mateix objecte, true
         if(o == this) return true;
-        // Si l'objecte no es una instancia d'Edge, false
-        if(!(o instanceof Edge)) return false;
+        // Si l'objecte no es una instancia d'EdgeOld, false
+        if(!(o instanceof EdgeOld)) return false;
         try
         {
             // Convertir-lo a l'objecte que es realment
-            Edge<K, T> e = (Edge<K, T>) o;
+            EdgeOld<K, T> e = (EdgeOld<K, T>) o;
             return (((e.origen == this.origen && e.desti == this.desti)
                     || (e.origen == this.desti && e.desti == this.origen)) && e.value == this.value);
         }

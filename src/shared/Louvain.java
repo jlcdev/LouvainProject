@@ -83,6 +83,9 @@ public class Louvain extends Algorithm
         {
             for (Integer j = i; j < tam; j++)
             {
+                ArrayList<Integer> A = this.cAnterior.get(i);
+                ArrayList<Integer> B = this.cAnterior.get(j);
+                if(A == null || B == null) continue;
                 x = this.pesEntreComunitats(this.cAnterior.get(i), this.cAnterior.get(j));
                 if(x != 0) this.gIntermedi.addEdge(i, j, x);
             }
@@ -91,13 +94,13 @@ public class Louvain extends Algorithm
     
     private double pesEntreComunitats(ArrayList<Integer> comunitat1, ArrayList<Integer> comunitat2)
     {
-        double suma = 0.0;
+        Double suma = 0.0;
         for(Integer i: comunitat1)
         {
             for(Integer j: comunitat2)
             {
-                Edge<Integer, Double> k = this.graph.getEdge(i, j);
-                if(k != null) suma += k.getValue();
+                Double k = this.graph.getEdge(i, j);
+                if(k != null) suma += k;
             }
         }
         if(comunitat1.equals(comunitat2)) return suma / 2.0;
@@ -113,7 +116,9 @@ public class Louvain extends Algorithm
             ArrayList<Integer> nou = new ArrayList<>();
             for(Integer j: i)
             {
-                ArrayList<Integer> x = (ArrayList<Integer>) this.cAnterior.get(j).clone();
+                ArrayList<Integer> tmp = this.cAnterior.get(j);
+                if(tmp == null) continue;
+                ArrayList<Integer> x = (ArrayList<Integer>) tmp.clone();
                 nou.addAll(x);
             }
             if(nou.size() > 0) guardar.add(nou);
@@ -224,11 +229,16 @@ public class Louvain extends Algorithm
         double suma = 0.0;
         for(Integer j: this.gIntermedi.getNeighbors(vertex))
         {
-            if(vertex.equals(j)) suma += this.gIntermedi.getEdge(vertex, j).getValue() /2.0;
+            if(vertex.equals(j))
+            {
+                Double tmp = this.gIntermedi.getEdge(vertex, j);
+                if(tmp != null)
+                    suma += tmp /2.0;
+            }
             else
             {
-                Edge<Integer, Double> x = this.gIntermedi.getEdge(vertex, j);
-                if(x != null) suma += x.getValue();
+                Double x = this.gIntermedi.getEdge(vertex, j);
+                if(x != null) suma += x;
             }
         }
         return suma;
@@ -237,13 +247,13 @@ public class Louvain extends Algorithm
     private double pesTotal()
     {
         double suma = 0.0;
-        Edge<Integer, Double> x;
+        Double x;
         for (Integer i: this.gIntermedi.getVertexs())
         {
             for(Integer j: this.gIntermedi.getNeighbors(i))
             {
                 x = this.gIntermedi.getEdge(i, j);
-                if(x != null) suma += x.getValue();
+                if(x != null) suma += x;
             }
         }
         return suma / 2.0;
@@ -252,13 +262,13 @@ public class Louvain extends Algorithm
     private double pesVertexComunitat(Integer vertex, ArrayList<Integer> comunitat)
     {
         double suma = 0.0;
-        Edge<Integer, Double> x;
+        Double x;
         for (Integer i: this.gIntermedi.getNeighbors(vertex))
         {
             if(comunitat.contains(i))
             {
                 x = this.gIntermedi.getEdge(vertex, i);
-                if(x != null) suma += x.getValue();
+                if(x != null) suma += x;
             }
         }
         return suma;
@@ -267,7 +277,7 @@ public class Louvain extends Algorithm
     private double pesIncidentsComunitat(ArrayList<Integer> comunitat)
     {
         double suma = 0.0;
-        Edge<Integer, Double> x;
+        Double x;
         for(Integer i: comunitat)
         {
             for(Integer j: this.gIntermedi.getNeighbors(i))
@@ -275,7 +285,7 @@ public class Louvain extends Algorithm
                 if(! comunitat.contains(j))
                 {
                     x = this.gIntermedi.getEdge(i, j);
-                    if(x != null) suma += x.getValue();
+                    if(x != null) suma += x;
                 }
             }
         }
