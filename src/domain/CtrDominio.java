@@ -358,7 +358,7 @@ public class CtrDominio
         return this.ctrData.writeEntryGraphFile(this.g);
     }
     
-    public boolean addCtoCat (String category, String comunidad, Boolean importat)
+    public boolean addCtoCat (String category, String comunidad, boolean importat)
     {
         Comunidad com;
         if(importat)
@@ -376,7 +376,7 @@ public class CtrDominio
         return false;
     }
   
-    public void addCtoCom (String comunidad, Boolean importat)
+    public void addCtoCom (String comunidad, boolean importat)
     {
         Comunidad com = new Comunidad();
         com.setNombre(comunidad);
@@ -384,7 +384,7 @@ public class CtrDominio
         else this.generatedCto.addComunidades(com);
     }
   
-    public boolean rmvCtoCat (String category, String comunidad, Boolean importat)
+    public boolean rmvCtoCat (String category, String comunidad, boolean importat)
     {
         Comunidad com;
         if(importat)
@@ -402,13 +402,13 @@ public class CtrDominio
         return false;
     }
   
-    public void rmvCtoCom (String comunidad, Boolean importat)
+    public void rmvCtoCom (String comunidad, boolean importat)
     {
         if(importat)this.importedCto.removeComunidades(comunidad);
         else this.generatedCto.removeComunidades(comunidad);
     }
   
-    public void modCtoNombre (int tipus, String anterior, String nuevo, String comunidad, Boolean importat)
+    public void modCtoNombre (int tipus, String anterior, String nuevo, String comunidad, boolean importat)
     {
         switch(tipus)
         {
@@ -427,19 +427,19 @@ public class CtrDominio
         }
     }
     
-    public ArrayList<String> mostrarCtoComunidad(Boolean importat)
+    public ArrayList<String> mostrarCtoComunidad(boolean importat)
     {
         if(importat) return this.importedCto.getNameComunidades();
         else return this.generatedCto.getNameComunidades();
     }
         
-    public ArrayList<String> mostrarComunidad(String comunidad, Boolean importat)
+    public ArrayList<String> mostrarComunidad(String comunidad, boolean importat)
     {
         if(importat) return this.importedCto.getComunidad(comunidad).getNameCategories();
         else return this.generatedCto.getComunidad(comunidad).getNameCategories();
     }
     
-    public void saveCtoComunidad(String path, Boolean importado)
+    public void saveCtoComunidad(String path, boolean importado)
     {
         if(!importado)
         {
@@ -465,12 +465,12 @@ public class CtrDominio
         this.ctrData.readCtoComunidad(this.importedCto);
     }
  
-    public int numCatCom (String comunidad, Boolean importado)
+    public int numCatCom (String comunidad, boolean importado)
     {
         if(importado) return importedCto.getComunidad(comunidad).getNumCategorias();
         return generatedCto.getComunidad(comunidad).getNumCategorias();
     }
-    public ArrayList<String> commonCategories(String com1, Boolean importado1, String com2, Boolean importado2)
+    public ArrayList<String> commonCategories(String com1, boolean importado1, String com2, boolean importado2)
     {
         Comunidad c1 = new Comunidad();
         Comunidad c2 = new Comunidad();
@@ -486,7 +486,7 @@ public class CtrDominio
         return comparacion;
     }
     
-    public double getPorcentaje(String comunidad, Boolean importado)
+    public double getPorcentaje(String comunidad, boolean importado)
     {
         Integer com, conj;
         if(importado)
@@ -503,7 +503,7 @@ public class CtrDominio
     }
     
     
-    public int[] infoConjunto(Boolean imported)
+    public int[] infoConjunto(boolean imported)
     {
         int[] info = new int[10];
         if(imported)
@@ -535,13 +535,13 @@ public class CtrDominio
         return info;
     }
     
-    public double getTexec (Boolean imported)
+    public double getTexec (boolean imported)
     {
         if(imported)return this.importedCto.getTimeExecution();
         return this.generatedCto.getTimeExecution();
     }
     
-    public String getNombreConj(Boolean imported)
+    public String getNombreConj(boolean imported)
     {
         if(imported)return this.importedCto.getNombre();
         return this.generatedCto.getNombre();

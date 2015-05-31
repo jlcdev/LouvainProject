@@ -68,7 +68,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         tabsPrincipal.setEnabledAt(tab, false);
     }
     
-    private void randomSel(Boolean pag)
+    private void randomSel(boolean pag)
     {
         Random r = new Random();
         if(pag)
@@ -128,7 +128,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         this.labelInfoGraf.setText("Categorias: "+this.catPosToId.size()+" | "+"Páginas: "+this.pagPosToId.size()+" | "+"Enlaces: "+ lista.size());
     }
     
-    public void actualizarSet(Boolean importado)
+    public void actualizarSet(boolean importado)
     {           
         ArrayList<String> lista = iCtrlPresentacion.mostrarCto(importado);         
         DefaultListModel model = (DefaultListModel) listSet.getModel();

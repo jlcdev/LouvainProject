@@ -11,9 +11,9 @@ package graphics;
  */
 public class VistaFileChooser extends javax.swing.JFrame {
 
-    private Boolean importar;
-    private Boolean grafo;
-    private Boolean importado;
+    private boolean importar;
+    private boolean grafo;
+    private boolean importado;
     private final CtrlPresentacion iCtrlPresentacion;
     /**
      * Creates new form VistaManual
@@ -28,7 +28,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
-    public void hacerVisible(Boolean importar, Boolean grafo, Boolean importado) {
+    public void hacerVisible(boolean importar, boolean grafo, boolean importado) {
         if(importar) fileChooser.setApproveButtonText("Import");
         else fileChooser.setApproveButtonText("Export");
         this.importar = importar;
