@@ -267,18 +267,26 @@ public class CtrlPresentacion {
    */
   public Integer modGrafoNombre (String anterior, String nuevo, boolean category)
   {      
-      int id = -1;
+      int id;
       if(category)
       {
           id = this.ctrlDominio.verNumCat(anterior);
           boolean error = this.ctrlDominio.modifyCategory(anterior,nuevo);
-          if(!error)sincronizacionVistaPrincipal_a_Error("El nodo " + nuevo + " ya existe");
+          if(!error) 
+          {
+              sincronizacionVistaPrincipal_a_Error("El nodo " + nuevo + " ya existe");
+              return -1;
+          }
       }
       else
       {
           id = this.ctrlDominio.verNumPag(anterior);
           boolean error = this.ctrlDominio.modifyPage(anterior, nuevo);
-          if(!error)sincronizacionVistaPrincipal_a_Error("El nodo " + nuevo + " ya existe");
+          if(!error)
+          {
+              sincronizacionVistaPrincipal_a_Error("El nodo " + nuevo + " ya existe");
+              return -1;
+          }
       }
       return id;
   }

@@ -333,8 +333,8 @@ public class CtrDominio
     
     public boolean modifyCategory(String category, String change)
     {
-        Categoria c = new Categoria(category);
-        if(this.g.getCategoryNumber(c) != -1)return false;
+        Categoria c = new Categoria(change);
+        if(this.g.getCategoryNumber(c) != -1) return false;
         this.g.changeCategory(this.g.getCategoryNumber(new Categoria(category)), change);
         return true;
     }
