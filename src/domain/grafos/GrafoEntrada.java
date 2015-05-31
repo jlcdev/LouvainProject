@@ -30,15 +30,15 @@ public class GrafoEntrada implements Cloneable
         this.categoryId = 0;
         this.pageId = 0;
         this.edgeSize = 0;
-        this.indexCategoria = new HashMap(20350, (float) 0.5);
-        this.indexPagina = new HashMap(60510, (float) 0.5);
-        this.categoriaIndex = new HashMap(20350, (float) 0.5);
-        this.paginaIndex = new HashMap(60510, (float) 0.5);
+        this.indexCategoria = new HashMap(5814);
+        this.indexPagina = new HashMap(17288);
+        this.categoriaIndex = new HashMap(5814);
+        this.paginaIndex = new HashMap(17288);
         
-        this.csubcEdges = new HashMap(20350,(float) 0.5);
-        this.csupcEdges = new HashMap(20350,(float) 0.5);
-        this.cpEdges = new HashMap(20350,(float) 0.5);
-        this.pcEdges = new HashMap(20350,(float) 0.5);
+        this.csubcEdges = new HashMap(5814);
+        this.csupcEdges = new HashMap(5814);
+        this.cpEdges = new HashMap(5814);
+        this.pcEdges = new HashMap(5814);
         
     }
     
