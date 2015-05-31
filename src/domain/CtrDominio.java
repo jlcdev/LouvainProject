@@ -543,4 +543,15 @@ public class CtrDominio
     {
         //OPCIONAL
     }
+    
+    public boolean existsCjto(boolean imported)
+    {
+        if(imported)
+        {
+            if(this.importedCto != null) return !this.importedCto.isEmpty();
+            return false;            
+        }
+        if(this.generatedCto != null) return !this.generatedCto.isEmpty();
+        return false; 
+    }
 }

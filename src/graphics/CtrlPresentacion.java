@@ -426,5 +426,10 @@ public class CtrlPresentacion {
   {
       return this.ctrlDominio.getNombreConj(imported);
   }
+  
+  public boolean existsSet(boolean imported)
+  {
+      return this.ctrlDominio.existsCjto(imported);
+  }
 }
 
