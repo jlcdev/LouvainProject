@@ -13,6 +13,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
 
     private Boolean importar;
     private Boolean grafo;
+    private Boolean importado;
     private final CtrlPresentacion iCtrlPresentacion;
     /**
      * Creates new form VistaManual
@@ -22,15 +23,17 @@ public class VistaFileChooser extends javax.swing.JFrame {
         this.iCtrlPresentacion = pCtrlPresentacion;        
         this.importar = true;
         this.grafo = true;
+        this.importado = false;
         initComponents();
         this.setLocationRelativeTo(null);
     }
     
-    public void hacerVisible(Boolean importar, Boolean grafo) {
+    public void hacerVisible(Boolean importar, Boolean grafo, Boolean importado) {
         if(importar) fileChooser.setApproveButtonText("Import");
         else fileChooser.setApproveButtonText("Export");
         this.importar = importar;
         this.grafo = grafo;
+        this.importado = importado;
         this.pack();
         this.setVisible(true);        
     }
@@ -84,12 +87,12 @@ public class VistaFileChooser extends javax.swing.JFrame {
                 if(this.importar == true)
                 {
                     if(this.grafo == true) iCtrlPresentacion.importarGrafo(fileChooser.getSelectedFile().toString());
-                    else iCtrlPresentacion.importarConjunto(fileChooser.getSelectedFile().toString());;
+                    else iCtrlPresentacion.importarConjunto(fileChooser.getSelectedFile().toString());
                 }
                 else
                 {
                     if(this.grafo == true) iCtrlPresentacion.exportarGrafo(fileChooser.getSelectedFile().toString());
-                    else iCtrlPresentacion.exportarConjunto(fileChooser.getSelectedFile().toString());;
+                    else iCtrlPresentacion.exportarConjunto(fileChooser.getSelectedFile().toString(), importado);
                 }
                 iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
                 break;        

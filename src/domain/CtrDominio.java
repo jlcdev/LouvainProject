@@ -439,12 +439,22 @@ public class CtrDominio
         else return this.generatedCto.getComunidad(comunidad).getNameCategories();
     }
     
-    public void saveCtoComunidad(String path)
+    public void saveCtoComunidad(String path, Boolean importado)
     {
-        if(path == null || this.generatedCto == null || path.isEmpty()) return;
-        this.generatedCto.savetoFile();
-        this.ctrData.setAlgorithmPath(path);
-        this.ctrData.writeCtoComunidad(this.generatedCto);
+        if(!importado)
+        {
+            if(path == null || this.generatedCto == null || path.isEmpty()) return;
+            this.generatedCto.savetoFile();
+            this.ctrData.setAlgorithmPath(path);
+            this.ctrData.writeCtoComunidad(this.generatedCto);
+        }
+        else
+        {
+            if(path == null || this.importedCto == null || path.isEmpty()) return;
+            this.importedCto.savetoFile();
+            this.ctrData.setAlgorithmPath(path);
+            this.ctrData.writeCtoComunidad(this.importedCto);
+        }        
     }
     
     public void loadCtoComunidad(String path)

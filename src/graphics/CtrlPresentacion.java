@@ -48,14 +48,14 @@ public class CtrlPresentacion {
 //////////////////////// Metodos de sincronizacion entre vistas
 
 
-  public void sincronizacionVistaPrincipal_a_FileChooser(Boolean importar, Boolean grafo)
+  public void sincronizacionVistaPrincipal_a_FileChooser(Boolean importar, Boolean grafo, Boolean importado)
   {
     this.vistaPrincipal.desactivar();
     // Solo se crea una vista secundaria (podria crearse una nueva cada vez)
     if (this.vistaFileChooser == null)
       this.vistaFileChooser = new VistaFileChooser(this);
     //tipus
-    this.vistaFileChooser.hacerVisible(importar, grafo);      
+    this.vistaFileChooser.hacerVisible(importar, grafo, importado);      
   }
   
   public void sincronizacionVistaPrincipal_a_Manual()
@@ -166,10 +166,11 @@ public class CtrlPresentacion {
   /**
    * Exporta un conjunto de comunidades cargado en el programa.
    * @param path
+   * @param importado
    */
-  public void exportarConjunto(String path)
+  public void exportarConjunto(String path, Boolean importado)
   {
-      this.ctrlDominio.saveCtoComunidad(path);
+      this.ctrlDominio.saveCtoComunidad(path, importado);
   }
   //PESTAÑA GRAFO
   
