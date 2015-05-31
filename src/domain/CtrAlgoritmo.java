@@ -78,11 +78,11 @@ public class CtrAlgoritmo
         return response;
     }
     
-    public ArrayList<ArrayList<Integer>> obtain(int p)
+    public CtoComunidad obtain(int p, GrafoEntrada g)
     {
         if(this.communityAlgorithm == null) return null;
         this.communityAlgorithm.setP(p);
-        return this.communityAlgorithm.obtain();
+        return new CtoComunidad(this.communityAlgorithm.obtain(), g, this.algorithm, this.filters, this.selections, this.p, 0);
     }
     
     public CtoComunidad ejecutar(Graph<Integer, Double> g, GrafoEntrada orig)
