@@ -441,6 +441,11 @@ public class CtrlPresentacion {
       return this.ctrlDominio.existsCjto(imported);
   }
   
+  public double getPurity(boolean imported)
+  {
+      return this.ctrlDominio.getPurity(imported);
+  }
+  
   public void obtainCjto(int p)
   {      
       this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.obtain(p, this.ctrlDominio.getGrafo()));

@@ -3,6 +3,7 @@ package domain;
 import data.CtrData;
 import domain.comunidades.CtoComunidad;
 import domain.comunidades.Comunidad;
+import domain.comunidades.Purity;
 import domain.grafos.Categoria;
 import domain.grafos.GrafoEntrada;
 import domain.grafos.Pagina;
@@ -552,6 +553,15 @@ public class CtrDominio
         if(imported)return this.importedCto.getNombre();
         return this.generatedCto.getNombre();
     }
+    
+    public double getPurity(boolean imported)
+    {
+        Purity p = null;
+        if(imported)p = new Purity(this.importedCto);
+        else p = new Purity(this.generatedCto);
+        return p.overallPurity();
+    }
+    
     public void estadisticas()
     {
         //OPCIONAL
