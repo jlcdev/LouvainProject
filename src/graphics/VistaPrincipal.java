@@ -296,17 +296,20 @@ public class VistaPrincipal extends javax.swing.JFrame
         listSet = new javax.swing.JList();
         scListCom = new javax.swing.JScrollPane();
         listCom = new javax.swing.JList();
+        jLabel31 = new javax.swing.JLabel();
+        btnModP = new javax.swing.JButton();
+        spinP1 = new javax.swing.JSpinner();
         panelComparacion = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         txtListComp = new javax.swing.JTextArea();
         btnCompararComunidades = new javax.swing.JButton();
-        comboTipoCom1 = new javax.swing.JComboBox();
-        comboTipoCom2 = new javax.swing.JComboBox();
         txtCompCom1 = new javax.swing.JTextField();
         txtCompCom2 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         btnCompararConjuntos = new javax.swing.JButton();
+        ckCjtoImportado1 = new javax.swing.JCheckBox();
+        ckCjtoImportado2 = new javax.swing.JCheckBox();
         barraMenu = new javax.swing.JMenuBar();
         menuFichero = new javax.swing.JMenu();
         mItemNuevoGrafo = new javax.swing.JMenuItem();
@@ -1506,6 +1509,17 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         panelC.add(scListCom, "card2");
 
+        jLabel31.setText("CAMBIAR FACTOR DE COHESIÓN (P)");
+
+        btnModP.setText("Obtener");
+        btnModP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModPActionPerformed(evt);
+            }
+        });
+
+        spinP1.setModel(new javax.swing.SpinnerNumberModel(50, 0, 100, 10));
+
         javax.swing.GroupLayout panelComunidadesLayout = new javax.swing.GroupLayout(panelComunidades);
         panelComunidades.setLayout(panelComunidadesLayout);
         panelComunidadesLayout.setHorizontalGroup(
@@ -1553,21 +1567,27 @@ public class VistaPrincipal extends javax.swing.JFrame
                                 .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnRmvCatFromCom, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnRmvComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelComunidadesLayout.createSequentialGroup()
+                            .addGroup(panelComunidadesLayout.createSequentialGroup()
                                 .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtComToList, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnListComFromSet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelComunidadesLayout.createSequentialGroup()
+                                        .addComponent(txtComToList, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnListCatFromCom, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                                            .addComponent(spinP1)))
                                     .addGroup(panelComunidadesLayout.createSequentialGroup()
-                                        .addComponent(btnListCatFromCom, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnShowCom, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelComunidadesLayout.createSequentialGroup()
-                                        .addComponent(btnListComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnShowSet, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(122, 122, 122)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnModP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnShowCom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnShowSet, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(panelComunidadesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(panelC, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1581,8 +1601,8 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addGap(37, 37, 37)
                         .addComponent(jLabel15)
                         .addGap(18, 18, 18)
-                        .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelComunidadesLayout.createSequentialGroup()
+                        .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelComunidadesLayout.createSequentialGroup()
                                 .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel18)
                                     .addComponent(btnAddCatToCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1600,24 +1620,29 @@ public class VistaPrincipal extends javax.swing.JFrame
                                     .addComponent(txtNombreAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNombreNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnChangeNameSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(65, 65, 65))
-                            .addGroup(panelComunidadesLayout.createSequentialGroup()
+                                .addGap(48, 48, 48))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelComunidadesLayout.createSequentialGroup()
                                 .addComponent(btnRmvCatFromCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnRmvComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(146, 146, 146)))
+                                .addGap(129, 129, 129)))
                         .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnShowSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnListComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel26))
-                        .addGap(27, 27, 27)
+                        .addGap(44, 44, 44)
                         .addComponent(jLabel27)
                         .addGap(18, 18, 18)
                         .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnShowCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnListCatFromCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtComToList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                        .addGap(49, 49, 49)
+                        .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnModP, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31)
+                            .addComponent(spinP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                         .addComponent(btnExportSet))
                     .addComponent(panelC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1631,10 +1656,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         jScrollPane6.setViewportView(txtListComp);
 
         btnCompararComunidades.setText("Comparar");
-
-        comboTipoCom1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Importado", "Creado" }));
-
-        comboTipoCom2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Importado", "Creado" }));
+        btnCompararComunidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompararComunidadesActionPerformed(evt);
+            }
+        });
 
         txtCompCom1.setText("Nombre comunidad 1");
         txtCompCom1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1671,6 +1697,10 @@ public class VistaPrincipal extends javax.swing.JFrame
             }
         });
 
+        ckCjtoImportado1.setText("Conjunto importado");
+
+        ckCjtoImportado2.setText("Conjunto importado");
+
         javax.swing.GroupLayout panelComparacionLayout = new javax.swing.GroupLayout(panelComparacion);
         panelComparacion.setLayout(panelComparacionLayout);
         panelComparacionLayout.setHorizontalGroup(
@@ -1678,20 +1708,23 @@ public class VistaPrincipal extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelComparacionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelComparacionLayout.createSequentialGroup()
-                        .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(comboTipoCom1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboTipoCom2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(12, 12, 12)
-                        .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCompCom1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                            .addComponent(txtCompCom2))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCompararComunidades, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCompararConjuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73)
+                        .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCompararComunidades, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCompararConjuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelComparacionLayout.createSequentialGroup()
+                                .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCompCom1, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                                    .addComponent(txtCompCom2))
+                                .addGap(10, 10, 10)
+                                .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ckCjtoImportado1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                    .addComponent(ckCjtoImportado2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 53, Short.MAX_VALUE))
+                    .addGroup(panelComparacionLayout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1701,16 +1734,18 @@ public class VistaPrincipal extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelComparacionLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
                         .addComponent(jLabel17)
-                        .addGap(22, 22, 22)
-                        .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboTipoCom1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCompCom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboTipoCom2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCompCom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ckCjtoImportado1))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelComparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCompCom2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCompararComunidades, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ckCjtoImportado2))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCompararComunidades, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(jLabel20)
                         .addGap(18, 18, 18)
@@ -1855,7 +1890,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_mItemImportarSetActionPerformed
 
     private void mItemExportarSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExportarSetActionPerformed
-       iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false, comboTipoSet.getSelectedIndex() != 0);
+       iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false, false);
     }//GEN-LAST:event_mItemExportarSetActionPerformed
 
     private void mItemNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemNuevoGrafoActionPerformed
@@ -2408,8 +2443,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnNuevoGrafoActionPerformed
 
     private void btnImportarConjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarConjActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false, false);
-        tabsPrincipal.setSelectedIndex(3);
+        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false, false);        
     }//GEN-LAST:event_btnImportarConjActionPerformed
 
     private void btnImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafoActionPerformed
@@ -2686,6 +2720,14 @@ public class VistaPrincipal extends javax.swing.JFrame
         }
     }//GEN-LAST:event_listPagMouseClicked
 
+    private void btnModPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModPActionPerformed
+
+    private void btnCompararComunidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararComunidadesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCompararComunidadesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
@@ -2716,6 +2758,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JButton btnListComFromSet;
     private javax.swing.JButton btnListLinksGraph;
     private javax.swing.JButton btnListPagGraph;
+    private javax.swing.JButton btnModP;
     private javax.swing.JButton btnNuevoGrafo;
     private javax.swing.JButton btnNuevoGrafo1;
     private javax.swing.JButton btnRmvCatFromCom;
@@ -2729,10 +2772,10 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JButton btnSelPagRand;
     private javax.swing.JButton btnShowCom;
     private javax.swing.JButton btnShowSet;
+    private javax.swing.JCheckBox ckCjtoImportado1;
+    private javax.swing.JCheckBox ckCjtoImportado2;
     private javax.swing.JCheckBox ckTodasCategorias;
     private javax.swing.JCheckBox ckTodasPaginas;
-    private javax.swing.JComboBox comboTipoCom1;
-    private javax.swing.JComboBox comboTipoCom2;
     private javax.swing.JComboBox comboTipoEnlace;
     private javax.swing.JComboBox comboTipoSet;
     private javax.swing.ButtonGroup grupoAlgoritmos;
@@ -2761,6 +2804,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2814,6 +2858,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JSpinner spSubComun;
     private javax.swing.JSpinner spSuperComun;
     private javax.swing.JSpinner spinP;
+    private javax.swing.JSpinner spinP1;
     private javax.swing.JPanel tabFiltros;
     private javax.swing.JPanel tabSelCat;
     private javax.swing.JPanel tabSelPag;
