@@ -133,7 +133,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         ArrayList<String> lista = iCtrlPresentacion.mostrarCto(importado);         
         DefaultListModel model = (DefaultListModel) listSet.getModel();
         model.clear();
-        for(String elem : lista) model.addElement(elem);
+        for(String elem : lista)
+        {
+            ArrayList<String> lista2 = iCtrlPresentacion.mostrarCom(elem, importado); 
+            model.addElement(elem+"["+lista2.size()+"]");
+        }
     }  
        
     public void clearTxtAreas()
