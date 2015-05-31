@@ -19,8 +19,16 @@ public class Graph<K,T> {
 	 * Inicialitza les llistes de vertexs i d'arestes
 	 */
 	public Graph() {
-		vertexs = new ArrayList<>();
-		edges = new HashMap<>();
+		vertexs = new ArrayList<K>();
+		edges = new HashMap<K,HashMap<K,T>>();
+	}
+	
+	/**
+	 * Inicialitza les llistes de vertexs i d'arestes
+	 */
+	public Graph(int initialCapacity, float loadFactor) {
+		vertexs = new ArrayList<K>();
+		edges = new HashMap<K,HashMap<K,T>>(initialCapacity, loadFactor);
 	}
 
 	/**
@@ -34,7 +42,7 @@ public class Graph<K,T> {
 		
 		// Clonar arestes
 		// Inicialitzar HashMap
-		edges = new HashMap<>();
+		edges = new HashMap<K,HashMap<K,T>>();
 		// Agafar la llista de vertexs amb arestes
 		Set<K> keys = toClone.edges.keySet();
 		
@@ -43,15 +51,14 @@ public class Graph<K,T> {
 		while (iKeys.hasNext()) {
 			// Clona la llista d'arestes
 			K next = iKeys.next();
-			edges.put(next, new HashMap<> (toClone.edges.get(next)));
+			edges.put(next, new HashMap<K,T> (toClone.edges.get(next)));
 		}
 	}
 	
 	/**
 	 * Clona el graph i el retorna
-         * @return */
+	 */
 	@SuppressWarnings("unchecked")
-        @Override
 	public Graph<K,T> clone () {
 		Graph<K,T> oClone = new Graph<K,T>();
 		// Clonar vertexs
@@ -67,15 +74,7 @@ public class Graph<K,T> {
 		while (iKeys.hasNext()) {
 			// Clona la llista d'arestes
 			K next = iKeys.next();
-			HashMap<K,T> old = this.edges.get(next);
-			HashMap<K,T> newHM = new HashMap<K,T>();
-			Iterator<K> iOld = old.keySet().iterator();
-			while (iOld.hasNext()) {
-				K key = iOld.next();
-				T oldEdge = old.get(key);
-				newHM.put(key, oldEdge);
-			}
-			oClone.edges.put(next, newHM);
+			oClone.edges.put(next, (HashMap<K,T>) this.edges.get(next).clone());
 		}
 		
 		return oClone;
@@ -83,8 +82,6 @@ public class Graph<K,T> {
 	
 	/**
 	 * Override de l'equal. Compara l'objecte 'o' amb el Graph<K,T> nostre.
-     * @param o
-     * @return 
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -101,6 +98,7 @@ public class Graph<K,T> {
 			return (g.vertexs.equals(vertexs) && g.edges.equals(edges));
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -234,6 +232,7 @@ public class Graph<K,T> {
 			if (es.containsKey(d))
 				return es.get(d);
 		}
-                return null;
+		
+		return null;
 	}
 }
