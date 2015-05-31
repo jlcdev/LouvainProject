@@ -270,6 +270,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         spSubComun = new javax.swing.JSpinner();
         jLabel7 = new javax.swing.JLabel();
         btnAplicarFiltros = new javax.swing.JButton();
+        btnRandomFilters = new javax.swing.JButton();
         spinP = new javax.swing.JSpinner();
         panelComunidades = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -1216,38 +1217,46 @@ public class VistaPrincipal extends javax.swing.JFrame
             }
         });
 
+        btnRandomFilters.setText("Al azar");
+        btnRandomFilters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRandomFiltersActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tabFiltrosLayout = new javax.swing.GroupLayout(tabFiltros);
         tabFiltros.setLayout(tabFiltrosLayout);
         tabFiltrosLayout.setHorizontalGroup(
             tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabFiltrosLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(tabFiltrosLayout.createSequentialGroup()
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(spPagComun))
-                        .addGroup(tabFiltrosLayout.createSequentialGroup()
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(spCatComun))
-                        .addGroup(tabFiltrosLayout.createSequentialGroup()
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(spSuperComun))
-                        .addGroup(tabFiltrosLayout.createSequentialGroup()
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(spSubComun))
-                        .addGroup(tabFiltrosLayout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(spNombre))))
+                .addGroup(tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(tabFiltrosLayout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spPagComun))
+                    .addGroup(tabFiltrosLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spCatComun))
+                    .addGroup(tabFiltrosLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spSuperComun))
+                    .addGroup(tabFiltrosLayout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spSubComun))
+                    .addGroup(tabFiltrosLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(spNombre)))
                     .addComponent(btnAplicarFiltros))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(btnRandomFilters)
+                .addContainerGap(422, Short.MAX_VALUE))
         );
         tabFiltrosLayout.setVerticalGroup(
             tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1257,7 +1266,8 @@ public class VistaPrincipal extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(spNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRandomFilters))
                 .addGap(18, 18, 18)
                 .addGroup(tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spPagComun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1274,9 +1284,9 @@ public class VistaPrincipal extends javax.swing.JFrame
                 .addGroup(tabFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spSubComun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(29, 29, 29)
+                .addGap(26, 26, 26)
                 .addComponent(btnAplicarFiltros)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
 
         tabsAlgoritmo.addTab("Filtros", tabFiltros);
@@ -1951,18 +1961,41 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnShowComActionPerformed
 
     private void btnChangeNameSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameSetActionPerformed
-        iCtrlPresentacion.modCtoNombre(txtNombreAnterior.getText(), txtNombreNuevo.getText(), comboTipoSet.getSelectedIndex() != 0);
-        this.actualizarSet(comboTipoSet.getSelectedIndex() != 0);
+        boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
+        
+        if(this.iCtrlPresentacion.existsSet(importado))
+        { 
+            this.iCtrlPresentacion.modCtoNombre(this.txtNombreAnterior.getText(), this.txtNombreNuevo.getText(), importado);
+            this.actualizarSet(importado);
+        }
+        else 
+        {
+            String s = "importado";
+            if(!importado) s = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+        }
+            
     }//GEN-LAST:event_btnChangeNameSetActionPerformed
 
     private void btnListCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatFromComActionPerformed
-        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToList.getText(), comboTipoSet.getSelectedIndex() != 0);          
-        DefaultListModel model = (DefaultListModel) listCom.getModel();
-        model.clear();
-        for(String elem : lista) model.addElement(elem);
-            
-        CardLayout cl = (CardLayout)(panelC.getLayout());
-        cl.show(panelC, "card2");
+        boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
+        
+        if(this.iCtrlPresentacion.existsSet(importado))
+        {         
+            ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(this.txtComToList.getText(), importado);          
+            DefaultListModel model = (DefaultListModel) this.listCom.getModel();
+            model.clear();
+            for(String elem : lista) model.addElement(elem);
+
+            CardLayout cl = (CardLayout)(this.panelC.getLayout());
+            cl.show(this.panelC, "card2");
+        }
+        else 
+        {
+            String s = "importado";
+            if(!importado) s = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+        }
     }//GEN-LAST:event_btnListCatFromComActionPerformed
 
     private void btnExportSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSetActionPerformed
@@ -1974,58 +2007,108 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnShowSetActionPerformed
 
     private void btnListComFromSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListComFromSetActionPerformed
-        actualizarSet(this.comboTipoSet.getSelectedIndex() != 0);
-        CardLayout cl = (CardLayout)(this.panelC.getLayout());
-        cl.show(this.panelC, "card1");
+        boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
         
-        //   ArrayList<String> lista = iCtrlPresentacion.mostrarCto(comboTipoSet.getSelectedIndex() != 0);
-     //   txtListSet.setText("Comunidades ("+lista.size()+"):\n\n");
-     //   for(int i=0; i< lista.size(); ++i) txtListSet.append(lista.get(i)+"\n");
+        if(this.iCtrlPresentacion.existsSet(importado))
+        { 
+            actualizarSet(importado);
+            CardLayout cl = (CardLayout)(this.panelC.getLayout());
+            cl.show(this.panelC, "card1");
+        }
+        else 
+        {
+            String s = "importado";
+            if(!importado) s = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+        }
+        
     }//GEN-LAST:event_btnListComFromSetActionPerformed
 
     private void btnRmvComFromSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvComFromSetActionPerformed
-        this.iCtrlPresentacion.rmvCtoCom(this.txtAddRmvCom.getText(), this.comboTipoSet.getSelectedIndex() != 0);
-        actualizarSet(this.comboTipoSet.getSelectedIndex() != 0);
-        CardLayout cl = (CardLayout)(this.panelC.getLayout());
-        cl.show(this.panelC, "card1");
+        boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
+        
+        if(this.iCtrlPresentacion.existsSet(importado))
+        {        
+            this.iCtrlPresentacion.rmvCtoCom(this.txtAddRmvCom.getText(), importado);
+            actualizarSet(importado);
+            CardLayout cl = (CardLayout)(this.panelC.getLayout());
+            cl.show(this.panelC, "card1");
+        }
+        else 
+        {
+            String s = "importado";
+            if(!importado) s = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+        }
     }//GEN-LAST:event_btnRmvComFromSetActionPerformed
 
     private void btnAddComToSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddComToSetActionPerformed
-        this.iCtrlPresentacion.addCtoCom(this.txtAddRmvCom.getText(), this.comboTipoSet.getSelectedIndex() != 0);
-                
-        DefaultListModel model = (DefaultListModel) this.listSet.getModel();
-        model.addElement(this.txtAddRmvCom.getText()+"[0]");
+        boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
         
-        CardLayout cl = (CardLayout)(this.panelC.getLayout());
-        cl.show(this.panelC, "card1");
+        if(this.iCtrlPresentacion.existsSet(importado))
+        {
+           this.iCtrlPresentacion.addCtoCom(this.txtAddRmvCom.getText(), importado);
+                
+            DefaultListModel model = (DefaultListModel) this.listSet.getModel();
+            model.addElement(this.txtAddRmvCom.getText()+"[0]");
+
+            CardLayout cl = (CardLayout)(this.panelC.getLayout());
+            cl.show(this.panelC, "card1"); 
+        } 
+        else 
+        {
+            String s = "importado";
+            if(!importado) s = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+        }
+        
     }//GEN-LAST:event_btnAddComToSetActionPerformed
 
     private void btnRmvCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromComActionPerformed
         boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
-        this.iCtrlPresentacion.rmvCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), importado);
+        if(this.iCtrlPresentacion.existsSet(importado))
+        {
+            this.iCtrlPresentacion.rmvCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), importado);
         
-        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
-        DefaultListModel model = (DefaultListModel) listCom.getModel();
-        model.clear();
-        for(String elem : lista) model.addElement(elem);
-        this.actualizarSet(importado);
-            
-        CardLayout cl = (CardLayout)(panelC.getLayout());
-        cl.show(panelC, "card2");
+            ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
+            DefaultListModel model = (DefaultListModel) listCom.getModel();
+            model.clear();
+            for(String elem : lista) model.addElement(elem);
+            this.actualizarSet(importado);
+
+            CardLayout cl = (CardLayout)(panelC.getLayout());
+            cl.show(panelC, "card2");
+        }        
+        else 
+        {
+            String s = "importado";
+            if(!importado) s = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+        }
     }//GEN-LAST:event_btnRmvCatFromComActionPerformed
 
     private void btnAddCatToComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToComActionPerformed
         boolean importado = comboTipoSet.getSelectedIndex() != 0;
-        this.iCtrlPresentacion.addCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), importado);
+        if(this.iCtrlPresentacion.existsSet(importado))
+        {
+            this.iCtrlPresentacion.addCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), importado);
+
+            ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
+            DefaultListModel model = (DefaultListModel) listCom.getModel();
+            model.clear();
+            for(String elem : lista) model.addElement(elem);
+            this.actualizarSet(importado);
+
+            CardLayout cl = (CardLayout)(panelC.getLayout());
+            cl.show(panelC, "card2"); 
+        }
+        else 
+        {
+            String s = "importado";
+            if(!importado) s = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+        }
         
-        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
-        DefaultListModel model = (DefaultListModel) listCom.getModel();
-        model.clear();
-        for(String elem : lista) model.addElement(elem);
-        this.actualizarSet(importado);
-            
-        CardLayout cl = (CardLayout)(panelC.getLayout());
-        cl.show(panelC, "card2");
         
     }//GEN-LAST:event_btnAddCatToComActionPerformed
 
@@ -2774,7 +2857,8 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listPagMouseClicked
 
     private void btnModPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPActionPerformed
-        this.iCtrlPresentacion.obtainCjto(Integer.parseInt(this.spinP1.getValue().toString()));
+        if(this.iCtrlPresentacion.existsSet(false)) this.iCtrlPresentacion.obtainCjto(Integer.parseInt(this.spinP1.getValue().toString()));
+        else this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto creado");
     }//GEN-LAST:event_btnModPActionPerformed
 
     private void btnCompararComunidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararComunidadesActionPerformed
@@ -2814,6 +2898,20 @@ public class VistaPrincipal extends javax.swing.JFrame
         }
     }//GEN-LAST:event_listPagMouseReleased
 
+    private void btnRandomFiltersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRandomFiltersActionPerformed
+        Random r = new Random();
+        int val = r.nextInt(11);
+        this.spNombre.setValue(val);
+        val = r.nextInt(11);
+        this.spCatComun.setValue(val);
+        val = r.nextInt(11);
+        this.spPagComun.setValue(val);
+        val = r.nextInt(11);
+        this.spSuperComun.setValue(val);
+        val = r.nextInt(11);
+        this.spSubComun.setValue(val);
+    }//GEN-LAST:event_btnRandomFiltersActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
@@ -2847,6 +2945,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JButton btnModP;
     private javax.swing.JButton btnNuevoGrafo;
     private javax.swing.JButton btnNuevoGrafo1;
+    private javax.swing.JButton btnRandomFilters;
     private javax.swing.JButton btnRmvCatFromCom;
     private javax.swing.JButton btnRmvCatFromGraph;
     private javax.swing.JButton btnRmvComFromSet;
