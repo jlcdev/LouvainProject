@@ -2741,7 +2741,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listPagMouseClicked
 
     private void btnModPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPActionPerformed
-        // TODO add your handling code here:
+        this.iCtrlPresentacion.obtainCjto(Integer.parseInt(this.spinP1.getValue().toString()));
     }//GEN-LAST:event_btnModPActionPerformed
 
     private void btnCompararComunidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararComunidadesActionPerformed
