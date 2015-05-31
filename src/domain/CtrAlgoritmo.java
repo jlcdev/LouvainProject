@@ -22,6 +22,7 @@ public class CtrAlgoritmo
     private Selections selections;
     private int p;
     private int algorithm;
+    private Algorithm communityAlgorithm = null;
     
     public CtrAlgoritmo()
     {
@@ -69,18 +70,24 @@ public class CtrAlgoritmo
     
     public Graph<Integer, Double> generate(GrafoEntrada g)
     {
-        //long t1 = System.currentTimeMillis();
+        long t1 = System.currentTimeMillis();
         Transformation.clearGraph(g, this.selections);
         Graph<Integer, Double> response = Transformation.entryToAlgorithm(g, filters);
-        //long t2 = System.currentTimeMillis();
-        //System.out.println("Time: "+(t2-t1)+"ms");
+        long t2 = System.currentTimeMillis();
+        System.out.println("Time Generate: "+(t2-t1)+"ms");
         return response;
+    }
+    
+    public ArrayList<ArrayList<Integer>> obtain(int p)
+    {
+        if(this.communityAlgorithm == null) return null;
+        this.communityAlgorithm.setP(p);
+        return this.communityAlgorithm.obtain();
     }
     
     public CtoComunidad ejecutar(Graph<Integer, Double> g, GrafoEntrada orig)
     {
         Graph<Integer, Double> copy = g.clone();
-        Algorithm communityAlgorithm = null;
         switch(this.algorithm)
         {
             case 1:
