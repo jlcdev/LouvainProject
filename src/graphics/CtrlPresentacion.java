@@ -370,10 +370,9 @@ public class CtrlPresentacion {
       this.ctrlDominio.rmvCtoCom(comunidad, importat);
   }
   
-  public void modCtoNombre (String anterior, String nuevo, boolean importat) ////////////////////////////////////////////////////////////////////////////////////////
+  public void modCtoNombre (String anterior, String nuevo, boolean importat)
   {
-      //TO DO
-      this.ctrlDominio.modCtoNombre(0, anterior, nuevo, null, importat);
+      this.ctrlDominio.modCtoNombre(anterior, nuevo, importat);
   }
   
   public ArrayList<String> mostrarCto (boolean importat)

@@ -613,6 +613,9 @@ public class VistaPrincipal extends javax.swing.JFrame
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 listCatMousePressed(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listCatMouseReleased(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listCatMouseClicked(evt);
             }
@@ -631,6 +634,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         listPag.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 listPagMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listPagMouseReleased(evt);
             }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listPagMouseClicked(evt);
@@ -1926,6 +1932,7 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnChangeNameSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameSetActionPerformed
         iCtrlPresentacion.modCtoNombre(txtNombreAnterior.getText(), txtNombreNuevo.getText(), comboTipoSet.getSelectedIndex() != 0);
+        this.actualizarSet(comboTipoSet.getSelectedIndex() != 0);
     }//GEN-LAST:event_btnChangeNameSetActionPerformed
 
     private void btnListCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatFromComActionPerformed
@@ -1947,9 +1954,9 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnShowSetActionPerformed
 
     private void btnListComFromSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListComFromSetActionPerformed
-        actualizarSet(comboTipoSet.getSelectedIndex() != 0);
-        CardLayout cl = (CardLayout)(panelC.getLayout());
-        cl.show(panelC, "card1");
+        actualizarSet(this.comboTipoSet.getSelectedIndex() != 0);
+        CardLayout cl = (CardLayout)(this.panelC.getLayout());
+        cl.show(this.panelC, "card1");
         
         //   ArrayList<String> lista = iCtrlPresentacion.mostrarCto(comboTipoSet.getSelectedIndex() != 0);
      //   txtListSet.setText("Comunidades ("+lista.size()+"):\n\n");
@@ -1957,19 +1964,45 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnListComFromSetActionPerformed
 
     private void btnRmvComFromSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvComFromSetActionPerformed
-        iCtrlPresentacion.rmvCtoCom(txtAddRmvCom.getText(), comboTipoSet.getSelectedIndex() != 0);
+        this.iCtrlPresentacion.rmvCtoCom(this.txtAddRmvCom.getText(), this.comboTipoSet.getSelectedIndex() != 0);
+        actualizarSet(this.comboTipoSet.getSelectedIndex() != 0);
+        CardLayout cl = (CardLayout)(this.panelC.getLayout());
+        cl.show(this.panelC, "card1");
     }//GEN-LAST:event_btnRmvComFromSetActionPerformed
 
     private void btnAddComToSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddComToSetActionPerformed
-        iCtrlPresentacion.addCtoCom(txtAddRmvCom.getText(), comboTipoSet.getSelectedIndex() != 0);
+        this.iCtrlPresentacion.addCtoCom(this.txtAddRmvCom.getText(), this.comboTipoSet.getSelectedIndex() != 0);
+                
+        DefaultListModel model = (DefaultListModel) this.listSet.getModel();
+        model.addElement(this.txtAddRmvCom.getText());
+        
+        CardLayout cl = (CardLayout)(this.panelC.getLayout());
+        cl.show(this.panelC, "card1");
     }//GEN-LAST:event_btnAddComToSetActionPerformed
 
     private void btnRmvCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromComActionPerformed
         iCtrlPresentacion.rmvCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);
+        
+        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);          
+        DefaultListModel model = (DefaultListModel) listCom.getModel();
+        model.clear();
+        for(String elem : lista) model.addElement(elem);
+            
+        CardLayout cl = (CardLayout)(panelC.getLayout());
+        cl.show(panelC, "card2");
     }//GEN-LAST:event_btnRmvCatFromComActionPerformed
 
     private void btnAddCatToComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToComActionPerformed
         iCtrlPresentacion.addCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);
+        
+        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);          
+        DefaultListModel model = (DefaultListModel) listCom.getModel();
+        model.clear();
+        for(String elem : lista) model.addElement(elem);
+            
+        CardLayout cl = (CardLayout)(panelC.getLayout());
+        cl.show(panelC, "card2");
+        
     }//GEN-LAST:event_btnAddCatToComActionPerformed
 
     private void btnAplicarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarFiltrosActionPerformed
@@ -2047,12 +2080,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_txtPagNameSelMouseReleased
 
     private void btnAplicarSelPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelPagActionPerformed
-        //List l = listPaginas.getSelectedValuesList();
-        int[] index = listSelPaginas.getSelectedIndices();
+        int[] index = this.listSelPaginas.getSelectedIndices();
         ArrayList<Integer> intList = new ArrayList<>();
-        for(int intValue : index) intList.add(pagPosToId.get(intValue));
-        //ArrayList<String> al = new ArrayList<>(l);
-        iCtrlPresentacion.aplicarSelPag(intList);
+        for(int intValue : index) intList.add(this.pagPosToId.get(intValue));        
+        this.iCtrlPresentacion.aplicarSelPag(intList);
+        this.tabsAlgoritmo.setSelectedIndex(2);
     }//GEN-LAST:event_btnAplicarSelPagActionPerformed
 
     private void ckTodasPaginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckTodasPaginasActionPerformed
@@ -2159,14 +2191,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_txtMinCatLinkMouseReleased
 
     private void btnAplicarSelCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarSelCatActionPerformed
-        //List l = listCategorias.getSelectedValuesList();
-        //ArrayList<String> al = new ArrayList<>(l);
-        //iCtrlPresentacion.aplicarSelCat(al);
-
-        int[] index = listSelCategorias.getSelectedIndices();
+        int[] index = this.listSelCategorias.getSelectedIndices();
         ArrayList<Integer> intList = new ArrayList<>();
-        for(int intValue : index) intList.add(catPosToId.get(intValue));
-        iCtrlPresentacion.aplicarSelCat(intList);
+        for(int intValue : index) intList.add(this.catPosToId.get(intValue));
+        this.iCtrlPresentacion.aplicarSelCat(intList);
+        this.tabsAlgoritmo.setSelectedIndex(1);
 
     }//GEN-LAST:event_btnAplicarSelCatActionPerformed
 
@@ -2478,37 +2507,12 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listCatMouseClicked
 
     private void listCatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCatMousePressed
-        if(!this.listCat.isSelectionEmpty())
-        {
-            if (evt.getButton() == MouseEvent.BUTTON1) this.txtNodo1Enlace.setText(this.listCat.getSelectedValue().toString());
-            else if (evt.getButton() == MouseEvent.BUTTON3)
-            {
-                JList list = (JList)evt.getSource();
-                int row = list.locationToIndex(evt.getPoint());
-                list.setSelectedIndex(row);
-                this.txtNodo2Enlace.setText(this.listCat.getSelectedValue().toString());
-            } 
-        }
+        
         
     }//GEN-LAST:event_listCatMousePressed
 
     private void listPagMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPagMousePressed
-        if(!this.listPag.isSelectionEmpty())
-        {
-            if (evt.getButton() == MouseEvent.BUTTON1)
-            {
-                this.txtNodo1Enlace.setText(this.listPag.getSelectedValue().toString());
-                this.comboTipoEnlace.setSelectedIndex(3);
-            }
-            else if (evt.getButton() == MouseEvent.BUTTON3)
-            {
-                JList list = (JList)evt.getSource();
-                int row = list.locationToIndex(evt.getPoint());
-                list.setSelectedIndex(row);
-                this.txtNodo2Enlace.setText(this.listPag.getSelectedValue().toString());
-                this.comboTipoEnlace.setSelectedIndex(2);
-            }
-        }
+        
     }//GEN-LAST:event_listPagMousePressed
 
     private void txtMinPagLinkFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMinPagLinkFocusLost
@@ -2727,6 +2731,39 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void btnCompararComunidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararComunidadesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCompararComunidadesActionPerformed
+
+    private void listCatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCatMouseReleased
+        if(!this.listCat.isSelectionEmpty())
+        {
+            if (evt.getButton() == MouseEvent.BUTTON1) this.txtNodo1Enlace.setText(this.listCat.getSelectedValue().toString());
+            else if (evt.getButton() == MouseEvent.BUTTON3)
+            {
+                JList list = (JList)evt.getSource();
+                int row = list.locationToIndex(evt.getPoint());
+                list.setSelectedIndex(row);
+                this.txtNodo2Enlace.setText(this.listCat.getSelectedValue().toString());
+            } 
+        }
+    }//GEN-LAST:event_listCatMouseReleased
+
+    private void listPagMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPagMouseReleased
+        if(!this.listPag.isSelectionEmpty())
+        {
+            if (evt.getButton() == MouseEvent.BUTTON1)
+            {
+                this.txtNodo1Enlace.setText(this.listPag.getSelectedValue().toString());
+                this.comboTipoEnlace.setSelectedIndex(3);
+            }
+            else if (evt.getButton() == MouseEvent.BUTTON3)
+            {
+                JList list = (JList)evt.getSource();
+                int row = list.locationToIndex(evt.getPoint());
+                list.setSelectedIndex(row);
+                this.txtNodo2Enlace.setText(this.listPag.getSelectedValue().toString());
+                this.comboTipoEnlace.setSelectedIndex(2);
+            }
+        }
+    }//GEN-LAST:event_listPagMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -408,23 +408,16 @@ public class CtrDominio
         else this.generatedCto.removeComunidades(comunidad);
     }
   
-    public void modCtoNombre (int tipus, String anterior, String nuevo, String comunidad, boolean importat)
+    public void modCtoNombre (String anterior, String nuevo, boolean importat)
     {
-        switch(tipus)
-        {
-            case 0:
-                if(importat) this.importedCto.setNombre(nuevo);
-                else this.generatedCto.setNombre(nuevo);
-                break;
-            case 1:
-                if(importat)this.importedCto.getComunidad(anterior).setNombre(nuevo);
-                else this.generatedCto.getComunidad(anterior).setNombre(nuevo);
-                break;
-            case 2:
-                if(importat)this.importedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);
-                else this.generatedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);  
-                break;
-        }
+        //if(importat) this.importedCto.setNombre(nuevo);
+        //else this.generatedCto.setNombre(nuevo);
+                
+        if(importat)this.importedCto.getComunidad(anterior).setNombre(nuevo);
+        else this.generatedCto.getComunidad(anterior).setNombre(nuevo);
+               
+        //if(importat)this.importedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);
+        //else this.generatedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);  
     }
     
     public ArrayList<String> mostrarCtoComunidad(boolean importat)
