@@ -133,11 +133,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         ArrayList<String> lista = iCtrlPresentacion.mostrarCto(importado);         
         DefaultListModel model = (DefaultListModel) listSet.getModel();
         model.clear();
-        for(String elem : lista)
-        {
-            ArrayList<String> lista2 = iCtrlPresentacion.mostrarCom(elem, importado); 
-            model.addElement(elem+"["+lista2.size()+"]");
-        }
+        for(String elem : lista) model.addElement(elem+"["+this.iCtrlPresentacion.numCatCom(elem, importado)+"]");
     }
     
     private void actualizarSetNum(boolean importado, int num)
@@ -145,10 +141,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         ArrayList<String> lista = this.iCtrlPresentacion.mostrarCto(importado);         
         DefaultListModel model = (DefaultListModel) this.listSet.getModel();
         model.clear();
+        int n;
         for(String elem : lista)
         {
-            ArrayList<String> lista2 = this.iCtrlPresentacion.mostrarCom(elem, importado); 
-            if(lista2.size() >= num) model.addElement(elem+"["+lista2.size()+"]");
+            n = this.iCtrlPresentacion.numCatCom(elem, importado);            
+            if(n >= num) model.addElement(elem+"["+n+"]");
         }
     } 
        
