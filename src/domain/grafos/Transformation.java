@@ -13,6 +13,7 @@ public class Transformation
     {/*
         if(selections.getCategoriesSelected().size() < grafo.getCategorySize()/2)
         {*/
+            System.out.println("Limpiando el grafo.");
             double t1 = System.currentTimeMillis();
             GrafoEntrada result = new GrafoEntrada();
             ArrayList<Integer> selected = selections.getCategoriesSelected();
@@ -60,7 +61,7 @@ public class Transformation
                 }
             }
             double t2 = System.currentTimeMillis();
-            System.out.println("TIEMPO DE CREACION: "+(t2-t1));
+            System.out.println("Limpieza completada en: "+(t2-t1)+"ms");
             return result;
             /*
         }
@@ -92,6 +93,7 @@ public class Transformation
     
     public static Graph<Integer, Double> entryToAlgorithm(GrafoEntrada grafo, Filters filters)
     {
+        System.out.println("Iniciando Transformación de grafoEntrada a GrafoCompartido");
         Graph<Integer, Double> graph = new Graph((int) (grafo.getCategorySize()/1.75),0.75f);
         ArrayList<Integer> categories = grafo.getCategories();
         //Primera pasada -> añadir todas las categorías al graph
@@ -147,6 +149,7 @@ public class Transformation
                     graph.addEdge(category, categoryNeighbor, weight);
             }
         }
+        System.out.println("Transformación completa");
         return graph;
     }
 }
