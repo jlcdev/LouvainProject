@@ -71,8 +71,8 @@ public class CtrAlgoritmo
     public Graph<Integer, Double> generate(GrafoEntrada g)
     {
         long t1 = System.currentTimeMillis();
-        Transformation.clearGraph(g, this.selections);
-        Graph<Integer, Double> response = Transformation.entryToAlgorithm(g, filters);
+        GrafoEntrada nuevo = Transformation.clearGraph(g, this.selections);
+        Graph<Integer, Double> response = Transformation.entryToAlgorithm(nuevo, filters);
         long t2 = System.currentTimeMillis();
         System.out.println("Time Generate: "+(t2-t1)+"ms");
         return response;
