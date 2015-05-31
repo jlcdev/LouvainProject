@@ -15,11 +15,11 @@ public class GrafoEntrada implements Cloneable
     private Integer categoryId;
     private Integer pageId;
     private int edgeSize;
+    private int hashCapacity;
     private HashMap<Integer, Categoria> indexCategoria;
     private HashMap<Integer, Pagina> indexPagina;
     private HashMap<Categoria, Integer> categoriaIndex;
     private HashMap<Pagina, Integer> paginaIndex;
-    
     private HashMap<Integer, ArrayList<Arch>> csupcEdges;
     private HashMap<Integer, ArrayList<Arch>> csubcEdges;
     private HashMap<Integer, ArrayList<Arch>> cpEdges;
@@ -30,16 +30,31 @@ public class GrafoEntrada implements Cloneable
         this.categoryId = 0;
         this.pageId = 0;
         this.edgeSize = 0;
-        this.indexCategoria = new HashMap(5814);
-        this.indexPagina = new HashMap(17288);
-        this.categoriaIndex = new HashMap(5814);
-        this.paginaIndex = new HashMap(17288);
-        
-        this.csubcEdges = new HashMap(5814);
-        this.csupcEdges = new HashMap(5814);
-        this.cpEdges = new HashMap(5814);
-        this.pcEdges = new HashMap(5814);
-        
+        this.hashCapacity = 5814;
+        this.indexCategoria = new HashMap(this.hashCapacity);
+        this.indexPagina = new HashMap(this.hashCapacity*3);
+        this.categoriaIndex = new HashMap(this.hashCapacity);
+        this.paginaIndex = new HashMap(this.hashCapacity*3);
+        this.csubcEdges = new HashMap(this.hashCapacity);
+        this.csupcEdges = new HashMap(this.hashCapacity);
+        this.cpEdges = new HashMap(this.hashCapacity);
+        this.pcEdges = new HashMap(this.hashCapacity);
+    }
+    
+    public GrafoEntrada(int hashCapacity)
+    {
+        this.categoryId = 0;
+        this.pageId = 0;
+        this.edgeSize = 0;
+        this.hashCapacity = hashCapacity;
+        this.indexCategoria = new HashMap(this.hashCapacity);
+        this.indexPagina = new HashMap(this.hashCapacity*3);
+        this.categoriaIndex = new HashMap(this.hashCapacity);
+        this.paginaIndex = new HashMap(this.hashCapacity*3);
+        this.csubcEdges = new HashMap(this.hashCapacity);
+        this.csupcEdges = new HashMap(this.hashCapacity);
+        this.cpEdges = new HashMap(this.hashCapacity);
+        this.pcEdges = new HashMap(this.hashCapacity);
     }
     
     public int getNumberEdges()

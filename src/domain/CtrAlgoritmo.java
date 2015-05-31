@@ -105,6 +105,6 @@ public class CtrAlgoritmo
         double t1 = System.currentTimeMillis();
         communityAlgorithm.calc(copy);
         double t2 = System.currentTimeMillis();
-        return new CtoComunidad(communityAlgorithm.obtain(), orig, this.algorithm, this.filters, this.selections, this.p, (t2-t1));
+        return new CtoComunidad(communityAlgorithm.obtain(), orig, this.algorithm, this.filters, this.selections, communityAlgorithm.getP(), (t2-t1));
     }
 }
