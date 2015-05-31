@@ -1,9 +1,6 @@
 package domain.grafos;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 import shared.Graph;
 
 /**
@@ -13,9 +10,9 @@ import shared.Graph;
 public class Transformation
 {
     public static void clearGraph(GrafoEntrada grafo, Selections selections)
-    {
+    {/*
         if(selections.getCategoriesSelected().size() < grafo.getCategorySize()/2)
-        {
+        {*/
             double t1 = System.currentTimeMillis();
             GrafoEntrada result = new GrafoEntrada();
             ArrayList<Integer> selected = selections.getCategoriesSelected();
@@ -65,6 +62,7 @@ public class Transformation
             double t2 = System.currentTimeMillis();
             System.out.println("TIEMPO DE CREACION: "+(t2-t1));
             grafo = result;
+            /*
         }
         else
         {
@@ -89,12 +87,12 @@ public class Transformation
             }
             double t2 = System.currentTimeMillis();
             System.out.println("TIEMPO DE BORRADO: "+(t2-t1));
-        }
+        }*/
     }
     
     public static Graph<Integer, Double> entryToAlgorithm(GrafoEntrada grafo, Filters filters)
     {
-        Graph<Integer, Double> graph = new Graph();
+        Graph<Integer, Double> graph = new Graph((int) (grafo.getCategorySize()/0.7+1),0.7f);
         ArrayList<Integer> categories = grafo.getCategories();
         //Primera pasada -> añadir todas las categorías al graph
         for(Integer category : categories)
