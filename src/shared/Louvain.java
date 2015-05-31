@@ -32,8 +32,8 @@ public class Louvain extends Algorithm
     {
         this.graph = null;
         this.gIntermedi = null;
-        this.communityList = new HashMap<>();
-        this.cActual = new HashMap<>();
+        this.communityList = new HashMap<>(20350, (float) 0.5);
+        this.cActual = new HashMap<>(20350, (float) 0.5);
     }
     
     /**
@@ -48,7 +48,7 @@ public class Louvain extends Algorithm
             this.graph = g;
             //this.cAnterior = (ArrayList<ArrayList<Integer>>) this.cActual.clone();
             
-            this.cAnterior = new HashMap<>();
+            this.cAnterior = new HashMap<>(20350, (float) 0.5);
             for(Integer i: this.graph.getVertexs())
             {
                 ArrayList<Integer> x = new ArrayList<>();

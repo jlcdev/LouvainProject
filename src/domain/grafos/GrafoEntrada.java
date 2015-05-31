@@ -30,15 +30,16 @@ public class GrafoEntrada implements Cloneable
         this.categoryId = 0;
         this.pageId = 0;
         this.edgeSize = 0;
-        this.indexCategoria = new HashMap();
-        this.indexPagina = new HashMap();
-        this.categoriaIndex = new HashMap();
-        this.paginaIndex = new HashMap();
+        this.indexCategoria = new HashMap(20350, (float) 0.5);
+        this.indexPagina = new HashMap(60510, (float) 0.5);
+        this.categoriaIndex = new HashMap(20350, (float) 0.5);
+        this.paginaIndex = new HashMap(60510, (float) 0.5);
         
-        this.csubcEdges = new HashMap();
-        this.csupcEdges = new HashMap();
-        this.cpEdges = new HashMap();
-        this.pcEdges = new HashMap();
+        this.csubcEdges = new HashMap(20350,(float) 0.5);
+        this.csupcEdges = new HashMap(20350,(float) 0.5);
+        this.cpEdges = new HashMap(20350,(float) 0.5);
+        this.pcEdges = new HashMap(20350,(float) 0.5);
+        
     }
     
     public int getNumberEdges()
@@ -299,6 +300,46 @@ public class GrafoEntrada implements Cloneable
         ArrayList<Arch> response = new ArrayList();
         response.addAll(this.getPCArch(nodeA));
         return response;
+    }
+    
+    public void setCsubCArch(HashMap<Integer, ArrayList<Arch>> csubcEdges)
+    {
+        this.csubcEdges = csubcEdges;
+    }
+    
+    public void setCsupCArch(HashMap<Integer, ArrayList<Arch>> csupcEdges)
+    {
+        this.csupcEdges = csupcEdges;
+    }
+    
+    public void setCPArch(HashMap<Integer, ArrayList<Arch>> cpEdges)
+    {
+        this.cpEdges = cpEdges;
+    }
+    
+    public void setPCArch(HashMap<Integer, ArrayList<Arch>> pcEdges)
+    {
+        this.pcEdges = pcEdges;
+    }
+    
+    public HashMap<Integer, ArrayList<Arch>> getCsubCArch()
+    {
+        return this.csubcEdges;
+    }
+    
+    public HashMap<Integer, ArrayList<Arch>> getCsupCArch()
+    {
+        return this.csupcEdges;
+    }
+    
+    public HashMap<Integer, ArrayList<Arch>> getCPArch()
+    {
+        return this.cpEdges;
+    }
+    
+    public HashMap<Integer, ArrayList<Arch>> getPCArch()
+    {
+        return this.pcEdges;
     }
     
     public Integer getCategoryNumber(Categoria category)
