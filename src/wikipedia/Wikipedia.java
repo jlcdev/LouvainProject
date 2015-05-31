@@ -222,7 +222,7 @@ public class Wikipedia
                     System.out.println("--Guardar conjunto de comunidad--");
                     msg("Introduce una ruta donde guardar el fichero:");
                     String path = scanner.next();
-                    domainController.saveCtoComunidad(path);
+                    domainController.saveCtoComunidad(path, false);
                     break;
             }
         }

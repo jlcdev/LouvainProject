@@ -48,14 +48,14 @@ public class CtrlPresentacion {
 //////////////////////// Metodos de sincronizacion entre vistas
 
 
-  public void sincronizacionVistaPrincipal_a_FileChooser(Boolean importar, Boolean grafo)
+  public void sincronizacionVistaPrincipal_a_FileChooser(boolean importar, boolean grafo, boolean importado)
   {
     this.vistaPrincipal.desactivar();
     // Solo se crea una vista secundaria (podria crearse una nueva cada vez)
     if (this.vistaFileChooser == null)
       this.vistaFileChooser = new VistaFileChooser(this);
     //tipus
-    this.vistaFileChooser.hacerVisible(importar, grafo);      
+    this.vistaFileChooser.hacerVisible(importar, grafo, importado);      
   }
   
   public void sincronizacionVistaPrincipal_a_Manual()
@@ -147,6 +147,7 @@ public class CtrlPresentacion {
   public void importarConjunto (String path)
   {
       this.ctrlDominio.loadCtoComunidad(path);
+      this.vistaPrincipal.actualizarSet(true);
       this.vistaPrincipal.activarTab(3); //CONJ
       this.vistaPrincipal.activarTab(4); //COMP
       this.vistaPrincipal.goToTab(3);
@@ -158,7 +159,7 @@ public class CtrlPresentacion {
    */
   public void exportarGrafo(String path)
   {
-      Boolean error;
+      boolean error;
       error = this.ctrlDominio.saveEntryGraph(path);
       if(!error)sincronizacionVistaPrincipal_a_Error("El path esta vacío");
   }
@@ -166,10 +167,11 @@ public class CtrlPresentacion {
   /**
    * Exporta un conjunto de comunidades cargado en el programa.
    * @param path
+   * @param importado
    */
-  public void exportarConjunto(String path)
+  public void exportarConjunto(String path, boolean importado)
   {
-      this.ctrlDominio.saveCtoComunidad(path);
+      this.ctrlDominio.saveCtoComunidad(path, importado);
   }
   //PESTAÑA GRAFO
   
@@ -262,7 +264,7 @@ public class CtrlPresentacion {
    * @param category 
    * @return  
    */
-  public Integer modGrafoNombre (String anterior, String nuevo, Boolean category)
+  public Integer modGrafoNombre (String anterior, String nuevo, boolean category)
   {      
       int id = -1;
       if(category)
@@ -324,6 +326,7 @@ public class CtrlPresentacion {
       this.ctrlAlgoritmo.setAlgorithm(algoritmo);
       this.ctrlAlgoritmo.setP(p);
       this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.ejecutar(this.algorithmGraph(),this.ctrlDominio.getGrafo()));
+      this.vistaPrincipal.actualizarSet(false);
       this.vistaPrincipal.activarTab(3); //CONJ
       this.vistaPrincipal.activarTab(4); //COMP
       this.vistaPrincipal.goToTab(3);
@@ -346,81 +349,80 @@ public class CtrlPresentacion {
   
   //pestaña comunidades
   
-  public void addCtoCat (String categoria, String comunidad, Boolean importat)
+  public void addCtoCat (String categoria, String comunidad, boolean importat)
   {
-      Boolean error = this.ctrlDominio.addCtoCat(categoria, comunidad, importat);
+      boolean error = this.ctrlDominio.addCtoCat(categoria, comunidad, importat);
       if(error)sincronizacionVistaPrincipal_a_Error("Comunidad no existente");
   }
   
-  public void addCtoCom (String comunidad, Boolean importat)
+  public void addCtoCom (String comunidad, boolean importat)
   {
       this.ctrlDominio.addCtoCom(comunidad, importat);
   }
   
-  public void rmvCtoCat (String categoria, String comunidad, Boolean importat)
+  public void rmvCtoCat (String categoria, String comunidad, boolean importat)
   {
       this.ctrlDominio.rmvCtoCat(categoria,comunidad,importat);
   }
   
-  public void rmvCtoCom (String comunidad, Boolean importat)
+  public void rmvCtoCom (String comunidad, boolean importat)
   {
       this.ctrlDominio.rmvCtoCom(comunidad, importat);
   }
   
-  public void modCtoNombre (String anterior, String nuevo, Boolean importat) ////////////////////////////////////////////////////////////////////////////////////////
+  public void modCtoNombre (String anterior, String nuevo, boolean importat)
   {
-      //TO DO
-      this.ctrlDominio.modCtoNombre(0, anterior, nuevo, null, importat);
+      this.ctrlDominio.modCtoNombre(anterior, nuevo, importat);
   }
   
-  public ArrayList<String> mostrarCto (Boolean importat)
+  public ArrayList<String> mostrarCto (boolean importat)
   {
       return this.ctrlDominio.mostrarCtoComunidad(importat);
   }
   
-  public void visualizarCto (Boolean importat)
+  public void visualizarCto (boolean importat)
   {
       
   }
   
-  public ArrayList<String> mostrarCom (String comunidad, Boolean importat)
+  public ArrayList<String> mostrarCom (String comunidad, boolean importat)
   {
       return this.ctrlDominio.mostrarComunidad(comunidad, importat);
   }
   
-  public void visualizarCom (String comunidad, Boolean importat)
+  public void visualizarCom (String comunidad, boolean importat)
   {
       
   }
   
   //COMPARACION
   
-  public int numCatCom (String comunidad, Boolean imported)
+  public int numCatCom (String comunidad, boolean imported)
   {
       return this.ctrlDominio.numCatCom(comunidad, imported);
   }
   
-  public ArrayList<String> commonCategories(String com1, Boolean importado1, String com2, Boolean importado2)
+  public ArrayList<String> commonCategories(String com1, boolean importado1, String com2, boolean importado2)
   {
       return ctrlDominio.commonCategories(com1,importado1,com2,importado2);
   }
   
-  public double getPorcentaje(String comunidad, Boolean importado)
+  public double getPorcentaje(String comunidad, boolean importado)
   {
       return this.ctrlDominio.getPorcentaje(comunidad, importado);
   }
   
-  public int[] infoConjunto(Boolean imported)
+  public int[] infoConjunto(boolean imported)
   {
       return this.ctrlDominio.infoConjunto(imported);
   }
   
-  public double getTexec (Boolean imported)
+  public double getTexec (boolean imported)
   {
       return this.ctrlDominio.getTexec(imported);
   }
   
-  public String getNombreConj(Boolean imported)
+  public String getNombreConj(boolean imported)
   {
       return this.ctrlDominio.getNombreConj(imported);
   }
