@@ -296,10 +296,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel27 = new javax.swing.JLabel();
         btnShowCom = new javax.swing.JButton();
         panelC = new javax.swing.JPanel();
-        scListSet = new javax.swing.JScrollPane();
-        listSet = new javax.swing.JList();
         scListCom = new javax.swing.JScrollPane();
         listCom = new javax.swing.JList();
+        scListSet = new javax.swing.JScrollPane();
+        listSet = new javax.swing.JList();
         jLabel31 = new javax.swing.JLabel();
         btnModP = new javax.swing.JButton();
         spinP1 = new javax.swing.JSpinner();
@@ -1484,6 +1484,22 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         panelC.setLayout(new java.awt.CardLayout());
 
+        listCom.setModel(new javax.swing.DefaultListModel());
+        listCom.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listCom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listComMouseReleased(evt);
+            }
+        });
+        listCom.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listComValueChanged(evt);
+            }
+        });
+        scListCom.setViewportView(listCom);
+
+        panelC.add(scListCom, "card2");
+
         listSet.setModel(new javax.swing.DefaultListModel());
         listSet.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listSet.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1502,22 +1518,6 @@ public class VistaPrincipal extends javax.swing.JFrame
         scListSet.setViewportView(listSet);
 
         panelC.add(scListSet, "card1");
-
-        listCom.setModel(new javax.swing.DefaultListModel());
-        listCom.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listCom.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                listComMouseReleased(evt);
-            }
-        });
-        listCom.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                listComValueChanged(evt);
-            }
-        });
-        scListCom.setViewportView(listCom);
-
-        panelC.add(scListCom, "card2");
 
         jLabel31.setText("CAMBIAR FACTOR DE COHESIÓN (P)");
 
@@ -1994,31 +1994,35 @@ public class VistaPrincipal extends javax.swing.JFrame
         this.iCtrlPresentacion.addCtoCom(this.txtAddRmvCom.getText(), this.comboTipoSet.getSelectedIndex() != 0);
                 
         DefaultListModel model = (DefaultListModel) this.listSet.getModel();
-        model.addElement(this.txtAddRmvCom.getText());
+        model.addElement(this.txtAddRmvCom.getText()+"[0]");
         
         CardLayout cl = (CardLayout)(this.panelC.getLayout());
         cl.show(this.panelC, "card1");
     }//GEN-LAST:event_btnAddComToSetActionPerformed
 
     private void btnRmvCatFromComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvCatFromComActionPerformed
-        iCtrlPresentacion.rmvCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);
+        boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
+        this.iCtrlPresentacion.rmvCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), importado);
         
-        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);          
+        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
         DefaultListModel model = (DefaultListModel) listCom.getModel();
         model.clear();
         for(String elem : lista) model.addElement(elem);
+        this.actualizarSet(importado);
             
         CardLayout cl = (CardLayout)(panelC.getLayout());
         cl.show(panelC, "card2");
     }//GEN-LAST:event_btnRmvCatFromComActionPerformed
 
     private void btnAddCatToComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToComActionPerformed
-        iCtrlPresentacion.addCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);
+        boolean importado = comboTipoSet.getSelectedIndex() != 0;
+        this.iCtrlPresentacion.addCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), importado);
         
-        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), comboTipoSet.getSelectedIndex() != 0);          
+        ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
         DefaultListModel model = (DefaultListModel) listCom.getModel();
         model.clear();
         for(String elem : lista) model.addElement(elem);
+        this.actualizarSet(importado);
             
         CardLayout cl = (CardLayout)(panelC.getLayout());
         cl.show(panelC, "card2");
@@ -2708,10 +2712,13 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void listSetValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listSetValueChanged
         if(!this.listSet.isSelectionEmpty())
         {
-            this.txtComToAddRmvCat.setText(this.listSet.getSelectedValue().toString());
-            this.txtComToList.setText(this.listSet.getSelectedValue().toString());
-            this.txtNombreAnterior.setText(this.listSet.getSelectedValue().toString());
-            this.txtAddRmvCom.setText(this.listSet.getSelectedValue().toString());            
+            String s = this.listSet.getSelectedValue().toString();
+            int index = s.indexOf("[");
+            s = s.substring(0, index);
+            this.txtComToAddRmvCat.setText(s);
+            this.txtComToList.setText(s);
+            this.txtNombreAnterior.setText(s);
+            this.txtAddRmvCom.setText(s);            
         }
     }//GEN-LAST:event_listSetValueChanged
 
@@ -2744,7 +2751,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void listSetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetMouseClicked
         if (evt.getClickCount() == 2 && !this.listSet.isSelectionEmpty()) 
         {
-            ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(this.listSet.getSelectedValue().toString(), this.comboTipoSet.getSelectedIndex() != 0);          
+            String s = this.listSet.getSelectedValue().toString();
+            int index = s.indexOf("[");
+            s = s.substring(0, index);
+            
+            ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(s, this.comboTipoSet.getSelectedIndex() != 0);          
             DefaultListModel model = (DefaultListModel) this.listCom.getModel();
             model.clear();
             for(String elem : lista) model.addElement(elem);
