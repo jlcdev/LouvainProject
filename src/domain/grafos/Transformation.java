@@ -92,7 +92,7 @@ public class Transformation
     
     public static Graph<Integer, Double> entryToAlgorithm(GrafoEntrada grafo, Filters filters)
     {
-        Graph<Integer, Double> graph = new Graph((int) (grafo.getCategorySize()/0.7+1),0.7f);
+        Graph<Integer, Double> graph = new Graph((int) (grafo.getCategorySize()/1.75),0.75f);
         ArrayList<Integer> categories = grafo.getCategories();
         //Primera pasada -> añadir todas las categorías al graph
         for(Integer category : categories)
@@ -138,7 +138,8 @@ public class Transformation
                 }
                 
                 weight *= 2;
-                graph.addEdge(category, categoryNeighbor, weight);
+                if(weight != 0.0)
+                    graph.addEdge(category, categoryNeighbor, weight);
             }
         }
         return graph;
