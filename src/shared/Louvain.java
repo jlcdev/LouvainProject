@@ -2,7 +2,7 @@ package shared;
 
 /**
  *
- * @author albert campano
+ * @author Grupo 7.3
  */
 import java.util.ArrayList;
 import java.util.HashMap;
