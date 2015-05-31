@@ -100,17 +100,22 @@ public class Transformation
             if(!graph.getVertexs().contains(category))
                 graph.addVertex(category);
         }
-        
+        int adyacentes,common;
+        String scatA, scatB;
+        double weight;
         for(Integer category : categories)
         {
             for(Integer categoryNeighbor : grafo.getCategoriesAdyacentCategories(category))
             {
-                double weight = 0.0;
+                weight = 0.0;
                 //Nombre similar
-                weight += DiceCoefficient.diceCoefficientOptimized(grafo.getNumberNameCategory(category),grafo.getNumberNameCategory(categoryNeighbor)) * filters.getPname();
+                scatA = grafo.getNumberNameCategory(category);
+                scatB = grafo.getNumberNameCategory(categoryNeighbor);
+                if(scatA != null || scatB != null)
+                    weight += DiceCoefficient.diceCoefficientOptimized(scatA,scatB) * filters.getPname();
                 //Categorias en común
-                int adyacentes = grafo.getCategoryNumberAdyacent(category);
-                int common = grafo.getCategoriesCommon(category, categoryNeighbor);
+                adyacentes = grafo.getCategoryNumberAdyacent(category);
+                common = grafo.getCategoriesCommon(category, categoryNeighbor);
                 if((common+adyacentes) != 0)
                 {
                     weight += ((common*2)/(common+adyacentes)) * filters.getPcat();

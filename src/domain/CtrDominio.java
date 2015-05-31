@@ -509,7 +509,6 @@ public class CtrDominio
         return (double)((com/conj)*100);
     }
     
-    
     public int[] infoConjunto(boolean imported)
     {
         int[] info = new int[10];
@@ -548,23 +547,12 @@ public class CtrDominio
         return this.generatedCto.getTimeExecution();
     }
     
-    public String getNombreConj(boolean imported)
-    {
-        if(imported)return this.importedCto.getNombre();
-        return this.generatedCto.getNombre();
-    }
-    
     public double getPurity(boolean imported)
     {
         Purity p = null;
         if(imported)p = new Purity(this.importedCto);
         else p = new Purity(this.generatedCto);
         return p.overallPurity();
-    }
-    
-    public void estadisticas()
-    {
-        //OPCIONAL
     }
     
     public boolean existsCjto(boolean imported)

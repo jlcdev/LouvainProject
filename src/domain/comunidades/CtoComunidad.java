@@ -11,7 +11,6 @@ import java.util.ArrayList;
  */
 public class CtoComunidad
 {
-    private String nombre;
     private boolean modificado;
     private int algoritmo;
     private ArrayList<Comunidad> ctoComunidades;
@@ -87,11 +86,6 @@ public class CtoComunidad
         return this.filtros;
     }
     
-    public String getNombre()
-    {
-        return this.nombre;
-    }
-    
     public Comunidad getComunidad(String comunidad)
     {
         Comunidad response = null;
@@ -156,11 +150,6 @@ public class CtoComunidad
         if(index != -1) this.ctoComunidades.remove(index);
     }
     
-    public void setNombre(String nombre)
-    {
-        this.nombre = nombre;
-    }
-
     public void setModificado(boolean modificado)
     {
         this.modificado = modificado;
@@ -174,7 +163,6 @@ public class CtoComunidad
     public ArrayList<String> savetoFile()
     {
         ArrayList<String> response = new ArrayList<>();
-        response.add("nombre:"+this.nombre);
         response.add("algoritmo:"+this.algoritmo);
         response.add("modificado:"+this.modificado);
         
@@ -191,10 +179,9 @@ public class CtoComunidad
     
     public void loadFromFile(ArrayList<String> data)
     {
-        this.nombre = data.get(0);
-        this.algoritmo = Integer.parseInt(data.get(1));
-        this.modificado = data.get(2).equals("true");
-        int i = 3;
+        this.algoritmo = Integer.parseInt(data.get(0));
+        this.modificado = data.get(1).equals("true");
+        int i = 2;
         ArrayList<String> load = new ArrayList<>();
         //LOAD FILTERS
         String search = data.get(i);
@@ -242,6 +229,6 @@ public class CtoComunidad
     @Override
     public String toString()
     {
-        return "CtoComunidad{" + "nombre=" + this.nombre + ", modificado=" + this.modificado + ", algortimo=" + this.algoritmo + ", ctoComunidades=" + this.ctoComunidades.size() + ", filtros=" + this.filtros + "}'";
+        return "CtoComunidad{" + ", modificado=" + this.modificado + ", algortimo=" + this.algoritmo + ", ctoComunidades=" + this.ctoComunidades.size() + ", filtros=" + this.filtros + "}'";
     }
 }

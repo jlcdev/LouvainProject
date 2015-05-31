@@ -431,10 +431,6 @@ public class CtrlPresentacion {
       return this.ctrlDominio.getTexec(imported);
   }
   
-  public String getNombreConj(boolean imported)
-  {
-      return this.ctrlDominio.getNombreConj(imported);
-  }
   
   public boolean existsSet(boolean imported)
   {
