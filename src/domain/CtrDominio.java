@@ -341,7 +341,7 @@ public class CtrDominio
     
     public void readEntryGraphFile(String path)
     {
-        this.g = new GrafoEntrada();
+        //this.g = new GrafoEntrada();
         this.ctrData.setEntryPath(path);
         this.ctrData.readEntryGraphFile(this.g);
     }
