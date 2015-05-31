@@ -72,18 +72,20 @@ public class VistaPrincipal extends javax.swing.JFrame
     {
         Random r = new Random();
         if(pag)
-        {            
-            int max = r.nextInt(listSelPaginas.getModel().getSize() + 1);
+        {
+            int size = this.pagPosToId.size();
+            int max = r.nextInt(size + 1);
             int[] indices = new int[max];
-            for(int i = 0; i < max; i++) indices[i] = r.nextInt(listSelPaginas.getModel().getSize());
-            listSelPaginas.setSelectedIndices(indices);
+            for(int i = 0; i < max; i++) indices[i] = r.nextInt(size);
+            this.listSelPaginas.setSelectedIndices(indices);
         }
         else
         {
-            int max = r.nextInt(listSelCategorias.getModel().getSize() + 1);
+            int size = this.catPosToId.size();
+            int max = r.nextInt(size + 1);
             int[] indices = new int[max];
-            for(int i = 0; i < max; i++) indices[i] = r.nextInt(listSelCategorias.getModel().getSize());
-            listSelCategorias.setSelectedIndices(indices);
+            for(int i = 0; i < max; i++) indices[i] = r.nextInt(size);
+            this.listSelCategorias.setSelectedIndices(indices);
         }
     }
     
@@ -1930,28 +1932,30 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_mItemSalirActionPerformed
 
     private void mItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemAboutActionPerformed
-       iCtrlPresentacion.sincronizacionVistaPrincipal_a_About();
+       this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_About();
     }//GEN-LAST:event_mItemAboutActionPerformed
 
     private void mItemManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemManualActionPerformed
-       iCtrlPresentacion.sincronizacionVistaPrincipal_a_Manual();
+       this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Manual();
     }//GEN-LAST:event_mItemManualActionPerformed
 
     private void mItemExportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExportarGrafoActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, true, false);      
+        this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, true, false);      
     }//GEN-LAST:event_mItemExportarGrafoActionPerformed
 
     private void mItemImportarSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemImportarSetActionPerformed
-       iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false, false);
+       this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false, false);
     }//GEN-LAST:event_mItemImportarSetActionPerformed
 
     private void mItemExportarSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExportarSetActionPerformed
-       iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false, false);
+       this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false, false);
     }//GEN-LAST:event_mItemExportarSetActionPerformed
 
     private void mItemNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemNuevoGrafoActionPerformed
-        iCtrlPresentacion.crearGrafo();
-        clearTxtAreas();
+        this.iCtrlPresentacion.crearGrafo();
+        this.clearTxtAreas();
+        this.pagPosToId = new ArrayList<>();
+        this.catPosToId = new ArrayList<>();
     }//GEN-LAST:event_mItemNuevoGrafoActionPerformed
 
     private void tabsPrincipalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsPrincipalStateChanged
@@ -2359,12 +2363,14 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_radioGirvanActionPerformed
 
     private void btnNuevoGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafo1ActionPerformed
-        iCtrlPresentacion.crearGrafo();
-        clearTxtAreas();
+        this.iCtrlPresentacion.crearGrafo();
+        this.clearTxtAreas();
+        this.pagPosToId = new ArrayList<>();
+        this.catPosToId = new ArrayList<>();
     }//GEN-LAST:event_btnNuevoGrafo1ActionPerformed
 
     private void btnImportarGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafo1ActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true, false);
+        this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true, false);
     }//GEN-LAST:event_btnImportarGrafo1ActionPerformed
 
     private void txtNombreNodoNuevoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreNodoNuevoFocusLost
@@ -2628,16 +2634,18 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_txtCatToAddRmvMouseReleased
 
     private void btnNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafoActionPerformed
-        iCtrlPresentacion.crearGrafo();
-        clearTxtAreas();
+        this.iCtrlPresentacion.crearGrafo();
+        this.clearTxtAreas();
+        this.pagPosToId = new ArrayList<>();
+        this.catPosToId = new ArrayList<>();
     }//GEN-LAST:event_btnNuevoGrafoActionPerformed
 
     private void btnImportarConjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarConjActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false, false);        
+        this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false, false);        
     }//GEN-LAST:event_btnImportarConjActionPerformed
 
     private void btnImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafoActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true, false);
+        this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true, false);
     }//GEN-LAST:event_btnImportarGrafoActionPerformed
 
     private void listCatValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listCatValueChanged
