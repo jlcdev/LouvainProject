@@ -437,9 +437,9 @@ public class CtrlPresentacion {
       return this.ctrlDominio.existsCjto(imported);
   }
   
-  public double getPurity(boolean imported)
+  public double getPurity()
   {
-      return this.ctrlDominio.getPurity(imported);
+      return this.ctrlDominio.getSimilarity();
   }
   
   public void obtainCjto(int p)
