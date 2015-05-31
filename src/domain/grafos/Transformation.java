@@ -9,7 +9,7 @@ import shared.Graph;
  */
 public class Transformation
 {
-    public static void clearGraph(GrafoEntrada grafo, Selections selections)
+    public static GrafoEntrada clearGraph(GrafoEntrada grafo, Selections selections)
     {/*
         if(selections.getCategoriesSelected().size() < grafo.getCategorySize()/2)
         {*/
@@ -61,7 +61,7 @@ public class Transformation
             }
             double t2 = System.currentTimeMillis();
             System.out.println("TIEMPO DE CREACION: "+(t2-t1));
-            grafo = result;
+            return result;
             /*
         }
         else
