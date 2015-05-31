@@ -305,10 +305,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel27 = new javax.swing.JLabel();
         btnShowCom = new javax.swing.JButton();
         panelC = new javax.swing.JPanel();
-        scListCom = new javax.swing.JScrollPane();
-        listCom = new javax.swing.JList();
         scListSet = new javax.swing.JScrollPane();
         listSet = new javax.swing.JList();
+        scListCom = new javax.swing.JScrollPane();
+        listCom = new javax.swing.JList();
         jLabel31 = new javax.swing.JLabel();
         btnModP = new javax.swing.JButton();
         spinP1 = new javax.swing.JSpinner();
@@ -1505,22 +1505,6 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         panelC.setLayout(new java.awt.CardLayout());
 
-        listCom.setModel(new javax.swing.DefaultListModel());
-        listCom.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listCom.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                listComMouseReleased(evt);
-            }
-        });
-        listCom.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                listComValueChanged(evt);
-            }
-        });
-        scListCom.setViewportView(listCom);
-
-        panelC.add(scListCom, "card2");
-
         listSet.setModel(new javax.swing.DefaultListModel());
         listSet.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listSet.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1539,6 +1523,22 @@ public class VistaPrincipal extends javax.swing.JFrame
         scListSet.setViewportView(listSet);
 
         panelC.add(scListSet, "card1");
+
+        listCom.setModel(new javax.swing.DefaultListModel());
+        listCom.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listCom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listComMouseReleased(evt);
+            }
+        });
+        listCom.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listComValueChanged(evt);
+            }
+        });
+        scListCom.setViewportView(listCom);
+
+        panelC.add(scListCom, "card2");
 
         jLabel31.setText("CAMBIAR FACTOR DE COHESIÓN (P)");
 
