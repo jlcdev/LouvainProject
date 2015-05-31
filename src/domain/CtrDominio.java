@@ -341,7 +341,7 @@ public class CtrDominio
     
     public void readEntryGraphFile(String path)
     {
-        this.g = new GrafoEntrada();
+        //this.g = new GrafoEntrada();
         this.ctrData.setEntryPath(path);
         this.ctrData.readEntryGraphFile(this.g);
     }
@@ -542,5 +542,16 @@ public class CtrDominio
     public void estadisticas()
     {
         //OPCIONAL
+    }
+    
+    public boolean existsCjto(boolean imported)
+    {
+        if(imported)
+        {
+            if(this.importedCto != null) return !this.importedCto.isEmpty();
+            return false;            
+        }
+        if(this.generatedCto != null) return !this.generatedCto.isEmpty();
+        return false; 
     }
 }

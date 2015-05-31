@@ -52,6 +52,11 @@ public class CtoComunidad
         return this.modificado;
     }
     
+    public boolean isEmpty()
+    {
+        return this.ctoComunidades.isEmpty();
+    }
+    
     public ArrayList<Comunidad> getCtoComunidades()
     {
         return this.ctoComunidades;

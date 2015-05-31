@@ -1909,21 +1909,37 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_tabsPrincipalStateChanged
 
     private void btnCompararConjuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararConjuntosActionPerformed
-        int[] infoC1 = iCtrlPresentacion.infoConjunto(false);
-        //int[] infoC2 = iCtrlPresentacion.infoConjunto(true);
-        this.txtListComp.setText("CONJUNTO CREADO:\n\n");
-        this.txtListComp.append("Número de comunidades: "+infoC1[0]+"\n");
-        this.txtListComp.append("Algoritmo: "+infoC1[1]+"\n");
-        this.txtListComp.append("Nivel de cohesión: "+infoC1[2]+"\n");
-        this.txtListComp.append("Prioridad filtro nombre similar: "+infoC1[3]+"\n");
-        this.txtListComp.append("Prioridad filtro categorias en común: "+infoC1[4]+"\n");
-        this.txtListComp.append("Prioridad filtro páginas en común: "+infoC1[5]+"\n");
-        this.txtListComp.append("Prioridad filtro padres en común: "+infoC1[6]+"\n");
-        this.txtListComp.append("Prioridad filtro hijos en común: "+infoC1[7]+"\n");
-        this.txtListComp.append("Núm. de categorias seleccionadas: "+infoC1[8]+"\n");
-        this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC1[9]+"\n");
-        //this.txtListComp.setText("CONJUNTO CREADO:\n\n");
-        //for(int i = 0; i<10; i++) this.txtListComp.append(""+infoC2[i]);
+        if(this.iCtrlPresentacion.existsSet(false))
+        {
+            int[] infoC1 = iCtrlPresentacion.infoConjunto(false);
+            this.txtListComp.setText("CONJUNTO CREADO:\n\n");
+            this.txtListComp.append("Número de comunidades: "+infoC1[0]+"\n");
+            this.txtListComp.append("Algoritmo: "+infoC1[1]+"\n");
+            this.txtListComp.append("Nivel de cohesión: "+infoC1[2]+"\n");
+            this.txtListComp.append("Prioridad filtro nombre similar: "+infoC1[3]+"\n");
+            this.txtListComp.append("Prioridad filtro categorias en común: "+infoC1[4]+"\n");
+            this.txtListComp.append("Prioridad filtro páginas en común: "+infoC1[5]+"\n");
+            this.txtListComp.append("Prioridad filtro padres en común: "+infoC1[6]+"\n");
+            this.txtListComp.append("Prioridad filtro hijos en común: "+infoC1[7]+"\n");
+            this.txtListComp.append("Núm. de categorias seleccionadas: "+infoC1[8]+"\n");
+            this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC1[9]+"\n\n\n");
+        }
+        if(this.iCtrlPresentacion.existsSet(true))
+        {
+            int[] infoC2 = iCtrlPresentacion.infoConjunto(true);
+            this.txtListComp.setText("CONJUNTO IMPORTADO:\n\n");
+            this.txtListComp.append("Número de comunidades: "+infoC2[0]+"\n");
+            this.txtListComp.append("Algoritmo: "+infoC2[1]+"\n");
+            this.txtListComp.append("Nivel de cohesión: "+infoC2[2]+"\n");
+            this.txtListComp.append("Prioridad filtro nombre similar: "+infoC2[3]+"\n");
+            this.txtListComp.append("Prioridad filtro categorias en común: "+infoC2[4]+"\n");
+            this.txtListComp.append("Prioridad filtro páginas en común: "+infoC2[5]+"\n");
+            this.txtListComp.append("Prioridad filtro padres en común: "+infoC2[6]+"\n");
+            this.txtListComp.append("Prioridad filtro hijos en común: "+infoC2[7]+"\n");
+            this.txtListComp.append("Núm. de categorias seleccionadas: "+infoC2[8]+"\n");
+            this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC2[9]+"\n");            
+            //for(int i = 0; i<10; i++) this.txtListComp.append(""+infoC2[i]);
+        }
     }//GEN-LAST:event_btnCompararConjuntosActionPerformed
 
     private void btnShowComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowComActionPerformed
