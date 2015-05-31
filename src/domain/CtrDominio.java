@@ -3,6 +3,7 @@ package domain;
 import data.CtrData;
 import domain.comunidades.CtoComunidad;
 import domain.comunidades.Comunidad;
+import domain.comunidades.Purity;
 import domain.grafos.Categoria;
 import domain.grafos.GrafoEntrada;
 import domain.grafos.Pagina;
@@ -271,8 +272,7 @@ public class CtrDominio
         Categoria c = new Categoria(category);
         Integer r = this.g.getCategoryNumber(c);
         this.g.removeCategoria(c);
-        return r;
-        
+        return r;        
     }
     
     /**
@@ -366,12 +366,14 @@ public class CtrDominio
             com = this.importedCto.getComunidad(comunidad);
             if(com == null)return true;
             com.addCategoria(category);
+            this.importedCto.setModificado(true);
         }
         else
         {
             com = this.generatedCto.getComunidad(comunidad);
             if(com == null)return true;
             com.addCategoria(category);
+            this.generatedCto.setModificado(true);
         }
         return false;
     }
@@ -380,8 +382,16 @@ public class CtrDominio
     {
         Comunidad com = new Comunidad();
         com.setNombre(comunidad);
-        if(importat)this.importedCto.addComunidades(com);
-        else this.generatedCto.addComunidades(com);
+        if(importat)
+        {
+            this.importedCto.addComunidades(com);
+            this.importedCto.setModificado(true);
+        }
+        else
+        {
+            this.generatedCto.addComunidades(com);
+            this.generatedCto.setModificado(true);
+        }
     }
   
     public boolean rmvCtoCat (String category, String comunidad, boolean importat)
@@ -392,32 +402,36 @@ public class CtrDominio
             com = this.importedCto.getComunidad(comunidad);
             if(com == null)return true;
             com.removeCategoria(category);
+            this.importedCto.setModificado(true);
         }
         else
         {
             com = this.generatedCto.getComunidad(comunidad);
             if(com == null)return true;
             com.removeCategoria(category);
+            this.generatedCto.setModificado(true);
         }
         return false;
     }
   
     public void rmvCtoCom (String comunidad, boolean importat)
     {
-        if(importat)this.importedCto.removeComunidades(comunidad);
-        else this.generatedCto.removeComunidades(comunidad);
+        if(importat)
+        {
+            this.importedCto.removeComunidades(comunidad);
+            this.importedCto.setModificado(true);
+        }
+        else
+        {
+            this.generatedCto.removeComunidades(comunidad);
+            this.generatedCto.setModificado(true);
+        }
     }
   
     public void modCtoNombre (String anterior, String nuevo, boolean importat)
-    {
-        //if(importat) this.importedCto.setNombre(nuevo);
-        //else this.generatedCto.setNombre(nuevo);
-                
+    {      
         if(importat)this.importedCto.getComunidad(anterior).setNombre(nuevo);
         else this.generatedCto.getComunidad(anterior).setNombre(nuevo);
-               
-        //if(importat)this.importedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);
-        //else this.generatedCto.getComunidad(comunidad).modCategoria(anterior, nuevo);  
     }
     
     public ArrayList<String> mostrarCtoComunidad(boolean importat)
@@ -539,6 +553,15 @@ public class CtrDominio
         if(imported)return this.importedCto.getNombre();
         return this.generatedCto.getNombre();
     }
+    
+    public double getPurity(boolean imported)
+    {
+        Purity p = null;
+        if(imported)p = new Purity(this.importedCto);
+        else p = new Purity(this.generatedCto);
+        return p.overallPurity();
+    }
+    
     public void estadisticas()
     {
         //OPCIONAL
