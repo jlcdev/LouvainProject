@@ -5,6 +5,8 @@
  */
 package graphics;
 
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author joan
@@ -29,8 +31,16 @@ public class VistaFileChooser extends javax.swing.JFrame {
     }
     
     public void hacerVisible(boolean importar, boolean grafo, boolean importado) {
-        if(importar) fileChooser.setApproveButtonText("Import");
-        else fileChooser.setApproveButtonText("Export");
+        if(importar) 
+        {
+            fileChooser.setApproveButtonText("Import");
+            this.fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
+        }
+        else
+        {
+            this.fileChooser.setApproveButtonText("Export");
+            this.fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
+        }
         this.importar = importar;
         this.grafo = grafo;
         this.importado = importado;
