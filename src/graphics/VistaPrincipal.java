@@ -133,7 +133,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         ArrayList<String> lista = iCtrlPresentacion.mostrarCto(importado);         
         DefaultListModel model = (DefaultListModel) listSet.getModel();
         model.clear();
-        for(String elem : lista) model.addElement(elem);
+        for(String elem : lista)
+        {
+            ArrayList<String> lista2 = iCtrlPresentacion.mostrarCom(elem, importado); 
+            model.addElement(elem+"["+lista2.size()+"]");
+        }
     }  
        
     public void clearTxtAreas()
@@ -2293,8 +2297,8 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnListPagGraphActionPerformed
 
     private void btnListCatGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListCatGraphActionPerformed
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card1");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card1");
 
         //ArrayList<String> lista = iCtrlPresentacion.mostrarGrafoCat();
         //txtListGraph.setText("Categorias ("+lista.size()+"):\n\n");
@@ -2304,26 +2308,44 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnChangeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameActionPerformed
 
-        if(radioCategoria.isSelected()) //CATEGORIA
+        if(this.radioCategoria.isSelected()) //CATEGORIA
         {
-            int id = iCtrlPresentacion.modGrafoNombre(txtNombreNodoAnterior.getText(), txtNombreNodoNuevo.getText(), true);
+            int id = this.iCtrlPresentacion.modGrafoNombre(this.txtNombreNodoAnterior.getText(), this.txtNombreNodoNuevo.getText(), true);
             if(id != -1)
             {
-                DefaultListModel model = (DefaultListModel) listSelCategorias.getModel();
-                model.getElementAt(catPosToId.indexOf(id));
-                model.remove(id);
-                model.add(id,txtNombreNodoNuevo.getText());
+                int pos = this.catPosToId.indexOf(id);
+                this.catPosToId.set(pos, id);
+                
+                DefaultListModel model = (DefaultListModel) this.listSelCategorias.getModel();                
+                model.remove(pos);
+                model.add(pos,this.txtNombreNodoNuevo.getText());
+                
+                model = (DefaultListModel) this.listCat.getModel();                
+                model.remove(pos);               
+                model.add(pos,this.txtNombreNodoNuevo.getText());  
+                
+                CardLayout cl = (CardLayout)(this.panel.getLayout());
+                cl.show(this.panel, "card1");
             }
         }
         else //PÁGINA
         {
-            int id = iCtrlPresentacion.modGrafoNombre(txtNombreNodoAnterior.getText(), txtNombreNodoNuevo.getText(), false);
+            int id = this.iCtrlPresentacion.modGrafoNombre(this.txtNombreNodoAnterior.getText(), this.txtNombreNodoNuevo.getText(), false);
             if(id != -1)
             {
-                DefaultListModel model = (DefaultListModel) listSelPaginas.getModel();
-                model.getElementAt(pagPosToId.indexOf(id));
-                model.remove(id);
-                model.add(id,txtNombreNodoNuevo.getText());
+                int pos = this.pagPosToId.indexOf(id);
+                DefaultListModel model = (DefaultListModel) this.listSelPaginas.getModel();
+                model.remove(pos);
+                model.add(pos,this.txtNombreNodoNuevo.getText());
+                
+                model = (DefaultListModel) this.listPag.getModel();
+                model.remove(pos);
+                model.add(pos,this.txtNombreNodoNuevo.getText());
+                
+                this.pagPosToId.set(pos, id);
+                
+                CardLayout cl = (CardLayout)(this.panel.getLayout());
+                cl.show(this.panel, "card2");
             }
         }
     }//GEN-LAST:event_btnChangeNameActionPerformed
