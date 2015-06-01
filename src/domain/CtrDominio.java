@@ -3,7 +3,7 @@ package domain;
 import data.CtrData;
 import domain.comunidades.CtoComunidad;
 import domain.comunidades.Comunidad;
-import domain.comunidades.Similarity;
+import domain.comunidades.Purity;
 import domain.grafos.Categoria;
 import domain.grafos.GrafoEntrada;
 import domain.grafos.Pagina;
@@ -27,12 +27,14 @@ public class CtrDominio
     private Graph<Integer, Double> graph = null;
     private CtoComunidad generatedCto = null;
     private CtoComunidad importedCto = null;
+    private Purity p = null;
     
     
     public CtrDominio()
     {
         this.g = new GrafoEntrada();
         this.ctrData = new CtrData();
+        this.p = new Purity();
     }
     
     public void newGrafo()
@@ -654,10 +656,26 @@ public class CtrDominio
         return this.generatedCto.getTimeExecution();
     }
     
-    public double getSimilarity()
+    public double getAllPurityOne(boolean imported)
     {
-        Similarity s = new Similarity(this.importedCto,this.generatedCto);
-        return s.similitud();
+        if(imported)return this.p.calcPurity(this.importedCto);
+        return  this.p.calcPurity(this.generatedCto);
+    }
+    
+    public double getAllPurityBoth()
+    {
+        return this.p.calcPurity(this.importedCto,this.generatedCto);
+    }
+    
+    public double getPurityOne(boolean imported)
+    {
+        if(imported)return this.p.calcPurityTwo(this.importedCto);
+        return  this.p.calcPurityTwo(this.generatedCto);
+    }
+    
+    public double getPurityBoth()
+    {
+        return this.p.calcPurityTwo(this.importedCto,this.generatedCto);
     }
     
     public boolean existsCjto(boolean imported)
