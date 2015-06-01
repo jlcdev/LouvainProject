@@ -203,7 +203,10 @@ public class CtrlPresentacion {
    */
   public int addGrafoCat (String categoria)
   {
-      return this.ctrlDominio.addGrafoCat(categoria);
+      int r = this.ctrlDominio.addGrafoCat(categoria);
+      if(r != -1)return r;
+      sincronizacionVistaPrincipal_a_Error("La cateogria introducida ya existe.");
+      return r;
   }
   
   /**
@@ -213,7 +216,10 @@ public class CtrlPresentacion {
    */
   public int addGrafoPag (String pagina)
   {
-      return this.ctrlDominio.addGrafoPag(pagina);
+      int r = this.ctrlDominio.addGrafoPag(pagina);
+      if(r != -1)return r;
+      sincronizacionVistaPrincipal_a_Error("La pagina introducida ya existe.");
+      return r;
   }
   
   /**
@@ -224,7 +230,8 @@ public class CtrlPresentacion {
    */
   public void addGrafoEnlace (String node1, String node2, String tipus)
   {
-      this.ctrlDominio.addGrafoEnlace(node1,node2,tipus);
+      if(! this.ctrlDominio.addGrafoEnlace(node1,node2,tipus))
+            sincronizacionVistaPrincipal_a_Error("Datos mal introducidos.");
   }
     
   /**
@@ -234,7 +241,10 @@ public class CtrlPresentacion {
    */
   public int rmvGrafoCat (String categoria)
   {
-      return this.ctrlDominio.rmvGrafoCat(categoria);
+      int r = this.ctrlDominio.rmvGrafoCat(categoria);
+      if(r != -1)return r;
+      sincronizacionVistaPrincipal_a_Error("La categoria introducida no existe.");
+      return r;
   }
   
   /**
@@ -244,7 +254,10 @@ public class CtrlPresentacion {
    */
   public int rmvGrafoPag (String pagina)
   {
-      return this.ctrlDominio.rmvGrafoPag(pagina);
+      int r = this.ctrlDominio.rmvGrafoPag(pagina);
+      if(r != -1)return r;
+      sincronizacionVistaPrincipal_a_Error("La pagina introducida no existe.");
+      return r;
   }
   
   /**
@@ -255,7 +268,8 @@ public class CtrlPresentacion {
    */
   public void rmvGrafoEnlace (String node1, String node2, String tipus)
   {
-      this.ctrlDominio.rmvGrafoEnlace(node1,node2,tipus);
+      if(! this.ctrlDominio.rmvGrafoEnlace(node1,node2,tipus))
+            sincronizacionVistaPrincipal_a_Error("Datos mal introducidos.");
   }
   
   /**
@@ -271,6 +285,11 @@ public class CtrlPresentacion {
       if(category)
       {
           id = this.ctrlDominio.verNumCat(anterior);
+          if(id == -1)
+          {
+              sincronizacionVistaPrincipal_a_Error("El nodo " + anterior + " no existe");
+              return -1;
+          }
           boolean error = this.ctrlDominio.modifyCategory(anterior,nuevo);
           if(!error) 
           {
@@ -281,6 +300,11 @@ public class CtrlPresentacion {
       else
       {
           id = this.ctrlDominio.verNumPag(anterior);
+          if(id == -1)
+          {
+              sincronizacionVistaPrincipal_a_Error("El nodo " + anterior + " no existe");
+              return -1;
+          }
           boolean error = this.ctrlDominio.modifyPage(anterior, nuevo);
           if(!error)
           {
