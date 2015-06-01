@@ -462,7 +462,6 @@ public class GrafoEntrada implements Cloneable
         for(String s : list)
         {
             String data[] = s.split("\\s+");
-            System.out.println(s);
             this.setData(data[0], data[1], data[2], data[3], data[4]);
         }
     }

@@ -2313,7 +2313,7 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC2[9]+"\n\n\n");            
             //this.txtListComp.append("Purity: "+Double.toString(this.iCtrlPresentacion.getPurity(false))+"\n\n\n");
         }
-        if(a && b) this.txtListComp.append("Purity: "+Double.toString(this.iCtrlPresentacion.getPurity())+"%\n\n");
+        if(a && b) this.txtListComp.append("Purity: "+Double.toString(this.iCtrlPresentacion.getPurityBoth())+"%\n\n");
     }//GEN-LAST:event_btnCompararConjuntosActionPerformed
 
     private void btnShowComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowComActionPerformed
