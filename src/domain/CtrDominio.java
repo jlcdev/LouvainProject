@@ -38,6 +38,7 @@ public class CtrDominio
     public void newGrafo()
     {
         this.g = new GrafoEntrada();
+        System.gc();
     }
     
     public void information()
@@ -372,7 +373,8 @@ public class CtrDominio
     {
         Categoria c = new Categoria(category);
         Integer r = this.g.getCategoryNumber(c);
-        this.g.removeCategoria(c);
+        if(r != -1)
+            this.g.removeCategoria(c);
         return r;        
     }
     
@@ -385,7 +387,8 @@ public class CtrDominio
     {
         Pagina p = new Pagina(pagina);
         Integer r = this.g.getPageNumber(p);
-        this.g.removePagina(p);
+        if(r != -1)
+            this.g.removePagina(p);
         return r;// ha de retornar la pos de la pagina
     }
   

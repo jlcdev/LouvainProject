@@ -74,6 +74,25 @@ public class CtrAlgoritmo
         else this.algorithm = algorithm;
     }
     
+    public Double timeAproximation()
+    {
+        int n = this.selections.getCategoriesSelected().size();
+        int nn = n*n;
+        if(n < 5000)
+        {
+            return (double)(n*n)/10000000;
+        }
+        else if(n < 9000)
+        {
+            
+            return 0.000000004*nn+0.008052*n-22.168;
+        }
+        else
+        {
+            return 0.000000004*nn+0.008052*n+22.168;
+        }
+    }
+    
     public boolean areCatSelections()
     {
         return this.arecatselections;

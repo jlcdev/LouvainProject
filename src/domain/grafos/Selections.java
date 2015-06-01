@@ -22,6 +22,11 @@ public class Selections implements Cloneable
     {
         return this.categoriesSelected;
     }
+    
+    public int getCategoriesSelectedSize()
+    {
+        return this.categoriesSelected.size();
+    }
 
     public void setCategoriesSelected(ArrayList<Integer> categoriesSelected)
     {
@@ -32,6 +37,8 @@ public class Selections implements Cloneable
     {
         return this.pagesSelected;
     }
+    
+    
 
     public void setPagesSelected(ArrayList<Integer> pagesSelected)
     {

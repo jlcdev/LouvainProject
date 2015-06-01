@@ -90,9 +90,7 @@ public class Visual <V,E>
                 Entry<V, E> edge = at.next();
                 g.addVertex(entry.getKey());
                 g.addVertex(edge.getKey());
-                
-                    this.g.addEdge(edge.getValue(), entry.getKey(), edge.getKey());
-                
+                this.g.addEdge(edge.getValue(), entry.getKey(), edge.getKey());
             }
         }
     }

@@ -26,8 +26,12 @@ public class VistaError extends javax.swing.JFrame {
      
     }
     
-    public void hacerVisible(String msg) {
-    jTextArea1.setText(msg);
+    public void setText(String s)
+    {
+        this.jTextArea1.setText(s);
+    }
+    
+    public void hacerVisible() {
     this.pack();
     this.setVisible(true);
   }
@@ -43,7 +47,8 @@ public class VistaError extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -69,8 +74,10 @@ public class VistaError extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton1ActionPerformed(evt);
             }
         });

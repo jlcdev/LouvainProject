@@ -462,7 +462,6 @@ public class GrafoEntrada implements Cloneable
         for(String s : list)
         {
             String data[] = s.split("\\s+");
-            System.out.println(s);
             this.setData(data[0], data[1], data[2], data[3], data[4]);
         }
     }
@@ -472,13 +471,16 @@ public class GrafoEntrada implements Cloneable
         ArrayList<String> response = new ArrayList();
         Iterator<Entry<Integer, ArrayList<Arch>>> it;
         it = this.csubcEdges.entrySet().iterator();
+        String A, B;
         while(it.hasNext())
         {
             Entry<Integer, ArrayList<Arch>> entry = it.next();
             ArrayList<Arch> arcs = entry.getValue();
             for(Arch arc : arcs)
             {
-                response.add(arc.toString());
+                A = this.getNumberNameCategory(arc.getOrigin());
+                B = this.getNumberNameCategory(arc.getDestiny());
+                response.add(A+"   cat   CsubC   "+B+"   cat");
             }
         }
         it = this.csupcEdges.entrySet().iterator();
@@ -488,7 +490,9 @@ public class GrafoEntrada implements Cloneable
             ArrayList<Arch> arcs = entry.getValue();
             for(Arch arc : arcs)
             {
-                response.add(arc.toString());
+                A = this.getNumberNameCategory(arc.getOrigin());
+                B = this.getNumberNameCategory(arc.getDestiny());
+                response.add(A+"   cat   CsupC   "+B+"   cat");
             }
         }
         it = this.cpEdges.entrySet().iterator();
@@ -498,7 +502,9 @@ public class GrafoEntrada implements Cloneable
             ArrayList<Arch> arcs = entry.getValue();
             for(Arch arc : arcs)
             {
-                response.add(arc.toString());
+                A = this.getNumberNameCategory(arc.getOrigin());
+                B = this.getNumberNamePage(arc.getDestiny());
+                response.add(A+"   cat   CP   "+B+"   page");
             }
         }
         it = this.pcEdges.entrySet().iterator();
@@ -508,7 +514,9 @@ public class GrafoEntrada implements Cloneable
             ArrayList<Arch> arcs = entry.getValue();
             for(Arch arc : arcs)
             {
-                response.add(arc.toString());
+                A = this.getNumberNamePage(arc.getOrigin());
+                B = this.getNumberNameCategory(arc.getDestiny());
+                response.add(A+"   page   PC   "+B+"   cat");
             }
         }
         return response;
