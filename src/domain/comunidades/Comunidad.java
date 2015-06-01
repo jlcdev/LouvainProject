@@ -119,6 +119,7 @@ public class Comunidad implements Cloneable
         this.id = Integer.parseInt(data.get(1).replaceFirst("id:", ""));
         this.nombre = data.get(2).replaceFirst("name:", "");
         int size = Integer.parseInt(data.get(3).replaceFirst("size:", ""));
+        size += 4;
         for(int i=4; i < size;++i)
         {
             this.addCategoria(data.get(i));

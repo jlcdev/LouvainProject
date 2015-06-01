@@ -12,7 +12,11 @@ public class Selections implements Cloneable
     private ArrayList<Integer> categoriesSelected;
     private ArrayList<Integer> pagesSelected;
     
-    public Selections(){}
+    public Selections()
+    {
+        this.categoriesSelected = new ArrayList();
+        this.pagesSelected = new ArrayList();
+    }
     
     public ArrayList<Integer> getCategoriesSelected()
     {

@@ -179,8 +179,9 @@ public class CtoComunidad
     
     public void loadFromFile(ArrayList<String> data)
     {
-        this.algoritmo = Integer.parseInt(data.get(0));
-        this.modificado = data.get(1).equals("true");
+        this.ctoComunidades = new ArrayList();
+        this.algoritmo = Integer.parseInt(data.get(0).replaceFirst("algoritmo:", ""));
+        this.modificado = data.get(1).replaceFirst("modificado:", "").equals("true");
         int i = 2;
         ArrayList<String> load = new ArrayList<>();
         //LOAD FILTERS
@@ -188,22 +189,26 @@ public class CtoComunidad
         while(!search.equals("ENDFILTER"))
         {
             load.add(search);
-            search = data.get(i);
             ++i;
+            search = data.get(i);
         }
         this.filtros = new Filters(load);
         load = new ArrayList<>();
+        ++i;
+        search = data.get(i);
         //LOAD SELECTION
         while(!search.equals("ENDSELECTION"))
         {
             load.add(search);
-            search = data.get(i);
             ++i;
+            search = data.get(i);
         }
+        load.add(search);
         Selections selec = new Selections();
         selec.loadFromFile(load);
         this.selections = selec;
-        
+        ++i;
+        search = data.get(i);
         //LOAD COMMUNITIES
         while(search.equals("COMMUNITY"))
         {

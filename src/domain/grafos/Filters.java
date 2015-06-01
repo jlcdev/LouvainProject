@@ -123,10 +123,10 @@ public class Filters implements Cloneable
     
     public void loadFromFile(ArrayList<String> data)
     {
-        this.pname = Integer.parseInt(data.get(1));
-        this.pcat = Integer.parseInt(data.get(2));
-        this.ppag = Integer.parseInt(data.get(3));
-        this.pfat = Integer.parseInt(data.get(4));
-        this.pson = Integer.parseInt(data.get(5));
+        this.pname = Integer.parseInt(data.get(1).replaceFirst("pname:", ""));
+        this.pcat = Integer.parseInt(data.get(2).replaceFirst("pcat:", ""));
+        this.ppag = Integer.parseInt(data.get(3).replaceFirst("ppag:", ""));
+        this.pfat = Integer.parseInt(data.get(4).replaceFirst("pfat:", ""));
+        this.pson = Integer.parseInt(data.get(5).replaceFirst("pson:", ""));
     }
 }
