@@ -177,12 +177,18 @@ public class CtrlPresentacion {
   
   public int getPagNum(String pagina)
   {
-      return this.ctrlDominio.verNumPag(pagina);
+      int r = this.ctrlDominio.verNumPag(pagina);
+      if(r != -1)return r;
+      sincronizacionVistaPrincipal_a_Error("La pagina no existe");
+      return r;
   }
   
   public int getCatNum(String categoria)
   {
-      return this.ctrlDominio.verNumCat(categoria);
+      int r = this.ctrlDominio.verNumCat(categoria);
+      if(r != -1)return r;
+      sincronizacionVistaPrincipal_a_Error("La categoria no existe");
+      return r;
   }
   
   public ArrayList<Integer> getCatSelection(int min, int max)

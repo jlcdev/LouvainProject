@@ -31,9 +31,10 @@ public class Purity {
             int numcat = list.get(i).getNumCategorias();
             if(count.containsKey(numcat))
             {
-                count.replace(numcat, count.get(numcat)+1);
-                if(count.get(numcat) > maximo)
-                    maximo = count.get(numcat);
+                int replace = count.get(numcat)+1;
+                count.replace(numcat, replace);
+                if(replace > maximo)
+                    maximo = replace;
             }
             else
                 count.put(numcat, 1);
@@ -52,9 +53,10 @@ public class Purity {
             if(numcat != 1){
                 if(count.containsKey(numcat))
                 {
-                    count.replace(numcat, count.get(numcat)+1);
-                    if(count.get(numcat) > maximo)
-                        maximo = count.get(numcat);
+                    int replace = count.get(numcat)+1;
+                    count.replace(numcat, replace);
+                    if(replace > maximo)
+                        maximo = replace;
                 }
                 else
                     count.put(numcat, 1);
@@ -66,44 +68,40 @@ public class Purity {
     
     public double calcPurity(CtoComunidad Cto)
     {
-        double purity = 0;
         int datasize = Cto.getNumComunidades();
-        purity = this.maxCount(Cto.getCtoComunidades())/datasize;
-        return purity;
+        return this.maxCount(Cto.getCtoComunidades())/datasize;
     }
     
     public double calcPurity(CtoComunidad Cto1, CtoComunidad Cto2)
     {
-        double purity = 0;
+        double purity;
         int datasize = Cto1.getNumComunidades() + Cto2.getNumComunidades();
         purity = this.maxCount(Cto1.getCtoComunidades())+this.maxCount(Cto2.getCtoComunidades());
         return purity/datasize;
     }
     public double calcPurityTwo(CtoComunidad Cto)
     {
-        double purity = 0;
         int datasize = 0;
         for(int i = 0;i < Cto.getNumComunidades(); ++i)
         {
-            if(Cto.getCtoComunidades().get(i).getNumCategorias() != 1)
+            if(Cto.getCtoComunidades().get(i).getNumCategorias() > 1)
                 ++datasize;
         }
-        purity = this.maxCount(Cto.getCtoComunidades())/datasize;
-        return purity;
+        return this.maxCount(Cto.getCtoComunidades())/datasize;
     }
     
     public double calcPurityTwo(CtoComunidad Cto1, CtoComunidad Cto2)
     {
-        double purity = 0;
+        double purity;
         int datasize = 0;
         for(int i = 0;i < Cto1.getNumComunidades(); ++i)
         {
-            if(Cto1.getCtoComunidades().get(i).getNumCategorias() != 1)
+            if(Cto1.getCtoComunidades().get(i).getNumCategorias() > 1)
                 ++datasize;
         }
         for(int i = 0;i < Cto2.getNumComunidades(); ++i)
         {
-            if(Cto2.getCtoComunidades().get(i).getNumCategorias() != 1)
+            if(Cto2.getCtoComunidades().get(i).getNumCategorias() > 1)
                 ++datasize;
         }
         purity = this.maxCountTwo(Cto1.getCtoComunidades())+this.maxCountTwo(Cto2.getCtoComunidades());
