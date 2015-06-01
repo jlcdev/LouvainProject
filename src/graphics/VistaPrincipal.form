@@ -1631,9 +1631,8 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtAddRmvCom" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnAddComToSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1646,7 +1645,10 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="btnRmvCatFromCom" min="-2" pref="20" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="btnRmvComFromSet" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btnRmvComFromSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="btnAddComToSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1675,7 +1677,7 @@
                                   <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="spinP1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="60" max="32767" attributes="0"/>
                               <Component id="btnExportSet" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="panelC" max="32767" attributes="0"/>

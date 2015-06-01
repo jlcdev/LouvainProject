@@ -3,7 +3,7 @@ package domain;
 import data.CtrData;
 import domain.comunidades.CtoComunidad;
 import domain.comunidades.Comunidad;
-import domain.comunidades.Purity;
+import domain.comunidades.Similarity;
 import domain.grafos.Categoria;
 import domain.grafos.GrafoEntrada;
 import domain.grafos.Pagina;
@@ -547,12 +547,10 @@ public class CtrDominio
         return this.generatedCto.getTimeExecution();
     }
     
-    public double getPurity(boolean imported)
+    public double getSimilarity()
     {
-        Purity p = null;
-        if(imported)p = new Purity(this.importedCto);
-        else p = new Purity(this.generatedCto);
-        return p.overallPurity();
+        Similarity s = new Similarity(this.importedCto,this.generatedCto);
+        return s.similitud();
     }
     
     public boolean existsCjto(boolean imported)
