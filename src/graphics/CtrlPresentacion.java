@@ -151,6 +151,7 @@ public class CtrlPresentacion {
       this.vistaPrincipal.activarTab(3); //CONJ
       this.vistaPrincipal.activarTab(4); //COMP
       this.vistaPrincipal.goToTab(3);
+      this.vistaPrincipal.updateCjtos(true);
   }
   
   /**
@@ -384,6 +385,7 @@ public class CtrlPresentacion {
         this.vistaPrincipal.activarTab(3); //CONJ
         this.vistaPrincipal.activarTab(4); //COMP
         this.vistaPrincipal.goToTab(3);
+        this.vistaPrincipal.updateCjtos(false);
       }
       else sincronizacionVistaPrincipal_a_Error("Filtros/Cateogiras/Paginas no seleccionados");
   }
