@@ -167,6 +167,37 @@ public class CtrDominio
         return response;
     }
     
+    public ArrayList<String> verEnlacesGeneralNode(boolean category, String name)
+    {
+        ArrayList<String> response = new ArrayList<>();        
+        if(category)
+        {
+            
+            Integer i = this.verNumCat(name);
+            for(Arch arc : this.g.getCsupCArch(i))
+            {
+                response.add(getArchInformation(arc));
+            }
+            for(Arch arc : this.g.getCsubCArch(i))
+            {
+                response.add(getArchInformation(arc));
+            }
+            for(Arch arc : this.g.getCPArch(i))
+            {
+                response.add(getArchInformation(arc));
+            }                      
+        }
+        else
+        {
+            Integer i = this.verNumPag(name);
+            for(Arch arc : this.g.getPCArch(i))
+            {
+                response.add(getArchInformation(arc));
+            }            
+        }        
+        return response;
+    }
+    
     public ArrayList<Integer> getNumPagGeneral()
     {
         return this.g.getPages();
@@ -231,8 +262,9 @@ public class CtrDominio
      * @param node1
      * @param node2
      * @param tipus 
+     * @return
      */
-    public void addGrafoEnlace (String node1, String node2, String tipus)
+    public boolean addGrafoEnlace (String node1, String node2, String tipus)
     {
         int origen = -1;
         int destino = -1;
@@ -259,7 +291,9 @@ public class CtrDominio
                 destino = this.g.getCategoryNumber(c2);
                 break;
         }
+        if(origen == -1 || destino == -1)return false;
         this.g.addArch(new Arch(origen,destino,Arch.typeArch.valueOf(tipus)));
+        return true;
     }
     
      /**
@@ -293,34 +327,40 @@ public class CtrDominio
      * @param node1
      * @param node2
      * @param tipus 
+     * @return
      */
-    public void rmvGrafoEnlace (String node1, String node2, String tipus)
+    public boolean rmvGrafoEnlace (String node1, String node2, String tipus)
     {
-        Categoria c1, c2;
-        Pagina p;
+        Categoria c1 = new Categoria(node1);
+        Categoria c2 = new Categoria(node2);
+        int origen = -1;
+        int destino = -1;
         switch(tipus)
         {
             case "CsubC":
-                c1 = new Categoria(node1);
-                c2 = new Categoria(node2);
-                this.g.removeArchCategorySubCategory(this.g.getCategoryNumber(c1), this.g.getCategoryNumber(c2));
+                origen = this.g.getCategoryNumber(c1);
+                destino = this.g.getCategoryNumber(c2);
+                this.g.removeArchCategorySubCategory(origen, destino);
                 break;
             case "CsupC":
-                c1 = new Categoria(node1);
-                c2 = new Categoria(node2);
-                this.g.removeArchCategorySupCategory(this.g.getCategoryNumber(c1), this.g.getCategoryNumber(c2));
+                origen = this.g.getCategoryNumber(c1);
+                destino = this.g.getCategoryNumber(c2);
+                this.g.removeArchCategorySupCategory(origen, destino);
                 break;
             case "PC":
-                c1 = new Categoria(node2);
-                p = new Pagina(node1);
-                this.g.removeArchPageCategory(this.g.getPageNumber(p), this.g.getCategoryNumber(c1));
+                Pagina p2 = new Pagina(node2);
+                origen = this.g.getCategoryNumber(c1);
+                destino = this.g.getPageNumber(p2);
+                this.g.removeArchPageCategory(origen, destino);
                 break;
             case "CP":
-                c1 = new Categoria(node1);
-                p = new Pagina(node2);
-                this.g.removeArchCategoryPage(this.g.getCategoryNumber(c1), this.g.getPageNumber(p));
+                Pagina p1 = new Pagina(node1);
+                origen = this.g.getPageNumber(p1);
+                destino = this.g.getCategoryNumber(c2);
+                this.g.removeArchCategoryPage(origen, destino);
                 break;
         }
+        return (origen != -1 && destino != -1);
     }
     
     public boolean modifyPage(String page, String change)
