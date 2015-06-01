@@ -25,6 +25,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private ArrayList<Integer> pagPosToId;
     boolean modEnlaces;
     boolean[] modConjunto = new boolean[2];
+    boolean[] modConjuntoNum = new boolean[2];
     int p;
     int minCat;
      
@@ -39,9 +40,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         this.pagPosToId = new ArrayList();
         this.modConjunto[0] = false;
         this.modConjunto[1] = false;
+        this.modConjuntoNum[0] = false;
+        this.modConjuntoNum[1] = false;
         this.modEnlaces = false;
         this.p = 50;
-        this.minCat = 1;
+        this.minCat = 2;
     }
 
     public void hacerVisible() 
@@ -2055,6 +2058,8 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.iCtrlPresentacion.modCtoNombre(this.txtNombreAnterior.getText(), this.txtNombreNuevo.getText(), importado);
             this.actualizarSet(importado);
             this.modConjunto[importado ? 1 : 0] = false;
+            this.actualizarSetNum(importado, this.minCat);
+            this.modConjuntoNum[importado ? 1 : 0] = false;
         }
         else 
         {
@@ -2115,6 +2120,11 @@ public class VistaPrincipal extends javax.swing.JFrame
                 actualizarSet(importado);
                 this.modConjunto[importado ? 1 : 0] = false;
             }
+            if(this.modConjuntoNum[importado ? 1 : 0])
+            {
+                actualizarSetNum(importado, this.minCat);
+                this.modConjuntoNum[importado ? 1 : 0] = false;
+            }
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card1");
         }
@@ -2133,8 +2143,12 @@ public class VistaPrincipal extends javax.swing.JFrame
         if(this.iCtrlPresentacion.existsSet(importado))
         {        
             this.iCtrlPresentacion.rmvCtoCom(this.txtAddRmvCom.getText(), importado);
+            this.listSet.setSelectedIndex(1);///
+            this.listSetNum.setSelectedIndex(1);///
             actualizarSet(importado);
             this.modConjunto[importado ? 1 : 0] = false;
+            actualizarSetNum(importado, this.minCat);
+            this.modConjuntoNum[importado ? 1 : 0] = false;  
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card1");
         }
@@ -2159,6 +2173,8 @@ public class VistaPrincipal extends javax.swing.JFrame
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card1");
             this.modConjunto[importado ? 1 : 0] = true;
+            this.modConjuntoNum[importado ? 1 : 0] = true;
+            
         } 
         else 
         {
@@ -2179,8 +2195,14 @@ public class VistaPrincipal extends javax.swing.JFrame
             DefaultListModel model = (DefaultListModel) listCom.getModel();
             model.clear();
             for(String elem : lista) model.addElement(elem);
+            this.listCom.setSelectedIndex(1);////
+            this.listSet.setSelectedIndex(1);///
+            this.listSetNum.setSelectedIndex(1);///
             this.actualizarSet(importado);
             this.modConjunto[importado ? 1 : 0] = false;
+            this.actualizarSetNum(importado, this.minCat);
+            this.modConjuntoNum[importado ? 1 : 0] = false;
+                        
 
             CardLayout cl = (CardLayout)(panelC.getLayout());
             cl.show(panelC, "card2");
@@ -2205,6 +2227,8 @@ public class VistaPrincipal extends javax.swing.JFrame
             for(String elem : lista) model.addElement(elem);
             this.actualizarSet(importado);
             this.modConjunto[importado ? 1 : 0] = false;
+            this.actualizarSetNum(importado, this.minCat);
+            this.modConjuntoNum[importado ? 1 : 0] = false;
 
             CardLayout cl = (CardLayout)(panelC.getLayout());
             cl.show(panelC, "card2"); 
@@ -2438,6 +2462,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         else if(this.radioClique.isSelected()) alg = 3;        
         this.iCtrlPresentacion.ejecutar(alg, pVal);
         this.p = pVal;
+        System.out.println("P algoritme: " + this.p);
     }//GEN-LAST:event_btnEjecutarActionPerformed
 
     private void radioGirvanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioGirvanActionPerformed
@@ -2990,15 +3015,21 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnModPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPActionPerformed
         int pVal = Integer.parseInt(this.spinP1.getValue().toString());
+        
         if(this.iCtrlPresentacion.existsSet(false))
         {
-            this.iCtrlPresentacion.obtainCjto(pVal);
             if(pVal != this.p)
             {
+                this.iCtrlPresentacion.obtainCjto(pVal);
                 this.actualizarSet(false);
+                this.actualizarSetNum(false, this.minCat);
                 this.modConjunto[0] = false;
+                this.modConjuntoNum[0] = false;
                 this.p = pVal;
+                this.minCat = -1;                                
             }            
+            CardLayout cl = (CardLayout)(this.panelC.getLayout());
+            cl.show(this.panelC, "card1"); 
         }
         else this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto creado");
     }//GEN-LAST:event_btnModPActionPerformed
@@ -3060,7 +3091,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         if(this.iCtrlPresentacion.existsSet(importado))
         { 
             int min = Integer.parseInt(this.txtMinCatAtCom.getText());
-            if(min != this.minCat) 
+            if(min != this.minCat || this.modConjuntoNum[importado ? 1 : 0]) 
             {
                 this.actualizarSetNum(this.comboTipoSet.getSelectedIndex() != 0, min);
                 this.minCat = min;

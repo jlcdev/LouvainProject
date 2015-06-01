@@ -487,7 +487,7 @@ public class CtrlPresentacion {
   public void obtainCjto(int p)
   {      
       this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.obtain(p, this.ctrlDominio.getGrafo()));
-      this.vistaPrincipal.actualizarSet(false);
+      //this.vistaPrincipal.actualizarSet(false);
   }
 }
 
