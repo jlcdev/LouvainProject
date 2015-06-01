@@ -411,7 +411,7 @@ public class GrafoEntrada implements Cloneable
     public void setData(String sA, String tA, String tArch, String sB, String tB)
     {
         Integer na, nb;
-        Arch arc = null, arc2 = null;
+        Arch arc = null;
         if(tA.equals("cat"))
         {
             Categoria c = new Categoria(sA);
@@ -441,23 +441,18 @@ public class GrafoEntrada implements Cloneable
         {
             case "CsubC":
                 arc = new Arch(na, nb, Arch.typeArch.CsubC);
-                arc2 = new Arch(nb, na, Arch.typeArch.CsupC);
                 break;
             case "CsupC":
                 arc = new Arch(na, nb, Arch.typeArch.CsupC);
-                arc2 = new Arch(nb, na, Arch.typeArch.CsubC);
                 break;
             case "CP":
                 arc = new Arch(na, nb, Arch.typeArch.CP);
-                arc2 = new Arch(nb, na, Arch.typeArch.PC);
                 break;
             case "PC":
                 arc = new Arch(na, nb, Arch.typeArch.PC);
-                arc2 = new Arch(nb, na, Arch.typeArch.CP);
                 break;
         }
         this.addArch(arc);
-        this.addArch(arc2);
         ++this.edgeSize;
     }
     
