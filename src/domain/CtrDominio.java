@@ -656,14 +656,26 @@ public class CtrDominio
         return this.generatedCto.getTimeExecution();
     }
     
-    public double getPurityOne(boolean imported)
+    public double getAllPurityOne(boolean imported)
     {
         if(imported)return this.p.calcPurity(this.importedCto);
         return  this.p.calcPurity(this.generatedCto);
     }
-    public double getPurityBoth()
+    
+    public double getAllPurityBoth()
     {
         return this.p.calcPurity(this.importedCto,this.generatedCto);
+    }
+    
+    public double getPurityOne(boolean imported)
+    {
+        if(imported)return this.p.calcPurityTwo(this.importedCto);
+        return  this.p.calcPurityTwo(this.generatedCto);
+    }
+    
+    public double getPurityBoth()
+    {
+        return this.p.calcPurityTwo(this.importedCto,this.generatedCto);
     }
     
     public boolean existsCjto(boolean imported)
