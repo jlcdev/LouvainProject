@@ -13,7 +13,6 @@ package graphics;
 
 import domain.CtrDominio;
 import domain.CtrAlgoritmo;
-import domain.comunidades.CtoComunidad;
 import java.util.*;
 import shared.Graph;
 
@@ -489,5 +488,16 @@ public class CtrlPresentacion {
       this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.obtain(p, this.ctrlDominio.getGrafo()));
       //this.vistaPrincipal.actualizarSet(false);
   }
+  
+  public void visualizarGrafo()
+  {
+      this.ctrlDominio.windowGraphEntry();
+  }
+  
+  public void visualizarGrafoGenerado()
+  {
+      this.ctrlDominio.windowGraphAlgorithm();
+  }
 }
+
 

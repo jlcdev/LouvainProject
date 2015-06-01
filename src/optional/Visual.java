@@ -30,15 +30,18 @@ public class Visual <V,E>
 {
     private Graph<V,E> g;
     private Layout layout;
-    private final Renderer renderer;
+    private Renderer renderer;
     private VisualizationViewer viasualization;
-    private final DefaultModalGraphMouse modalMouse;
+    private DefaultModalGraphMouse modalMouse;
     
-    public Visual()
+    public Visual(ArrayList<V> vertex, HashMap<V, HashMap<V,E>> edges, int layout, Color color)
     {
         this.renderer = new BasicRenderer();
+        this.setGraph(vertex, edges);
+        this.setLayout(layout);
+        this.viasualization = new VisualizationViewer(this.layout);
+        this.setBackgroundColor(color);
         this.viasualization.setRenderer(this.renderer);
-        this.viasualization.setBackground(Color.WHITE);
         this.modalMouse = new DefaultModalGraphMouse();
         this.viasualization.setGraphMouse(this.modalMouse);
     }
@@ -73,20 +76,24 @@ public class Visual <V,E>
     public void setGraph(ArrayList<V> vertex, HashMap<V, HashMap<V,E>> edges)
     {
         this.g = new SparseGraph();
+        Iterator<Entry<V, HashMap<V, E>>> it = edges.entrySet().iterator();
         for(V v : vertex)
         {
-            g.addVertex(v);
+            this.g.addVertex(v);
         }
-        Iterator<Entry<V, HashMap<V, E>>> it = edges.entrySet().iterator();
         while(it.hasNext())
         {
-           Entry<V, HashMap<V, E>> entry = it.next();
-           Iterator<Entry<V, E>> at = entry.getValue().entrySet().iterator();
-           while(at.hasNext())
-           {
-               Entry<V, E> edge = at.next();
-               g.addEdge(edge.getValue(), entry.getKey(), edge.getKey());
-           }
+            Entry<V, HashMap<V, E>> entry = it.next();
+            Iterator<Entry<V, E>> at = entry.getValue().entrySet().iterator();
+            while(at.hasNext())
+            {
+                Entry<V, E> edge = at.next();
+                g.addVertex(entry.getKey());
+                g.addVertex(edge.getKey());
+                
+                    this.g.addEdge(edge.getValue(), entry.getKey(), edge.getKey());
+                
+            }
         }
     }
     
@@ -98,8 +105,8 @@ public class Visual <V,E>
     public void launchWindow()
     {
         JFrame frame = new JFrame();
+        frame.setSize(800, 600);
         frame.add(this.viasualization);
-        frame.pack();
         frame.setVisible(true);
     }
     

@@ -8,7 +8,12 @@ import domain.grafos.Categoria;
 import domain.grafos.GrafoEntrada;
 import domain.grafos.Pagina;
 import domain.grafos.Arch;
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import optional.Visual;
 import shared.Graph;
 
 /**
@@ -40,6 +45,68 @@ public class CtrDominio
         if(this.graph == null) return;
         System.out.println("Vertices: "+this.graph.getVertexs().size());
         
+    }
+    
+    public void windowGraphEntry()
+    {
+        if(this.g == null) return;
+        ArrayList<Integer> nodes = new ArrayList();
+        nodes.addAll(this.g.getCategories());
+        nodes.addAll(this.g.getPages());
+        HashMap<Integer, HashMap<Integer, String>> edges = new HashMap(5814);
+        Iterator<Entry<Integer, ArrayList<Arch>>> it = this.g.getCsubCArch().entrySet().iterator();
+        while(it.hasNext())
+        {
+            Entry<Integer, ArrayList<Arch>> entry = it.next();
+            HashMap<Integer, String> edge = new HashMap(5814);
+            for(Arch arc : entry.getValue())
+            {
+                edge.put(arc.getDestiny(), this.g.getNumberCategory(arc.getDestiny()).getNombre());
+            }
+            edges.put(entry.getKey(), edge);
+        }
+        it = this.g.getCsupCArch().entrySet().iterator();
+        while(it.hasNext())
+        {
+            Entry<Integer, ArrayList<Arch>> entry = it.next();
+            HashMap<Integer, String> edge = new HashMap(5814);
+            for(Arch arc : entry.getValue())
+            {
+                edge.put(arc.getDestiny(), this.g.getNumberCategory(arc.getDestiny()).getNombre());
+            }
+            edges.put(entry.getKey(), edge);
+        }
+        it = this.g.getPCArch().entrySet().iterator();
+        while(it.hasNext())
+        {
+            Entry<Integer, ArrayList<Arch>> entry = it.next();
+            HashMap<Integer, String> edge = new HashMap(5814);
+            for(Arch arc : entry.getValue())
+            {
+                edge.put(arc.getDestiny(), this.g.getNumberCategory(arc.getDestiny()).getNombre());
+            }
+            edges.put(entry.getKey(), edge);
+        }
+        it = this.g.getCPArch().entrySet().iterator();
+        while(it.hasNext())
+        {
+            Entry<Integer, ArrayList<Arch>> entry = it.next();
+            HashMap<Integer, String> edge = new HashMap(5814);
+            for(Arch arc : entry.getValue())
+            {
+                edge.put(arc.getDestiny(), this.g.getNumberPage(arc.getDestiny()).getNombre());
+            }
+            edges.put(entry.getKey(), edge);
+        }
+        Visual v = new Visual(nodes, edges, 1, Color.WHITE);
+        v.launchWindow();
+    }
+    
+    public void windowGraphAlgorithm()
+    {
+        if(this.graph == null) return;
+        Visual v = new Visual(this.graph.getVertexs(), this.graph.getEdgesFull(), 2, Color.WHITE);
+        v.launchWindow();
     }
     
     public GrafoEntrada getGrafo()

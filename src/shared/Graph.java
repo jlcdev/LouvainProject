@@ -167,6 +167,12 @@ public class Graph<K,T> {
 		return vertexs;
 	}
 	
+        public HashMap<K,HashMap<K,T>> getEdgesFull()
+        {
+            return this.edges;
+        }
+        
+        
 	/**
 	 * Obte la llista de veins
 	 * @param v Vertex origen

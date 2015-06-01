@@ -1,0 +1,12 @@
+domain.grafos.Arch@478be9eb
+domain.grafos.Arch@478bea4c
+domain.grafos.Arch@478beaad
+domain.grafos.Arch@478beb0e
+domain.grafos.Arch@478beb6f
+domain.grafos.Arch@478bebd0
+domain.grafos.Arch@478c0f0d
+domain.grafos.Arch@478c0f6e
+domain.grafos.Arch@478c0fcf
+domain.grafos.Arch@478c1030
+domain.grafos.Arch@478c1091
+domain.grafos.Arch@575ff657

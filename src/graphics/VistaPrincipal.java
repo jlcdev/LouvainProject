@@ -242,6 +242,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         sclistLinksNode = new javax.swing.JScrollPane();
         listLinksNode = new javax.swing.JList();
         labelInfoGraf = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         panelAlgoritmo = new javax.swing.JPanel();
         radioGirvan = new javax.swing.JRadioButton();
         radioLouvain = new javax.swing.JRadioButton();
@@ -335,6 +336,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         txtMinCatAtCom = new javax.swing.JTextField();
         btnListComFromSet1 = new javax.swing.JButton();
         jLabel32 = new javax.swing.JLabel();
+        btnShowGraph2 = new javax.swing.JButton();
         panelComparacion = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         txtListComp = new javax.swing.JTextArea();
@@ -792,68 +794,83 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         labelInfoGraf.setText("Categorias: 0 | Páginas: 0 | Enlaces: 0");
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelGrafoLayout = new javax.swing.GroupLayout(panelGrafo);
         panelGrafo.setLayout(panelGrafoLayout);
         panelGrafoLayout.setHorizontalGroup(
             panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGrafoLayout.createSequentialGroup()
-                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelGrafoLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelGrafoLayout.createSequentialGroup()
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(radioCategoria)
-                                .addGap(18, 18, 18)
-                                .addComponent(radioPagina))
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelGrafoLayout.createSequentialGroup()
-                                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelGrafoLayout.createSequentialGroup()
-                                        .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtNodo2Enlace, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtNodo1Enlace, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(comboTipoEnlace, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(panelGrafoLayout.createSequentialGroup()
-                                        .addComponent(txtCatToAddRmv, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnAddCatToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnRmvCatFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelGrafoLayout.createSequentialGroup()
-                                        .addComponent(txtPagToAddRmv, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnAddPagToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnRmvPagFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelGrafoLayout.createSequentialGroup()
-                                        .addGap(256, 256, 256)
-                                        .addComponent(btnAddLinkToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnRmvLinkFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(panelGrafoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnImportarGrafo1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnNuevoGrafo1))
-                    .addGroup(panelGrafoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnExportarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelGrafoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(txtNombreNodoAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombreNodoNuevo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnChangeName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(45, 45, 45)
+                        .addComponent(btnChangeName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92))
+                    .addGroup(panelGrafoLayout.createSequentialGroup()
+                        .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelGrafoLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelGrafoLayout.createSequentialGroup()
+                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(radioCategoria)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(radioPagina))
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelGrafoLayout.createSequentialGroup()
+                                        .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(panelGrafoLayout.createSequentialGroup()
+                                                .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(txtNodo2Enlace, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtNodo1Enlace, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(comboTipoEnlace, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(panelGrafoLayout.createSequentialGroup()
+                                                .addComponent(txtCatToAddRmv, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnAddCatToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnRmvCatFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panelGrafoLayout.createSequentialGroup()
+                                                .addComponent(txtPagToAddRmv, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnAddPagToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnRmvPagFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panelGrafoLayout.createSequentialGroup()
+                                                .addGap(256, 256, 256)
+                                                .addComponent(btnAddLinkToGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnRmvLinkFromGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(panelGrafoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnImportarGrafo1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnNuevoGrafo1))
+                            .addGroup(panelGrafoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnExportarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelGrafoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton1)))
+                        .addGap(45, 64, Short.MAX_VALUE)))
                 .addGroup(panelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelInfoGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelGrafoLayout.createSequentialGroup()
@@ -915,7 +932,9 @@ public class VistaPrincipal extends javax.swing.JFrame
                             .addComponent(txtNombreNodoAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNombreNodoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnChangeName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                         .addComponent(btnExportarGrafo))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
@@ -1821,6 +1840,15 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         jLabel32.setText("Mín Categorias:");
 
+        btnShowGraph2.setText("Visualizar");
+        btnShowGraph2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnShowGraph2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelComunidadesLayout = new javax.swing.GroupLayout(panelComunidades);
         panelComunidades.setLayout(panelComunidadesLayout);
         panelComunidadesLayout.setHorizontalGroup(
@@ -1837,7 +1865,10 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addGap(12, 12, 12)
                         .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboTipoSet, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelComunidadesLayout.createSequentialGroup()
+                                .addComponent(comboTipoSet, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnShowGraph2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelComunidadesLayout.createSequentialGroup()
                                 .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1907,7 +1938,9 @@ public class VistaPrincipal extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelComunidadesLayout.createSequentialGroup()
-                        .addComponent(comboTipoSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboTipoSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnShowGraph2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)
                         .addComponent(jLabel15)
                         .addGap(18, 18, 18)
@@ -3392,6 +3425,16 @@ public class VistaPrincipal extends javax.swing.JFrame
         }
     }//GEN-LAST:event_listSetNumValueChanged
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        this.iCtrlPresentacion.visualizarGrafo();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnShowGraph2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnShowGraph2ActionPerformed
+    {//GEN-HEADEREND:event_btnShowGraph2ActionPerformed
+        this.iCtrlPresentacion.visualizarGrafoGenerado();
+    }//GEN-LAST:event_btnShowGraph2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
@@ -3437,6 +3480,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JButton btnSelCatRand;
     private javax.swing.JButton btnSelPagRand;
     private javax.swing.JButton btnShowCom;
+    private javax.swing.JButton btnShowGraph2;
     private javax.swing.JButton btnShowSet;
     private javax.swing.JCheckBox ckCjtoImportado1;
     private javax.swing.JCheckBox ckCjtoImportado2;
@@ -3446,6 +3490,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JComboBox comboTipoSet;
     private javax.swing.ButtonGroup grupoAlgoritmos;
     private javax.swing.ButtonGroup grupoTipoNodo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
