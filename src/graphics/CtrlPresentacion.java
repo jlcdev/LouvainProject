@@ -344,6 +344,18 @@ public class CtrlPresentacion {
       return this.ctrlDominio.verEnlacesGeneral();
   }
   
+  /**
+   * Mostra els enllaços d'un node
+   * @param category
+   * @param name
+   * @return 
+   */
+  public ArrayList<String> mostrarGrafoEnlaces(boolean category, String name)
+  {
+      if(category) return this.ctrlDominio.verEnlacesGeneralNode(category, name);
+      return this.ctrlDominio.verEnlacesGeneralNode(category, name);
+  }
+  
   //pestaña algoritmo
   
   public Graph<Integer, Double> algorithmGraph()

@@ -167,6 +167,37 @@ public class CtrDominio
         return response;
     }
     
+    public ArrayList<String> verEnlacesGeneralNode(boolean category, String name)
+    {
+        ArrayList<String> response = new ArrayList<>();        
+        if(category)
+        {
+            
+            Integer i = this.verNumCat(name);
+            for(Arch arc : this.g.getCsupCArch(i))
+            {
+                response.add(getArchInformation(arc));
+            }
+            for(Arch arc : this.g.getCsubCArch(i))
+            {
+                response.add(getArchInformation(arc));
+            }
+            for(Arch arc : this.g.getCPArch(i))
+            {
+                response.add(getArchInformation(arc));
+            }                      
+        }
+        else
+        {
+            Integer i = this.verNumPag(name);
+            for(Arch arc : this.g.getPCArch(i))
+            {
+                response.add(getArchInformation(arc));
+            }            
+        }        
+        return response;
+    }
+    
     public ArrayList<Integer> getNumPagGeneral()
     {
         return this.g.getPages();
