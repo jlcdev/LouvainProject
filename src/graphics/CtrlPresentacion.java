@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package graphics;
 
 /**
@@ -195,72 +190,93 @@ public class CtrlPresentacion
     {
         this.ctrlDominio.saveCtoComunidad(path, importado);
     }
-  //PESTAÑA GRAFO
+    //PESTAÑA GRAFO
 
-  
-  public int getPagNum(String pagina)
-  {
-      int r = this.ctrlDominio.verNumPag(pagina);
-      if(r != -1)return r;
-      sincronizacionVistaPrincipal_a_Error("La pagina no existe");
-      return r;
-  }
-  
-  public int getCatNum(String categoria)
-  {
-      int r = this.ctrlDominio.verNumCat(categoria);
-      if(r != -1)return r;
-      sincronizacionVistaPrincipal_a_Error("La categoria no existe");
-      return r;
-  }
-  
-  public ArrayList<Integer> getCatSelection(int min, int max)
-  {
-     if(max < min)sincronizacionVistaPrincipal_a_Error("max < min");
-     return this.ctrlDominio.getCatSelection(min, max); 
-  }
-  
-  public ArrayList<Integer> getPagSelection(int min, int max)
-  {
-     if(max < min)sincronizacionVistaPrincipal_a_Error("max < min");
-     return this.ctrlDominio.getPagSelection(min, max); 
-  }
-  
-  /**
-   * Añade una categoria al grafo.
-   * @param categoria 
-   * @return
-   */
-  public int addGrafoCat (String categoria)
-  {
-      int r = this.ctrlDominio.addGrafoCat(categoria);
-      if(r != -1)return r;
-      sincronizacionVistaPrincipal_a_Error("La cateogria introducida ya existe.");
-      return r;
-  }
-  
-  /**
-   * Añade una pagina al grafo.
-   * @param pagina 
-   * @return
-   */
-  public int addGrafoPag (String pagina)
-  {
-      int r = this.ctrlDominio.addGrafoPag(pagina);
-      if(r != -1)return r;
-      sincronizacionVistaPrincipal_a_Error("La pagina introducida ya existe.");
-      return r;
-  }
-  
+    public int getPagNum(String pagina)
+    {
+        int r = this.ctrlDominio.verNumPag(pagina);
+        if(r != -1)
+        {
+            return r;
+        }
+        sincronizacionVistaPrincipal_a_Error("La pagina no existe");
+        return r;
+    }
+
+    public int getCatNum(String categoria)
+    {
+        int r = this.ctrlDominio.verNumCat(categoria);
+        if(r != -1)
+        {
+            return r;
+        }
+        sincronizacionVistaPrincipal_a_Error("La categoria no existe");
+        return r;
+    }
+
+    public ArrayList<Integer> getCatSelection(int min, int max)
+    {
+        if(max < min)
+        {
+            sincronizacionVistaPrincipal_a_Error("max < min");
+        }
+        return this.ctrlDominio.getCatSelection(min, max);
+    }
+
+    public ArrayList<Integer> getPagSelection(int min, int max)
+    {
+        if(max < min)
+        {
+            sincronizacionVistaPrincipal_a_Error("max < min");
+        }
+        return this.ctrlDominio.getPagSelection(min, max);
+    }
+
+    /**
+     * Añade una categoria al grafo.
+     *
+     * @param categoria
+     * @return
+     */
+    public int addGrafoCat(String categoria)
+    {
+        int r = this.ctrlDominio.addGrafoCat(categoria);
+        if(r != -1)
+        {
+            return r;
+        }
+        sincronizacionVistaPrincipal_a_Error("La cateogria introducida ya existe.");
+        return r;
+    }
+
+    /**
+     * Añade una pagina al grafo.
+     *
+     * @param pagina
+     * @return
+     */
+    public int addGrafoPag(String pagina)
+    {
+        int r = this.ctrlDominio.addGrafoPag(pagina);
+        if(r != -1)
+        {
+            return r;
+        }
+        sincronizacionVistaPrincipal_a_Error("La pagina introducida ya existe.");
+        return r;
+    }
+
     /**
      * Añade un enlace al grafo.
+     *
      * @param node1
      * @param node2
-     * @param tipus 
+     * @param tipus
      */
-    public void addGrafoEnlace (String node1, String node2, String tipus)
+    public void addGrafoEnlace(String node1, String node2, String tipus)
     {
-      if(! this.ctrlDominio.addGrafoEnlace(node1,node2,tipus)){
+        if(!this.ctrlDominio.addGrafoEnlace(node1, node2, tipus))
+        {
             sincronizacionVistaPrincipal_a_Error("Datos mal introducidos.");
         }
     }
@@ -404,7 +420,7 @@ public class CtrlPresentacion
         return this.ctrlDominio.verEnlacesGeneralNode(category, name);
     }
 
-  //pestaña algoritmo
+    //pestaña algoritmo
     public Graph<Integer, Double> algorithmGraph()
     {
         Graph<Integer, Double> grafo = this.ctrlAlgoritmo.generate(this.ctrlDominio.getGrafo());
@@ -448,7 +464,7 @@ public class CtrlPresentacion
         this.ctrlAlgoritmo.setFilters(a, b, c, d, e);
     }
 
-  //pestaña comunidades
+    //pestaña comunidades
     public void addCtoCat(String categoria, String comunidad, boolean importat)
     {
         boolean error = this.ctrlDominio.addCtoCat(categoria, comunidad, importat);
@@ -496,7 +512,7 @@ public class CtrlPresentacion
     {
     }
 
-  //COMPARACION
+    //COMPARACION
     public int numCatCom(String comunidad, boolean imported)
     {
         return this.ctrlDominio.numCatCom(comunidad, imported);
@@ -516,12 +532,12 @@ public class CtrlPresentacion
     {
         return this.ctrlDominio.infoConjunto(imported);
     }
-    
-    public double getTexec (boolean imported)
+
+    public double getTexec(boolean imported)
     {
         return this.ctrlDominio.getTexec(imported);
     }
-    
+
     public boolean existsSet(boolean imported)
     {
         return this.ctrlDominio.existsCjto(imported);
@@ -548,7 +564,7 @@ public class CtrlPresentacion
     }
 
     public void obtainCjto(int p)
-    {      
+    {
         this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.obtain(p, this.ctrlDominio.getGrafo()));
         //this.vistaPrincipal.actualizarSet(false);
     }
@@ -562,7 +578,7 @@ public class CtrlPresentacion
     {
         this.ctrlDominio.windowGraphAlgorithm();
     }
-    
+
     public double getPurity()
     {
         return this.ctrlDominio.getPurityBoth();

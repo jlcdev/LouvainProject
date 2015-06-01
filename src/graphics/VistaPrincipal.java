@@ -37,8 +37,8 @@ public class VistaPrincipal extends javax.swing.JFrame
         this.setLocationRelativeTo(null);
         this.catPosToId = new ArrayList();
         this.pagPosToId = new ArrayList();
-        this.modConjunto[0] = false;
-        this.modConjunto[1] = false;
+        this.modConjunto[0] = true;
+        this.modConjunto[1] = true;
         //this.modConjuntoNum[0] = false;
         //this.modConjuntoNum[1] = false;
         this.modEnlaces = false;
@@ -163,7 +163,47 @@ public class VistaPrincipal extends javax.swing.JFrame
             n = this.iCtrlPresentacion.numCatCom(elem, importado);            
             if(n >= num) model.addElement(elem+"["+n+"]");
         }        
-    } 
+    }
+    
+    public void updateCjtos(boolean imported)
+    {
+        if(imported)
+        {            
+            if(this.iCtrlPresentacion.existsSet(false))
+            {
+                this.ckCjtoImportado1.setEnabled(true);
+                this.ckCjtoImportado2.setEnabled(true);
+                this.comboTipoSet.setEnabled(true);
+            }
+            else
+            {
+                this.ckCjtoImportado1.setEnabled(false);
+                this.ckCjtoImportado2.setEnabled(false);
+                this.comboTipoSet.setEnabled(false);
+                this.ckCjtoImportado1.setSelected(true);
+                this.ckCjtoImportado2.setSelected(true);
+                this.comboTipoSet.setSelectedIndex(1);
+            }
+        }
+        else
+        {
+           if(this.iCtrlPresentacion.existsSet(true))
+            {
+                this.ckCjtoImportado1.setEnabled(true);
+                this.ckCjtoImportado2.setEnabled(true);
+                this.comboTipoSet.setEnabled(true);
+            }
+            else
+            {
+                this.ckCjtoImportado1.setEnabled(false);
+                this.ckCjtoImportado2.setEnabled(false);
+                this.comboTipoSet.setEnabled(false);
+                this.ckCjtoImportado1.setSelected(false);
+                this.ckCjtoImportado2.setSelected(false);
+                this.comboTipoSet.setSelectedIndex(0);
+            } 
+        }
+    }
        
     public void clearTxtAreas()
     {
