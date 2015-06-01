@@ -44,6 +44,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
         this.importar = importar;
         this.grafo = grafo;
         this.importado = importado;
+        this.fileChooser.rescanCurrentDirectory();
         this.pack();
         this.setVisible(true);        
     }
@@ -63,7 +64,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
 
         fileChooser = new javax.swing.JFileChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(719, 520));
         setMinimumSize(new java.awt.Dimension(719, 520));
         setResizable(false);
