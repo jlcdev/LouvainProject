@@ -197,79 +197,70 @@ public class CtrlPresentacion
     }
   //PESTAÑA GRAFO
 
-    public int getPagNum(String pagina)
-    {
-        return this.ctrlDominio.verNumPag(pagina);
-    }
-
-    public int getCatNum(String categoria)
-    {
-        return this.ctrlDominio.verNumCat(categoria);
-    }
-
-    public ArrayList<Integer> getCatSelection(int min, int max)
-    {
-        if(max < min)
-        {
-            sincronizacionVistaPrincipal_a_Error("max < min");
-        }
-        return this.ctrlDominio.getCatSelection(min, max);
-    }
-
-    public ArrayList<Integer> getPagSelection(int min, int max)
-    {
-        if(max < min)
-        {
-            sincronizacionVistaPrincipal_a_Error("max < min");
-        }
-        return this.ctrlDominio.getPagSelection(min, max);
-    }
-
-    /**
-     * Añade una categoria al grafo.
-     *
-     * @param categoria
-     * @return
-     */
-    public int addGrafoCat(String categoria)
-    {
-        int r = this.ctrlDominio.addGrafoCat(categoria);
-        if(r != -1)
-        {
-            return r;
-        }
-        sincronizacionVistaPrincipal_a_Error("La cateogria introducida ya existe.");
-        return r;
-    }
-
-    /**
-     * Añade una pagina al grafo.
-     *
-     * @param pagina
-     * @return
-     */
-    public int addGrafoPag(String pagina)
-    {
-        int r = this.ctrlDominio.addGrafoPag(pagina);
-        if(r != -1)
-        {
-            return r;
-        }
-        sincronizacionVistaPrincipal_a_Error("La pagina introducida ya existe.");
-        return r;
-    }
-
+  
+  public int getPagNum(String pagina)
+  {
+      int r = this.ctrlDominio.verNumPag(pagina);
+      if(r != -1)return r;
+      sincronizacionVistaPrincipal_a_Error("La pagina no existe");
+      return r;
+  }
+  
+  public int getCatNum(String categoria)
+  {
+      int r = this.ctrlDominio.verNumCat(categoria);
+      if(r != -1)return r;
+      sincronizacionVistaPrincipal_a_Error("La categoria no existe");
+      return r;
+  }
+  
+  public ArrayList<Integer> getCatSelection(int min, int max)
+  {
+     if(max < min)sincronizacionVistaPrincipal_a_Error("max < min");
+     return this.ctrlDominio.getCatSelection(min, max); 
+  }
+  
+  public ArrayList<Integer> getPagSelection(int min, int max)
+  {
+     if(max < min)sincronizacionVistaPrincipal_a_Error("max < min");
+     return this.ctrlDominio.getPagSelection(min, max); 
+  }
+  
+  /**
+   * Añade una categoria al grafo.
+   * @param categoria 
+   * @return
+   */
+  public int addGrafoCat (String categoria)
+  {
+      int r = this.ctrlDominio.addGrafoCat(categoria);
+      if(r != -1)return r;
+      sincronizacionVistaPrincipal_a_Error("La cateogria introducida ya existe.");
+      return r;
+  }
+  
+  /**
+   * Añade una pagina al grafo.
+   * @param pagina 
+   * @return
+   */
+  public int addGrafoPag (String pagina)
+  {
+      int r = this.ctrlDominio.addGrafoPag(pagina);
+      if(r != -1)return r;
+      sincronizacionVistaPrincipal_a_Error("La pagina introducida ya existe.");
+      return r;
+  }
+  
     /**
      * Añade un enlace al grafo.
-     *
      * @param node1
      * @param node2
-     * @param tipus
+     * @param tipus 
      */
-    public void addGrafoEnlace(String node1, String node2, String tipus)
+    public void addGrafoEnlace (String node1, String node2, String tipus)
     {
-        if(!this.ctrlDominio.addGrafoEnlace(node1, node2, tipus))
-        {
+      if(! this.ctrlDominio.addGrafoEnlace(node1,node2,tipus)){
             sincronizacionVistaPrincipal_a_Error("Datos mal introducidos.");
         }
     }
@@ -525,24 +516,39 @@ public class CtrlPresentacion
     {
         return this.ctrlDominio.infoConjunto(imported);
     }
-
-    public double getTexec(boolean imported)
+    
+    public double getTexec (boolean imported)
     {
         return this.ctrlDominio.getTexec(imported);
     }
-
+    
     public boolean existsSet(boolean imported)
     {
         return this.ctrlDominio.existsCjto(imported);
     }
 
-    public double getPurity()
+    public double getPurityOne(boolean imported)
     {
-        return this.ctrlDominio.getSimilarity();
+        return this.ctrlDominio.getPurityOne(imported);
+    }
+
+    public double getPurityBoth()
+    {
+        return this.ctrlDominio.getPurityBoth();
+    }
+
+    public double getAllPurityOne(boolean imported)
+    {
+        return this.ctrlDominio.getAllPurityOne(imported);
+    }
+
+    public double getAllPurityBoth()
+    {
+        return this.ctrlDominio.getAllPurityBoth();
     }
 
     public void obtainCjto(int p)
-    {
+    {      
         this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.obtain(p, this.ctrlDominio.getGrafo()));
         //this.vistaPrincipal.actualizarSet(false);
     }
@@ -555,5 +561,10 @@ public class CtrlPresentacion
     public void visualizarGrafoGenerado()
     {
         this.ctrlDominio.windowGraphAlgorithm();
+    }
+    
+    public double getPurity()
+    {
+        return this.ctrlDominio.getPurityBoth();
     }
 }
