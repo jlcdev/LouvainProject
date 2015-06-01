@@ -2309,8 +2309,8 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         try 
         {
-            int min = Integer.parseInt(txtMinCatLink.getText());            
-            int max = Integer.parseInt(txtMaxCatLink.getText());
+            int min = Integer.parseInt(txtMinPagLink.getText());            
+            int max = Integer.parseInt(txtMaxPagLink.getText());
             if(min < 0 || min>max || max >= this.pagPosToId.size()) this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("Valor incorrecto");
             else this.listSelPaginas.setSelectionInterval(min, max);
         } catch (NumberFormatException numberFormatException) 
