@@ -191,7 +191,8 @@ public class VistaPrincipal extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         grupoAlgoritmos = new javax.swing.ButtonGroup();
         grupoTipoNodo = new javax.swing.ButtonGroup();
@@ -362,29 +363,37 @@ public class VistaPrincipal extends javax.swing.JFrame
         setMinimumSize(new java.awt.Dimension(1000, 650));
         setResizable(false);
 
-        tabsPrincipal.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        tabsPrincipal.addChangeListener(new javax.swing.event.ChangeListener()
+        {
+            public void stateChanged(javax.swing.event.ChangeEvent evt)
+            {
                 tabsPrincipalStateChanged(evt);
             }
         });
 
         btnImportarGrafo.setText("Importar grafo");
-        btnImportarGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnImportarGrafo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnImportarGrafoActionPerformed(evt);
             }
         });
 
         btnImportarConj.setText("Importar Conjunto");
-        btnImportarConj.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnImportarConj.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnImportarConjActionPerformed(evt);
             }
         });
 
         btnNuevoGrafo.setText("Nuevo Grafo");
-        btnNuevoGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnNuevoGrafo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnNuevoGrafoActionPerformed(evt);
             }
         });
@@ -431,18 +440,24 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         txtCatToAddRmv.setText("Nombre categoria");
         txtCatToAddRmv.setToolTipText("");
-        txtCatToAddRmv.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtCatToAddRmv.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtCatToAddRmvMouseReleased(evt);
             }
         });
-        txtCatToAddRmv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtCatToAddRmv.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txtCatToAddRmvActionPerformed(evt);
             }
         });
-        txtCatToAddRmv.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtCatToAddRmv.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtCatToAddRmvFocusLost(evt);
             }
         });
@@ -450,21 +465,28 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel9.setText("Página:");
 
         txtPagToAddRmv.setText("Nombre página");
-        txtPagToAddRmv.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtPagToAddRmv.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtPagToAddRmvMouseReleased(evt);
             }
         });
-        txtPagToAddRmv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtPagToAddRmv.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txtPagToAddRmvActionPerformed(evt);
             }
         });
-        txtPagToAddRmv.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
+        txtPagToAddRmv.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusGained(java.awt.event.FocusEvent evt)
+            {
                 txtPagToAddRmvFocusGained(evt);
             }
-            public void focusLost(java.awt.event.FocusEvent evt) {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtPagToAddRmvFocusLost(evt);
             }
         });
@@ -472,121 +494,157 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel10.setText("Enlace:");
 
         txtNodo1Enlace.setText("Nombre nodo1");
-        txtNodo1Enlace.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtNodo1Enlace.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtNodo1EnlaceMouseReleased(evt);
             }
         });
-        txtNodo1Enlace.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtNodo1Enlace.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtNodo1EnlaceFocusLost(evt);
             }
         });
 
         btnAddCatToGraph.setText("+");
-        btnAddCatToGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAddCatToGraph.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAddCatToGraphActionPerformed(evt);
             }
         });
 
         btnRmvCatFromGraph.setText("-");
-        btnRmvCatFromGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRmvCatFromGraph.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnRmvCatFromGraphActionPerformed(evt);
             }
         });
 
         btnAddLinkToGraph.setText("+");
-        btnAddLinkToGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAddLinkToGraph.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAddLinkToGraphActionPerformed(evt);
             }
         });
 
         btnAddPagToGraph.setText("+");
-        btnAddPagToGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAddPagToGraph.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAddPagToGraphActionPerformed(evt);
             }
         });
 
         btnRmvPagFromGraph.setText("-");
-        btnRmvPagFromGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRmvPagFromGraph.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnRmvPagFromGraphActionPerformed(evt);
             }
         });
 
         btnRmvLinkFromGraph.setText("-");
-        btnRmvLinkFromGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRmvLinkFromGraph.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnRmvLinkFromGraphActionPerformed(evt);
             }
         });
 
         txtNodo2Enlace.setText("Nombre nodo2");
-        txtNodo2Enlace.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtNodo2Enlace.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtNodo2EnlaceMouseReleased(evt);
             }
         });
-        txtNodo2Enlace.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtNodo2Enlace.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtNodo2EnlaceFocusLost(evt);
             }
         });
 
         comboTipoEnlace.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CsubC", "CsupC", "CP", "PC" }));
-        comboTipoEnlace.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        comboTipoEnlace.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 comboTipoEnlaceActionPerformed(evt);
             }
         });
 
         btnChangeName.setText("OK");
-        btnChangeName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnChangeName.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnChangeNameActionPerformed(evt);
             }
         });
 
         btnListCatGraph.setText("Categorias");
-        btnListCatGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnListCatGraph.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnListCatGraphActionPerformed(evt);
             }
         });
 
         btnListPagGraph.setText("Páginas");
-        btnListPagGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnListPagGraph.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnListPagGraphActionPerformed(evt);
             }
         });
 
         btnListLinksGraph.setText("Enlaces");
-        btnListLinksGraph.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnListLinksGraph.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnListLinksGraphActionPerformed(evt);
             }
         });
 
         btnExportarGrafo.setText("Exportar");
-        btnExportarGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnExportarGrafo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnExportarGrafoActionPerformed(evt);
             }
         });
 
         txtNombreNodoAnterior.setText("Anterior");
-        txtNombreNodoAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtNombreNodoAnterior.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtNombreNodoAnteriorMouseReleased(evt);
             }
         });
-        txtNombreNodoAnterior.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtNombreNodoAnterior.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtNombreNodoAnteriorFocusLost(evt);
             }
         });
@@ -596,27 +654,35 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel14.setText("CAMBIAR NOMBRE NODO");
 
         txtNombreNodoNuevo.setText("Nuevo");
-        txtNombreNodoNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtNombreNodoNuevo.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtNombreNodoNuevoMouseReleased(evt);
             }
         });
-        txtNombreNodoNuevo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtNombreNodoNuevo.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtNombreNodoNuevoFocusLost(evt);
             }
         });
 
         btnImportarGrafo1.setText("Importar grafo");
-        btnImportarGrafo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnImportarGrafo1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnImportarGrafo1ActionPerformed(evt);
             }
         });
 
         btnNuevoGrafo1.setText("Nuevo Grafo");
-        btnNuevoGrafo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnNuevoGrafo1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnNuevoGrafo1ActionPerformed(evt);
             }
         });
@@ -642,19 +708,25 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         listCat.setModel(new javax.swing.DefaultListModel());
         listCat.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listCat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+        listCat.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
                 listCatMousePressed(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 listCatMouseReleased(evt);
             }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 listCatMouseClicked(evt);
             }
         });
-        listCat.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        listCat.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 listCatValueChanged(evt);
             }
         });
@@ -664,19 +736,25 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         listPag.setModel(new javax.swing.DefaultListModel());
         listPag.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listPag.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+        listPag.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
                 listPagMousePressed(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 listPagMouseReleased(evt);
             }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 listPagMouseClicked(evt);
             }
         });
-        listPag.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        listPag.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 listPagValueChanged(evt);
             }
         });
@@ -686,8 +764,10 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         listLinks.setModel(new javax.swing.DefaultListModel());
         listLinks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listLinks.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        listLinks.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 listLinksValueChanged(evt);
             }
         });
@@ -697,8 +777,10 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         listLinksNode.setModel(new javax.swing.DefaultListModel());
         listLinksNode.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listLinksNode.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        listLinksNode.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 listLinksNodeValueChanged(evt);
             }
         });
@@ -843,8 +925,10 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         grupoAlgoritmos.add(radioGirvan);
         radioGirvan.setText("Girvan-Newman");
-        radioGirvan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        radioGirvan.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 radioGirvanActionPerformed(evt);
             }
         });
@@ -859,8 +943,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel1.setText("Valor P:");
 
         btnEjecutar.setText("Ejecutar");
-        btnEjecutar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEjecutar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnEjecutarActionPerformed(evt);
             }
         });
@@ -870,23 +956,29 @@ public class VistaPrincipal extends javax.swing.JFrame
         tabsAlgoritmo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         listSelCategorias.setModel(new javax.swing.DefaultListModel());
-        listSelCategorias.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        listSelCategorias.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 listSelCategoriasValueChanged(evt);
             }
         });
         jScrollPane3.setViewportView(listSelCategorias);
 
         ckTodasCategorias.setText("Seleccionar todas");
-        ckTodasCategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        ckTodasCategorias.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 ckTodasCategoriasActionPerformed(evt);
             }
         });
 
         btnAplicarSelCat.setText("Aplicar");
-        btnAplicarSelCat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAplicarSelCat.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAplicarSelCatActionPerformed(evt);
             }
         });
@@ -898,18 +990,24 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel28.setText("Selección por intervalo:");
 
         txtMinCatLink.setText("min");
-        txtMinCatLink.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtMinCatLink.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtMinCatLinkMouseReleased(evt);
             }
         });
-        txtMinCatLink.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtMinCatLink.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txtMinCatLinkActionPerformed(evt);
             }
         });
-        txtMinCatLink.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtMinCatLink.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtMinCatLinkFocusLost(evt);
             }
         });
@@ -917,58 +1015,76 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel30.setText("-");
 
         txtMaxCatLink.setText("max");
-        txtMaxCatLink.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtMaxCatLink.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtMaxCatLinkMouseReleased(evt);
             }
         });
-        txtMaxCatLink.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtMaxCatLink.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtMaxCatLinkFocusLost(evt);
             }
         });
 
         txtCatNameSel.setText("Nombre cat");
-        txtCatNameSel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtCatNameSel.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtCatNameSelMouseReleased(evt);
             }
         });
-        txtCatNameSel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtCatNameSel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txtCatNameSelActionPerformed(evt);
             }
         });
-        txtCatNameSel.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtCatNameSel.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtCatNameSelFocusLost(evt);
             }
         });
 
         btnAddSelCatName.setText("+");
-        btnAddSelCatName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAddSelCatName.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAddSelCatNameActionPerformed(evt);
             }
         });
 
         btnRmvSelCatName.setText("-");
-        btnRmvSelCatName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRmvSelCatName.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnRmvSelCatNameActionPerformed(evt);
             }
         });
 
         btnAddSelCatRang.setText("Seleccionar");
-        btnAddSelCatRang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAddSelCatRang.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAddSelCatRangActionPerformed(evt);
             }
         });
 
         btnSelCatRand.setText("Seleccionar");
-        btnSelCatRand.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnSelCatRand.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnSelCatRandActionPerformed(evt);
             }
         });
@@ -1048,23 +1164,29 @@ public class VistaPrincipal extends javax.swing.JFrame
         tabsAlgoritmo.addTab("Selección Categorias", tabSelCat);
 
         listSelPaginas.setModel(new javax.swing.DefaultListModel());
-        listSelPaginas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        listSelPaginas.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 listSelPaginasValueChanged(evt);
             }
         });
         jScrollPane1.setViewportView(listSelPaginas);
 
         ckTodasPaginas.setText("Seleccionar todas");
-        ckTodasPaginas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        ckTodasPaginas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 ckTodasPaginasActionPerformed(evt);
             }
         });
 
         btnAplicarSelPag.setText("Aplicar");
-        btnAplicarSelPag.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAplicarSelPag.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAplicarSelPagActionPerformed(evt);
             }
         });
@@ -1074,13 +1196,17 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel22.setText("Selección por nombre:");
 
         txtPagNameSel.setText("Nombre pag");
-        txtPagNameSel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtPagNameSel.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtPagNameSelMouseReleased(evt);
             }
         });
-        txtPagNameSel.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtPagNameSel.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtPagNameSelFocusLost(evt);
             }
         });
@@ -1088,35 +1214,47 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel25.setText("Selección por intervalo:");
 
         txtMinPagLink.setText("min");
-        txtMinPagLink.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtMinPagLink.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtMinPagLinkMouseReleased(evt);
             }
         });
-        txtMinPagLink.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtMinPagLink.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txtMinPagLinkActionPerformed(evt);
             }
         });
-        txtMinPagLink.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtMinPagLink.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtMinPagLinkFocusLost(evt);
             }
         });
 
         txtMaxPagLink.setText("max");
-        txtMaxPagLink.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtMaxPagLink.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtMaxPagLinkMouseReleased(evt);
             }
         });
-        txtMaxPagLink.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtMaxPagLink.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txtMaxPagLinkActionPerformed(evt);
             }
         });
-        txtMaxPagLink.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtMaxPagLink.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtMaxPagLinkFocusLost(evt);
             }
         });
@@ -1124,29 +1262,37 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel29.setText("-");
 
         btnAddSelPagRang.setText("Seleccionar");
-        btnAddSelPagRang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAddSelPagRang.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAddSelPagRangActionPerformed(evt);
             }
         });
 
         btnAddSelPagName.setText("+");
-        btnAddSelPagName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAddSelPagName.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAddSelPagNameActionPerformed(evt);
             }
         });
 
         btnRmvSelPagName.setText("-");
-        btnRmvSelPagName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRmvSelPagName.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnRmvSelPagNameActionPerformed(evt);
             }
         });
 
         btnSelPagRand.setText("Seleccionar");
-        btnSelPagRand.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnSelPagRand.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnSelPagRandActionPerformed(evt);
             }
         });
@@ -1250,15 +1396,19 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel7.setText("Prioridad");
 
         btnAplicarFiltros.setText("Aplicar");
-        btnAplicarFiltros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAplicarFiltros.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAplicarFiltrosActionPerformed(evt);
             }
         });
 
         btnRandomFilters.setText("Al azar");
-        btnRandomFilters.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRandomFilters.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnRandomFiltersActionPerformed(evt);
             }
         });
@@ -1369,7 +1519,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelAlgoritmoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabsAlgoritmo, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                .addComponent(tabsAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 546, Short.MAX_VALUE)
                 .addGap(25, 25, 25))
         );
 
@@ -1380,105 +1530,137 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel19.setText("Comunidad:");
 
         txtAddRmvCom.setText("Nombre comunidad");
-        txtAddRmvCom.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtAddRmvCom.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtAddRmvComMouseReleased(evt);
             }
         });
-        txtAddRmvCom.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtAddRmvCom.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtAddRmvComFocusLost(evt);
             }
         });
 
         btnAddCatToCom.setText("+");
-        btnAddCatToCom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAddCatToCom.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAddCatToComActionPerformed(evt);
             }
         });
 
         btnRmvCatFromCom.setText("-");
-        btnRmvCatFromCom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRmvCatFromCom.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnRmvCatFromComActionPerformed(evt);
             }
         });
 
         btnAddComToSet.setText("+");
-        btnAddComToSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAddComToSet.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAddComToSetActionPerformed(evt);
             }
         });
 
         btnRmvComFromSet.setText("-");
-        btnRmvComFromSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRmvComFromSet.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnRmvComFromSetActionPerformed(evt);
             }
         });
 
         btnListComFromSet.setText("Listar");
-        btnListComFromSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnListComFromSet.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnListComFromSetActionPerformed(evt);
             }
         });
 
         btnShowSet.setText("Visualizar");
-        btnShowSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnShowSet.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnShowSetActionPerformed(evt);
             }
         });
 
         btnExportSet.setText("Exportar");
-        btnExportSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnExportSet.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnExportSetActionPerformed(evt);
             }
         });
 
         txtCatAddRmvSet.setText("Categoria");
-        txtCatAddRmvSet.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtCatAddRmvSet.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtCatAddRmvSetMouseReleased(evt);
             }
         });
-        txtCatAddRmvSet.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtCatAddRmvSet.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtCatAddRmvSetFocusLost(evt);
             }
         });
 
         txtComToAddRmvCat.setText("Comunidad");
-        txtComToAddRmvCat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtComToAddRmvCat.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtComToAddRmvCatMouseReleased(evt);
             }
         });
-        txtComToAddRmvCat.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtComToAddRmvCat.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtComToAddRmvCatFocusLost(evt);
             }
         });
 
         txtComToList.setText("Nombre comunidad");
-        txtComToList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtComToList.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtComToListMouseReleased(evt);
             }
         });
-        txtComToList.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtComToList.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtComToListFocusLost(evt);
             }
         });
 
         btnListCatFromCom.setText("Listar");
-        btnListCatFromCom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnListCatFromCom.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnListCatFromComActionPerformed(evt);
             }
         });
@@ -1490,32 +1672,42 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel16.setText("CAMBIAR NOMBRE COMUNIDAD");
 
         txtNombreAnterior.setText("Anterior");
-        txtNombreAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtNombreAnterior.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtNombreAnteriorMouseReleased(evt);
             }
         });
-        txtNombreAnterior.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtNombreAnterior.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtNombreAnteriorFocusLost(evt);
             }
         });
 
         txtNombreNuevo.setText("Nuevo");
-        txtNombreNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtNombreNuevo.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtNombreNuevoMouseReleased(evt);
             }
         });
-        txtNombreNuevo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtNombreNuevo.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtNombreNuevoFocusLost(evt);
             }
         });
 
         btnChangeNameSet.setText("OK");
-        btnChangeNameSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnChangeNameSet.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnChangeNameSetActionPerformed(evt);
             }
         });
@@ -1525,8 +1717,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel27.setText("VER COMUNIDAD");
 
         btnShowCom.setText("Visualizar");
-        btnShowCom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnShowCom.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnShowComActionPerformed(evt);
             }
         });
@@ -1535,16 +1729,21 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         listSet.setModel(new javax.swing.DefaultListModel());
         listSet.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listSet.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        listSet.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 listSetMouseReleased(evt);
             }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 listSetMouseClicked(evt);
             }
         });
-        listSet.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        listSet.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 listSetValueChanged(evt);
             }
         });
@@ -1554,13 +1753,17 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         listCom.setModel(new javax.swing.DefaultListModel());
         listCom.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listCom.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        listCom.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 listComMouseReleased(evt);
             }
         });
-        listCom.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        listCom.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 listComValueChanged(evt);
             }
         });
@@ -1570,16 +1773,21 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         listSetNum.setModel(new javax.swing.DefaultListModel());
         listSetNum.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listSetNum.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        listSetNum.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 listSetNumMouseReleased(evt);
             }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 listSetNumMouseClicked(evt);
             }
         });
-        listSetNum.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        listSetNum.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 listSetNumValueChanged(evt);
             }
         });
@@ -1590,8 +1798,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel31.setText("CAMBIAR FACTOR DE COHESIÓN (P)");
 
         btnModP.setText("Obtener");
-        btnModP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnModP.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnModPActionPerformed(evt);
             }
         });
@@ -1601,8 +1811,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         txtMinCatAtCom.setText("2");
 
         btnListComFromSet1.setText("Listar");
-        btnListComFromSet1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnListComFromSet1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnListComFromSet1ActionPerformed(evt);
             }
         });
@@ -1685,7 +1897,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                     .addGroup(panelComunidadesLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(panelC, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1699,32 +1911,26 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addGap(37, 37, 37)
                         .addComponent(jLabel15)
                         .addGap(18, 18, 18)
-                        .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelComunidadesLayout.createSequentialGroup()
-                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel18)
-                                    .addComponent(btnAddCatToCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCatAddRmvSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtComToAddRmvCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel19)
-                                    .addComponent(txtAddRmvCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNombreAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombreNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnChangeNameSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(48, 48, 48))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelComunidadesLayout.createSequentialGroup()
-                                .addComponent(btnRmvCatFromCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnRmvComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAddComToSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(129, 129, 129)))
+                        .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(btnAddCatToCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCatAddRmvSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtComToAddRmvCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRmvCatFromCom, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(txtAddRmvCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAddComToSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRmvComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombreAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnChangeNameSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
                         .addGroup(panelComunidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnShowSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnListComFromSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1746,8 +1952,9 @@ public class VistaPrincipal extends javax.swing.JFrame
                             .addComponent(btnModP, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel31)
                             .addComponent(spinP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                        .addComponent(btnExportSet))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addComponent(btnExportSet)
+                        .addGap(52, 52, 52))
                     .addComponent(panelC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
@@ -1760,32 +1967,42 @@ public class VistaPrincipal extends javax.swing.JFrame
         jScrollPane6.setViewportView(txtListComp);
 
         btnCompararComunidades.setText("Comparar");
-        btnCompararComunidades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCompararComunidades.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCompararComunidadesActionPerformed(evt);
             }
         });
 
         txtCompCom1.setText("Nombre comunidad 1");
-        txtCompCom1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtCompCom1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtCompCom1MouseReleased(evt);
             }
         });
-        txtCompCom1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtCompCom1.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtCompCom1FocusLost(evt);
             }
         });
 
         txtCompCom2.setText("Nombre comunidad 2");
-        txtCompCom2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
+        txtCompCom2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
                 txtCompCom2MouseReleased(evt);
             }
         });
-        txtCompCom2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtCompCom2.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtCompCom2FocusLost(evt);
             }
         });
@@ -1795,8 +2012,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         jLabel20.setText("Comparar 2 conjuntos");
 
         btnCompararConjuntos.setText("Comparar");
-        btnCompararConjuntos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCompararConjuntos.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCompararConjuntosActionPerformed(evt);
             }
         });
@@ -1864,53 +2083,67 @@ public class VistaPrincipal extends javax.swing.JFrame
         menuFichero.setText("Fichero");
 
         mItemNuevoGrafo.setText("Nuevo grafo");
-        mItemNuevoGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mItemNuevoGrafo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mItemNuevoGrafoActionPerformed(evt);
             }
         });
         menuFichero.add(mItemNuevoGrafo);
 
         mItemImportarGrafo.setText("Importar grafo");
-        mItemImportarGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mItemImportarGrafo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mItemImportarGrafoActionPerformed(evt);
             }
         });
         menuFichero.add(mItemImportarGrafo);
 
         mItemImportarSet.setText("Importar conjunto");
-        mItemImportarSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mItemImportarSet.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mItemImportarSetActionPerformed(evt);
             }
         });
         menuFichero.add(mItemImportarSet);
 
         mItemExportarGrafo.setText("Exportar grafo");
-        mItemExportarGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mItemExportarGrafo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mItemExportarGrafoActionPerformed(evt);
             }
         });
         menuFichero.add(mItemExportarGrafo);
 
         mItemExportarSet.setText("Exportar conjunto creado");
-        mItemExportarSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mItemExportarSet.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mItemExportarSetActionPerformed(evt);
             }
         });
         menuFichero.add(mItemExportarSet);
 
         mItemSalir.setText("Salir");
-        mItemSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        mItemSalir.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 mItemSalirMouseClicked(evt);
             }
         });
-        mItemSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mItemSalir.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mItemSalirActionPerformed(evt);
             }
         });
@@ -1921,16 +2154,20 @@ public class VistaPrincipal extends javax.swing.JFrame
         menuAyuda.setText("Ayuda");
 
         mItemManual.setText("Manual");
-        mItemManual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mItemManual.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mItemManualActionPerformed(evt);
             }
         });
         menuAyuda.add(mItemManual);
 
         mItemAbout.setText("Acerca de...");
-        mItemAbout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mItemAbout.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mItemAboutActionPerformed(evt);
             }
         });

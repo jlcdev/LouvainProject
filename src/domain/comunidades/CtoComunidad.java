@@ -4,6 +4,7 @@ import domain.grafos.Filters;
 import domain.grafos.GrafoEntrada;
 import domain.grafos.Selections;
 import java.util.ArrayList;
+import optional.Visual;
 
 /**
  *

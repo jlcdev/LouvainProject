@@ -228,7 +228,7 @@
         <Container class="javax.swing.JPanel" name="panelGrafo">
           <Properties>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Constraints>
@@ -883,7 +883,7 @@
                 </Property>
                 <Property name="tabLayoutPolicy" type="int" value="1"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor Por defecto"/>
                 </Property>
               </Properties>
 
@@ -1622,7 +1622,7 @@
                               <Component id="jLabel31" min="-2" pref="225" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="48" max="32767" attributes="0"/>
                       <Component id="panelC" min="-2" pref="461" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1638,39 +1638,29 @@
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnAddCatToCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="txtCatAddRmvSet" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtComToAddRmvCat" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtAddRmvCom" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtNombreAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtNombreNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnChangeNameSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="btnRmvCatFromCom" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="btnRmvComFromSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="btnAddComToSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAddCatToCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="txtCatAddRmvSet" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtComToAddRmvCat" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnRmvCatFromCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtAddRmvCom" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAddComToSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="btnRmvComFromSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtNombreAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNombreNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnChangeNameSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnShowSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="btnListComFromSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
@@ -1696,8 +1686,9 @@
                                   <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="spinP1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="60" max="32767" attributes="0"/>
+                              <EmptySpace pref="8" max="32767" attributes="0"/>
                               <Component id="btnExportSet" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           </Group>
                           <Component id="panelC" max="32767" attributes="0"/>
                       </Group>
