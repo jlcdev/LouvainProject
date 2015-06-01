@@ -32,7 +32,7 @@ public class Purity {
             if(count.containsKey(numcat))
             {
                 int replace = count.get(numcat)+1;
-                count.replace(numcat, replace);
+                count.put(numcat, replace);
                 if(replace > maximo)
                     maximo = replace;
             }
@@ -54,7 +54,7 @@ public class Purity {
                 if(count.containsKey(numcat))
                 {
                     int replace = count.get(numcat)+1;
-                    count.replace(numcat, replace);
+                    count.put(numcat, replace);
                     if(replace > maximo)
                         maximo = replace;
                 }
