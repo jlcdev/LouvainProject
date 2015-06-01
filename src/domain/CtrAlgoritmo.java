@@ -23,6 +23,9 @@ public class CtrAlgoritmo
     private int p;
     private int algorithm;
     private Algorithm communityAlgorithm = null;
+    private boolean arecatselections = false;
+    private boolean arepagselections = false;
+    private boolean arefilters = false;
     
     public CtrAlgoritmo()
     {
@@ -32,16 +35,19 @@ public class CtrAlgoritmo
     public void setFilters(Integer a, Integer b, Integer c, Integer d, Integer e)
     {
         this.filters = new Filters(a, b, c, d, e);
+        this.arefilters = true;
     }
     
     public void setPageSelections(ArrayList<Integer> list)
     {
         this.selections.setPagesSelected(list);
+        this.arecatselections = true;
     }
     
     public void setCatSelections(ArrayList<Integer> list)
     {
         this.selections.setCategoriesSelected(list);
+        this.arepagselections = true;
     }
     
     public void setPageSelectionConcrete(Integer i)
@@ -66,6 +72,21 @@ public class CtrAlgoritmo
         if(algorithm < 1) this.algorithm = 1;
         else if(algorithm > 3) this.algorithm = 3;
         else this.algorithm = algorithm;
+    }
+    
+    public boolean areCatSelections()
+    {
+        return this.arecatselections;
+    }
+    
+    public boolean arePagSelections()
+    {
+        return this.arepagselections;
+    }
+    
+    public boolean areFilters()
+    {
+        return this.arefilters;
     }
     
     public Graph<Integer, Double> generate(GrafoEntrada g)

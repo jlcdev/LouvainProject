@@ -188,11 +188,13 @@ public class CtrlPresentacion {
   
   public ArrayList<Integer> getCatSelection(int min, int max)
   {
+     if(max < min)sincronizacionVistaPrincipal_a_Error("max < min");
      return this.ctrlDominio.getCatSelection(min, max); 
   }
   
   public ArrayList<Integer> getPagSelection(int min, int max)
   {
+     if(max < min)sincronizacionVistaPrincipal_a_Error("max < min");
      return this.ctrlDominio.getPagSelection(min, max); 
   }
   
@@ -358,11 +360,15 @@ public class CtrlPresentacion {
       System.out.println("SETEAR ALGORITMO");
       this.ctrlAlgoritmo.setAlgorithm(algoritmo);
       this.ctrlAlgoritmo.setP(p);
-      this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.ejecutar(this.algorithmGraph(),this.ctrlDominio.getGrafo()));
-      this.vistaPrincipal.actualizarSet(false);
-      this.vistaPrincipal.activarTab(3); //CONJ
-      this.vistaPrincipal.activarTab(4); //COMP
-      this.vistaPrincipal.goToTab(3);
+      if(this.ctrlAlgoritmo.areCatSelections() && this.ctrlAlgoritmo.arePagSelections() && this.ctrlAlgoritmo.areFilters())
+      {
+        this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.ejecutar(this.algorithmGraph(),this.ctrlDominio.getGrafo()));
+        this.vistaPrincipal.actualizarSet(false);
+        this.vistaPrincipal.activarTab(3); //CONJ
+        this.vistaPrincipal.activarTab(4); //COMP
+        this.vistaPrincipal.goToTab(3);
+      }
+      else sincronizacionVistaPrincipal_a_Error("Filtros/Cateogiras/Paginas no seleccionados");
   }
   
   public void aplicarSelPag (ArrayList<Integer> al)
