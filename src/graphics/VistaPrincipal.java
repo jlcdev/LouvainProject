@@ -24,7 +24,9 @@ public class VistaPrincipal extends javax.swing.JFrame
     private ArrayList<Integer> catPosToId;
     private ArrayList<Integer> pagPosToId;
     boolean modEnlaces;
-    
+    boolean[] modConjunto = new boolean[2];
+    int p;
+    int minCat;
      
     
     public VistaPrincipal (CtrlPresentacion pCtrlPresentacion) 
@@ -35,6 +37,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         this.setLocationRelativeTo(null);
         this.catPosToId = new ArrayList();
         this.pagPosToId = new ArrayList();
+        this.modConjunto[0] = false;
+        this.modConjunto[1] = false;
+        this.modEnlaces = false;
+        this.p = 50;
+        this.minCat = 1;
     }
 
     public void hacerVisible() 
@@ -144,14 +151,14 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void actualizarSetNum(boolean importado, int num)
     {           
         ArrayList<String> lista = this.iCtrlPresentacion.mostrarCto(importado);         
-        DefaultListModel model = (DefaultListModel) this.listSet.getModel();
+        DefaultListModel model = (DefaultListModel) this.listSetNum.getModel();
         model.clear();
         int n;
         for(String elem : lista)
         {
             n = this.iCtrlPresentacion.numCatCom(elem, importado);            
             if(n >= num) model.addElement(elem+"["+n+"]");
-        }
+        }        
     } 
        
     public void clearTxtAreas()
@@ -316,6 +323,8 @@ public class VistaPrincipal extends javax.swing.JFrame
         listSet = new javax.swing.JList();
         scListCom = new javax.swing.JScrollPane();
         listCom = new javax.swing.JList();
+        scListSetNum = new javax.swing.JScrollPane();
+        listSetNum = new javax.swing.JList();
         jLabel31 = new javax.swing.JLabel();
         btnModP = new javax.swing.JButton();
         spinP1 = new javax.swing.JSpinner();
@@ -1556,6 +1565,25 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         panelC.add(scListCom, "card2");
 
+        listSetNum.setModel(new javax.swing.DefaultListModel());
+        listSetNum.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listSetNum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listSetNumMouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listSetNumMouseClicked(evt);
+            }
+        });
+        listSetNum.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listSetNumValueChanged(evt);
+            }
+        });
+        scListSetNum.setViewportView(listSetNum);
+
+        panelC.add(scListSetNum, "card3");
+
         jLabel31.setText("CAMBIAR FACTOR DE COHESIÓN (P)");
 
         btnModP.setText("Obtener");
@@ -1977,10 +2005,13 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_tabsPrincipalStateChanged
 
     private void btnCompararConjuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararConjuntosActionPerformed
-        if(this.iCtrlPresentacion.existsSet(false))
+        this.txtListComp.setText("");
+        boolean a = this.iCtrlPresentacion.existsSet(false);
+        boolean b = this.iCtrlPresentacion.existsSet(true);
+        if(a)
         {
             int[] infoC1 = iCtrlPresentacion.infoConjunto(false);
-            this.txtListComp.setText("CONJUNTO CREADO:\n\n");
+            this.txtListComp.append("CONJUNTO CREADO:\n\n");
             this.txtListComp.append("Número de comunidades: "+infoC1[0]+"\n");
             this.txtListComp.append("Algoritmo: "+infoC1[1]+"\n");
             this.txtListComp.append("Nivel de cohesión: "+infoC1[2]+"\n");
@@ -1990,13 +2021,13 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.txtListComp.append("Prioridad filtro padres en común: "+infoC1[6]+"\n");
             this.txtListComp.append("Prioridad filtro hijos en común: "+infoC1[7]+"\n");
             this.txtListComp.append("Núm. de categorias seleccionadas: "+infoC1[8]+"\n");
-            this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC1[9]+"\n");
+            this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC1[9]+"\n\n\n");
             //this.txtListComp.append("Purity: "+Double.toString(this.iCtrlPresentacion.getPurity(false))+"\n\n\n");
         }
-        if(this.iCtrlPresentacion.existsSet(true))
+        if(b)
         {
             int[] infoC2 = iCtrlPresentacion.infoConjunto(true);
-            this.txtListComp.setText("CONJUNTO IMPORTADO:\n\n");
+            this.txtListComp.append("CONJUNTO IMPORTADO:\n\n");
             this.txtListComp.append("Número de comunidades: "+infoC2[0]+"\n");
             this.txtListComp.append("Algoritmo: "+infoC2[1]+"\n");
             this.txtListComp.append("Nivel de cohesión: "+infoC2[2]+"\n");
@@ -2006,9 +2037,10 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.txtListComp.append("Prioridad filtro padres en común: "+infoC2[6]+"\n");
             this.txtListComp.append("Prioridad filtro hijos en común: "+infoC2[7]+"\n");
             this.txtListComp.append("Núm. de categorias seleccionadas: "+infoC2[8]+"\n");
-            this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC2[9]+"\n");            
+            this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC2[9]+"\n\n\n");            
             //this.txtListComp.append("Purity: "+Double.toString(this.iCtrlPresentacion.getPurity(false))+"\n\n\n");
         }
+        if(a && b) this.txtListComp.append("Purity: "+Double.toString(this.iCtrlPresentacion.getPurity())+"%\n\n");
     }//GEN-LAST:event_btnCompararConjuntosActionPerformed
 
     private void btnShowComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowComActionPerformed
@@ -2022,6 +2054,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         { 
             this.iCtrlPresentacion.modCtoNombre(this.txtNombreAnterior.getText(), this.txtNombreNuevo.getText(), importado);
             this.actualizarSet(importado);
+            this.modConjunto[importado ? 1 : 0] = false;
         }
         else 
         {
@@ -2054,7 +2087,18 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnListCatFromComActionPerformed
 
     private void btnExportSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSetActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false, comboTipoSet.getSelectedIndex() != 0);
+        boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
+        
+        if(this.iCtrlPresentacion.existsSet(importado))
+        { 
+            iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false, comboTipoSet.getSelectedIndex() != 0);
+        }
+        else 
+        {
+            String s = "importado";
+            if(!importado) s = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+        } 
     }//GEN-LAST:event_btnExportSetActionPerformed
 
     private void btnShowSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSetActionPerformed
@@ -2066,7 +2110,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         
         if(this.iCtrlPresentacion.existsSet(importado))
         { 
-            actualizarSet(importado);
+            if(this.modConjunto[importado ? 1 : 0])
+            {
+                actualizarSet(importado);
+                this.modConjunto[importado ? 1 : 0] = false;
+            }
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card1");
         }
@@ -2086,6 +2134,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         {        
             this.iCtrlPresentacion.rmvCtoCom(this.txtAddRmvCom.getText(), importado);
             actualizarSet(importado);
+            this.modConjunto[importado ? 1 : 0] = false;
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card1");
         }
@@ -2108,7 +2157,8 @@ public class VistaPrincipal extends javax.swing.JFrame
             model.addElement(this.txtAddRmvCom.getText()+"[0]");
 
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
-            cl.show(this.panelC, "card1"); 
+            cl.show(this.panelC, "card1");
+            this.modConjunto[importado ? 1 : 0] = true;
         } 
         else 
         {
@@ -2130,6 +2180,7 @@ public class VistaPrincipal extends javax.swing.JFrame
             model.clear();
             for(String elem : lista) model.addElement(elem);
             this.actualizarSet(importado);
+            this.modConjunto[importado ? 1 : 0] = false;
 
             CardLayout cl = (CardLayout)(panelC.getLayout());
             cl.show(panelC, "card2");
@@ -2153,6 +2204,7 @@ public class VistaPrincipal extends javax.swing.JFrame
             model.clear();
             for(String elem : lista) model.addElement(elem);
             this.actualizarSet(importado);
+            this.modConjunto[importado ? 1 : 0] = false;
 
             CardLayout cl = (CardLayout)(panelC.getLayout());
             cl.show(panelC, "card2"); 
@@ -2380,10 +2432,12 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_ckTodasCategoriasActionPerformed
 
     private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
+        int pVal = Integer.parseInt(this.spinP.getValue().toString());
         int alg = 1;
         if(this.radioGirvan.isSelected()) alg = 2;
         else if(this.radioClique.isSelected()) alg = 3;        
-        this.iCtrlPresentacion.ejecutar(alg,  Integer.parseInt(this.spinP.getValue().toString()));
+        this.iCtrlPresentacion.ejecutar(alg, pVal);
+        this.p = pVal;
     }//GEN-LAST:event_btnEjecutarActionPerformed
 
     private void radioGirvanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioGirvanActionPerformed
@@ -2935,7 +2989,17 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listPagMouseClicked
 
     private void btnModPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPActionPerformed
-        if(this.iCtrlPresentacion.existsSet(false)) this.iCtrlPresentacion.obtainCjto(Integer.parseInt(this.spinP1.getValue().toString()));
+        int pVal = Integer.parseInt(this.spinP1.getValue().toString());
+        if(this.iCtrlPresentacion.existsSet(false))
+        {
+            this.iCtrlPresentacion.obtainCjto(pVal);
+            if(pVal != this.p)
+            {
+                this.actualizarSet(false);
+                this.modConjunto[0] = false;
+                this.p = pVal;
+            }            
+        }
         else this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto creado");
     }//GEN-LAST:event_btnModPActionPerformed
 
@@ -2991,7 +3055,28 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnRandomFiltersActionPerformed
 
     private void btnListComFromSet1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListComFromSet1ActionPerformed
-        this.actualizarSetNum(this.comboTipoSet.getSelectedIndex() != 0, Integer.parseInt(this.txtMinCatAtCom.getText()));
+        boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
+        
+        if(this.iCtrlPresentacion.existsSet(importado))
+        { 
+            int min = Integer.parseInt(this.txtMinCatAtCom.getText());
+            if(min != this.minCat) 
+            {
+                this.actualizarSetNum(this.comboTipoSet.getSelectedIndex() != 0, min);
+                this.minCat = min;
+            }
+            CardLayout cl = (CardLayout)(this.panelC.getLayout());
+            cl.show(this.panelC, "card3");
+        }
+        else 
+        {
+            String s = "importado";
+            if(!importado) s = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+        }
+        
+        
+         
     }//GEN-LAST:event_btnListComFromSet1ActionPerformed
 
     private void listLinksNodeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listLinksNodeValueChanged
@@ -3004,6 +3089,40 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.comboTipoEnlace.setSelectedItem(data[2]);
         }
     }//GEN-LAST:event_listLinksNodeValueChanged
+
+    private void listSetNumMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetNumMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listSetNumMouseReleased
+
+    private void listSetNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetNumMouseClicked
+        if (evt.getClickCount() == 2 && !this.listSetNum.isSelectionEmpty()) 
+        {
+            String s = this.listSetNum.getSelectedValue().toString();
+            int index = s.indexOf("[");
+            s = s.substring(0, index);
+            
+            ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(s, this.comboTipoSet.getSelectedIndex() != 0);          
+            DefaultListModel model = (DefaultListModel) this.listCom.getModel();
+            model.clear();
+            for(String elem : lista) model.addElement(elem);
+
+            CardLayout cl = (CardLayout)(this.panelC.getLayout());
+            cl.show(this.panelC, "card2");    
+        }
+    }//GEN-LAST:event_listSetNumMouseClicked
+
+    private void listSetNumValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listSetNumValueChanged
+        if(!this.listSetNum.isSelectionEmpty())
+        {
+            String s = this.listSetNum.getSelectedValue().toString();
+            int index = s.indexOf("[");
+            s = s.substring(0, index);
+            this.txtComToAddRmvCat.setText(s);
+            this.txtComToList.setText(s);
+            this.txtNombreAnterior.setText(s);
+            this.txtAddRmvCom.setText(s);            
+        }
+    }//GEN-LAST:event_listSetNumValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3106,6 +3225,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JList listSelCategorias;
     private javax.swing.JList listSelPaginas;
     private javax.swing.JList listSet;
+    private javax.swing.JList listSetNum;
     private javax.swing.JMenuItem mItemAbout;
     private javax.swing.JMenuItem mItemExportarGrafo;
     private javax.swing.JMenuItem mItemExportarSet;
@@ -3130,6 +3250,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JRadioButton radioPagina;
     private javax.swing.JScrollPane scListCom;
     private javax.swing.JScrollPane scListSet;
+    private javax.swing.JScrollPane scListSetNum;
     private javax.swing.JScrollPane sclistCat;
     private javax.swing.JScrollPane sclistLinks;
     private javax.swing.JScrollPane sclistLinksNode;
