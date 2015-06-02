@@ -580,9 +580,4 @@ public class CtrlPresentacion
     {
         this.ctrlDominio.windowGraphAlgorithm();
     }
-
-    public double getPurity()
-    {
-        return this.ctrlDominio.getPurityBoth();
-    }
 }
