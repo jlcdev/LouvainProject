@@ -494,10 +494,13 @@ public class CtrlPresentacion
             sincronizacionVistaPrincipal_a_Error("Comunidad no existente/Categoria no existente.");
     }
 
-    public void rmvCtoCom(String comunidad, boolean importat)
+    public int rmvCtoCom(String comunidad, boolean importat)
     {
-        if(!this.ctrlDominio.rmvCtoCom(comunidad, importat))
+        int r = this.ctrlDominio.rmvCtoCom(comunidad, importat);
+        if(r == -1)
             sincronizacionVistaPrincipal_a_Error("Comunidad no existente.");
+        
+        return r;
     }
 
     public void modCtoNombre(String anterior, String nuevo, boolean importat)
