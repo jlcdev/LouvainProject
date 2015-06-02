@@ -431,17 +431,17 @@ public class CtrlPresentacion
     {
         Graph<Integer, Double> grafo = this.ctrlAlgoritmo.generate(this.ctrlDominio.getGrafo());
         this.ctrlDominio.setAlgorithmGraph(grafo);
-        System.out.println("FINAL TRANSFORMACIÓN");
+        System.out.println("CtrlPresentacion:Ejecutar:FINAL TRANSFORMACIÓN");
         return grafo;
     }
 
     public void ejecutar(int algoritmo, int p)
     {
         //HACER UN EQUALS CON EL GRAFO GENERADO
-        System.out.println("SETEAR ALGORITMO");
+        System.out.println("CtrlPresentacion:Ejecutar:SETEAR ALGORITMO");
         this.ctrlAlgoritmo.setAlgorithm(algoritmo);
         this.ctrlAlgoritmo.setP(p);
-        if(this.ctrlAlgoritmo.areCatSelections() && this.ctrlAlgoritmo.arePagSelections() && this.ctrlAlgoritmo.areFilters())
+        if(this.ctrlAlgoritmo.areCatSelections() && this.ctrlAlgoritmo.areFilters())
         {
             this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.ejecutar(this.algorithmGraph(), this.ctrlDominio.getGrafo()));
             this.vistaPrincipal.actualizarSet(false);
@@ -452,7 +452,15 @@ public class CtrlPresentacion
         }
         else
         {
-            sincronizacionVistaPrincipal_a_Error("Filtros/Cateogiras/Paginas no seleccionados");
+            String msg = "";
+            if(!this.ctrlAlgoritmo.areCatSelections())
+                msg = msg + "Categorias ";
+                        
+            if(!this.ctrlAlgoritmo.areFilters())
+                msg = msg + "Filtros ";
+            
+            msg = msg + "no seleccionad@s.";
+            sincronizacionVistaPrincipal_a_Error(msg);
         }
     }
 
@@ -546,8 +554,12 @@ public class CtrlPresentacion
     public ArrayList<String> commonCategories(String com1, boolean importado1, String com2, boolean importado2)
     {
         ArrayList<String> r = ctrlDominio.commonCategories(com1, importado1, com2, importado2);
-        if(r.isEmpty())
+        if(r == null)
+        {
+            r = new ArrayList();
+            r.set(0, "error");
             sincronizacionVistaPrincipal_a_Error("Comunidad no existente.");
+        }
         return r;
     }
 
