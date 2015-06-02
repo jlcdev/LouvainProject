@@ -2399,16 +2399,16 @@ public class VistaPrincipal extends javax.swing.JFrame
         s = s.replaceAll("\\s+","_");
         if(this.iCtrlPresentacion.existsSet(importado))
         {
-           this.iCtrlPresentacion.addCtoCom(s, importado);
+            if(this.iCtrlPresentacion.addCtoCom(s, importado))
+            {
+                DefaultListModel model = (DefaultListModel) this.listSet.getModel();
+                model.addElement(s+"[0]");
                 
-            DefaultListModel model = (DefaultListModel) this.listSet.getModel();
-            model.addElement(s+"[0]");
-
+                this.modConjunto[importado ? 1 : 0] = true;
+            }
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
-            cl.show(this.panelC, "card1");
-            this.modConjunto[importado ? 1 : 0] = true;
-            //this.modConjuntoNum[importado ? 1 : 0] = true;
-            
+            cl.show(this.panelC, "card1");    
+                        
         } 
         else 
         {
@@ -2423,20 +2423,18 @@ public class VistaPrincipal extends javax.swing.JFrame
         boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
         if(this.iCtrlPresentacion.existsSet(importado))
         {
-            this.iCtrlPresentacion.rmvCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), importado);
+            this.iCtrlPresentacion.rmvCtoCat(this.txtCatAddRmvSet.getText(), this.txtComToAddRmvCat.getText(), importado);
         
-            ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
-            DefaultListModel model = (DefaultListModel) listCom.getModel();
+            ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(this.txtComToAddRmvCat.getText(), importado);          
+            DefaultListModel model = (DefaultListModel) this.listCom.getModel();
             model.clear();
             model.addElement("..");
             for(String elem : lista) model.addElement(elem);
             this.actualizarSet(importado);
-            this.modConjunto[importado ? 1 : 0] = true;
-            //this.actualizarSetNum(importado, this.minCat);
-            //this.modConjuntoNum[importado ? 1 : 0] = false;                      
+            this.modConjunto[importado ? 1 : 0] = true;                     
 
-            CardLayout cl = (CardLayout)(panelC.getLayout());
-            cl.show(panelC, "card2");
+            CardLayout cl = (CardLayout)(this.panelC.getLayout());
+            cl.show(this.panelC, "card2");
         }        
         else 
         {
@@ -2447,12 +2445,12 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnRmvCatFromComActionPerformed
 
     private void btnAddCatToComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToComActionPerformed
-        boolean importado = comboTipoSet.getSelectedIndex() != 0;
-        String s = txtCatAddRmvSet.getText();
+        boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
+        String s = this.txtCatAddRmvSet.getText();
         s = s.replaceAll("\\s+","_");
         if(this.iCtrlPresentacion.existsSet(importado))
         {
-            boolean b = this.iCtrlPresentacion.addCtoCat(s, txtComToAddRmvCat.getText(), importado);
+            boolean b = this.iCtrlPresentacion.addCtoCat(s, this.txtComToAddRmvCat.getText(), importado);
             if(b)
             {
                 ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          

@@ -490,10 +490,14 @@ public class CtrlPresentacion
         return true;
     }
 
-    public void addCtoCom(String comunidad, boolean importat)
+    public boolean addCtoCom(String comunidad, boolean importat)
     {
-        if(!this.ctrlDominio.addCtoCom(comunidad, importat));
+        if(!this.ctrlDominio.addCtoCom(comunidad, importat))
+        {
             sincronizacionVistaPrincipal_a_Error("Comunidad ya existente.");
+            return false;
+        }          
+        return true;
     }
 
     public void rmvCtoCat(String categoria, String comunidad, boolean importat)
