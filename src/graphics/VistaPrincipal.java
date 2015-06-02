@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -228,6 +229,34 @@ public class VistaPrincipal extends javax.swing.JFrame
         this.ckTodasCategorias.setSelected(false);
         this.ckTodasPaginas.setSelected(false);
     }
+    
+    private void newGrafo()
+    {
+        int confirm = JOptionPane.showOptionDialog(
+             null, "¿Seguro que quieres borrar el grafo anterior?", 
+             "Crear nuevo grafo", JOptionPane.YES_NO_OPTION, 
+             JOptionPane.QUESTION_MESSAGE, null, null, null);
+        if (confirm == 0) {
+            this.clearTxtAreas();
+            this.catPosToId = new ArrayList();
+            this.pagPosToId = new ArrayList();
+            this.iCtrlPresentacion.crearGrafo();
+        }
+    }
+    
+    private void showPopupMenu(MouseEvent e) {
+        popupComp.show(this.listSet, e.getX(), e.getY());
+    }
+    
+    private void showPopupMenuCat(MouseEvent e) {
+        popupCat.show(this.listCat, e.getX(), e.getY());
+    }
+    
+    private void showPopupMenuPag(MouseEvent e) {
+        popupPag.show(this.listPag, e.getX(), e.getY());
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -240,6 +269,15 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         grupoAlgoritmos = new javax.swing.ButtonGroup();
         grupoTipoNodo = new javax.swing.ButtonGroup();
+        popupComp = new javax.swing.JPopupMenu();
+        mItemComp1 = new javax.swing.JMenuItem();
+        mItemComp2 = new javax.swing.JMenuItem();
+        popupCat = new javax.swing.JPopupMenu();
+        mItemCat1 = new javax.swing.JMenuItem();
+        mItemCat2 = new javax.swing.JMenuItem();
+        popupPag = new javax.swing.JPopupMenu();
+        mItemPag1 = new javax.swing.JMenuItem();
+        mItemPag2 = new javax.swing.JMenuItem();
         tabsPrincipal = new javax.swing.JTabbedPane();
         panelImportar = new javax.swing.JPanel();
         btnImportarGrafo = new javax.swing.JButton();
@@ -404,6 +442,64 @@ public class VistaPrincipal extends javax.swing.JFrame
         menuAyuda = new javax.swing.JMenu();
         mItemManual = new javax.swing.JMenuItem();
         mItemAbout = new javax.swing.JMenuItem();
+
+        mItemComp1.setText("Comunidad 1 a comparar");
+        mItemComp1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemComp1ActionPerformed(evt);
+            }
+        });
+        popupComp.add(mItemComp1);
+
+        mItemComp2.setText("Comunidad 2 a comparar");
+        mItemComp2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemComp2ActionPerformed(evt);
+            }
+        });
+        popupComp.add(mItemComp2);
+
+        mItemCat1.setText("Nodo enlace 1");
+        mItemCat1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                mItemCat1MouseReleased(evt);
+            }
+        });
+        mItemCat1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemCat1ActionPerformed(evt);
+            }
+        });
+        popupCat.add(mItemCat1);
+
+        mItemCat2.setText("Nodo enlace 2");
+        mItemCat2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                mItemCat2MouseReleased(evt);
+            }
+        });
+        mItemCat2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemCat2ActionPerformed(evt);
+            }
+        });
+        popupCat.add(mItemCat2);
+
+        mItemPag1.setText("Nodo enlace 1");
+        mItemPag1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemPag1ActionPerformed(evt);
+            }
+        });
+        popupPag.add(mItemPag1);
+
+        mItemPag2.setText("Nodo enlace 2");
+        mItemPag2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemPag2ActionPerformed(evt);
+            }
+        });
+        popupPag.add(mItemPag2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Wiki");
@@ -2057,10 +2153,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_mItemExportarSetActionPerformed
 
     private void mItemNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemNuevoGrafoActionPerformed
-        this.clearTxtAreas();
-        this.catPosToId = new ArrayList();
-        this.pagPosToId = new ArrayList();
-        this.iCtrlPresentacion.crearGrafo();
+        this.newGrafo();
     }//GEN-LAST:event_mItemNuevoGrafoActionPerformed
 
     private void tabsPrincipalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsPrincipalStateChanged
@@ -2540,10 +2633,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_radioGirvanActionPerformed
 
     private void btnNuevoGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafo1ActionPerformed
-        this.clearTxtAreas();
-        this.catPosToId = new ArrayList();
-        this.pagPosToId = new ArrayList();
-        this.iCtrlPresentacion.crearGrafo();
+        this.newGrafo();
     }//GEN-LAST:event_btnNuevoGrafo1ActionPerformed
 
     private void btnImportarGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafo1ActionPerformed
@@ -2813,10 +2903,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_txtCatToAddRmvMouseReleased
 
     private void btnNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGrafoActionPerformed
-        this.clearTxtAreas();
-        this.catPosToId = new ArrayList();
-        this.pagPosToId = new ArrayList();
-        this.iCtrlPresentacion.crearGrafo();
+        this.newGrafo();
     }//GEN-LAST:event_btnNuevoGrafoActionPerformed
 
     private void btnImportarConjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarConjActionPerformed
@@ -3036,7 +3123,16 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listSetValueChanged
 
     private void listSetMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetMouseReleased
-        
+        if(evt.getButton() == evt.BUTTON3)
+        {
+        //if (evt.isPopupTrigger()) {
+            showPopupMenu(evt);
+            
+            JList list = (JList)evt.getSource();
+            list.setSelectedIndex(list.locationToIndex(evt.getPoint()));
+            //this.txtNodo2Enlace.setText(this.listCat.getSelectedValue().toString());
+        //}
+        }
     }//GEN-LAST:event_listSetMouseReleased
 
     private void listComValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listComValueChanged
@@ -3125,21 +3221,13 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnCompararComunidadesActionPerformed
 
     private void listCatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCatMouseReleased
-        if(!this.listCat.isSelectionEmpty())
-        {
-            if (evt.getButton() == MouseEvent.BUTTON1) this.txtNodo1Enlace.setText(this.listCat.getSelectedValue().toString());
-            else if (evt.getButton() == MouseEvent.BUTTON3)
-            {
-                JList list = (JList)evt.getSource();
-                int row = list.locationToIndex(evt.getPoint());
-                list.setSelectedIndex(row);
-                this.txtNodo2Enlace.setText(this.listCat.getSelectedValue().toString());
-            } 
-        }
+            JList list = (JList)evt.getSource();
+            list.setSelectedIndex(list.locationToIndex(evt.getPoint()));  
+            if(evt.getButton() == MouseEvent.BUTTON3) this.showPopupMenuCat(evt);
     }//GEN-LAST:event_listCatMouseReleased
 
     private void listPagMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPagMouseReleased
-        if(!this.listPag.isSelectionEmpty())
+       /* if(!this.listPag.isSelectionEmpty())
         {
             if (evt.getButton() == MouseEvent.BUTTON1)
             {
@@ -3154,7 +3242,10 @@ public class VistaPrincipal extends javax.swing.JFrame
                 this.txtNodo2Enlace.setText(this.listPag.getSelectedValue().toString());
                 this.comboTipoEnlace.setSelectedIndex(2);
             }
-        }
+        }*/
+        JList list = (JList)evt.getSource();
+        list.setSelectedIndex(list.locationToIndex(evt.getPoint()));  
+        if(evt.getButton() == MouseEvent.BUTTON3) this.showPopupMenuPag(evt);
     }//GEN-LAST:event_listPagMouseReleased
 
     private void btnRandomFiltersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRandomFiltersActionPerformed
@@ -3251,6 +3342,46 @@ public class VistaPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btnShowGraph2ActionPerformed
         this.iCtrlPresentacion.visualizarGrafoGenerado();
     }//GEN-LAST:event_btnShowGraph2ActionPerformed
+
+    private void mItemComp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemComp1ActionPerformed
+        String s = this.listSet.getSelectedValue().toString();
+        int index = s.indexOf("[");
+        s = s.substring(0, index);
+        this.txtCompCom1.setText(s);
+    }//GEN-LAST:event_mItemComp1ActionPerformed
+
+    private void mItemComp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemComp2ActionPerformed
+        String s = this.listSet.getSelectedValue().toString();
+        int index = s.indexOf("[");
+        s = s.substring(0, index);
+        this.txtCompCom2.setText(s);
+    }//GEN-LAST:event_mItemComp2ActionPerformed
+
+    private void mItemCat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemCat1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mItemCat1ActionPerformed
+
+    private void mItemCat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemCat2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mItemCat2ActionPerformed
+
+    private void mItemPag1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemPag1ActionPerformed
+        this.txtNodo1Enlace.setText(this.listPag.getSelectedValue().toString());
+        //this.comboTipoEnlace.setSelectedIndex(3);
+    }//GEN-LAST:event_mItemPag1ActionPerformed
+
+    private void mItemPag2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemPag2ActionPerformed
+        this.txtNodo2Enlace.setText(this.listPag.getSelectedValue().toString());
+        //this.comboTipoEnlace.setSelectedIndex(2);
+    }//GEN-LAST:event_mItemPag2ActionPerformed
+
+    private void mItemCat1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemCat1MouseReleased
+        this.txtNodo1Enlace.setText(this.listCat.getSelectedValue().toString());
+    }//GEN-LAST:event_mItemCat1MouseReleased
+
+    private void mItemCat2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemCat2MouseReleased
+        this.txtNodo2Enlace.setText(this.listCat.getSelectedValue().toString());
+    }//GEN-LAST:event_mItemCat2MouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3358,12 +3489,18 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JList listSet;
     private javax.swing.JList listSetNum;
     private javax.swing.JMenuItem mItemAbout;
+    private javax.swing.JMenuItem mItemCat1;
+    private javax.swing.JMenuItem mItemCat2;
+    private javax.swing.JMenuItem mItemComp1;
+    private javax.swing.JMenuItem mItemComp2;
     private javax.swing.JMenuItem mItemExportarGrafo;
     private javax.swing.JMenuItem mItemExportarSet;
     private javax.swing.JMenuItem mItemImportarGrafo;
     private javax.swing.JMenuItem mItemImportarSet;
     private javax.swing.JMenuItem mItemManual;
     private javax.swing.JMenuItem mItemNuevoGrafo;
+    private javax.swing.JMenuItem mItemPag1;
+    private javax.swing.JMenuItem mItemPag2;
     private javax.swing.JMenuItem mItemSalir;
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JMenu menuFichero;
@@ -3374,6 +3511,9 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JPanel panelComunidades;
     private javax.swing.JPanel panelGrafo;
     private javax.swing.JPanel panelImportar;
+    private javax.swing.JPopupMenu popupCat;
+    private javax.swing.JPopupMenu popupComp;
+    private javax.swing.JPopupMenu popupPag;
     private javax.swing.JRadioButton radioCategoria;
     private javax.swing.JRadioButton radioClique;
     private javax.swing.JRadioButton radioGirvan;
