@@ -560,9 +560,10 @@ public class CtrlPresentacion
         return this.ctrlDominio.getTexec(imported);
     }
 
-    public boolean isCtoModified(boolean imported)
+    public String isCtoModified(boolean imported)
     {
-        return this.ctrlDominio.isCtoModified(imported);
+        if(this.ctrlDominio.isCtoModified(imported))return "si";
+        return "no";
     }
     
     public boolean existsSet(boolean imported)
