@@ -10,8 +10,6 @@ import domain.grafos.Pagina;
 import domain.grafos.Arch;
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map.Entry;
 import optional.Visual;
 import shared.Graph;
@@ -29,7 +27,9 @@ public class CtrDominio
     private CtoComunidad importedCto = null;
     private Purity p = null;
     
-    
+    /**
+     * Constructor de la clase CtrDominio
+     */
     public CtrDominio()
     {
         this.g = new GrafoEntrada();
@@ -37,17 +37,14 @@ public class CtrDominio
         this.p = new Purity();
     }
     
+    /**
+     * Crea un nuevo GrafoEntrada sobrescribiendo el anterior y posteriormente
+     * llama al GarbageCollector de Java para reducir la memória usada.
+     */
     public void newGrafo()
     {
         this.g = new GrafoEntrada();
         System.gc();
-    }
-    
-    public void information()
-    {
-        if(this.graph == null) return;
-        System.out.println("Vertices: "+this.graph.getVertexs().size());
-        
     }
     
     public void windowGraphEntry()
@@ -56,59 +53,52 @@ public class CtrDominio
         ArrayList<Integer> nodes = new ArrayList();
         nodes.addAll(this.g.getCategories());
         nodes.addAll(this.g.getPages());
-        HashMap<Integer, HashMap<Integer, String>> edges = new HashMap(5814);
-        Iterator<Entry<Integer, ArrayList<Arch>>> it = this.g.getCsubCArch().entrySet().iterator();
-        while(it.hasNext())
+        ArrayList<ArrayList<Integer>> edges = new ArrayList();
+        for(Entry<Integer, ArrayList<Arch>> entry : this.g.getCsubCArch().entrySet())
         {
-            Entry<Integer, ArrayList<Arch>> entry = it.next();
-            HashMap<Integer, String> edge = new HashMap(5814);
+            ArrayList<Integer> arcs = new ArrayList();
             for(Arch arc : entry.getValue())
             {
-                edge.put(arc.getDestiny(), this.g.getNumberCategory(arc.getDestiny()).getNombre());
+                arcs.add(arc.getDestiny());
             }
-            edges.put(entry.getKey(), edge);
-        }
-        it = this.g.getCsupCArch().entrySet().iterator();
-        while(it.hasNext())
+            edges.add(arcs);
+        }/*
+        for(Entry<Integer, ArrayList<Arch>> entry : this.g.getCsupCArch().entrySet())
         {
-            Entry<Integer, ArrayList<Arch>> entry = it.next();
-            HashMap<Integer, String> edge = new HashMap(5814);
+            ArrayList<Integer> arcs = new ArrayList();
             for(Arch arc : entry.getValue())
             {
-                edge.put(arc.getDestiny(), this.g.getNumberCategory(arc.getDestiny()).getNombre());
+                arcs.add(arc.getDestiny());
             }
-            edges.put(entry.getKey(), edge);
+            edges.add(arcs);
         }
-        it = this.g.getPCArch().entrySet().iterator();
-        while(it.hasNext())
+        for(Entry<Integer, ArrayList<Arch>> entry : this.g.getPCArch().entrySet())
         {
-            Entry<Integer, ArrayList<Arch>> entry = it.next();
-            HashMap<Integer, String> edge = new HashMap(5814);
+            ArrayList<Integer> arcs = new ArrayList();
             for(Arch arc : entry.getValue())
             {
-                edge.put(arc.getDestiny(), this.g.getNumberCategory(arc.getDestiny()).getNombre());
+                arcs.add(arc.getDestiny());
             }
-            edges.put(entry.getKey(), edge);
-        }
-        it = this.g.getCPArch().entrySet().iterator();
-        while(it.hasNext())
-        {
-            Entry<Integer, ArrayList<Arch>> entry = it.next();
-            HashMap<Integer, String> edge = new HashMap(5814);
-            for(Arch arc : entry.getValue())
-            {
-                edge.put(arc.getDestiny(), this.g.getNumberPage(arc.getDestiny()).getNombre());
-            }
-            edges.put(entry.getKey(), edge);
-        }
-        Visual v = new Visual(nodes, edges, 1, Color.WHITE);
+            edges.add(arcs);
+        }*/
+        Visual v = new Visual(nodes, edges, 2, Color.WHITE);
         v.launchWindow();
     }
     
     public void windowGraphAlgorithm()
     {
         if(this.graph == null) return;
-        Visual v = new Visual(this.graph.getVertexs(), this.graph.getEdgesFull(), 2, Color.WHITE);
+        ArrayList<ArrayList<Integer>> edges = new ArrayList();
+        for(Integer origin : this.graph.getVertexs())
+        {
+            ArrayList<Integer> arcs = new ArrayList();
+            for(Integer destiny : this.graph.getNeighbors(origin))
+            {
+                arcs.add(destiny);
+            }
+            edges.add(arcs);
+        }
+        Visual v = new Visual(this.graph.getVertexs(), edges, 2, Color.WHITE);
         v.launchWindow();
     }
     

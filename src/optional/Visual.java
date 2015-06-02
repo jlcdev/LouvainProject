@@ -8,15 +8,13 @@ import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.algorithms.layout.SpringLayout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
+import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -33,12 +31,12 @@ import javax.swing.JPanel;
  * que el grafo se muestre en una ventana nueva o, si se desde, llamar a
  * getGraphPanel para obtener un JPanel listo para añadir en otro componente.
  * @author Javier López Calderón
- * @param <V> Vertex for internal graph
- * @param <E> Type of Edge for internal graph
+ * @param <V> Vertex origin for internal graph
+ * @param <V> Vertex destiny for internal graph
  */
-public final class Visual<V, E>
+public final class Visual<V>
 {
-    private Graph<V, E> g;
+    private Graph<V, V> g;
     private Layout layout;
     private final Renderer renderer;
     private VisualizationViewer viasualization;
@@ -51,7 +49,7 @@ public final class Visual<V, E>
      * @param layout que tipo de layout escoger para pintar el grafo
      * @param color color de fondo para la ventana
      */
-    public Visual(ArrayList<V> vertex, HashMap<V, HashMap<V, E>> edges, int layout, Color color)
+    public Visual(ArrayList<V> vertex, ArrayList<ArrayList<V>> edges, int layout, Color color)
     {
         this.renderer = new BasicRenderer();
         this.setGraph(vertex, edges);
@@ -94,24 +92,21 @@ public final class Visual<V, E>
         }
     }
 
-    private void setGraph(ArrayList<V> vertex, HashMap<V, HashMap<V, E>> edges)
+    private void setGraph(ArrayList<V> vertex, ArrayList<ArrayList<V>> edges)
     {
         this.g = new SparseGraph();
-        Iterator<Entry<V, HashMap<V, E>>> it = edges.entrySet().iterator();
         for(V v : vertex)
         {
             this.g.addVertex(v);
         }
-        while(it.hasNext())
+        int size = this.g.getVertexCount();
+        for(V v : this.g.getVertices())
         {
-            Entry<V, HashMap<V, E>> entry = it.next();
-            Iterator<Entry<V, E>> at = entry.getValue().entrySet().iterator();
-            while(at.hasNext())
-            {
-                Entry<V, E> edge = at.next();
-                g.addVertex(entry.getKey());
-                g.addVertex(edge.getKey());
-                this.g.addEdge(edge.getValue(), entry.getKey(), edge.getKey());
+            if(edges.contains(v)){
+                for(V v2 : edges.get(edges.indexOf(v)))
+                {
+                    this.g.addEdge(v, v, v2, EdgeType.DIRECTED);
+                }
             }
         }
     }
