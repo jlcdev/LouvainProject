@@ -158,6 +158,7 @@ public class CtrlPresentacion
             this.vistaPrincipal.activarTab(3); //CONJ
             this.vistaPrincipal.activarTab(4); //COMP
             this.vistaPrincipal.goToTab(3);
+            this.vistaPrincipal.updateCjtos(true);
         }
         catch(Exception e)
         {
@@ -442,6 +443,7 @@ public class CtrlPresentacion
             this.vistaPrincipal.activarTab(3); //CONJ
             this.vistaPrincipal.activarTab(4); //COMP
             this.vistaPrincipal.goToTab(3);
+            this.vistaPrincipal.updateCjtos(false);
         }
         else
         {

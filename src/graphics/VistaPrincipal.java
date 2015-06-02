@@ -147,9 +147,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         ArrayList<String> lista = iCtrlPresentacion.mostrarCto(importado);         
         DefaultListModel model = (DefaultListModel) listSet.getModel();
         model.clear();
-        for(String elem : lista) model.addElement(elem+"["+this.iCtrlPresentacion.numCatCom(elem, importado)+"]");
-        int value = importado ? 1 : 0;
-        this.comboTipoSet.setSelectedIndex(value);
+        for(String elem : lista) model.addElement(elem+"["+this.iCtrlPresentacion.numCatCom(elem, importado)+"]");       
     }
     
     private void actualizarSetNum(boolean importado, int num)
@@ -217,14 +215,14 @@ public class VistaPrincipal extends javax.swing.JFrame
         model.clear();
         model = (DefaultListModel) this.listLinks.getModel();
         model.clear();
-        model = (DefaultListModel) this.listSet.getModel();
-        model.clear();
-        model = (DefaultListModel) this.listCom.getModel();
-        model.clear();
+        //model = (DefaultListModel) this.listSet.getModel();
+        //model.clear();
+        //model = (DefaultListModel) this.listCom.getModel();
+        //model.clear();
         model = (DefaultListModel) this.listLinksNode.getModel();
         model.clear();
-        model = (DefaultListModel) this.listSetNum.getModel();
-        model.clear();
+        //model = (DefaultListModel) this.listSetNum.getModel();
+        //model.clear();
         this.txtListComp.setText(null);
         this.labelInfoGraf.setText("Categorias: 0 | Páginas: 0 | Enlaces: 0");
         this.ckTodasCategorias.setSelected(false);
@@ -3099,7 +3097,15 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnModPActionPerformed
 
     private void btnCompararComunidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararComunidadesActionPerformed
-        // TODO add your handling code here:
+        
+        ArrayList<String> cc = this.iCtrlPresentacion.commonCategories(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected(), this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected());
+        this.txtListComp.setText("");
+        this.txtListComp.append("Categorias comunidad "+this.txtCompCom1.getText()+": "+"\n");
+        this.txtListComp.append(""+this.iCtrlPresentacion.getPorcentaje(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected())+"\n");
+        this.txtListComp.append("Categorias comunidad "+this.txtCompCom2.getText()+": "+"\n");
+        this.txtListComp.append(""+this.iCtrlPresentacion.getPorcentaje(this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected())+"\n");
+        this.txtListComp.append("Categorias en común: "+cc.size()+"\n");
+        for(String elem : cc) this.txtListComp.append(elem+"\n");
     }//GEN-LAST:event_btnCompararComunidadesActionPerformed
 
     private void listCatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCatMouseReleased
