@@ -174,9 +174,9 @@ public class VistaPrincipal extends javax.swing.JFrame
                 this.ckCjtoImportado2.setEnabled(false);
                 this.comboTipoSet.setEnabled(false);
                 this.ckCjtoImportado1.setSelected(true);
-                this.ckCjtoImportado2.setSelected(true);
-                this.comboTipoSet.setSelectedIndex(1);
+                this.ckCjtoImportado2.setSelected(true);                
             }
+            this.comboTipoSet.setSelectedIndex(1);
         }
         else
         {
@@ -192,9 +192,9 @@ public class VistaPrincipal extends javax.swing.JFrame
                 this.ckCjtoImportado2.setEnabled(false);
                 this.comboTipoSet.setEnabled(false);
                 this.ckCjtoImportado1.setSelected(false);
-                this.ckCjtoImportado2.setSelected(false);
-                this.comboTipoSet.setSelectedIndex(0);
+                this.ckCjtoImportado2.setSelected(false);                
             } 
+            this.comboTipoSet.setSelectedIndex(0);
         }
     }
        
@@ -1684,6 +1684,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         });
 
         comboTipoSet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Creado", "Importado" }));
+        comboTipoSet.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboTipoSetItemStateChanged(evt);
+            }
+        });
 
         jLabel15.setText("AÑADIR/QUITAR ");
 
@@ -2281,10 +2286,11 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnChangeNameSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameSetActionPerformed
         boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
-        
+        String s = this.txtNombreNuevo.getText();
+        s = s.replaceAll("\\s+","_");
         if(this.iCtrlPresentacion.existsSet(importado))
         { 
-            this.iCtrlPresentacion.modCtoNombre(this.txtNombreAnterior.getText(), this.txtNombreNuevo.getText(), importado);
+            this.iCtrlPresentacion.modCtoNombre(this.txtNombreAnterior.getText(), s, importado);
             this.actualizarSet(importado);
             this.modConjunto[importado ? 1 : 0] = false;
             this.actualizarSetNum(importado, this.minCat);
@@ -2292,9 +2298,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         }
         else 
         {
-            String s = "importado";
-            if(!importado) s = "creado";
-            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+            String st = "importado";
+            if(!importado) st = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+st);
         }
             
     }//GEN-LAST:event_btnChangeNameSetActionPerformed
@@ -2389,13 +2395,14 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnAddComToSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddComToSetActionPerformed
         boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
-        
+        String s = this.txtAddRmvCom.getText();
+        s = s.replaceAll("\\s+","_");
         if(this.iCtrlPresentacion.existsSet(importado))
         {
-           this.iCtrlPresentacion.addCtoCom(this.txtAddRmvCom.getText(), importado);
+           this.iCtrlPresentacion.addCtoCom(s, importado);
                 
             DefaultListModel model = (DefaultListModel) this.listSet.getModel();
-            model.addElement(this.txtAddRmvCom.getText()+"[0]");
+            model.addElement(s+"[0]");
 
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card1");
@@ -2405,9 +2412,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         } 
         else 
         {
-            String s = "importado";
-            if(!importado) s = "creado";
-            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+            String st = "importado";
+            if(!importado) st = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+st);
         }
         
     }//GEN-LAST:event_btnAddComToSetActionPerformed
@@ -2445,9 +2452,11 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnAddCatToComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToComActionPerformed
         boolean importado = comboTipoSet.getSelectedIndex() != 0;
+        String s = txtCatAddRmvSet.getText();
+        s = s.replaceAll("\\s+","_");
         if(this.iCtrlPresentacion.existsSet(importado))
         {
-            this.iCtrlPresentacion.addCtoCat(txtCatAddRmvSet.getText(), txtComToAddRmvCat.getText(), importado);
+            this.iCtrlPresentacion.addCtoCat(s, txtComToAddRmvCat.getText(), importado);
 
             ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
             DefaultListModel model = (DefaultListModel) listCom.getModel();
@@ -2456,16 +2465,16 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.actualizarSet(importado);
             this.modConjunto[importado ? 1 : 0] = true;
             //this.actualizarSetNum(importado, this.minCat);
-            model.addElement(this.txtCatAddRmvSet.getText());
+            model.addElement(s);
 
             CardLayout cl = (CardLayout)(panelC.getLayout());
             cl.show(panelC, "card2"); 
         }
         else 
         {
-            String s = "importado";
-            if(!importado) s = "creado";
-            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+            String st = "importado";
+            if(!importado) st = "creado";
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+st);
         }
         
         
@@ -2790,10 +2799,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnListCatGraphActionPerformed
 
     private void btnChangeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeNameActionPerformed
-
+        String s = this.txtNombreNodoNuevo.getText();
+        s = s.replaceAll("\\s+","_");
         if(this.radioCategoria.isSelected()) //CATEGORIA
         {
-            int id = this.iCtrlPresentacion.modGrafoNombre(this.txtNombreNodoAnterior.getText(), this.txtNombreNodoNuevo.getText(), true);
+            int id = this.iCtrlPresentacion.modGrafoNombre(this.txtNombreNodoAnterior.getText(), s, true);
             if(id != -1)
             {
                 int pos = this.catPosToId.indexOf(id);
@@ -2801,11 +2811,11 @@ public class VistaPrincipal extends javax.swing.JFrame
                 
                 DefaultListModel model = (DefaultListModel) this.listSelCategorias.getModel();                
                 model.remove(pos);
-                model.add(pos,this.txtNombreNodoNuevo.getText());
+                model.add(pos,s);
                 
                 model = (DefaultListModel) this.listCat.getModel();                
                 model.remove(pos);               
-                model.add(pos,this.txtNombreNodoNuevo.getText());  
+                model.add(pos,s);  
                 
                 this.modEnlaces = true;
                 
@@ -2884,13 +2894,15 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnRmvPagFromGraphActionPerformed
 
     private void btnAddPagToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPagToGraphActionPerformed
-        int id = this.iCtrlPresentacion.addGrafoPag(this.txtPagToAddRmv.getText());
+        String s = this.txtPagToAddRmv.getText();
+        s = s.replaceAll("\\s+","_");
+        int id = this.iCtrlPresentacion.addGrafoPag(s);
         if(id != -1)
         {
             DefaultListModel model = (DefaultListModel) this.listSelPaginas.getModel();            
-            model.addElement(this.txtPagToAddRmv.getText());
+            model.addElement(s);
             model = (DefaultListModel) this.listPag.getModel();            
-            model.addElement(this.txtPagToAddRmv.getText());
+            model.addElement(s);
             this.pagPosToId.add(id);
         }
         CardLayout cl = (CardLayout)(this.panel.getLayout());
@@ -2928,13 +2940,16 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnRmvCatFromGraphActionPerformed
 
     private void btnAddCatToGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCatToGraphActionPerformed
-        int id = this.iCtrlPresentacion.addGrafoCat(txtCatToAddRmv.getText());
+        
+        String s = this.txtCatToAddRmv.getText();
+        s = s.replaceAll("\\s+","_");
+        int id = this.iCtrlPresentacion.addGrafoCat(s);
         if (id != -1)
         {
             DefaultListModel model = (DefaultListModel) listSelCategorias.getModel();
-            model.addElement(txtCatToAddRmv.getText());
+            model.addElement(s);
             model = (DefaultListModel) listCat.getModel();
-            model.addElement(txtCatToAddRmv.getText());
+            model.addElement(s);
             catPosToId.add(id);
         }
         CardLayout cl = (CardLayout)(panel.getLayout());
@@ -3536,6 +3551,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void radioLouvainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioLouvainStateChanged
         if(this.radioLouvain.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()+"s");
     }//GEN-LAST:event_radioLouvainStateChanged
+
+    private void comboTipoSetItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboTipoSetItemStateChanged
+        this.actualizarSet(this.comboTipoSet.getSelectedIndex() != 0);
+        this.actualizarSetNum(this.comboTipoSet.getSelectedIndex() != 0, this.minCat);
+    }//GEN-LAST:event_comboTipoSetItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
