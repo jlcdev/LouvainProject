@@ -2773,7 +2773,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnNuevoGrafo1ActionPerformed
 
     private void btnImportarGrafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarGrafo1ActionPerformed
-        this.clearTxtAreas();
+        //this.clearTxtAreas();
         this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true, false);
     }//GEN-LAST:event_btnImportarGrafo1ActionPerformed
 
