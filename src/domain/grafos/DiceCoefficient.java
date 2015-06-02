@@ -3,8 +3,13 @@ package domain.grafos;
 import java.util.Arrays;
 
 /**
- * Dice's Coefficient algorithm
+ * Dice Coefficient es la clase encargada de aplicar el Arlgoritmo del mismo
+ * nombre, se emplea para establecer una probabilidad de similitud de dos
+ * cadenas de texto.
  * 
+ * @author Joan Rodas
+ * @version 1.0
+ * @since 01/06/2015
 */
 public class DiceCoefficient
 {
@@ -19,33 +24,51 @@ public class DiceCoefficient
     {
         if(s == null || t == null)
         {
-            return 0; //Si no hi ha res --> 0
+            return 0;
         }
-        if(s == t)
+        if(s.equals(t))
         {
-            return 1; //Strings iguals --> 1 (100%)
+            return 1;
         }
         if(s.length() < 2 || t.length() < 2)
         {
-            return 0; //Si nomes 1 caràcter i no són iguals --> 0 (evitar excepció)
+            return 0;
         }
         // Create the bigrams for string s:
         final int n = s.length() - 1;
         final int[] sPairs = new int[n];
         for(int i = 0; i <= n; i++)
         {
-            if(i == 0) sPairs[i] = s.charAt(i) << 16;
-            else if(i == n) sPairs[i - 1] |= s.charAt(i);
-            else sPairs[i] = (sPairs[i - 1] |= s.charAt(i)) << 16;
+            if(i == 0)
+            {
+                sPairs[i] = s.charAt(i) << 16;
+            }
+            else if(i == n)
+            {
+                sPairs[i - 1] |= s.charAt(i);
+            }
+            else
+            {
+                sPairs[i] = (sPairs[i - 1] |= s.charAt(i)) << 16;
+            }
         }
         // Create the bigrams for string t:
         final int m = t.length() - 1;
         final int[] tPairs = new int[m];
         for(int i = 0; i <= m; i++)
         {
-            if(i == 0) tPairs[i] = t.charAt(i) << 16;
-            else if(i == m) tPairs[i - 1] |= t.charAt(i);
-            else tPairs[i] = (tPairs[i - 1] |= t.charAt(i)) << 16; 
+            if(i == 0)
+            {
+                tPairs[i] = t.charAt(i) << 16;
+            }
+            else if(i == m)
+            {
+                tPairs[i - 1] |= t.charAt(i);
+            }
+            else
+            {
+                tPairs[i] = (tPairs[i - 1] |= t.charAt(i)) << 16;
+            }
         }
         // Sort the bigram lists:
         Arrays.sort(sPairs);
@@ -60,8 +83,14 @@ public class DiceCoefficient
                 i++;
                 j++;
             }
-            else if(sPairs[i] < tPairs[j]) i++;
-            else j++;
+            else if(sPairs[i] < tPairs[j])
+            {
+                i++;
+            }
+            else
+            {
+                j++;
+            }
         }
         return (double) (matches / (n + m));
     }
