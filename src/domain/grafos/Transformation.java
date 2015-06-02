@@ -14,6 +14,19 @@ import shared.Graph;
  */
 public class Transformation
 {
+    /**
+     * Metodo encargado de aplicar las selecciones sobre un grafo de entrada
+     * Elimina todos aquellos nodos que no están en la lista de seleccionados y
+     * borra todos los arcos que no están apuntados por estos nodos
+     * 
+     * @param grafo Grafo de entrada
+     * @param selections Seleccion de Categorias y Paginas
+     * @return Grafo de entrada filtrado con lo seleccionado
+     * @see Categoria
+     * @see Pagina
+     * @see Node
+     * @see GrafoEntrada
+     */
     public static GrafoEntrada clearGraph(GrafoEntrada grafo, Selections selections)
     {
         GrafoEntrada result = new GrafoEntrada();
@@ -63,7 +76,14 @@ public class Transformation
         }
         return result;
     }
-
+    
+    /**
+     * Método encargado de generar el algoritmo que debe ser servido a los algoritmos.
+     * 
+     * @param grafo Grafo de entrada
+     * @param filters Filtros a aplicar sobre el grafo de entrada
+     * @return Grafo para los algoritmos con los filtros aplicados
+     */
     public static Graph<Integer, Double> entryToAlgorithm(GrafoEntrada grafo, Filters filters)
     {
         System.out.println("Iniciando Transformación de grafoEntrada a GrafoCompartido");
