@@ -62,25 +62,7 @@ public class CtrDominio
                 arcs.add(arc.getDestiny());
             }
             edges.add(arcs);
-        }/*
-        for(Entry<Integer, ArrayList<Arch>> entry : this.g.getCsupCArch().entrySet())
-        {
-            ArrayList<Integer> arcs = new ArrayList();
-            for(Arch arc : entry.getValue())
-            {
-                arcs.add(arc.getDestiny());
-            }
-            edges.add(arcs);
         }
-        for(Entry<Integer, ArrayList<Arch>> entry : this.g.getPCArch().entrySet())
-        {
-            ArrayList<Integer> arcs = new ArrayList();
-            for(Arch arc : entry.getValue())
-            {
-                arcs.add(arc.getDestiny());
-            }
-            edges.add(arcs);
-        }*/
         Visual v = new Visual(nodes, edges, 2, Color.WHITE);
         v.launchWindow();
     }

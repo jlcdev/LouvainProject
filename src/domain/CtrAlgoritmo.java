@@ -76,21 +76,24 @@ public class CtrAlgoritmo
     
     public Double timeAproximation()
     {
+        Double response;
         int n = this.selections.getCategoriesSelected().size();
         int nn = n*n;
         if(n < 5000)
         {
-            return (double)(n*n)/10000000;
+            response = (double)(n*n)/10000000;
         }
         else if(n < 9000)
         {
             
-            return 0.000000004*nn+0.008052*n-22.168;
+            response = 0.000000004*nn+0.008052*n-22.168;
         }
         else
         {
-            return 0.000000004*nn+0.008052*n+22.168;
+            response = 0.000000004*nn+0.008052*n+10;
         }
+        if(response < 0.001) response = 0.0;
+        return response;
     }
     
     public boolean areCatSelections()
@@ -128,6 +131,8 @@ public class CtrAlgoritmo
     public CtoComunidad ejecutar(Graph<Integer, Double> g, GrafoEntrada orig)
     {
         Graph<Integer, Double> copy = g.clone();
+        int innerp = this.p;
+        System.out.println("System: CtrAlgoritmo: ejecutar: Valor de p = "+innerp);
         switch(this.algorithm)
         {
             case 1:
@@ -145,6 +150,6 @@ public class CtrAlgoritmo
         double t1 = System.currentTimeMillis();
         communityAlgorithm.calc(copy);
         double t2 = System.currentTimeMillis();
-        return new CtoComunidad(communityAlgorithm.obtain(), orig, this.algorithm, this.filters, this.selections, communityAlgorithm.getP(), (t2-t1));
+        return new CtoComunidad(communityAlgorithm.obtain(), orig, this.algorithm, this.filters, this.selections, innerp, (t2-t1));
     }
 }

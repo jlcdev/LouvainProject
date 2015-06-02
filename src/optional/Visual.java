@@ -6,8 +6,8 @@ import edu.uci.ics.jung.algorithms.layout.ISOMLayout;
 import edu.uci.ics.jung.algorithms.layout.KKLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.algorithms.layout.SpringLayout;
+import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
@@ -94,15 +94,16 @@ public final class Visual<V>
 
     private void setGraph(ArrayList<V> vertex, ArrayList<ArrayList<V>> edges)
     {
-        this.g = new SparseGraph();
+        this.g = new DirectedSparseMultigraph<>();
+        int size = this.g.getVertexCount();
         for(V v : vertex)
         {
             this.g.addVertex(v);
         }
-        int size = this.g.getVertexCount();
         for(V v : this.g.getVertices())
         {
-            if(edges.contains(v)){
+            if(edges.contains(v))
+            {
                 for(V v2 : edges.get(edges.indexOf(v)))
                 {
                     this.g.addEdge(v, v, v2, EdgeType.DIRECTED);
@@ -119,8 +120,8 @@ public final class Visual<V>
     public void launchWindow()
     {
         JFrame frame = new JFrame();
-        frame.pack();
         frame.add(this.viasualization);
+        frame.pack();
         frame.setVisible(true);
     }
 
