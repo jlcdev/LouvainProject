@@ -43,7 +43,7 @@ public class VistaAbout extends javax.swing.JFrame {
         this.setVisible(false);
     }
     
-     private void close()
+    private void close()
     {
         this.iCtrlPresentacion.sincronizacionVistaAbout_a_Principal();
     }
