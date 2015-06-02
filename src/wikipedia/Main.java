@@ -18,13 +18,16 @@ public class Main {
      * @param args
      */
     public static void main (String[] args) {
-    javax.swing.SwingUtilities.invokeLater (
-      new Runnable() {
-        
-        @Override
-        public void run() {
-          CtrlPresentacion ctrlPresentacion = new CtrlPresentacion();
-          ctrlPresentacion.inicializarPresentacion();
-    }});
+        try {
+            javax.swing.SwingUtilities.invokeLater(
+                new Runnable() {
+                        
+                    @Override
+                    public void run() {
+                        CtrlPresentacion ctrlPresentacion = new CtrlPresentacion();
+                        ctrlPresentacion.inicializarPresentacion();
+                    }
+                });
+        } catch (Exception e){System.out.println("Main: Error desconocido");}
   }
 }
