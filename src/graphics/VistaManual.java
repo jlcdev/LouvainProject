@@ -6,6 +6,8 @@
 package graphics;
 
 import java.awt.CardLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -22,6 +24,15 @@ public class VistaManual extends javax.swing.JFrame {
     public VistaManual(CtrlPresentacion pCtrlPresentacion) {
         iCtrlPresentacion = pCtrlPresentacion;  
         initComponents();
+        this.addWindowListener(new WindowAdapter() 
+        { 
+            @Override
+            public void windowClosing(WindowEvent e) 
+            { 
+                close();
+            } 
+        } 
+        );
         this.setLocationRelativeTo(null);
     }
     
@@ -32,6 +43,11 @@ public class VistaManual extends javax.swing.JFrame {
 
     public void hacerInvisible() {
         this.setVisible(false);
+    }
+    
+    private void close()
+    {
+        this.iCtrlPresentacion.sincronizacionVistaManual_a_Principal();
     }
 
     /**

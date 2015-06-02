@@ -5,6 +5,9 @@
  */
 package graphics;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author Joan Rodas
@@ -19,7 +22,15 @@ public class VistaAbout extends javax.swing.JFrame {
     public VistaAbout(CtrlPresentacion pCtrlPresentacion) {
         iCtrlPresentacion = pCtrlPresentacion;
         initComponents();
-        // Posicion y operaciones por defecto
+        this.addWindowListener(new WindowAdapter() 
+        { 
+            @Override
+            public void windowClosing(WindowEvent e) 
+            { 
+                close();
+            } 
+        } 
+        );
         this.setLocationRelativeTo(null);        
     }
     
@@ -30,6 +41,11 @@ public class VistaAbout extends javax.swing.JFrame {
 
     public void hacerInvisible() {
         this.setVisible(false);
+    }
+    
+     private void close()
+    {
+        this.iCtrlPresentacion.sincronizacionVistaAbout_a_Principal();
     }
 
     /**
@@ -90,11 +106,11 @@ public class VistaAbout extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
-                .addGap(49, 49, 49)
+                .addGap(45, 45, 45)
                 .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addComponent(jToggleButton1)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();

@@ -6,6 +6,8 @@
 package graphics;
 
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 /**
@@ -21,6 +23,15 @@ public class VistaError extends javax.swing.JFrame {
     public VistaError(CtrlPresentacion pCtrlPresentacion) {
         iCtrlPresentacion = pCtrlPresentacion;
         initComponents();
+        this.addWindowListener(new WindowAdapter() 
+        { 
+            @Override
+            public void windowClosing(WindowEvent e) 
+            { 
+                close();
+            } 
+        } 
+        );
         // Posicion y operaciones por defecto
         this.setLocationRelativeTo(null);
      
@@ -32,13 +43,19 @@ public class VistaError extends javax.swing.JFrame {
     }
     
     public void hacerVisible() {
-    this.pack();
-    this.setVisible(true);
-  }
+        this.pack();
+        this.setVisible(true);
+    }
 
-  public void hacerInvisible() {
-    this.setVisible(false);
-  }
+    public void hacerInvisible() {
+        this.setVisible(false);
+    }
+    
+    private void close()
+    {
+        this.iCtrlPresentacion.sincronizacionVistaError_a_Principal();
+    }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,8 +64,7 @@ public class VistaError extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -74,10 +90,8 @@ public class VistaError extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });

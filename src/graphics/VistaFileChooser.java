@@ -5,6 +5,8 @@
  */
 package graphics;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -29,6 +31,15 @@ public class VistaFileChooser extends javax.swing.JFrame {
         this.importado = false;
         initComponents();
         this.setLocationRelativeTo(null);
+        this.addWindowListener(new WindowAdapter() 
+        { 
+            @Override
+            public void windowClosing(WindowEvent e) 
+            { 
+                close();
+            } 
+        } 
+        );
     }
     
     public void hacerVisible(boolean importar, boolean grafo, boolean importado) {
@@ -52,6 +63,11 @@ public class VistaFileChooser extends javax.swing.JFrame {
 
     public void hacerInvisible() {
         this.setVisible(false);
+    }
+    
+    private void close()
+    {
+        this.iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
     }
 
     /**
