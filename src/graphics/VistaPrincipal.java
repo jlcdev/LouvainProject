@@ -2529,8 +2529,16 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnAplicarSelPagActionPerformed
 
     private void ckTodasPaginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckTodasPaginasActionPerformed
-        if (ckTodasPaginas.isSelected()) listSelPaginas.setSelectionInterval(0, listSelPaginas.getModel().getSize() - 1);
-        else listSelPaginas.clearSelection();
+        if (this.ckTodasPaginas.isSelected())
+        {
+            this.listSelPaginas.setSelectionInterval(0, this.listSelPaginas.getModel().getSize() - 1);
+            this.ckTodasPaginas.setSelected(true);
+        }
+        else
+        {
+            this.listSelPaginas.clearSelection();
+            this.ckTodasPaginas.setSelected(false);
+        }
     }//GEN-LAST:event_ckTodasPaginasActionPerformed
 
     private void btnSelCatRandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelCatRandActionPerformed
