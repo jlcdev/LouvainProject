@@ -2430,17 +2430,13 @@ public class VistaPrincipal extends javax.swing.JFrame
             model.clear();
             model.addElement("..");
             for(String elem : lista) model.addElement(elem);
-            //this.listCom.setSelectedIndex(1);////
-            //this.listSet.setSelectedIndex(1);///
-            //this.listSetNum.setSelectedIndex(1);///
             this.actualizarSet(importado);
             this.modConjunto[importado ? 1 : 0] = true;
             //this.actualizarSetNum(importado, this.minCat);
-            //this.modConjuntoNum[importado ? 1 : 0] = false;
-                        
+            //this.modConjuntoNum[importado ? 1 : 0] = false;                      
 
-            CardLayout cl = (CardLayout)(panelC.getLayout());
-            cl.show(panelC, "card2");
+            //CardLayout cl = (CardLayout)(panelC.getLayout());
+            //cl.show(panelC, "card2");
         }        
         else 
         {
@@ -2456,17 +2452,18 @@ public class VistaPrincipal extends javax.swing.JFrame
         s = s.replaceAll("\\s+","_");
         if(this.iCtrlPresentacion.existsSet(importado))
         {
-            this.iCtrlPresentacion.addCtoCat(s, txtComToAddRmvCat.getText(), importado);
-
-            ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
-            DefaultListModel model = (DefaultListModel) listCom.getModel();
-            //model.clear();
-            //for(String elem : lista) model.addElement(elem);
-            this.actualizarSet(importado);
-            this.modConjunto[importado ? 1 : 0] = true;
-            //this.actualizarSetNum(importado, this.minCat);
-            model.addElement(s);
-
+            boolean b = this.iCtrlPresentacion.addCtoCat(s, txtComToAddRmvCat.getText(), importado);
+            if(b)
+            {
+                ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
+                DefaultListModel model = (DefaultListModel) listCom.getModel();
+                //model.clear();
+                //for(String elem : lista) model.addElement(elem);
+                this.actualizarSet(importado);
+                this.modConjunto[importado ? 1 : 0] = true;
+                //this.actualizarSetNum(importado, this.minCat);
+                model.addElement(s);
+            }            
             CardLayout cl = (CardLayout)(panelC.getLayout());
             cl.show(panelC, "card2"); 
         }
@@ -3377,28 +3374,36 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void btnListComFromSet1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListComFromSet1ActionPerformed
         boolean importado = this.comboTipoSet.getSelectedIndex() != 0;
         
-        if(this.iCtrlPresentacion.existsSet(importado))
-        { 
-            int min = Integer.parseInt(this.txtMinCatAtCom.getText());
-            if(min != this.minCat || this.modConjunto[importado ? 1 : 0]) 
-            {
-                this.actualizarSetNum(this.comboTipoSet.getSelectedIndex() != 0, min);
-                this.minCat = min;
-                this.modConjunto[importado ? 1 : 0] = false;
-            }
-            setNum = true;
-            CardLayout cl = (CardLayout)(this.panelC.getLayout());
-            cl.show(this.panelC, "card3");
-        }
-        else 
+        try 
         {
-            String s = "importado";
-            if(!importado) s = "creado";
-            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
-        }
-        
-        
-         
+            if(this.iCtrlPresentacion.existsSet(importado))
+            { 
+                int min = Integer.parseInt(this.txtMinCatAtCom.getText());
+                if(min < 0) this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("Por favor, introduce un número positivo");
+                else
+                {
+                    if(min != this.minCat || this.modConjunto[importado ? 1 : 0]) 
+                    {
+                        this.actualizarSetNum(this.comboTipoSet.getSelectedIndex() != 0, min);
+                        this.minCat = min;
+                        this.modConjunto[importado ? 1 : 0] = false;
+                    }
+                    setNum = true;
+                    CardLayout cl = (CardLayout)(this.panelC.getLayout());
+                    cl.show(this.panelC, "card3");
+                }
+            }
+            else 
+            {
+                String s = "importado";
+                if(!importado) s = "creado";
+                this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("No hay ningún conjunto "+s);
+            }
+        } 
+        catch (NumberFormatException numberFormatException) 
+        {
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("Por favor, introduce un número");
+        }    
     }//GEN-LAST:event_btnListComFromSet1ActionPerformed
 
     private void listLinksNodeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listLinksNodeValueChanged
