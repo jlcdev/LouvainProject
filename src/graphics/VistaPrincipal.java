@@ -3303,10 +3303,10 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnModPActionPerformed
 
     private void btnCompararComunidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararComunidadesActionPerformed
-        
-        ArrayList<String> cc = this.iCtrlPresentacion.commonCategories(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected(), this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected());
-        if(!cc.get(0).equals("error"))
+        if(this.iCtrlPresentacion.existsComunidad(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected())
+                && this.iCtrlPresentacion.existsComunidad(this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected()))
         {
+            ArrayList<String> cc = this.iCtrlPresentacion.commonCategories(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected(), this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected());
             this.txtListComp.setText("");
             this.txtListComp.append("Categorias comunidad "+this.txtCompCom1.getText()+": "+this.iCtrlPresentacion.numCatCom(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected())+"\n");
             this.txtListComp.append(""+this.iCtrlPresentacion.getPorcentaje(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected())+"\n");
@@ -3314,7 +3314,7 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.txtListComp.append(""+this.iCtrlPresentacion.getPorcentaje(this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected())+"\n");
             this.txtListComp.append("Categorias en común: "+cc.size()+"\n");
             for(String elem : cc) this.txtListComp.append(elem+"\n"); 
-        }                        
+        }
     }//GEN-LAST:event_btnCompararComunidadesActionPerformed
 
     private void listCatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCatMouseReleased
