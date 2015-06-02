@@ -2435,8 +2435,8 @@ public class VistaPrincipal extends javax.swing.JFrame
             //this.actualizarSetNum(importado, this.minCat);
             //this.modConjuntoNum[importado ? 1 : 0] = false;                      
 
-            //CardLayout cl = (CardLayout)(panelC.getLayout());
-            //cl.show(panelC, "card2");
+            CardLayout cl = (CardLayout)(panelC.getLayout());
+            cl.show(panelC, "card2");
         }        
         else 
         {

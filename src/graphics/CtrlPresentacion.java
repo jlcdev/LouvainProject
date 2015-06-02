@@ -529,9 +529,10 @@ public class CtrlPresentacion
     public ArrayList<String> mostrarCom(String comunidad, boolean importat)
     {
         ArrayList<String> s = this.ctrlDominio.mostrarComunidad(comunidad, importat);
-        if(s.isEmpty())
+        if(s == null) {
             sincronizacionVistaPrincipal_a_Error("Comunidad no existente.");
-        
+            s = new ArrayList<>();
+        }            
         return s;
     }
 

@@ -589,6 +589,7 @@ public class CtrDominio
                 }
             }
             if(e)s = this.importedCto.getComunidad(comunidad).getNameCategories();
+            else s = null;
         }
         else
         {
@@ -601,6 +602,7 @@ public class CtrDominio
                 }
             }
             if(e)s = this.generatedCto.getComunidad(comunidad).getNameCategories();
+            else s = null;
         }
         return s;
     }
