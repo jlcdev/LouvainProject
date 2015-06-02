@@ -105,7 +105,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         model.clear();
         DefaultListModel model2 = (DefaultListModel) this.listPag.getModel();
         model2.clear();
-        //this.pagPosToId = new ArrayList();
+        this.pagPosToId = new ArrayList();
         for(String elem : lista) 
         {
             model.addElement(elem);
@@ -121,7 +121,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         model.clear();
         DefaultListModel model2 = (DefaultListModel) this.listCat.getModel();
         model2.clear();
-        //this.catPosToId = new ArrayList();
+        this.catPosToId = new ArrayList();
         for(String elem : lista) {
             model.addElement(elem);
             model2.addElement(elem);
@@ -134,8 +134,8 @@ public class VistaPrincipal extends javax.swing.JFrame
         ArrayList<String> lista = this.iCtrlPresentacion.mostrarGrafoEnlaces();          
         DefaultListModel model = (DefaultListModel) this.listLinks.getModel();
         model.clear();
-        for(String elem : lista) model.addElement(elem);
-        
+        model.addElement("ENLACES:");
+        for(String elem : lista) model.addElement(elem);        
         this.labelInfoGraf.setText("Categorias: "+this.catPosToId.size()+" | "+"Páginas: "+this.pagPosToId.size()+" | "+"Enlaces: "+ lista.size());
     }
     
@@ -2841,8 +2841,8 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnRmvLinkFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvLinkFromGraphActionPerformed
         this.iCtrlPresentacion.rmvGrafoEnlace(this.txtNodo1Enlace.getText(), this.txtNodo2Enlace.getText(), this.comboTipoEnlace.getSelectedItem().toString());
-        this.listLinks.setSelectedIndex(1);
         this.actualizarLinks();
+        
         this.modEnlaces = false;        
         CardLayout cl = (CardLayout)(this.panel.getLayout());
         cl.show(this.panel, "card3");
@@ -3222,12 +3222,15 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void listLinksValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listLinksValueChanged
         if(!this.listLinks.isSelectionEmpty())
-        {            
-            String s = this.listLinks.getSelectedValue().toString();
-            String data[] = s.split("\\s+");           
-            this.txtNodo1Enlace.setText(data[0]);
-            this.txtNodo2Enlace.setText(data[3]);    
-            this.comboTipoEnlace.setSelectedItem(data[2]);
+        {   
+            if(this.listLinks.getSelectedIndex() != 0)
+            {
+                String s = this.listLinks.getSelectedValue().toString();
+                String data[] = s.split("\\s+");           
+                this.txtNodo1Enlace.setText(data[0]);
+                this.txtNodo2Enlace.setText(data[3]);    
+                this.comboTipoEnlace.setSelectedItem(data[2]);
+            }            
         }
     }//GEN-LAST:event_listLinksValueChanged
 
