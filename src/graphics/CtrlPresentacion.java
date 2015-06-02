@@ -469,31 +469,34 @@ public class CtrlPresentacion
     //pestaña comunidades
     public void addCtoCat(String categoria, String comunidad, boolean importat)
     {
-        boolean error = this.ctrlDominio.addCtoCat(categoria, comunidad, importat);
-        if(error)
+        if(!this.ctrlDominio.addCtoCat(categoria, comunidad, importat))
         {
-            sincronizacionVistaPrincipal_a_Error("Comunidad no existente");
+            sincronizacionVistaPrincipal_a_Error("Comunidad no existente/Categoria ya existente.");
         }
     }
 
     public void addCtoCom(String comunidad, boolean importat)
     {
-        this.ctrlDominio.addCtoCom(comunidad, importat);
+        if(!this.ctrlDominio.addCtoCom(comunidad, importat));
+            sincronizacionVistaPrincipal_a_Error("Comunidad ya existente.");
     }
 
     public void rmvCtoCat(String categoria, String comunidad, boolean importat)
     {
-        this.ctrlDominio.rmvCtoCat(categoria, comunidad, importat);
+        if(!this.ctrlDominio.rmvCtoCat(categoria, comunidad, importat))
+            sincronizacionVistaPrincipal_a_Error("Comunidad no existente/Categoria no existente.");
     }
 
     public void rmvCtoCom(String comunidad, boolean importat)
     {
-        this.ctrlDominio.rmvCtoCom(comunidad, importat);
+        if(!this.ctrlDominio.rmvCtoCom(comunidad, importat))
+            sincronizacionVistaPrincipal_a_Error("Comunidad no existente.");
     }
 
     public void modCtoNombre(String anterior, String nuevo, boolean importat)
     {
-        this.ctrlDominio.modCtoNombre(anterior, nuevo, importat);
+        if(!this.ctrlDominio.modCtoNombre(anterior, nuevo, importat))
+            sincronizacionVistaPrincipal_a_Error("Nuevo nombre ya existente o anterior no existente.");
     }
 
     public ArrayList<String> mostrarCto(boolean importat)
@@ -507,7 +510,11 @@ public class CtrlPresentacion
 
     public ArrayList<String> mostrarCom(String comunidad, boolean importat)
     {
-        return this.ctrlDominio.mostrarComunidad(comunidad, importat);
+        ArrayList<String> s = this.ctrlDominio.mostrarComunidad(comunidad, importat);
+        if(s.isEmpty())
+            sincronizacionVistaPrincipal_a_Error("Comunidad no existente.");
+        
+        return s;
     }
 
     public void visualizarCom(String comunidad, boolean importat)

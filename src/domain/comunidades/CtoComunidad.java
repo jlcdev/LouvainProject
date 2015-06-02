@@ -121,12 +121,14 @@ public class CtoComunidad
         this.ctoComunidades = ctoComunidades;
     }
 
-    public void addComunidades(Comunidad c)
+    public boolean addComunidades(Comunidad c)
     {
         if(!this.ctoComunidades.contains(c))
         {
             this.ctoComunidades.add(c);
+            return true;
         }
+        return false;
     }
     
     public void removeComunidades(Comunidad c)
@@ -137,7 +139,7 @@ public class CtoComunidad
         }
     }
     
-    public void removeComunidades(String name)
+    public boolean removeComunidades(String name)
     {
         int index = -1;
         for(Comunidad community : this.ctoComunidades)
@@ -148,7 +150,12 @@ public class CtoComunidad
                 break;
             }
         }
-        if(index != -1) this.ctoComunidades.remove(index);
+        if(index != -1)
+        {
+            this.ctoComunidades.remove(index);
+            return true;
+        }
+        return false;
     }
     
     public void setModificado(boolean modificado)

@@ -473,77 +473,116 @@ public class CtrDominio
     public boolean addCtoCat (String category, String comunidad, boolean importat)
     {
         Comunidad com;
+        boolean e;
         if(importat)
         {
             com = this.importedCto.getComunidad(comunidad);
-            if(com == null)return true;
-            com.addCategoria(category);
+            if(com == null)return false;
+            e = com.addCategoria(category);
             this.importedCto.setModificado(true);
         }
         else
         {
             com = this.generatedCto.getComunidad(comunidad);
-            if(com == null)return true;
-            com.addCategoria(category);
+            if(com == null)return false;
+            e = com.addCategoria(category);
             this.generatedCto.setModificado(true);
         }
-        return false;
+        return e;
     }
   
-    public void addCtoCom (String comunidad, boolean importat)
+    public boolean addCtoCom (String comunidad, boolean importat)
     {
         Comunidad com = new Comunidad();
+        boolean e;
         com.setNombre(comunidad);
         if(importat)
         {
-            this.importedCto.addComunidades(com);
+            e = this.importedCto.addComunidades(com);
             this.importedCto.setModificado(true);
         }
         else
         {
-            this.generatedCto.addComunidades(com);
+            e = this.generatedCto.addComunidades(com);
             this.generatedCto.setModificado(true);
         }
+        return e;
     }
   
     public boolean rmvCtoCat (String category, String comunidad, boolean importat)
     {
         Comunidad com;
+        boolean e;
         if(importat)
         {
             com = this.importedCto.getComunidad(comunidad);
-            if(com == null)return true;
-            com.removeCategoria(category);
+            if(com == null)return false;
+            e = com.removeCategoria(category);
             this.importedCto.setModificado(true);
         }
         else
         {
             com = this.generatedCto.getComunidad(comunidad);
-            if(com == null)return true;
-            com.removeCategoria(category);
+            if(com == null)return false;
+            e = com.removeCategoria(category);
             this.generatedCto.setModificado(true);
         }
-        return false;
+        return e;
     }
   
-    public void rmvCtoCom (String comunidad, boolean importat)
+    public boolean rmvCtoCom (String comunidad, boolean importat)
     {
+        boolean e = false;
         if(importat)
         {
-            this.importedCto.removeComunidades(comunidad);
+            e = this.importedCto.removeComunidades(comunidad);
             this.importedCto.setModificado(true);
         }
         else
         {
-            this.generatedCto.removeComunidades(comunidad);
+            e = this.generatedCto.removeComunidades(comunidad);
             this.generatedCto.setModificado(true);
         }
+        return e;
     }
   
-    public void modCtoNombre (String anterior, String nuevo, boolean importat)
+    public boolean modCtoNombre (String anterior, String nuevo, boolean importat)
     {      
-        if(importat)this.importedCto.getComunidad(anterior).setNombre(nuevo);
-        else this.generatedCto.getComunidad(anterior).setNombre(nuevo);
+        boolean e1 = true;
+        boolean e2 = false;
+        if(importat)
+        {
+            for(Comunidad community : this.importedCto.getCtoComunidades())
+            {
+                if(community.getNombre().equals(anterior))
+                    e2 = true;
+                
+                if(community.getNombre().equals(nuevo))
+                    e1 = false;
+            }
+            if(e1 && e2)
+            {
+                this.importedCto.getComunidad(anterior).setNombre(nuevo);
+                return true;
+            }
+        }
+        else
+        {
+            for(Comunidad community : this.generatedCto.getCtoComunidades())
+            {
+                if(community.getNombre().equals(anterior))
+                    e2 = true;
+                
+                if(community.getNombre().equals(nuevo))
+                    e1 = false;
+            }
+            if(e1 && e2)
+            {
+                this.generatedCto.getComunidad(anterior).setNombre(nuevo);
+                return true;
+            }
+        }
+        return false;
     }
     
     public ArrayList<String> mostrarCtoComunidad(boolean importat)
@@ -554,8 +593,33 @@ public class CtrDominio
         
     public ArrayList<String> mostrarComunidad(String comunidad, boolean importat)
     {
-        if(importat) return this.importedCto.getComunidad(comunidad).getNameCategories();
-        else return this.generatedCto.getComunidad(comunidad).getNameCategories();
+        boolean e = false;
+        ArrayList<String> s = new ArrayList();
+        if(importat)
+        {
+            for(Comunidad community : this.importedCto.getCtoComunidades())
+            {
+                if(community.getNombre().equals(comunidad))
+                {
+                    e = true;
+                    break;
+                }
+            }
+            if(e)s = this.importedCto.getComunidad(comunidad).getNameCategories();
+        }
+        else
+        {
+            for(Comunidad community : this.generatedCto.getCtoComunidades())
+            {
+                if(community.getNombre().equals(comunidad))
+                {
+                    e = true;
+                    break;
+                }
+            }
+            if(e)s = this.generatedCto.getComunidad(comunidad).getNameCategories();
+        }
+        return s;
     }
     
     public void saveCtoComunidad(String path, boolean importado)

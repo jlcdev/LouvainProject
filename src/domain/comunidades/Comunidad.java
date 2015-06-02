@@ -68,9 +68,15 @@ public class Comunidad implements Cloneable
         }
     }
     
-    public void addCategoria(String name)
+    public boolean addCategoria(String name)
     {
-        this.addCategoria(new Categoria(name));
+        Categoria category = new Categoria(name);
+        if(!this.ctoCategorias.contains(category))
+        {
+            this.ctoCategorias.add(category);
+            return true;
+        }
+        return false;
     }
     
     public void modCategoria(Categoria category, String newName)
@@ -94,9 +100,15 @@ public class Comunidad implements Cloneable
         }
     }
     
-    public void removeCategoria(String name)
+    public boolean removeCategoria(String name)
     {
-        this.removeCategoria(new Categoria(name));
+        Categoria category = new Categoria(name);
+        if(this.ctoCategorias.contains(category))
+        {
+            this.ctoCategorias.remove(category);
+            return true;
+        }
+        return false;
     }
     
     public ArrayList<String> saveToFile()
