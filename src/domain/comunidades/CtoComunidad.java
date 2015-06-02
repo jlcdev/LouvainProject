@@ -4,7 +4,6 @@ import domain.grafos.Filters;
 import domain.grafos.GrafoEntrada;
 import domain.grafos.Selections;
 import java.util.ArrayList;
-import optional.Visual;
 
 /**
  *
@@ -173,7 +172,8 @@ public class CtoComunidad
         ArrayList<String> response = new ArrayList<>();
         response.add("algoritmo:"+this.algoritmo);
         response.add("modificado:"+this.modificado);
-        
+        response.add("p:"+this.p);
+        response.add("texec:"+this.texec);
         response.addAll(this.filtros.saveToFile());
         response.addAll(this.selections.saveToFile());
         
@@ -190,7 +190,9 @@ public class CtoComunidad
         this.ctoComunidades = new ArrayList();
         this.algoritmo = Integer.parseInt(data.get(0).replaceFirst("algoritmo:", ""));
         this.modificado = data.get(1).replaceFirst("modificado:", "").equals("true");
-        int i = 2;
+        this.p = Integer.parseInt(data.get(2).replaceFirst("p:", ""));
+        this.texec = Double.parseDouble(data.get(3).replaceFirst("texec:", ""));
+        int i = 4;
         ArrayList<String> load = new ArrayList<>();
         //LOAD FILTERS
         String search = data.get(i);

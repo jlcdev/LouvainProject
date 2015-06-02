@@ -13,19 +13,23 @@ public class Node
     /**
      * Constructor por defecto
      */
-    public Node(){}
-    
+    public Node()
+    {
+    }
+
     /**
      * Constructor con el nombre de la categoria
-     * @param nombre 
+     *
+     * @param nombre
      */
     public Node(String nombre)
     {
         this.Nombre = nombre;
     }
-    
+
     /**
      * Obtiene el nombre
+     *
      * @return nombre
      */
     public String getNombre()
@@ -35,6 +39,7 @@ public class Node
 
     /**
      * Assigna el nombre
+     *
      * @param Nombre
      */
     public void setNombre(String Nombre)
@@ -44,6 +49,7 @@ public class Node
 
     /**
      * Devuelve el valor del hash code del objeto
+     *
      * @return valor del hash code del objeto
      */
     @Override
@@ -56,21 +62,32 @@ public class Node
 
     /**
      * Indica si los dos objetos son iguales
+     *
      * @param obj
      * @return true si los objetos son iguales, false en caso contrario
      */
     @Override
     public boolean equals(Object obj)
     {
-        if(obj == null) return false;
-        if(this.getClass() != obj.getClass()) return false;
+        if(obj == null)
+        {
+            return false;
+        }
+        if(this.getClass() != obj.getClass())
+        {
+            return false;
+        }
         final Node other = (Node) obj;
-        if (!Objects.equals(this.Nombre, other.Nombre)) return false;
+        if(!Objects.equals(this.Nombre, other.Nombre))
+        {
+            return false;
+        }
         return true;
     }
 
     /**
      * Devuelve una representacion del objeto
+     *
      * @return una representacion del objeto en formato string
      */
     @Override

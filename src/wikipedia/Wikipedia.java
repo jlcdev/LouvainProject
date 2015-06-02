@@ -211,7 +211,6 @@ public class Wikipedia
                 case 7:
                     msg("--Aplicando algoritmo--");
                     domainController.setAlgorithmGraph(algorithmController.generate(domainController.getGrafo()));
-                    domainController.information();
                     CtoComunidad cto = algorithmController.ejecutar(domainController.getAlgorithmGraph(), domainController.getGrafo());
                     domainController.setGeneratedCto(cto);
                     break;

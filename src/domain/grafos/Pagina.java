@@ -2,7 +2,9 @@ package domain.grafos;
 
 /**
  *
- * @author Javier
+ * @author Javier López Calderón
+ * @version 1.0
+ * @since 01/06/2015
  */
 public class Pagina extends Node
 {
