@@ -184,6 +184,15 @@ public class CtrDominio
         return (this.graph != null);
     }
     
+    public boolean isGraphEmpty()
+    {
+        if(this.g.getCategorySize() == 0 && this.g.getPageSize() == 0 && this.g.getNumberEdges() == 0)
+            return true;
+        
+        else
+            return false;
+    }
+    
     public void setGeneratedCto(CtoComunidad cto)
     {
         this.generatedCto = cto;
@@ -754,5 +763,27 @@ public class CtrDominio
         }
         if(this.generatedCto != null) return !this.generatedCto.isEmpty();
         return false; 
+    }
+    
+    public boolean existsComunidad(String comunidad, boolean imported)
+    {
+        if(imported)
+        {
+            for(Comunidad community : this.importedCto.getCtoComunidades())
+            {
+                if(community.getNombre().equals(comunidad))
+                    return true;
+            }
+        }
+        else
+        {
+            for(Comunidad community : this.generatedCto.getCtoComunidades())
+            {
+                if(community.getNombre().equals(comunidad))
+                    return true;
+                
+            }
+        }
+        return false;
     }
 }

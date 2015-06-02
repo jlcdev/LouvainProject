@@ -193,6 +193,11 @@ public class CtrlPresentacion
     }
     //PESTAÑA GRAFO
 
+    public boolean isGraphEmpty()
+    {
+        return this.ctrlDominio.isGraphEmpty();
+    }
+    
     public int getPagNum(String pagina)
     {
         int r = this.ctrlDominio.verNumPag(pagina);
@@ -522,6 +527,12 @@ public class CtrlPresentacion
     }
 
     //COMPARACION
+    
+    public boolean existsComunidad(String comunidad, boolean imported)
+    {
+        return this.ctrlDominio.existsComunidad(comunidad,imported);
+    }
+    
     public int numCatCom(String comunidad, boolean imported)
     {
         return this.ctrlDominio.numCatCom(comunidad, imported);
