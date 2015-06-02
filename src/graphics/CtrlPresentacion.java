@@ -580,4 +580,9 @@ public class CtrlPresentacion
     {
         this.ctrlDominio.windowGraphAlgorithm();
     }
+    
+    public Double getAproxTime()
+    {
+        return this.ctrlAlgoritmo.timeAproximation();
+    }
 }
