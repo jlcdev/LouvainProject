@@ -5,6 +5,7 @@
  */
 package graphics;
 
+import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -114,8 +115,14 @@ public class VistaFileChooser extends javax.swing.JFrame {
                 }
                 else
                 {
-                    if(this.grafo == true) iCtrlPresentacion.exportarGrafo(fileChooser.getSelectedFile().toString());
-                    else iCtrlPresentacion.exportarConjunto(fileChooser.getSelectedFile().toString(), importado);
+                    File fileToBeSaved = fileChooser.getSelectedFile();
+
+                    if(!fileChooser.getSelectedFile().getAbsolutePath().endsWith(".txt"))
+                    {
+                        fileToBeSaved = new File(fileChooser.getSelectedFile() + ".txt");
+                    }
+                    if(this.grafo == true) iCtrlPresentacion.exportarGrafo(fileToBeSaved.toString());
+                    else iCtrlPresentacion.exportarConjunto(fileToBeSaved.toString(), importado);
                 }
                 iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
                 break;        
