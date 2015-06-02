@@ -19,8 +19,6 @@ import javax.swing.JOptionPane;
  */
 public class VistaPrincipal extends javax.swing.JFrame 
 {
-    
-    // Controlador de presentacion
     private final CtrlPresentacion iCtrlPresentacion;
     private ArrayList<Integer> catPosToId;
     private ArrayList<Integer> pagPosToId;
@@ -28,7 +26,8 @@ public class VistaPrincipal extends javax.swing.JFrame
     boolean[] modConjunto = new boolean[2];    
     int p;
     int minCat;
-     
+    boolean setNum;
+    
     
     public VistaPrincipal (CtrlPresentacion pCtrlPresentacion) 
     {
@@ -39,14 +38,11 @@ public class VistaPrincipal extends javax.swing.JFrame
         this.catPosToId = new ArrayList();
         this.pagPosToId = new ArrayList();
         this.modConjunto[0] = true;
-        this.modConjunto[1] = true;
-        //this.modConjuntoNum[0] = false;
-        //this.modConjuntoNum[1] = false;
+        this.modConjunto[1] = true;       
         this.modEnlaces = false;
         this.p = 50;
         this.minCat = 2;
-        this.pagPosToId = new ArrayList();
-        this.catPosToId = new ArrayList();
+        this.setNum = false;
     }
 
     public void hacerVisible() 
@@ -232,11 +228,23 @@ public class VistaPrincipal extends javax.swing.JFrame
     
     private void newGrafo()
     {
-        int confirm = JOptionPane.showOptionDialog(
+        if(!this.iCtrlPresentacion.isGraphEmpty())
+        {
+            int confirm = JOptionPane.showOptionDialog(
              null, "¿Seguro que quieres borrar el grafo anterior?", 
              "Crear nuevo grafo", JOptionPane.YES_NO_OPTION, 
              JOptionPane.QUESTION_MESSAGE, null, null, null);
-        if (confirm == 0) {
+            
+            if (confirm == 0) 
+            {
+                this.clearTxtAreas();
+                this.catPosToId = new ArrayList();
+                this.pagPosToId = new ArrayList();
+                this.iCtrlPresentacion.crearGrafo();
+            } 
+        }
+        else
+        {
             this.clearTxtAreas();
             this.catPosToId = new ArrayList();
             this.pagPosToId = new ArrayList();
@@ -1739,6 +1747,9 @@ public class VistaPrincipal extends javax.swing.JFrame
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 listComMouseReleased(evt);
             }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listComMouseClicked(evt);
+            }
         });
         listCom.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -2261,6 +2272,7 @@ public class VistaPrincipal extends javax.swing.JFrame
             ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(this.txtComToList.getText(), importado);          
             DefaultListModel model = (DefaultListModel) this.listCom.getModel();
             model.clear();
+            model.addElement("..");
             for(String elem : lista) model.addElement(elem);
 
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
@@ -2306,6 +2318,7 @@ public class VistaPrincipal extends javax.swing.JFrame
             }*/
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card1");
+            setNum = false;
         }
         else 
         {
@@ -2373,9 +2386,10 @@ public class VistaPrincipal extends javax.swing.JFrame
             ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
             DefaultListModel model = (DefaultListModel) listCom.getModel();
             model.clear();
+            model.addElement("..");
             for(String elem : lista) model.addElement(elem);
-            this.listCom.setSelectedIndex(1);////
-            this.listSet.setSelectedIndex(1);///
+            //this.listCom.setSelectedIndex(1);////
+            //this.listSet.setSelectedIndex(1);///
             //this.listSetNum.setSelectedIndex(1);///
             this.actualizarSet(importado);
             this.modConjunto[importado ? 1 : 0] = true;
@@ -3157,7 +3171,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void listComValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listComValueChanged
         if(!this.listCom.isSelectionEmpty())
         {
-            this.txtCatAddRmvSet.setText(this.listCom.getSelectedValue().toString());
+            if(this.listCom.getSelectedIndex() != 0) this.txtCatAddRmvSet.setText(this.listCom.getSelectedValue().toString());
         }
     }//GEN-LAST:event_listComValueChanged
 
@@ -3186,6 +3200,7 @@ public class VistaPrincipal extends javax.swing.JFrame
             ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(s, this.comboTipoSet.getSelectedIndex() != 0);          
             DefaultListModel model = (DefaultListModel) this.listCom.getModel();
             model.clear();
+            model.addElement("..");
             for(String elem : lista) model.addElement(elem);
 
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
@@ -3293,6 +3308,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                 this.minCat = min;
                 this.modConjunto[importado ? 1 : 0] = false;
             }
+            setNum = true;
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card3");
         }
@@ -3319,9 +3335,12 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listLinksNodeValueChanged
 
     private void listSetNumMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetNumMouseReleased
-        JList list = (JList)evt.getSource();
-        list.setSelectedIndex(list.locationToIndex(evt.getPoint()));
-        showPopupMenuNum(evt);
+        if(evt.getButton() == MouseEvent.BUTTON3)
+        {
+            JList list = (JList)evt.getSource();
+            list.setSelectedIndex(list.locationToIndex(evt.getPoint()));
+            showPopupMenuNum(evt);
+        }        
     }//GEN-LAST:event_listSetNumMouseReleased
 
     private void listSetNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetNumMouseClicked
@@ -3334,6 +3353,7 @@ public class VistaPrincipal extends javax.swing.JFrame
             ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(s, this.comboTipoSet.getSelectedIndex() != 0);          
             DefaultListModel model = (DefaultListModel) this.listCom.getModel();
             model.clear();
+            model.addElement("..");
             for(String elem : lista) model.addElement(elem);
 
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
@@ -3417,6 +3437,25 @@ public class VistaPrincipal extends javax.swing.JFrame
         s = s.substring(0, index);
         this.txtCompCom2.setText(s);
     }//GEN-LAST:event_mItemCompNum2ActionPerformed
+
+    private void listComMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listComMouseClicked
+        if (evt.getClickCount() == 2 && !this.listCom.isSelectionEmpty()) 
+        {
+            if(this.listCom.getSelectedIndex() == 0)
+            {
+                if(this.setNum)
+                {
+                    CardLayout cl = (CardLayout)(this.panelC.getLayout());
+                    cl.show(this.panelC, "card3");
+                }
+                else
+                {
+                    CardLayout cl = (CardLayout)(this.panelC.getLayout());
+                    cl.show(this.panelC, "card1");
+                }
+            }
+        }
+    }//GEN-LAST:event_listComMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
