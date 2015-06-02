@@ -21,20 +21,37 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- *
+ * La clase Visual se encarga de representar en una JFrame o en un JPanel
+ * un grafo.
+ * Para hacerlo, cuenta con 5 layouts disponibles 0-4
+ * ·FRLayout
+ * ·CircleLayout
+ * ·ISOMLayout
+ * ·SpringLayout
+ * ·KKLayout
+ * Solo hay que, en función de la necesidad, llamar a launchWindow si deseamos
+ * que el grafo se muestre en una ventana nueva o, si se desde, llamar a
+ * getGraphPanel para obtener un JPanel listo para añadir en otro componente.
  * @author Javier López Calderón
  * @param <V> Vertex for internal graph
  * @param <E> Type of Edge for internal graph
  */
-public class Visual <V,E>
+public final class Visual<V, E>
 {
-    private Graph<V,E> g;
+    private Graph<V, E> g;
     private Layout layout;
-    private Renderer renderer;
+    private final Renderer renderer;
     private VisualizationViewer viasualization;
-    private DefaultModalGraphMouse modalMouse;
+    private final DefaultModalGraphMouse modalMouse;
     
-    public Visual(ArrayList<V> vertex, HashMap<V, HashMap<V,E>> edges, int layout, Color color)
+    /**
+     * Constructor de la clase visual
+     * @param vertex lista de vertices para el grafo a representar
+     * @param edges todas las aristas que deben estar presentes en el grafo
+     * @param layout que tipo de layout escoger para pintar el grafo
+     * @param color color de fondo para la ventana
+     */
+    public Visual(ArrayList<V> vertex, HashMap<V, HashMap<V, E>> edges, int layout, Color color)
     {
         this.renderer = new BasicRenderer();
         this.setGraph(vertex, edges);
@@ -46,7 +63,11 @@ public class Visual <V,E>
         this.viasualization.setGraphMouse(this.modalMouse);
     }
     
-    public void setLayout(int selected)
+    /**
+     * Permite
+     * @param selected 
+     */
+    private void setLayout(int selected)
     {
         switch(selected)
         {
@@ -72,8 +93,8 @@ public class Visual <V,E>
                 break;
         }
     }
-    
-    public void setGraph(ArrayList<V> vertex, HashMap<V, HashMap<V,E>> edges)
+
+    private void setGraph(ArrayList<V> vertex, HashMap<V, HashMap<V, E>> edges)
     {
         this.g = new SparseGraph();
         Iterator<Entry<V, HashMap<V, E>>> it = edges.entrySet().iterator();
@@ -94,20 +115,20 @@ public class Visual <V,E>
             }
         }
     }
-    
-    public void setBackgroundColor(Color color)
+
+    private void setBackgroundColor(Color color)
     {
         this.viasualization.setBackground(color);
     }
-    
+
     public void launchWindow()
     {
         JFrame frame = new JFrame();
-        frame.setSize(800, 600);
+        frame.pack();
         frame.add(this.viasualization);
         frame.setVisible(true);
     }
-    
+
     public JPanel getGraphPanel()
     {
         JPanel panel = new JPanel();

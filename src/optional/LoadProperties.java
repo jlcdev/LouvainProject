@@ -1,6 +1,7 @@
 package optional;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -32,7 +33,7 @@ public class LoadProperties
             Properties p = g.fromJson(data, Properties.class);
             return p;
         }
-        catch (Exception ex)
+        catch (IOException | JsonSyntaxException ex)
         {
             Logger.getLogger(LoadProperties.class.getName()).log(Level.SEVERE, null, ex);
         }
