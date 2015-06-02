@@ -1223,7 +1223,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addComponent(jLabel24)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSelCatRand)
-                        .addGap(31, 31, 31)
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel23)
                         .addGap(18, 18, 18)
                         .addGroup(tabSelCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1360,6 +1360,15 @@ public class VistaPrincipal extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelPagRand)
+                    .addGroup(tabSelPagLayout.createSequentialGroup()
+                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtPagNameSel)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAddSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRmvSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabSelPagLayout.createSequentialGroup()
                         .addComponent(txtMinPagLink, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1368,16 +1377,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addComponent(txtMaxPagLink, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnAddSelPagRang))
-                    .addComponent(btnSelPagRand)
-                    .addGroup(tabSelPagLayout.createSequentialGroup()
-                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPagNameSel)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRmvSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
@@ -1401,15 +1401,13 @@ public class VistaPrincipal extends javax.swing.JFrame
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSelPagRand)
-                        .addGap(31, 31, 31)
-                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22)
-                            .addGroup(tabSelPagLayout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnAddSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnRmvSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPagNameSel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel22)
+                        .addGap(18, 18, 18)
+                        .addGroup(tabSelPagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAddSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRmvSelPagName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPagNameSel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addComponent(jLabel25)
                         .addGap(18, 18, 18)
@@ -2696,9 +2694,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         for(int intValue : index) intList.add(this.catPosToId.get(intValue));
         this.iCtrlPresentacion.aplicarSelCat(intList);
         this.tabsAlgoritmo.setSelectedIndex(1);
-        if(this.radioLouvain.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime());
-        else if(this.radioGirvan.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()*3);
-        else this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()/2);
+        if(this.radioLouvain.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()+"s");
+        else if(this.radioGirvan.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()*3+"s");
+        else this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()/2+"s");
 
     }//GEN-LAST:event_btnAplicarSelCatActionPerformed
 
@@ -3528,15 +3526,15 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listComMouseClicked
 
     private void radioGirvanStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioGirvanStateChanged
-        if(this.radioGirvan.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()*3);    
+        if(this.radioGirvan.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()*3+"s");    
     }//GEN-LAST:event_radioGirvanStateChanged
 
     private void radioCliqueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioCliqueStateChanged
-        if(this.radioClique.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()/2);
+        if(this.radioClique.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()/2+"s");
     }//GEN-LAST:event_radioCliqueStateChanged
 
     private void radioLouvainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioLouvainStateChanged
-        if(this.radioLouvain.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime());
+        if(this.radioLouvain.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()+"s");
     }//GEN-LAST:event_radioLouvainStateChanged
 
 
