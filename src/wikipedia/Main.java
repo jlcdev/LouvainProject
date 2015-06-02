@@ -9,9 +9,14 @@ import graphics.CtrlPresentacion;
 
 /**
  *
- * @author joan
+ * @author Joan Rodas
  */
 public class Main {
+
+    /**
+     * Inicializa el programa
+     * @param args
+     */
     public static void main (String[] args) {
     javax.swing.SwingUtilities.invokeLater (
       new Runnable() {

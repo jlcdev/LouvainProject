@@ -7,7 +7,7 @@ package graphics;
 
 /**
  *
- * @author alfred
+ * @author Alfred
  */
 public class VistaError extends javax.swing.JFrame {
 
@@ -23,16 +23,26 @@ public class VistaError extends javax.swing.JFrame {
      
     }
     
+    /**
+     * Establece el texto a mostrar
+     * @param s
+     */
     public void setText(String s)
     {
         this.jTextArea1.setText(s);
     }
     
+    /**
+     * Hace visible la vista de errores
+     */
     public void hacerVisible() {
         this.pack();
         this.setVisible(true);
     }
 
+    /**
+     * Hace invisible la vista de errores
+     */
     public void hacerInvisible() {
         this.setVisible(false);
     }

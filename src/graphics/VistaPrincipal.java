@@ -28,7 +28,10 @@ public class VistaPrincipal extends javax.swing.JFrame
     int minCat;
     boolean setNum;
     
-    
+    /**
+     *
+     * @param pCtrlPresentacion
+     */
     public VistaPrincipal (CtrlPresentacion pCtrlPresentacion) 
     {
         this.iCtrlPresentacion = pCtrlPresentacion;        
@@ -44,32 +47,53 @@ public class VistaPrincipal extends javax.swing.JFrame
         this.setNum = false;
     }
 
+    /**
+     * Hacer visible la Vista Principal
+     */
     public void hacerVisible() 
     {
         this.pack();
         this.setVisible(true);
     }
 
+    /**
+     * Activar Vista Principal
+     */
     public void activar() 
     {
         this.setEnabled(true);
     }
 
+    /**
+     * Descativa la vista Principal
+     */
     public void desactivar() 
     {
         this.setEnabled(false);
     }
     
+    /**
+     * Ir a la pestaña "tab"
+     * @param tab
+     */
     public void goToTab(int tab)
     {
         tabsPrincipal.setSelectedIndex(tab);        
     }
     
+    /**
+     * Activa la pestaña "tab"
+     * @param tab
+     */
     public void activarTab(int tab)
     {
         tabsPrincipal.setEnabledAt(tab, true);
     }
     
+    /**
+     * Desactiva la pestaña "tab"
+     * @param tab
+     */
     public void desactivarTab(int tab)
     {
         tabsPrincipal.setEnabledAt(tab, false);
@@ -96,6 +120,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         }
     }
     
+    /**
+     * Actualizar lista de páginas
+     */
     public void actualizarPag()
     {        
         ArrayList<String> lista = this.iCtrlPresentacion.mostrarGrafoPag();          
@@ -112,6 +139,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         }        
     }
     
+    /**
+     * Actualizar lista de categorias
+     */
     public void actualizarCat()
     {           
         ArrayList<String> lista = this.iCtrlPresentacion.mostrarGrafoCat();          
@@ -127,6 +157,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         }        
     }
     
+    /**
+     * Actualizar enlaces
+     */
     public void actualizarLinks()
     {           
         ArrayList<String> lista = this.iCtrlPresentacion.mostrarGrafoEnlaces();          
@@ -137,6 +170,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         this.labelInfoGraf.setText("Categorias: "+this.catPosToId.size()+" | "+"Páginas: "+this.pagPosToId.size()+" | "+"Enlaces: "+ lista.size());
     }
     
+    /**
+     * Actualizar conjunto
+     * @param importado
+     */
     public void actualizarSet(boolean importado)
     {           
         ArrayList<String> lista = iCtrlPresentacion.mostrarCto(importado);         
@@ -158,6 +195,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         }        
     }
     
+    /**
+     * Actualizar elementos (checkBox y comboBox) sobre los conjuntos
+     * @param imported
+     */
     public void updateCjtos(boolean imported)
     {
         if(imported)
@@ -198,6 +239,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         }
     }
        
+    /**
+     * Restaurar áreas de texto y listas
+     */
     public void clearTxtAreas()
     {
         DefaultListModel model = (DefaultListModel) this.listSelCategorias.getModel();

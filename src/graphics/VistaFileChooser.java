@@ -20,7 +20,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
     private boolean importado;
     private final CtrlPresentacion iCtrlPresentacion;
     /**
-     * Creates new form VistaManual
+     * Crea nuevo formulario VistaManual
      * @param pCtrlPresentacion
      */
     public VistaFileChooser(CtrlPresentacion pCtrlPresentacion) {
@@ -32,6 +32,12 @@ public class VistaFileChooser extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);       
     }
     
+    /**
+     * Hace visible la vista del fileChooser
+     * @param importar
+     * @param grafo
+     * @param importado
+     */
     public void hacerVisible(boolean importar, boolean grafo, boolean importado) {
         if(importar) 
         {
@@ -51,6 +57,9 @@ public class VistaFileChooser extends javax.swing.JFrame {
         this.setVisible(true);        
     }
 
+    /**
+     * Hace invisible la vista del fileChooser
+     */
     public void hacerInvisible() {
         this.setVisible(false);
     }

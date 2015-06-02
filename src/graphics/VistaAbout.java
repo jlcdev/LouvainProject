@@ -13,7 +13,7 @@ public class VistaAbout extends javax.swing.JFrame {
 
     private final CtrlPresentacion iCtrlPresentacion;
     /**
-     * Creates new form VistaAbout
+     * Crea nuevo formulario VistaAbout
      * @param pCtrlPresentacion
      */
     public VistaAbout(CtrlPresentacion pCtrlPresentacion) {
@@ -22,11 +22,17 @@ public class VistaAbout extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);        
     }
     
+    /**
+     * Hace visible la vista "Acerca de...""
+     */
     public void hacerVisible() {
         this.pack();
         this.setVisible(true);
     }
 
+    /**
+     * Hace invisible la vista "Acerca de..."
+     */
     public void hacerInvisible() {
         this.setVisible(false);
     }

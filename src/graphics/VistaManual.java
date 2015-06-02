@@ -9,14 +9,14 @@ import java.awt.CardLayout;
 
 /**
  *
- * @author joan
+ * @author Joan Rodas
  */
 public class VistaManual extends javax.swing.JFrame {
 
     
     private final CtrlPresentacion iCtrlPresentacion;
     /**
-     * Creates new form VistaManual
+     * Crea nuevo formulario VistaManual
      * @param pCtrlPresentacion
      */
     public VistaManual(CtrlPresentacion pCtrlPresentacion) {
@@ -25,11 +25,17 @@ public class VistaManual extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
-     public void hacerVisible() {
+    /**
+     * Hace visible la vista del manual
+     */
+    public void hacerVisible() {
         this.pack();
         this.setVisible(true);
     }
 
+    /**
+     * Hace invisible la vista del manual
+     */
     public void hacerInvisible() {
         this.setVisible(false);
     }

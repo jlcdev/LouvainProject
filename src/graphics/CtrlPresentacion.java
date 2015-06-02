@@ -9,11 +9,10 @@ import domain.CtrAlgoritmo;
 import java.util.*;
 import shared.Graph;
 
-////////////////////////
 public class CtrlPresentacion
 {
-    private CtrDominio ctrlDominio;
-    private CtrAlgoritmo ctrlAlgoritmo;
+    private final CtrDominio ctrlDominio;
+    private final CtrAlgoritmo ctrlAlgoritmo;
     private VistaPrincipal vistaPrincipal = null;    // (= null) innecesario
     private VistaAbout vistaAbout = null;  // (= null) innecesario
     private VistaError vistaError = null;
@@ -21,7 +20,11 @@ public class CtrlPresentacion
     private VistaManual vistaManual = null;
 
 //////////////////////// Constructor y metodos de inicializacion
-    public CtrlPresentacion()
+
+    /**
+     *
+     */
+        public CtrlPresentacion()
     {
         this.ctrlDominio = new CtrDominio();
         this.ctrlAlgoritmo = new CtrAlgoritmo();
@@ -31,6 +34,9 @@ public class CtrlPresentacion
         }
     }
 
+    /**
+     *
+     */
     public void inicializarPresentacion()
     {
         //ctrlDominio.inicializarCtrDominio();
@@ -38,7 +44,14 @@ public class CtrlPresentacion
     }
 
 //////////////////////// Metodos de sincronizacion entre vistas
-    public void sincronizacionVistaPrincipal_a_FileChooser(boolean importar, boolean grafo, boolean importado)
+
+    /**
+     * Muestra el selector de ficheros y bloquea la vista principal
+     * @param importar
+     * @param grafo
+     * @param importado
+     */
+        public void sincronizacionVistaPrincipal_a_FileChooser(boolean importar, boolean grafo, boolean importado)
     {
         this.vistaPrincipal.desactivar();
         // Solo se crea una vista secundaria (podria crearse una nueva cada vez)
@@ -50,6 +63,9 @@ public class CtrlPresentacion
         this.vistaFileChooser.hacerVisible(importar, grafo, importado);
     }
 
+    /**
+     * Muestra el manual y bloquea la vista principal
+     */
     public void sincronizacionVistaPrincipal_a_Manual()
     {
         this.vistaPrincipal.desactivar();
@@ -61,6 +77,9 @@ public class CtrlPresentacion
         this.vistaManual.hacerVisible();
     }
 
+    /**
+     * Muestra la vista About y bloquea la vista principal
+     */
     public void sincronizacionVistaPrincipal_a_About()
     {
         this.vistaPrincipal.desactivar();
@@ -72,6 +91,10 @@ public class CtrlPresentacion
         this.vistaAbout.hacerVisible();
     }
 
+    /**
+     * Muestra la vista de errores y bloquea la vista principal
+     * @param msg
+     */
     public void sincronizacionVistaPrincipal_a_Error(String msg)
     {
         this.vistaPrincipal.desactivar();
@@ -84,6 +107,9 @@ public class CtrlPresentacion
         this.vistaError.hacerVisible();
     }
 
+    /**
+     * Desbloquea la vista principal y hace invisible el filechooser
+     */
     public void sincronizacionVistaFileChooser_a_Principal()
     {
         // Se hace invisible la vista secundaria (podria anularse)
@@ -91,6 +117,9 @@ public class CtrlPresentacion
         this.vistaPrincipal.activar();
     }
 
+    /**
+     * Desbloquea la vista principal y hace invisible el manual
+     */
     public void sincronizacionVistaManual_a_Principal()
     {
         // Se hace invisible la vista secundaria (podria anularse)
@@ -98,6 +127,9 @@ public class CtrlPresentacion
         this.vistaPrincipal.activar();
     }
 
+    /**
+     * Desbloquea la vista principal y hace invisible la vista About
+     */
     public void sincronizacionVistaAbout_a_Principal()
     {
         // Se hace invisible la vista secundaria (podria anularse)
@@ -105,6 +137,9 @@ public class CtrlPresentacion
         this.vistaPrincipal.activar();
     }
 
+    /**
+     * Desbloquea la vista principal y hace invisible la vista de errores
+     */
     public void sincronizacionVistaError_a_Principal()
     {
         // Se hace invisible la vista secundaria (podria anularse)
@@ -113,7 +148,11 @@ public class CtrlPresentacion
     }
 
 //////////////////////// Llamadas al controlador de dominio
-    public void crearGrafo()
+
+    /**
+     * Crea un nuevo grafo vacío
+     */
+        public void crearGrafo()
     {
         this.ctrlDominio.newGrafo();
         this.vistaPrincipal.activarTab(1); //GRAFO
@@ -193,11 +232,20 @@ public class CtrlPresentacion
     }
     //PESTAÑA GRAFO
 
+    /**
+     * Mira si el grafo está vacío
+     * @return
+     */
     public boolean isGraphEmpty()
     {
         return this.ctrlDominio.isGraphEmpty();
     }
     
+    /**
+     *
+     * @param pagina
+     * @return
+     */
     public int getPagNum(String pagina)
     {
         int r = this.ctrlDominio.verNumPag(pagina);
@@ -209,6 +257,11 @@ public class CtrlPresentacion
         return r;
     }
 
+    /**
+     *
+     * @param categoria
+     * @return
+     */
     public int getCatNum(String categoria)
     {
         int r = this.ctrlDominio.verNumCat(categoria);
@@ -220,6 +273,12 @@ public class CtrlPresentacion
         return r;
     }
 
+    /**
+     *
+     * @param min
+     * @param max
+     * @return
+     */
     public ArrayList<Integer> getCatSelection(int min, int max)
     {
         if(max < min)
@@ -229,6 +288,12 @@ public class CtrlPresentacion
         return this.ctrlDominio.getCatSelection(min, max);
     }
 
+    /**
+     *
+     * @param min
+     * @param max
+     * @return
+     */
     public ArrayList<Integer> getPagSelection(int min, int max)
     {
         if(max < min)
@@ -427,7 +492,12 @@ public class CtrlPresentacion
     }
 
     //pestaña algoritmo
-    public Graph<Integer, Double> algorithmGraph()
+
+    /**
+     *
+     * @return
+     */
+        public Graph<Integer, Double> algorithmGraph()
     {
         Graph<Integer, Double> grafo = this.ctrlAlgoritmo.generate(this.ctrlDominio.getGrafo());
         this.ctrlDominio.setAlgorithmGraph(grafo);
@@ -435,6 +505,11 @@ public class CtrlPresentacion
         return grafo;
     }
 
+    /**
+     *
+     * @param algoritmo
+     * @param p
+     */
     public void ejecutar(int algoritmo, int p)
     {
         //HACER UN EQUALS CON EL GRAFO GENERADO
@@ -464,23 +539,47 @@ public class CtrlPresentacion
         }
     }
 
+    /**
+     *
+     * @param al
+     */
     public void aplicarSelPag(ArrayList<Integer> al)
     {
         this.ctrlAlgoritmo.setPageSelections(al);
     }
 
+    /**
+     *
+     * @param al
+     */
     public void aplicarSelCat(ArrayList<Integer> al)
     {
         this.ctrlAlgoritmo.setCatSelections(al);
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @param c
+     * @param d
+     * @param e
+     */
     public void aplicarFiltros(int a, int b, int c, int d, int e)
     {
         this.ctrlAlgoritmo.setFilters(a, b, c, d, e);
     }
 
     //pestaña comunidades
-    public boolean addCtoCat(String categoria, String comunidad, boolean importat)
+
+    /**
+     *
+     * @param categoria
+     * @param comunidad
+     * @param importat
+     * @return
+     */
+        public boolean addCtoCat(String categoria, String comunidad, boolean importat)
     {
         if(!this.ctrlDominio.addCtoCat(categoria, comunidad, importat))
         {
@@ -490,6 +589,12 @@ public class CtrlPresentacion
         return true;
     }
 
+    /**
+     *
+     * @param comunidad
+     * @param importat
+     * @return
+     */
     public boolean addCtoCom(String comunidad, boolean importat)
     {
         if(!this.ctrlDominio.addCtoCom(comunidad, importat))
@@ -500,12 +605,24 @@ public class CtrlPresentacion
         return true;
     }
 
+    /**
+     *
+     * @param categoria
+     * @param comunidad
+     * @param importat
+     */
     public void rmvCtoCat(String categoria, String comunidad, boolean importat)
     {
         if(!this.ctrlDominio.rmvCtoCat(categoria, comunidad, importat))
             sincronizacionVistaPrincipal_a_Error("Comunidad no existente/Categoria no existente.");
     }
 
+    /**
+     *
+     * @param comunidad
+     * @param importat
+     * @return
+     */
     public int rmvCtoCom(String comunidad, boolean importat)
     {
         int r = this.ctrlDominio.rmvCtoCom(comunidad, importat);
@@ -515,21 +632,42 @@ public class CtrlPresentacion
         return r;
     }
 
+    /**
+     *
+     * @param anterior
+     * @param nuevo
+     * @param importat
+     */
     public void modCtoNombre(String anterior, String nuevo, boolean importat)
     {
         if(!this.ctrlDominio.modCtoNombre(anterior, nuevo, importat))
             sincronizacionVistaPrincipal_a_Error("Nuevo nombre ya existente o anterior no existente.");
     }
 
+    /**
+     *
+     * @param importat
+     * @return
+     */
     public ArrayList<String> mostrarCto(boolean importat)
     {
         return this.ctrlDominio.mostrarCtoComunidad(importat);
     }
 
+    /**
+     *
+     * @param importat
+     */
     public void visualizarCto(boolean importat)
     {
     }
 
+    /**
+     *
+     * @param comunidad
+     * @param importat
+     * @return
+     */
     public ArrayList<String> mostrarCom(String comunidad, boolean importat)
     {
         ArrayList<String> s = this.ctrlDominio.mostrarComunidad(comunidad, importat);
@@ -540,89 +678,173 @@ public class CtrlPresentacion
         return s;
     }
 
+    /**
+     *
+     * @param comunidad
+     * @param importat
+     */
     public void visualizarCom(String comunidad, boolean importat)
     {
     }
 
     //COMPARACION
     
+    /**
+     *
+     * @param comunidad
+     * @param imported
+     * @return
+     */
+        
     public boolean existsComunidad(String comunidad, boolean imported)
     {
         return this.ctrlDominio.existsComunidad(comunidad,imported);
     }
     
+    /**
+     *
+     * @param comunidad
+     * @param imported
+     * @return
+     */
     public int numCatCom(String comunidad, boolean imported)
     {
         return this.ctrlDominio.numCatCom(comunidad, imported);
     }
 
+    /**
+     *
+     * @param com1
+     * @param importado1
+     * @param com2
+     * @param importado2
+     * @return
+     */
     public ArrayList<String> commonCategories(String com1, boolean importado1, String com2, boolean importado2)
     {
         return ctrlDominio.commonCategories(com1, importado1, com2, importado2);
     }
 
+    /**
+     *
+     * @param comunidad
+     * @param importado
+     * @return
+     */
     public double getPorcentaje(String comunidad, boolean importado)
     {
         return this.ctrlDominio.getPorcentaje(comunidad, importado);
     }
 
+    /**
+     *
+     * @param imported
+     * @return
+     */
     public int[] infoConjunto(boolean imported)
     {
         return this.ctrlDominio.infoConjunto(imported);
     }
 
+    /**
+     *
+     * @param imported
+     * @return
+     */
     public double getTexec(boolean imported)
     {
         return this.ctrlDominio.getTexec(imported);
     }
 
+    /**
+     *
+     * @param imported
+     * @return
+     */
     public String isCtoModified(boolean imported)
     {
         if(this.ctrlDominio.isCtoModified(imported))return "si";
         return "no";
     }
     
+    /**
+     *
+     * @param imported
+     * @return
+     */
     public boolean existsSet(boolean imported)
     {
         return this.ctrlDominio.existsCjto(imported);
     }
 
+    /**
+     *
+     * @param imported
+     * @return
+     */
     public double getPurityOne(boolean imported)
     {
         return this.ctrlDominio.getPurityOne(imported);
     }
 
+    /**
+     *
+     * @return
+     */
     public double getPurityBoth()
     {
         return this.ctrlDominio.getPurityBoth();
     }
 
+    /**
+     *
+     * @param imported
+     * @return
+     */
     public double getAllPurityOne(boolean imported)
     {
         return this.ctrlDominio.getAllPurityOne(imported);
     }
 
+    /**
+     *
+     * @return
+     */
     public double getAllPurityBoth()
     {
         return this.ctrlDominio.getAllPurityBoth();
     }
 
+    /**
+     *
+     * @param p
+     */
     public void obtainCjto(int p)
     {
         this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.obtain(p, this.ctrlDominio.getGrafo()));
         //this.vistaPrincipal.actualizarSet(false);
     }
 
+    /**
+     *
+     */
     public void visualizarGrafo()
     {
         this.ctrlDominio.windowGraphEntry();
     }
 
+    /**
+     *
+     */
     public void visualizarGrafoGenerado()
     {
         this.ctrlDominio.windowGraphAlgorithm();
     }
     
+    /**
+     *
+     * @return
+     */
     public Double getAproxTime()
     {
         return this.ctrlAlgoritmo.timeAproximation();
