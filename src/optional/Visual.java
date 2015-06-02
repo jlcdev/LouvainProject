@@ -39,7 +39,7 @@ public final class Visual<V>
     private Graph<V, V> g;
     private Layout layout;
     private final Renderer renderer;
-    private VisualizationViewer viasualization;
+    private VisualizationViewer visualization;
     private final DefaultModalGraphMouse modalMouse;
     
     /**
@@ -54,11 +54,11 @@ public final class Visual<V>
         this.renderer = new BasicRenderer();
         this.setGraph(vertex, edges);
         this.setLayout(layout);
-        this.viasualization = new VisualizationViewer(this.layout);
+        this.visualization = new VisualizationViewer(this.layout);
         this.setBackgroundColor(color);
-        this.viasualization.setRenderer(this.renderer);
+        this.visualization.setRenderer(this.renderer);
         this.modalMouse = new DefaultModalGraphMouse();
-        this.viasualization.setGraphMouse(this.modalMouse);
+        this.visualization.setGraphMouse(this.modalMouse);
     }
     
     /**
@@ -71,23 +71,23 @@ public final class Visual<V>
         {
             case 0:
                 this.layout = new FRLayout(this.g);
-                this.viasualization = new VisualizationViewer(this.layout);
+                this.visualization = new VisualizationViewer(this.layout);
                 break;
             case 1:
                 this.layout = new CircleLayout(this.g);
-                this.viasualization = new VisualizationViewer(this.layout);
+                this.visualization = new VisualizationViewer(this.layout);
                 break;
             case 2:
                 this.layout = new ISOMLayout(this.g);
-                this.viasualization = new VisualizationViewer(this.layout);
+                this.visualization = new VisualizationViewer(this.layout);
                 break;
             case 3:
                 this.layout = new SpringLayout(this.g);
-                this.viasualization = new VisualizationViewer(this.layout);
+                this.visualization = new VisualizationViewer(this.layout);
                 break;
             case 4:
                 this.layout = new KKLayout(this.g);
-                this.viasualization = new VisualizationViewer(this.layout);
+                this.visualization = new VisualizationViewer(this.layout);
                 break;
         }
     }
@@ -114,13 +114,13 @@ public final class Visual<V>
 
     private void setBackgroundColor(Color color)
     {
-        this.viasualization.setBackground(color);
+        this.visualization.setBackground(color);
     }
 
     public void launchWindow()
     {
         JFrame frame = new JFrame();
-        frame.add(this.viasualization);
+        frame.add(this.visualization);
         frame.pack();
         frame.setVisible(true);
     }
@@ -128,7 +128,7 @@ public final class Visual<V>
     public JPanel getGraphPanel()
     {
         JPanel panel = new JPanel();
-        panel.add(this.viasualization);
+        panel.add(this.visualization);
         panel.setVisible(true);
         return panel;
     }

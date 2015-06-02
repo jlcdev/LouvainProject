@@ -93,7 +93,10 @@ public class CtrAlgoritmo
             response = 0.000000004*nn+0.008052*n+10;
         }
         if(response < 0.001) response = 0.0;
-        return response;
+        long factor = (long) Math.pow(10, 2);
+        response = response * factor;
+        long tmp = Math.round(response);
+        return (double) tmp / factor;
     }
     
     public boolean areCatSelections()
