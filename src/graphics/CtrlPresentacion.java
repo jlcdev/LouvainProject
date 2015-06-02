@@ -585,4 +585,9 @@ public class CtrlPresentacion
     {
         return this.ctrlDominio.getPurityBoth();
     }
+    
+    public Double getAproxTime()
+    {
+        return this.ctrlAlgoritmo.timeAproximation();
+    }
 }

@@ -813,8 +813,10 @@
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Component id="spinP" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="labelAproxTime" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="labelAproxTime1" min="-2" pref="128" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="tabsAlgoritmo" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -836,11 +838,15 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnEjecutar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Component id="labelAproxTime1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAproxTime" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabsAlgoritmo" pref="546" max="32767" attributes="0"/>
+                      <Component id="tabsAlgoritmo" pref="547" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1521,6 +1527,16 @@
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="50" maximum="100" minimum="0" numberType="java.lang.Integer" stepSize="10" type="number"/>
                 </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAproxTime">
+              <Properties>
+                <Property name="text" type="java.lang.String" value=" "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAproxTime1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tiempo aprox: "/>
               </Properties>
             </Component>
           </SubComponents>
