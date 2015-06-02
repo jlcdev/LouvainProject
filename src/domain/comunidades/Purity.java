@@ -69,25 +69,40 @@ public class Purity {
     public double calcPurity(CtoComunidad Cto)
     {
         int datasize = Cto.getNumComunidades();
-        return ((double)this.maxCount(Cto.getCtoComunidades())/(double)datasize);
+        double purity = (double)this.maxCount(Cto.getCtoComunidades());
+        purity = purity/(double)datasize;
+        long factor = (long) Math.pow(10, 2);
+        purity = purity * factor;
+        long tmp = Math.round(purity);
+        return (double) tmp / factor;
     }
     
     public double calcPurity(CtoComunidad Cto1, CtoComunidad Cto2)
     {
         double purity;
         int datasize = Cto1.getNumComunidades() + Cto2.getNumComunidades();
-        purity = this.maxCount(Cto1.getCtoComunidades())+this.maxCount(Cto2.getCtoComunidades());
-        return ((double)purity/(double)datasize);
+        purity = (double)this.maxCount(Cto1.getCtoComunidades())+this.maxCount(Cto2.getCtoComunidades());
+        purity = purity/(double)datasize;
+        long factor = (long) Math.pow(10, 2);
+        purity = purity * factor;
+        long tmp = Math.round(purity);
+        return (double) tmp / factor;
     }
     public double calcPurityTwo(CtoComunidad Cto)
     {
         int datasize = 0;
+        double purity;
         for(int i = 0;i < Cto.getNumComunidades(); ++i)
         {
             if(Cto.getCtoComunidades().get(i).getNumCategorias() > 1)
                 ++datasize;
         }
-        return ((double)this.maxCount(Cto.getCtoComunidades())/(double)datasize);
+        purity = (double)this.maxCountTwo(Cto.getCtoComunidades());
+        purity = purity/(double)datasize;
+        long factor = (long) Math.pow(10, 2);
+        purity = purity * factor;
+        long tmp = Math.round(purity);
+        return (double) tmp / factor;
     }
     
     public double calcPurityTwo(CtoComunidad Cto1, CtoComunidad Cto2)
@@ -105,7 +120,11 @@ public class Purity {
                 ++datasize;
         }
         purity = this.maxCountTwo(Cto1.getCtoComunidades())+this.maxCountTwo(Cto2.getCtoComunidades());
-        return ((double)purity/(double)datasize);
+        purity = purity/(double)datasize;
+        long factor = (long) Math.pow(10, 2);
+        purity = purity * factor;
+        long tmp = Math.round(purity);
+        return (double) tmp / factor;
     }
 
 

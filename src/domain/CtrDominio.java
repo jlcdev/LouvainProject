@@ -684,7 +684,11 @@ public class CtrDominio
                     conj += this.generatedCto.getCtoComunidades().get(i).getNumCategorias();
             }
         }
-        return 100*((double)com/(double)conj);
+        double salida = 100*((double)com/(double)conj);
+        long factor = (long) Math.pow(10, 2);
+        salida = salida * factor;
+        long tmp = Math.round(salida);
+        return (double) tmp / factor;
     }
     
     public int[] infoConjunto(boolean imported)
