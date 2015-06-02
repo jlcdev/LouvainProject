@@ -3445,6 +3445,11 @@ public class VistaPrincipal extends javax.swing.JFrame
             {
                 if(this.setNum)
                 {
+                    if(this.modConjunto[this.comboTipoSet.getSelectedIndex()] == true)
+                    {
+                        this.actualizarSetNum(this.comboTipoSet.getSelectedIndex() != 0, this.minCat);
+                        this.modConjunto[this.comboTipoSet.getSelectedIndex()] = false;
+                    }                    
                     CardLayout cl = (CardLayout)(this.panelC.getLayout());
                     cl.show(this.panelC, "card3");
                 }
