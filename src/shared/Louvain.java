@@ -27,11 +27,9 @@ public class Louvain extends Algorithm
     private ArrayList<ArrayList<Integer>> cActual;
     
     private Integer steps;
-    public long tiempo;
 
     public Louvain()
     {
-        this.tiempo = 0;
         this.communityList = new HashMap<Integer, ArrayList<ArrayList<Integer>>>();
     }
     
