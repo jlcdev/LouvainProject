@@ -167,6 +167,8 @@ public class CtrDominio
     
     public void setGeneratedCto(CtoComunidad cto)
     {
+        this.generatedCto = new CtoComunidad();
+        System.gc();
         this.generatedCto = cto;
     }
     
@@ -401,15 +403,15 @@ public class CtrDominio
                 this.g.removeArchCategorySupCategory(origen, destino);
                 break;
             case "PC":
-                Pagina p2 = new Pagina(node2);
-                origen = this.g.getCategoryNumber(c1);
-                destino = this.g.getPageNumber(p2);
-                this.g.removeArchPageCategory(origen, destino);
-                break;
-            case "CP":
                 Pagina p1 = new Pagina(node1);
                 origen = this.g.getPageNumber(p1);
                 destino = this.g.getCategoryNumber(c2);
+                this.g.removeArchPageCategory(origen, destino);
+                break;
+            case "CP":
+                Pagina p2 = new Pagina(node2);
+                origen = this.g.getCategoryNumber(c1);
+                destino = this.g.getPageNumber(p2);
                 this.g.removeArchCategoryPage(origen, destino);
                 break;
         }
@@ -511,9 +513,9 @@ public class CtrDominio
         return e;
     }
   
-    public boolean rmvCtoCom (String comunidad, boolean importat)
+    public int rmvCtoCom (String comunidad, boolean importat)
     {
-        boolean e = false;
+        int e;
         if(importat)
         {
             e = this.importedCto.removeComunidades(comunidad);
@@ -634,36 +636,53 @@ public class CtrDominio
         if(importado) return importedCto.getComunidad(comunidad).getNumCategorias();
         return generatedCto.getComunidad(comunidad).getNumCategorias();
     }
+    
     public ArrayList<String> commonCategories(String com1, boolean importado1, String com2, boolean importado2)
     {
-        Comunidad c1 = new Comunidad();
-        Comunidad c2 = new Comunidad();
+        Comunidad c1, c2;
+        ArrayList<String> comparacion = new ArrayList();
         if(importado1)c1 = this.importedCto.getComunidad(com1);
         else c1 = this.generatedCto.getComunidad(com1);
         if(importado2)c2 = this.importedCto.getComunidad(com2);
         else c2 = this.generatedCto.getComunidad(com2);
-        ArrayList<String> comparacion = new ArrayList();
-        ArrayList<String> comunidad1 = c1.getNameCategories();
-        ArrayList<String> comunidad2 = c2.getNameCategories();
-        for(String i: comunidad1)
-            if(comunidad2.contains(i))comparacion.add(i);
+        if(c1 != null && c2 != null)
+        {
+            ArrayList<String> comunidad1 = c1.getNameCategories();
+            ArrayList<String> comunidad2 = c2.getNameCategories();
+            for(String i: comunidad1)
+                if(comunidad2.contains(i))comparacion.add(i);
+        }
         return comparacion;
     }
     
     public double getPorcentaje(String comunidad, boolean importado)
     {
-        Integer com, conj;
+        int com, conj = 0;
         if(importado)
         {
             com = this.importedCto.getComunidad(comunidad).getNumCategorias();
-            conj = this.importedCto.getSelections().getCategoriesSelected().size();
+            if(!this.importedCto.isModificado())
+                conj = this.importedCto.getSelections().getCategoriesSelected().size();
+            
+            else
+            {
+                for(int i = 0;i < this.importedCto.getNumComunidades(); ++i)
+                    conj += this.importedCto.getCtoComunidades().get(i).getNumCategorias();
+            }
         }
         else
         {
             com = this.generatedCto.getComunidad(comunidad).getNumCategorias();
-            conj = this.generatedCto.getSelections().getCategoriesSelected().size();
+            if(!this.generatedCto.isModificado())
+                conj = this.generatedCto.getSelections().getCategoriesSelected().size();
+            
+            else
+            {
+                for(int i = 0;i < this.generatedCto.getNumComunidades(); ++i)
+                    conj += this.generatedCto.getCtoComunidades().get(i).getNumCategorias();
+            }
         }
-        return (double)((com/conj)*100);
+        return 100*((double)com/(double)conj);
     }
     
     public int[] infoConjunto(boolean imported)
@@ -702,6 +721,12 @@ public class CtrDominio
     {
         if(imported)return this.importedCto.getTimeExecution();
         return this.generatedCto.getTimeExecution();
+    }
+    
+    public boolean isCtoModified(boolean imported)
+    {
+        if(imported)return this.importedCto.isModificado();
+        return this.generatedCto.isModificado();
     }
     
     public double getAllPurityOne(boolean imported)

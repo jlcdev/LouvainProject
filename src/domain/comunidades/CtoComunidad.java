@@ -138,7 +138,7 @@ public class CtoComunidad
         }
     }
     
-    public boolean removeComunidades(String name)
+    public int removeComunidades(String name)
     {
         int index = -1;
         for(Comunidad community : this.ctoComunidades)
@@ -152,9 +152,9 @@ public class CtoComunidad
         if(index != -1)
         {
             this.ctoComunidades.remove(index);
-            return true;
+            return index;
         }
-        return false;
+        return index;
     }
     
     public void setModificado(boolean modificado)

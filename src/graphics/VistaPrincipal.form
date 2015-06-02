@@ -264,7 +264,7 @@
                           <Component id="jLabel12" alignment="0" min="-2" pref="207" max="-2" attributes="0"/>
                           <Component id="btnNuevoGrafo" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="778" max="32767" attributes="0"/>
+                      <EmptySpace pref="786" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -281,7 +281,7 @@
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnImportarConj" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="371" max="32767" attributes="0"/>
+                      <EmptySpace pref="373" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -357,9 +357,9 @@
                                       <Group type="102" attributes="0">
                                           <Component id="txtNombreNodoAnterior" min="-2" pref="195" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtNombreNodoNuevo" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                          <Component id="btnChangeName" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="txtNombreNodoNuevo" pref="171" max="32767" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="btnChangeName" min="-2" pref="72" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -416,7 +416,7 @@
                               <Component id="btnVisualizarGrafo" min="-2" pref="105" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="45" pref="64" max="32767" attributes="0"/>
+                      <EmptySpace min="45" pref="68" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="labelInfoGraf" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -491,7 +491,7 @@
                                   <Component id="txtNombreNodoNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnChangeName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="164" max="32767" attributes="0"/>
+                              <EmptySpace pref="165" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnExportarGrafo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnVisualizarGrafo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -940,7 +940,7 @@
                       <Component id="labelAproxTime1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelAproxTime" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="341" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -959,6 +959,7 @@
                 <Property name="text" type="java.lang.String" value="Girvan-Newman"/>
               </Properties>
               <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radioGirvanStateChanged"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioGirvanActionPerformed"/>
               </Events>
             </Component>
@@ -970,6 +971,9 @@
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Louvain"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radioLouvainStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioClique">
               <Properties>
@@ -978,6 +982,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="K-Clique"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radioCliqueStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
@@ -1032,7 +1039,6 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnAddSelCatRang" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jLabel23" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                                   <Component id="btnSelCatRand" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -1044,6 +1050,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnRmvSelCatName" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel23" alignment="0" min="-2" pref="226" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1062,7 +1069,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="16" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnAplicarSelCat" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ckTodasCategorias" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1073,9 +1080,9 @@
                                       <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnSelCatRand" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="txtCatNameSel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="btnAddSelCatName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
@@ -1239,17 +1246,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel22" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                                   <Component id="jLabel21" min="-2" pref="157" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txtMinPagLink" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtMaxPagLink" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnAddSelPagRang" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="btnSelPagRand" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -1261,6 +1258,16 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnRmvSelPagName" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtMinPagLink" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtMaxPagLink" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnAddSelPagRang" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel22" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1279,7 +1286,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="16" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnAplicarSelPag" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ckTodasPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1290,17 +1297,13 @@
                                       <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnSelPagRand" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="btnAddSelPagName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                                  <Component id="btnRmvSelPagName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                                  <Component id="txtPagNameSel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btnAddSelPagName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="btnRmvSelPagName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="txtPagNameSel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                       <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
@@ -1492,7 +1495,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                               <Component id="btnRandomFilters" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="441" max="32767" attributes="0"/>
+                              <EmptySpace pref="447" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1529,7 +1532,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="btnAplicarFiltros" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="246" max="32767" attributes="0"/>
+                              <EmptySpace pref="241" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1654,10 +1657,6 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel27" min="-2" pref="168" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel15" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
@@ -1683,37 +1682,37 @@
                                                       <Component id="txtAddRmvCom" min="-2" pref="244" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="btnAddCatToCom" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <Component id="btnAddComToSet" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                                  <Component id="btnAddCatToCom" min="-2" pref="50" max="-2" attributes="0"/>
+                                                  <Component id="btnAddComToSet" min="-2" pref="50" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="jLabel16" min="-2" pref="265" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Component id="txtNombreAnterior" min="-2" pref="195" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                               <Component id="txtNombreNuevo" min="-2" pref="195" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnRmvCatFromCom" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="btnRmvComFromSet" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="btnChangeNameSet" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="btnChangeNameSet" alignment="1" pref="58" max="32767" attributes="0"/>
+                                          <Component id="btnRmvComFromSet" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="btnRmvCatFromCom" alignment="1" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel26" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                   <Group type="102" attributes="0">
                                                       <Component id="jLabel32" min="-2" pref="120" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="txtMinCatAtCom" min="-2" pref="76" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="txtComToList" min="-2" pref="250" max="-2" attributes="0"/>
+                                                  <Component id="txtComToList" pref="250" max="32767" attributes="0"/>
+                                                  <Component id="jLabel31" max="32767" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1721,6 +1720,7 @@
                                                   <Component id="spinP1" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
+                                          <Component id="jLabel26" alignment="0" min="-2" pref="284" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1734,14 +1734,14 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel31" min="-2" pref="225" max="-2" attributes="0"/>
+                              <Component id="btnExportSet" min="-2" pref="105" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnExportSet" min="-2" pref="105" max="-2" attributes="0"/>
+                              <Component id="jLabel27" min="-2" pref="231" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace pref="54" max="32767" attributes="0"/>
                       <Component id="panelC" min="-2" pref="461" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1785,7 +1785,7 @@
                                           <Component id="btnChangeNameSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                      <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel26" min="-2" pref="15" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="btnListComFromSet" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
@@ -1931,6 +1931,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboTipoSetItemStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
@@ -2147,7 +2150,7 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="ckCjtoImportado1" pref="165" max="32767" attributes="0"/>
+                                          <Component id="ckCjtoImportado1" max="32767" attributes="0"/>
                                           <Component id="ckCjtoImportado2" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -2189,7 +2192,7 @@
                               <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnCompararConjuntos" min="-2" pref="25" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="299" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane6" pref="540" max="32767" attributes="0"/>
                       </Group>

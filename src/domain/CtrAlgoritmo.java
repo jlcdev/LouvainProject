@@ -41,13 +41,13 @@ public class CtrAlgoritmo
     public void setPageSelections(ArrayList<Integer> list)
     {
         this.selections.setPagesSelected(list);
-        this.arecatselections = true;
+        this.arepagselections = true;
     }
     
     public void setCatSelections(ArrayList<Integer> list)
     {
         this.selections.setCategoriesSelected(list);
-        this.arepagselections = true;
+        this.arecatselections = true;
     }
     
     public void setPageSelectionConcrete(Integer i)

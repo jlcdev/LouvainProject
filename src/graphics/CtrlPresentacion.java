@@ -431,17 +431,17 @@ public class CtrlPresentacion
     {
         Graph<Integer, Double> grafo = this.ctrlAlgoritmo.generate(this.ctrlDominio.getGrafo());
         this.ctrlDominio.setAlgorithmGraph(grafo);
-        System.out.println("FINAL TRANSFORMACIÓN");
+        System.out.println("CtrlPresentacion:Ejecutar:FINAL TRANSFORMACIÓN");
         return grafo;
     }
 
     public void ejecutar(int algoritmo, int p)
     {
         //HACER UN EQUALS CON EL GRAFO GENERADO
-        System.out.println("SETEAR ALGORITMO");
+        System.out.println("CtrlPresentacion:Ejecutar:SETEAR ALGORITMO");
         this.ctrlAlgoritmo.setAlgorithm(algoritmo);
         this.ctrlAlgoritmo.setP(p);
-        if(this.ctrlAlgoritmo.areCatSelections() && this.ctrlAlgoritmo.arePagSelections() && this.ctrlAlgoritmo.areFilters())
+        if(this.ctrlAlgoritmo.areCatSelections() && this.ctrlAlgoritmo.areFilters())
         {
             this.ctrlDominio.setGeneratedCto(this.ctrlAlgoritmo.ejecutar(this.algorithmGraph(), this.ctrlDominio.getGrafo()));
             this.vistaPrincipal.actualizarSet(false);
@@ -452,7 +452,15 @@ public class CtrlPresentacion
         }
         else
         {
-            sincronizacionVistaPrincipal_a_Error("Filtros/Cateogiras/Paginas no seleccionados");
+            String msg = "";
+            if(!this.ctrlAlgoritmo.areCatSelections())
+                msg = msg + "Categorias ";
+                        
+            if(!this.ctrlAlgoritmo.areFilters())
+                msg = msg + "Filtros ";
+            
+            msg = msg + "no seleccionad@s.";
+            sincronizacionVistaPrincipal_a_Error(msg);
         }
     }
 
@@ -472,12 +480,14 @@ public class CtrlPresentacion
     }
 
     //pestaña comunidades
-    public void addCtoCat(String categoria, String comunidad, boolean importat)
+    public boolean addCtoCat(String categoria, String comunidad, boolean importat)
     {
         if(!this.ctrlDominio.addCtoCat(categoria, comunidad, importat))
         {
             sincronizacionVistaPrincipal_a_Error("Comunidad no existente/Categoria ya existente.");
+            return false;
         }
+        return true;
     }
 
     public void addCtoCom(String comunidad, boolean importat)
@@ -492,10 +502,13 @@ public class CtrlPresentacion
             sincronizacionVistaPrincipal_a_Error("Comunidad no existente/Categoria no existente.");
     }
 
-    public void rmvCtoCom(String comunidad, boolean importat)
+    public int rmvCtoCom(String comunidad, boolean importat)
     {
-        if(!this.ctrlDominio.rmvCtoCom(comunidad, importat))
+        int r = this.ctrlDominio.rmvCtoCom(comunidad, importat);
+        if(r == -1)
             sincronizacionVistaPrincipal_a_Error("Comunidad no existente.");
+        
+        return r;
     }
 
     public void modCtoNombre(String anterior, String nuevo, boolean importat)
@@ -558,6 +571,12 @@ public class CtrlPresentacion
         return this.ctrlDominio.getTexec(imported);
     }
 
+    public String isCtoModified(boolean imported)
+    {
+        if(this.ctrlDominio.isCtoModified(imported))return "si";
+        return "no";
+    }
+    
     public boolean existsSet(boolean imported)
     {
         return this.ctrlDominio.existsCjto(imported);
