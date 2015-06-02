@@ -553,14 +553,7 @@ public class CtrlPresentacion
 
     public ArrayList<String> commonCategories(String com1, boolean importado1, String com2, boolean importado2)
     {
-        ArrayList<String> r = ctrlDominio.commonCategories(com1, importado1, com2, importado2);
-        if(r == null)
-        {
-            r = new ArrayList();
-            r.set(0, "error");
-            sincronizacionVistaPrincipal_a_Error("Comunidad no existente.");
-        }
-        return r;
+        return ctrlDominio.commonCategories(com1, importado1, com2, importado2);
     }
 
     public double getPorcentaje(String comunidad, boolean importado)

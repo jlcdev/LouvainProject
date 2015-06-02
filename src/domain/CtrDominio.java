@@ -668,7 +668,7 @@ public class CtrDominio
     public ArrayList<String> commonCategories(String com1, boolean importado1, String com2, boolean importado2)
     {
         Comunidad c1, c2;
-        ArrayList<String> comparacion = null;;
+        ArrayList<String> comparacion = new ArrayList();
         if(importado1)c1 = this.importedCto.getComunidad(com1);
         else c1 = this.generatedCto.getComunidad(com1);
         if(importado2)c2 = this.importedCto.getComunidad(com2);
