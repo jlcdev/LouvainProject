@@ -1031,11 +1031,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel24" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txtMinCatLink" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="txtMinCatLink" min="-2" pref="65" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtMaxCatLink" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="txtMaxCatLink" min="-2" pref="65" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnAddSelCatRang" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -1259,11 +1259,11 @@
                                       <Component id="btnRmvSelPagName" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txtMinPagLink" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="txtMinPagLink" min="-2" pref="65" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtMaxPagLink" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="txtMaxPagLink" min="-2" pref="65" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnAddSelPagRang" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -1462,40 +1462,36 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel3" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="spPagComun" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel4" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="spCatComun" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel5" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="spSuperComun" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel6" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="spSubComun" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel2" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnAplicarFiltros" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jLabel2" max="32767" attributes="0"/>
+                                              <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel5" alignment="0" pref="164" max="32767" attributes="0"/>
+                                              <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="jLabel4" min="-2" pref="181" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="spPagComun" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="spCatComun" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="spSuperComun" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="spSubComun" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="spNombre" min="-2" pref="63" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                                              <Component id="btnRandomFilters" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                           <Component id="jLabel7" max="32767" attributes="0"/>
-                                          <Component id="spNombre" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="btnAplicarFiltros" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="btnRandomFilters" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="447" max="32767" attributes="0"/>
+                              <EmptySpace pref="418" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1532,7 +1528,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="btnAplicarFiltros" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="241" max="32767" attributes="0"/>
+                              <EmptySpace pref="249" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2145,8 +2141,8 @@
                                   <Component id="jLabel20" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtCompCom1" pref="265" max="32767" attributes="0"/>
-                                          <Component id="txtCompCom2" max="32767" attributes="0"/>
+                                          <Component id="txtCompCom1" min="-2" pref="300" max="-2" attributes="0"/>
+                                          <Component id="txtCompCom2" min="-2" pref="300" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -2156,7 +2152,7 @@
                                   </Group>
                                   <Component id="btnCompararConjuntos" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="53" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel17" min="-2" pref="225" max="-2" attributes="0"/>
