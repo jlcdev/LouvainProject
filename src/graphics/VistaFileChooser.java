@@ -10,7 +10,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author joan
+ * @author Joan Rodas
  */
 public class VistaFileChooser extends javax.swing.JFrame {
 
@@ -45,8 +45,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
         this.importar = importar;
         this.grafo = grafo;
         this.importado = importado;
-        this.fileChooser.rescanCurrentDirectory();        
-        //this.fileChooser.setFileFilter(new FileNameExtensionFilter(".txt", "txt"));
+        this.fileChooser.rescanCurrentDirectory();      
         this.pack();
         this.setVisible(true);        
     }
