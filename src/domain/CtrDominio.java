@@ -195,6 +195,8 @@ public class CtrDominio
     
     public void setGeneratedCto(CtoComunidad cto)
     {
+        this.generatedCto = new CtoComunidad();
+        System.gc();
         this.generatedCto = cto;
     }
     
