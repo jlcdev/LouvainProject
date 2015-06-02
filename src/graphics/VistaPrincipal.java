@@ -256,6 +256,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         popupPag.show(this.listPag, e.getX(), e.getY());
     }
     
+    private void showPopupMenuNum(MouseEvent e) {
+        popupCompNum.show(this.listSetNum, e.getX(), e.getY());
+    }
+    
     
 
     /**
@@ -278,6 +282,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         popupPag = new javax.swing.JPopupMenu();
         mItemPag1 = new javax.swing.JMenuItem();
         mItemPag2 = new javax.swing.JMenuItem();
+        popupCompNum = new javax.swing.JPopupMenu();
+        mItemCompNum1 = new javax.swing.JMenuItem();
+        mItemCompNum2 = new javax.swing.JMenuItem();
         tabsPrincipal = new javax.swing.JTabbedPane();
         panelImportar = new javax.swing.JPanel();
         btnImportarGrafo = new javax.swing.JButton();
@@ -500,6 +507,22 @@ public class VistaPrincipal extends javax.swing.JFrame
             }
         });
         popupPag.add(mItemPag2);
+
+        mItemCompNum1.setText("Comunidad 1 a comparar");
+        mItemCompNum1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemCompNum1ActionPerformed(evt);
+            }
+        });
+        popupCompNum.add(mItemCompNum1);
+
+        mItemCompNum2.setText("Comunidad 2 a comparar");
+        mItemCompNum2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemCompNum2ActionPerformed(evt);
+            }
+        });
+        popupCompNum.add(mItemCompNum2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Wiki");
@@ -3123,15 +3146,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listSetValueChanged
 
     private void listSetMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetMouseReleased
-        if(evt.getButton() == evt.BUTTON3)
-        {
-        //if (evt.isPopupTrigger()) {
-            showPopupMenu(evt);
-            
+        if(evt.getButton() == MouseEvent.BUTTON3)
+        {      
             JList list = (JList)evt.getSource();
             list.setSelectedIndex(list.locationToIndex(evt.getPoint()));
-            //this.txtNodo2Enlace.setText(this.listCat.getSelectedValue().toString());
-        //}
+            showPopupMenu(evt); 
         }
     }//GEN-LAST:event_listSetMouseReleased
 
@@ -3300,7 +3319,9 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listLinksNodeValueChanged
 
     private void listSetNumMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetNumMouseReleased
-        // TODO add your handling code here:
+        JList list = (JList)evt.getSource();
+        list.setSelectedIndex(list.locationToIndex(evt.getPoint()));
+        showPopupMenuNum(evt);
     }//GEN-LAST:event_listSetNumMouseReleased
 
     private void listSetNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSetNumMouseClicked
@@ -3382,6 +3403,20 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void mItemCat2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemCat2MouseReleased
         this.txtNodo2Enlace.setText(this.listCat.getSelectedValue().toString());
     }//GEN-LAST:event_mItemCat2MouseReleased
+
+    private void mItemCompNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemCompNum1ActionPerformed
+        String s = this.listSetNum.getSelectedValue().toString();
+        int index = s.indexOf("[");
+        s = s.substring(0, index);
+        this.txtCompCom1.setText(s);
+    }//GEN-LAST:event_mItemCompNum1ActionPerformed
+
+    private void mItemCompNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemCompNum2ActionPerformed
+        String s = this.listSetNum.getSelectedValue().toString();
+        int index = s.indexOf("[");
+        s = s.substring(0, index);
+        this.txtCompCom2.setText(s);
+    }//GEN-LAST:event_mItemCompNum2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3493,6 +3528,8 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem mItemCat2;
     private javax.swing.JMenuItem mItemComp1;
     private javax.swing.JMenuItem mItemComp2;
+    private javax.swing.JMenuItem mItemCompNum1;
+    private javax.swing.JMenuItem mItemCompNum2;
     private javax.swing.JMenuItem mItemExportarGrafo;
     private javax.swing.JMenuItem mItemExportarSet;
     private javax.swing.JMenuItem mItemImportarGrafo;
@@ -3513,6 +3550,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     private javax.swing.JPanel panelImportar;
     private javax.swing.JPopupMenu popupCat;
     private javax.swing.JPopupMenu popupComp;
+    private javax.swing.JPopupMenu popupCompNum;
     private javax.swing.JPopupMenu popupPag;
     private javax.swing.JRadioButton radioCategoria;
     private javax.swing.JRadioButton radioClique;
