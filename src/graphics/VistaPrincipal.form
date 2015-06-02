@@ -281,7 +281,7 @@
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnImportarConj" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="373" max="32767" attributes="0"/>
+                      <EmptySpace pref="374" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -342,81 +342,89 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel9" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="txtNodo2Enlace" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="txtNodo1Enlace" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="comboTipoEnlace" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtPagToAddRmv" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnAddPagToGraph" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnRmvPagFromGraph" min="-2" pref="50" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
+                                      <Component id="btnAddLinkToGraph" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnRmvLinkFromGraph" min="-2" pref="50" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                      <Component id="jLabel13" min="-2" pref="303" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnImportarGrafo1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnNuevoGrafo1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnExportarGrafo" min="-2" pref="105" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnVisualizarGrafo" min="-2" pref="105" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="jLabel14" min="-2" pref="191" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="radioCategoria" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="radioPagina" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jLabel13" alignment="0" min="-2" pref="303" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="txtNombreNodoAnterior" min="-2" pref="195" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtNombreNodoNuevo" pref="171" max="32767" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="btnChangeName" min="-2" pref="72" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel8" min="-2" pref="90" max="-2" attributes="0"/>
-                                                  <Component id="jLabel9" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="jLabel10" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="txtNodo2Enlace" min="-2" pref="250" max="-2" attributes="0"/>
-                                                      <Component id="txtNodo1Enlace" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="comboTipoEnlace" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="txtCatToAddRmv" min="-2" pref="250" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="btnAddCatToGraph" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="btnRmvCatFromGraph" min="-2" pref="50" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="txtPagToAddRmv" min="-2" pref="250" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="btnAddPagToGraph" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="btnRmvPagFromGraph" min="-2" pref="50" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
-                                                  <Component id="btnAddLinkToGraph" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="btnRmvLinkFromGraph" min="-2" pref="50" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtNombreNodoAnterior" min="-2" pref="195" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtNombreNodoNuevo" min="-2" pref="195" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnChangeName" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                                      <Component id="jLabel8" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="txtCatToAddRmv" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnAddCatToGraph" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnRmvCatFromGraph" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnImportarGrafo1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnNuevoGrafo1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnExportarGrafo" min="-2" pref="105" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnVisualizarGrafo" min="-2" pref="105" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
-                      <EmptySpace min="45" pref="68" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="labelInfoGraf" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -452,34 +460,32 @@
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtCatToAddRmv" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnAddCatToGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="btnRmvCatFromGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtPagToAddRmv" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnAddPagToGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="btnRmvPagFromGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtNodo1Enlace" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="comboTipoEnlace" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtNodo2Enlace" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnAddLinkToGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="btnRmvLinkFromGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtCatToAddRmv" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnAddCatToGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="btnRmvCatFromGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtPagToAddRmv" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAddPagToGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="btnRmvPagFromGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtNodo1Enlace" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="comboTipoEnlace" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtNodo2Enlace" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAddLinkToGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="btnRmvLinkFromGraph" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="radioCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -491,13 +497,13 @@
                                   <Component id="txtNombreNodoNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnChangeName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="165" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnExportarGrafo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnVisualizarGrafo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jScrollPane2" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="467" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
@@ -940,11 +946,11 @@
                       <Component id="labelAproxTime1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelAproxTime" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="341" max="32767" attributes="0"/>
+                      <EmptySpace pref="345" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabsAlgoritmo" pref="547" max="32767" attributes="0"/>
+                      <Component id="tabsAlgoritmo" pref="549" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1069,7 +1075,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="16" max="32767" attributes="0"/>
+                              <EmptySpace pref="15" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnAplicarSelCat" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ckTodasCategorias" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1286,7 +1292,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="16" max="32767" attributes="0"/>
+                              <EmptySpace pref="15" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnAplicarSelPag" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ckTodasPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1652,92 +1658,101 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel15" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="comboTipoSet" min="-2" pref="136" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                      <Component id="btnShowGraph2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel18" min="-2" pref="90" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtCatAddRmvSet" min="-2" pref="118" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="txtComToAddRmvCat" min="-2" pref="114" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel19" min="-2" pref="90" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtAddRmvCom" min="-2" pref="244" max="-2" attributes="0"/>
-                                                  </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel15" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="comboTipoSet" min="-2" pref="136" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                                  <Component id="btnShowGraph2" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="btnAddCatToCom" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <Component id="btnAddComToSet" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jLabel18" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="txtCatAddRmvSet" min="-2" pref="300" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <Component id="jLabel16" min="-2" pref="265" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="txtNombreAnterior" min="-2" pref="195" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                              <Component id="txtNombreNuevo" min="-2" pref="195" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnExportSet" min="-2" pref="105" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                                          <Component id="txtComToAddRmvCat" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="btnAddCatToCom" max="32767" attributes="0"/>
+                                              <Component id="btnRmvCatFromCom" pref="58" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnChangeNameSet" alignment="1" pref="58" max="32767" attributes="0"/>
-                                          <Component id="btnRmvComFromSet" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="btnRmvCatFromCom" alignment="1" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="jLabel32" min="-2" pref="120" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtMinCatAtCom" min="-2" pref="76" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel16" min="-2" pref="265" max="-2" attributes="0"/>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="txtNombreAnterior" min="-2" pref="195" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                                          <Component id="txtNombreNuevo" min="-2" pref="195" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
-                                                  <Component id="txtComToList" pref="250" max="32767" attributes="0"/>
-                                                  <Component id="jLabel31" max="32767" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                                  <Component id="btnChangeNameSet" max="32767" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="btnListCatFromCom" max="32767" attributes="0"/>
-                                                  <Component id="spinP1" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="1" attributes="0">
+                                                              <Group type="102" alignment="1" attributes="0">
+                                                                  <Component id="jLabel32" min="-2" pref="120" max="-2" attributes="0"/>
+                                                                  <EmptySpace max="-2" attributes="0"/>
+                                                                  <Component id="txtMinCatAtCom" min="-2" pref="76" max="-2" attributes="0"/>
+                                                              </Group>
+                                                              <Component id="jLabel31" min="-2" pref="250" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                                          <Component id="spinP1" min="-2" pref="76" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="jLabel26" alignment="0" min="-2" pref="284" max="-2" attributes="0"/>
+                                                      <Component id="txtComToList" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="btnModP" max="32767" attributes="0"/>
+                                                      <Component id="btnListComFromSet1" max="32767" attributes="0"/>
+                                                      <Component id="btnListComFromSet" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="btnListCatFromCom" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <Component id="jLabel26" alignment="0" min="-2" pref="284" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="btnModP" max="32767" attributes="0"/>
-                                          <Component id="btnShowCom" pref="111" max="32767" attributes="0"/>
-                                          <Component id="btnListComFromSet1" max="32767" attributes="0"/>
-                                          <Component id="btnListComFromSet" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel27" alignment="0" min="-2" pref="231" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnExportSet" min="-2" pref="105" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel19" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel27" min="-2" pref="231" max="-2" attributes="0"/>
+                              <Component id="txtAddRmvCom" min="-2" pref="244" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnAddComToSet" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnRmvComFromSet" min="-2" pref="58" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="panelC" min="-2" pref="461" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1758,29 +1773,32 @@
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnAddCatToCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="btnAddCatToCom" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="txtCatAddRmvSet" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtComToAddRmvCat" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnRmvCatFromCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="txtComToAddRmvCat" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnRmvCatFromCom" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtAddRmvCom" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnAddComToSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="btnRmvComFromSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <EmptySpace pref="35" max="32767" attributes="0"/>
                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="txtNombreAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtNombreNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="btnChangeNameSet" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                                       <Component id="jLabel26" min="-2" pref="15" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="btnListComFromSet" min="-2" pref="20" max="-2" attributes="0"/>
@@ -1791,21 +1809,20 @@
                                   <Component id="btnListComFromSet1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnShowCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="btnListCatFromCom" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="txtComToList" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnModP" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="spinP1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="40" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="btnExportSet" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="panelC" max="32767" attributes="0"/>
@@ -1977,14 +1994,6 @@
                 <Property name="text" type="java.lang.String" value="VER COMUNIDAD"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnShowCom">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Visualizar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowComActionPerformed"/>
-              </Events>
-            </Component>
             <Container class="javax.swing.JPanel" name="panelC">
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
@@ -2135,25 +2144,20 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnCompararComunidades" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
-                                  <Component id="jLabel20" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtCompCom1" min="-2" pref="300" max="-2" attributes="0"/>
-                                          <Component id="txtCompCom2" min="-2" pref="300" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="ckCjtoImportado1" max="32767" attributes="0"/>
-                                          <Component id="ckCjtoImportado2" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="btnCompararConjuntos" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="btnCompararComunidades" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="jLabel20" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtCompCom1" min="-2" pref="300" max="-2" attributes="0"/>
+                                  <Component id="txtCompCom2" min="-2" pref="300" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="ckCjtoImportado1" max="32767" attributes="0"/>
+                                  <Component id="ckCjtoImportado2" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
+                          <Component id="btnCompararConjuntos" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel17" min="-2" pref="225" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
@@ -2190,7 +2194,7 @@
                               <Component id="btnCompararConjuntos" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="299" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane6" pref="540" max="32767" attributes="0"/>
+                          <Component id="jScrollPane6" pref="543" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>

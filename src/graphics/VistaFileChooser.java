@@ -41,13 +41,13 @@ public class VistaFileChooser extends javax.swing.JFrame {
     public void hacerVisible(boolean importar, boolean grafo, boolean importado) {
         if(importar) 
         {
-            fileChooser.setApproveButtonText("Import");
             this.fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
+            fileChooser.setApproveButtonText("Import");            
         }
         else
-        {
-            this.fileChooser.setApproveButtonText("Export");
+        {            
             this.fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
+            this.fileChooser.setApproveButtonText("Export");
         }
         this.importar = importar;
         this.grafo = grafo;
