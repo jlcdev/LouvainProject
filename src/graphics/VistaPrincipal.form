@@ -959,6 +959,7 @@
                 <Property name="text" type="java.lang.String" value="Girvan-Newman"/>
               </Properties>
               <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radioGirvanStateChanged"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioGirvanActionPerformed"/>
               </Events>
             </Component>
@@ -970,6 +971,9 @@
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Louvain"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radioLouvainStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioClique">
               <Properties>
@@ -978,6 +982,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="K-Clique"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radioCliqueStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>

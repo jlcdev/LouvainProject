@@ -1029,6 +1029,11 @@ public class VistaPrincipal extends javax.swing.JFrame
 
         grupoAlgoritmos.add(radioGirvan);
         radioGirvan.setText("Girvan-Newman");
+        radioGirvan.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                radioGirvanStateChanged(evt);
+            }
+        });
         radioGirvan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioGirvanActionPerformed(evt);
@@ -1038,9 +1043,19 @@ public class VistaPrincipal extends javax.swing.JFrame
         grupoAlgoritmos.add(radioLouvain);
         radioLouvain.setSelected(true);
         radioLouvain.setText("Louvain");
+        radioLouvain.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                radioLouvainStateChanged(evt);
+            }
+        });
 
         grupoAlgoritmos.add(radioClique);
         radioClique.setText("K-Clique");
+        radioClique.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                radioCliqueStateChanged(evt);
+            }
+        });
 
         jLabel1.setText("Valor P:");
 
@@ -1051,7 +1066,7 @@ public class VistaPrincipal extends javax.swing.JFrame
             }
         });
 
-        tabsAlgoritmo.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        tabsAlgoritmo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tabsAlgoritmo.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         tabsAlgoritmo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -2200,6 +2215,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         {
             int[] infoC1 = iCtrlPresentacion.infoConjunto(false);
             this.txtListComp.append("CONJUNTO CREADO:\n\n");
+            this.txtListComp.append("Modificado: "+this.iCtrlPresentacion.isCtoModified(false)+"\n");
             this.txtListComp.append("Número de comunidades: "+infoC1[0]+"\n");
             this.txtListComp.append("Algoritmo: "+infoC1[1]+"\n");
             this.txtListComp.append("Nivel de cohesión: "+infoC1[2]+"\n");
@@ -2210,6 +2226,7 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.txtListComp.append("Prioridad filtro hijos en común: "+infoC1[7]+"\n");
             this.txtListComp.append("Núm. de categorias seleccionadas: "+infoC1[8]+"\n");
             this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC1[9]+"\n");
+            this.txtListComp.append("Tiempo de procesado: "+this.iCtrlPresentacion.getTexec(false)+"\n");
             this.txtListComp.append("Purity :"+this.iCtrlPresentacion.getPurityOne(false)+"\n");
             this.txtListComp.append("Purity2 :"+this.iCtrlPresentacion.getAllPurityOne(false)+"\n\n\n");
             
@@ -2218,6 +2235,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         {
             int[] infoC2 = iCtrlPresentacion.infoConjunto(true);
             this.txtListComp.append("CONJUNTO IMPORTADO:\n\n");
+            this.txtListComp.append("Modificado: "+this.iCtrlPresentacion.isCtoModified(true)+"\n");
             this.txtListComp.append("Número de comunidades: "+infoC2[0]+"\n");
             this.txtListComp.append("Algoritmo: "+infoC2[1]+"\n");
             this.txtListComp.append("Nivel de cohesión: "+infoC2[2]+"\n");
@@ -2227,7 +2245,8 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.txtListComp.append("Prioridad filtro padres en común: "+infoC2[6]+"\n");
             this.txtListComp.append("Prioridad filtro hijos en común: "+infoC2[7]+"\n");
             this.txtListComp.append("Núm. de categorias seleccionadas: "+infoC2[8]+"\n");
-            this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC2[9]+"\n\n\n");            
+            this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC2[9]+"\n\n\n");  
+            this.txtListComp.append("Tiempo de procesado: "+this.iCtrlPresentacion.getTexec(true)+"\n");
             this.txtListComp.append("Purity :"+this.iCtrlPresentacion.getPurityOne(true)+"\n");
             this.txtListComp.append("Purity2 :"+this.iCtrlPresentacion.getAllPurityOne(true)+"\n\n\n");
         }
@@ -2249,8 +2268,8 @@ public class VistaPrincipal extends javax.swing.JFrame
         { 
             this.iCtrlPresentacion.modCtoNombre(this.txtNombreAnterior.getText(), this.txtNombreNuevo.getText(), importado);
             this.actualizarSet(importado);
-            this.modConjunto[importado ? 1 : 0] = true;
-            //this.actualizarSetNum(importado, this.minCat);
+            this.modConjunto[importado ? 1 : 0] = false;
+            this.actualizarSetNum(importado, this.minCat);
             //this.modConjuntoNum[importado ? 1 : 0] = false;
         }
         else 
@@ -3483,6 +3502,18 @@ public class VistaPrincipal extends javax.swing.JFrame
             }
         }
     }//GEN-LAST:event_listComMouseClicked
+
+    private void radioGirvanStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioGirvanStateChanged
+        if(this.radioGirvan.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()*3);    
+    }//GEN-LAST:event_radioGirvanStateChanged
+
+    private void radioCliqueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioCliqueStateChanged
+        if(this.radioClique.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()/2);
+    }//GEN-LAST:event_radioCliqueStateChanged
+
+    private void radioLouvainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioLouvainStateChanged
+        if(this.radioLouvain.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime());
+    }//GEN-LAST:event_radioLouvainStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
