@@ -5,8 +5,6 @@
  */
 package graphics;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -30,16 +28,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
         this.grafo = true;
         this.importado = false;
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.addWindowListener(new WindowAdapter() 
-        { 
-            @Override
-            public void windowClosing(WindowEvent e) 
-            { 
-                close();
-            } 
-        } 
-        );
+        this.setLocationRelativeTo(null);       
     }
     
     public void hacerVisible(boolean importar, boolean grafo, boolean importado) {
@@ -85,6 +74,11 @@ public class VistaFileChooser extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(719, 520));
         setMinimumSize(new java.awt.Dimension(719, 520));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         fileChooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +124,10 @@ public class VistaFileChooser extends javax.swing.JFrame {
                 break;
         }         
     }//GEN-LAST:event_fileChooserActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.close();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,34 +5,20 @@
  */
 package graphics;
 
-import java.awt.Dimension;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
-
 /**
  *
  * @author alfred
  */
 public class VistaError extends javax.swing.JFrame {
 
-    private CtrlPresentacion iCtrlPresentacion;
+    private final CtrlPresentacion iCtrlPresentacion;
     /**
      * Creates new form VistaError
+     * @param pCtrlPresentacion
      */
     public VistaError(CtrlPresentacion pCtrlPresentacion) {
-        iCtrlPresentacion = pCtrlPresentacion;
-        initComponents();
-        this.addWindowListener(new WindowAdapter() 
-        { 
-            @Override
-            public void windowClosing(WindowEvent e) 
-            { 
-                close();
-            } 
-        } 
-        );
-        // Posicion y operaciones por defecto
+        this.iCtrlPresentacion = pCtrlPresentacion;
+        initComponents();        
         this.setLocationRelativeTo(null);
      
     }
@@ -77,6 +63,11 @@ public class VistaError extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(400, 211));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -128,6 +119,10 @@ public class VistaError extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         iCtrlPresentacion.sincronizacionVistaError_a_Principal();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.close();
+    }//GEN-LAST:event_formWindowClosing
 
    
 

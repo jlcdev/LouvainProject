@@ -5,9 +5,6 @@
  */
 package graphics;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 /**
  *
  * @author Joan Rodas
@@ -22,15 +19,6 @@ public class VistaAbout extends javax.swing.JFrame {
     public VistaAbout(CtrlPresentacion pCtrlPresentacion) {
         iCtrlPresentacion = pCtrlPresentacion;
         initComponents();
-        this.addWindowListener(new WindowAdapter() 
-        { 
-            @Override
-            public void windowClosing(WindowEvent e) 
-            { 
-                close();
-            } 
-        } 
-        );
         this.setLocationRelativeTo(null);        
     }
     
@@ -68,6 +56,11 @@ public class VistaAbout extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(455, 300));
         setMinimumSize(new java.awt.Dimension(455, 300));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -119,6 +112,10 @@ public class VistaAbout extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         iCtrlPresentacion.sincronizacionVistaAbout_a_Principal();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.close();
+    }//GEN-LAST:event_formWindowClosing
 
    
 

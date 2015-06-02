@@ -6,8 +6,6 @@
 package graphics;
 
 import java.awt.CardLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 /**
  *
@@ -24,15 +22,6 @@ public class VistaManual extends javax.swing.JFrame {
     public VistaManual(CtrlPresentacion pCtrlPresentacion) {
         iCtrlPresentacion = pCtrlPresentacion;  
         initComponents();
-        this.addWindowListener(new WindowAdapter() 
-        { 
-            @Override
-            public void windowClosing(WindowEvent e) 
-            { 
-                close();
-            } 
-        } 
-        );
         this.setLocationRelativeTo(null);
     }
     
@@ -91,6 +80,11 @@ public class VistaManual extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(719, 520));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         panel.setLayout(new java.awt.CardLayout());
 
@@ -494,6 +488,10 @@ public class VistaManual extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         iCtrlPresentacion.sincronizacionVistaManual_a_Principal();
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.close();
+    }//GEN-LAST:event_formWindowClosing
 
    
 
