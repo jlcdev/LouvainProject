@@ -31,7 +31,6 @@ public class VistaPrincipal extends javax.swing.JFrame
     
     public VistaPrincipal (CtrlPresentacion pCtrlPresentacion) 
     {
-        //System.out.println("isEventDispatchThread: " + SwingUtilities.isEventDispatchThread());
         this.iCtrlPresentacion = pCtrlPresentacion;        
         this.initComponents();
         this.setLocationRelativeTo(null);
@@ -47,7 +46,6 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     public void hacerVisible() 
     {
-        //System.out.println("isEventDispatchThread: " + SwingUtilities.isEventDispatchThread());
         this.pack();
         this.setVisible(true);
     }
@@ -2216,8 +2214,19 @@ public class VistaPrincipal extends javax.swing.JFrame
             int[] infoC1 = iCtrlPresentacion.infoConjunto(false);
             this.txtListComp.append("CONJUNTO CREADO:\n\n");
             this.txtListComp.append("Modificado: "+this.iCtrlPresentacion.isCtoModified(false)+"\n");
-            this.txtListComp.append("Número de comunidades: "+infoC1[0]+"\n");
-            this.txtListComp.append("Algoritmo: "+infoC1[1]+"\n");
+            this.txtListComp.append("Número de comunidades: "+infoC1[0]+"\n");            
+            switch(infoC1[1])
+            {
+                case 1:
+                    this.txtListComp.append("Algoritmo: Louvain\n");
+                    break;
+                case 2:
+                    this.txtListComp.append("Algoritmo: Girvan-Newman\n");
+                    break;
+                case 3:
+                    this.txtListComp.append("Algoritmo: k-Clique\n");
+                    break;
+            }
             this.txtListComp.append("Nivel de cohesión: "+infoC1[2]+"\n");
             this.txtListComp.append("Prioridad filtro nombre similar: "+infoC1[3]+"\n");
             this.txtListComp.append("Prioridad filtro categorias en común: "+infoC1[4]+"\n");
@@ -2227,8 +2236,8 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.txtListComp.append("Núm. de categorias seleccionadas: "+infoC1[8]+"\n");
             this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC1[9]+"\n");
             this.txtListComp.append("Tiempo de procesado: "+this.iCtrlPresentacion.getTexec(false)+"\n");
-            this.txtListComp.append("Purity :"+this.iCtrlPresentacion.getPurityOne(false)+"\n");
-            this.txtListComp.append("Purity2 :"+this.iCtrlPresentacion.getAllPurityOne(false)+"\n\n\n");
+            this.txtListComp.append("Similaridad1 :"+this.iCtrlPresentacion.getPurityOne(false)+"\n");
+            this.txtListComp.append("Similaridad2 :"+this.iCtrlPresentacion.getAllPurityOne(false)+"\n\n\n");
             
         }
         if(b)
@@ -2237,7 +2246,18 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.txtListComp.append("CONJUNTO IMPORTADO:\n\n");
             this.txtListComp.append("Modificado: "+this.iCtrlPresentacion.isCtoModified(true)+"\n");
             this.txtListComp.append("Número de comunidades: "+infoC2[0]+"\n");
-            this.txtListComp.append("Algoritmo: "+infoC2[1]+"\n");
+            switch(infoC2[1])
+            {
+                case 1:
+                    this.txtListComp.append("Algoritmo: Louvain\n");
+                    break;
+                case 2:
+                    this.txtListComp.append("Algoritmo: Girvan-Newman\n");
+                    break;
+                case 3:
+                    this.txtListComp.append("Algoritmo: k-Clique\n");
+                    break;
+            }
             this.txtListComp.append("Nivel de cohesión: "+infoC2[2]+"\n");
             this.txtListComp.append("Prioridad filtro nombre similar: "+infoC2[3]+"\n");
             this.txtListComp.append("Prioridad filtro categorias en común: "+infoC2[4]+"\n");
@@ -2245,15 +2265,15 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.txtListComp.append("Prioridad filtro padres en común: "+infoC2[6]+"\n");
             this.txtListComp.append("Prioridad filtro hijos en común: "+infoC2[7]+"\n");
             this.txtListComp.append("Núm. de categorias seleccionadas: "+infoC2[8]+"\n");
-            this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC2[9]+"\n\n\n");  
+            this.txtListComp.append("Núm. de páginas seleccionadas: "+infoC2[9]+"\n");  
             this.txtListComp.append("Tiempo de procesado: "+this.iCtrlPresentacion.getTexec(true)+"\n");
-            this.txtListComp.append("Purity :"+this.iCtrlPresentacion.getPurityOne(true)+"\n");
-            this.txtListComp.append("Purity2 :"+this.iCtrlPresentacion.getAllPurityOne(true)+"\n\n\n");
+            this.txtListComp.append("Similaridad1 :"+this.iCtrlPresentacion.getPurityOne(true)+"\n");
+            this.txtListComp.append("Similaridad2 :"+this.iCtrlPresentacion.getAllPurityOne(true)+"\n\n\n");
         }
         if(a && b)
         {
-            this.txtListComp.append("Purity1: "+this.iCtrlPresentacion.getAllPurityBoth()+"%\n");
-            this.txtListComp.append("Purity2: "+Double.toString(this.iCtrlPresentacion.getPurityBoth())+"%\n\n");
+            this.txtListComp.append("Similaridad1: "+this.iCtrlPresentacion.getAllPurityBoth()+"\n");
+            this.txtListComp.append("Similaridad2: "+Double.toString(this.iCtrlPresentacion.getPurityBoth())+"\n\n");
         }
     }//GEN-LAST:event_btnCompararConjuntosActionPerformed
 
@@ -2493,9 +2513,8 @@ public class VistaPrincipal extends javax.swing.JFrame
         ckTodasPaginas.setSelected(false);
 
         int num = iCtrlPresentacion.getPagNum(txtPagNameSel.getText());
-        System.out.println(num);
         num = pagPosToId.indexOf(num);
-        System.out.println(num);
+        
         int[] indices = listSelPaginas.getSelectedIndices();
         int newIndices[] = new int[indices.length + 1];
         System.arraycopy(indices, 0, newIndices, 0, indices.length);
@@ -2703,7 +2722,6 @@ public class VistaPrincipal extends javax.swing.JFrame
         else if(this.radioClique.isSelected()) alg = 3;        
         this.iCtrlPresentacion.ejecutar(alg, pVal);
         this.p = pVal;
-        System.out.println("P algoritme: " + this.p);
     }//GEN-LAST:event_btnEjecutarActionPerformed
 
     private void radioGirvanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioGirvanActionPerformed
@@ -3289,13 +3307,16 @@ public class VistaPrincipal extends javax.swing.JFrame
     private void btnCompararComunidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararComunidadesActionPerformed
         
         ArrayList<String> cc = this.iCtrlPresentacion.commonCategories(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected(), this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected());
-        this.txtListComp.setText("");
-        this.txtListComp.append("Categorias comunidad "+this.txtCompCom1.getText()+": "+this.iCtrlPresentacion.numCatCom(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected())+"\n");
-        this.txtListComp.append(""+this.iCtrlPresentacion.getPorcentaje(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected())+"\n");
-        this.txtListComp.append("Categorias comunidad "+this.txtCompCom2.getText()+": "+this.iCtrlPresentacion.numCatCom(this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected())+"\n");
-        this.txtListComp.append(""+this.iCtrlPresentacion.getPorcentaje(this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected())+"\n");
-        this.txtListComp.append("Categorias en común: "+cc.size()+"\n");
-        for(String elem : cc) this.txtListComp.append(elem+"\n");
+        if(!cc.isEmpty())
+        {
+            this.txtListComp.setText("");
+            this.txtListComp.append("Categorias comunidad "+this.txtCompCom1.getText()+": "+this.iCtrlPresentacion.numCatCom(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected())+"\n");
+            this.txtListComp.append(""+this.iCtrlPresentacion.getPorcentaje(this.txtCompCom1.getText(), this.ckCjtoImportado1.isSelected())+"\n");
+            this.txtListComp.append("Categorias comunidad "+this.txtCompCom2.getText()+": "+this.iCtrlPresentacion.numCatCom(this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected())+"\n");
+            this.txtListComp.append(""+this.iCtrlPresentacion.getPorcentaje(this.txtCompCom2.getText(), this.ckCjtoImportado2.isSelected())+"\n");
+            this.txtListComp.append("Categorias en común: "+cc.size()+"\n");
+            for(String elem : cc) this.txtListComp.append(elem+"\n");
+        }        
     }//GEN-LAST:event_btnCompararComunidadesActionPerformed
 
     private void listCatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCatMouseReleased

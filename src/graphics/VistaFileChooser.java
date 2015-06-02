@@ -94,7 +94,6 @@ public class VistaFileChooser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserActionPerformed
-        System.out.println(evt.getActionCommand());
         if (null != evt.getActionCommand())
         switch (evt.getActionCommand()) 
         {
