@@ -734,6 +734,12 @@ public class CtrDominio
         return this.generatedCto.getTimeExecution();
     }
     
+    public boolean isCtoModified(boolean imported)
+    {
+        if(imported)return this.importedCto.isModificado();
+        return this.generatedCto.isModificado();
+    }
+    
     public double getAllPurityOne(boolean imported)
     {
         if(imported)return this.p.calcPurity(this.importedCto);
