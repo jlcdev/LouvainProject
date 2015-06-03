@@ -2717,9 +2717,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         for(int intValue : index) intList.add(this.catPosToId.get(intValue));
         this.iCtrlPresentacion.aplicarSelCat(intList);
         this.tabsAlgoritmo.setSelectedIndex(1);
-        if(this.radioLouvain.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()+"s");
-        else if(this.radioGirvan.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()*3+"s");
-        else this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()/2+"s");
+        double aprox = this.iCtrlPresentacion.getAproxTime();
+        if(this.radioLouvain.isSelected()) this.labelAproxTime.setText(""+aprox+"s");
+        else if(this.radioGirvan.isSelected()) this.labelAproxTime.setText(""+aprox/3+"s");
+        else this.labelAproxTime.setText(""+aprox/2.7+"s");
 
     }//GEN-LAST:event_btnAplicarSelCatActionPerformed
 
@@ -3543,11 +3544,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listComMouseClicked
 
     private void radioGirvanStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioGirvanStateChanged
-        if(this.radioGirvan.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()*3+"s");    
+        if(this.radioGirvan.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()/3+"s");    
     }//GEN-LAST:event_radioGirvanStateChanged
 
     private void radioCliqueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioCliqueStateChanged
-        if(this.radioClique.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()/2+"s");
+        if(this.radioClique.isSelected()) this.labelAproxTime.setText(""+this.iCtrlPresentacion.getAproxTime()/2.7+"s");
     }//GEN-LAST:event_radioCliqueStateChanged
 
     private void radioLouvainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioLouvainStateChanged
