@@ -2326,7 +2326,6 @@ public class VistaPrincipal extends javax.swing.JFrame
             this.actualizarSet(importado);
             this.modConjunto[importado ? 1 : 0] = false;
             this.actualizarSetNum(importado, this.minCat);
-            //this.modConjuntoNum[importado ? 1 : 0] = false;
         }
         else 
         {
@@ -2473,13 +2472,16 @@ public class VistaPrincipal extends javax.swing.JFrame
             boolean b = this.iCtrlPresentacion.addCtoCat(s, this.txtComToAddRmvCat.getText(), importado);
             if(b)
             {
-                //ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(this.txtComToAddRmvCat.getText(), importado);          
-                DefaultListModel model = (DefaultListModel) this.listCom.getModel();
+                ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(this.txtComToAddRmvCat.getText(), importado);          
+                DefaultListModel model = (DefaultListModel) this.listCom.getModel(); 
+                model.clear();
+                model.addElement("..");
+                for(String elem : lista) model.addElement(elem);
                 
                 this.actualizarSet(importado);
                 this.modConjunto[importado ? 1 : 0] = true;
                 
-                model.addElement(s);
+                //model.addElement(s);
             }            
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card2"); 
@@ -2504,7 +2506,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnAplicarFiltrosActionPerformed
 
     private void btnSelPagRandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelPagRandActionPerformed
-        randomSel(true);
+        this.randomSel(true);
         this.ckTodasPaginas.setSelected(false);
     }//GEN-LAST:event_btnSelPagRandActionPerformed
 
@@ -2601,7 +2603,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_ckTodasPaginasActionPerformed
 
     private void btnSelCatRandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelCatRandActionPerformed
-        randomSel(false);
+        this.randomSel(false);
         this.ckTodasCategorias.setSelected(false);
     }//GEN-LAST:event_btnSelCatRandActionPerformed
 
