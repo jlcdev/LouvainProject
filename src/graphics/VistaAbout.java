@@ -59,8 +59,9 @@ public class VistaAbout extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(455, 300));
-        setMinimumSize(new java.awt.Dimension(455, 300));
+        setMaximumSize(new java.awt.Dimension(455, 280));
+        setMinimumSize(new java.awt.Dimension(455, 280));
+        setPreferredSize(new java.awt.Dimension(455, 280));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -103,13 +104,13 @@ public class VistaAbout extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addGap(25, 25, 25)
-                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addComponent(jToggleButton1)
-                .addGap(20, 20, 20))
+                .addGap(29, 29, 29))
         );
 
         pack();
