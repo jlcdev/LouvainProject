@@ -145,52 +145,6 @@ public class CtrDominio
     }
 
     /**
-     * Fija un rango y devuelve una lista de categorias que pertenecen al dicho
-     * rango
-     *
-     * @param min entero con la posicion minima
-     * @param max entero con la posicion maxima
-     * @return lista de todas las categorias entre las dos posiciones
-     */
-    public ArrayList<Integer> getCatSelection(int min, int max)
-    {
-        ArrayList<Integer> selection = new ArrayList();
-        int tam = this.g.getCategorySize(), tam2;
-        for(int i = 0; i < tam; ++i)
-        {
-            tam2 = this.g.getCategoryArch(this.g.getCategories().get(i)).size();
-            if(tam2 >= min && tam2 <= max)
-            {
-                selection.add(this.g.getCategories().get(i));
-            }
-        }
-        return selection;
-    }
-
-    /**
-     * Fija un rango y devuelve una lista de paginas que pertenecen al dicho
-     * rango
-     *
-     * @param min entero con la posicion minima
-     * @param max entero con la posicion maxima
-     * @return lista de todas las paginas entre las dos posiciones
-     */
-    public ArrayList<Integer> getPagSelection(int min, int max)
-    {
-        ArrayList<Integer> selection = new ArrayList();
-        int tam = this.g.getPageSize(), tam2;
-        for(int i = 0; i < tam; ++i)
-        {
-            tam2 = this.g.getPageArch(this.g.getPages().get(i)).size();
-            if(tam2 >= min && tam2 <= max)
-            {
-                selection.add(this.g.getPages().get(i));
-            }
-        }
-        return selection;
-    }
-
-    /**
      * Guarda el grafo del algoritmo dentro del controlador de dominio
      *
      * @param graph grafo del algoritmo
