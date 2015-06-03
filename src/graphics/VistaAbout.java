@@ -75,7 +75,7 @@ public class VistaAbout extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Proyecto Wikipedia de PROP. Cluster 17.3\n\nAutores: Javi Lopez, Albert Campano, Alfred Parellada, \nJoan Rodas\n\n2015");
+        jTextArea1.setText("Proyecto Wikipedia de PROP. Cluster 7.3\n\nAutores: Javi Lopez, Albert Campano, Alfred Parellada, \nJoan Rodas\n\n2015");
         jTextArea1.setAutoscrolls(false);
         jTextArea1.setOpaque(false);
 
@@ -105,9 +105,9 @@ public class VistaAbout extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
+                .addGap(25, 25, 25)
+                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
                 .addComponent(jToggleButton1)
                 .addGap(20, 20, 20))
         );
