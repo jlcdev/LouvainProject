@@ -71,8 +71,6 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea7 = new javax.swing.JTextArea();
         card8 = new javax.swing.JPanel();
         jTextArea8 = new javax.swing.JTextArea();
-        card9 = new javax.swing.JPanel();
-        jTextArea9 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -100,7 +98,7 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Importar grafo\n--------------\n\nAl iniciar el programa tendremos la opción de crear un nuevo grafo vacío al que añadir los nodos manualmente o por otro lado la opción de importar un grafo previamente guardado en formato .txt.\n\nPara importar el grafo simplemente hay que pulsar el botón \"Importar grafo\" de la pestaña Inicio y seleccionar el fichero deseado.\n\nTambién es posible acceder a esta opción desde la pestaña Grafo,\nque nos permite substituir el grafo actual por el importado\n\n\n\nImportar conjunto\n------------------\n\nAl iniciar el programa tendremos la opción de importar un conjunto\nde comunidades en formato .txt desde la opción \"Importar conjunto\".\n\nTambién es posible acceder a esta opción desde la pestaña conjunto.\n\nUna vez importado el conjunto, podrá ser modificado, guardado y comparado con otro.");
+        jTextArea1.setText("Importar grafo\n--------------\n\nAl iniciar el programa tendremos la opción de crear un nuevo grafo vacío al que añadir los nodos manualmente o por otro lado la opción de importar un grafo previamente guardado en formato .txt.\n\nPara importar el grafo simplemente hay que pulsar el botón \"Importar grafo\" de la pestaña Inicio y seleccionar el fichero deseado.\n\nTambién es posible acceder a estas opciones desde la pestaña Grafo o el menú Fichero.\n\n\n\nImportar conjunto\n------------------\n\nAl iniciar el programa tendremos la opción de importar un conjunto\nde comunidades en formato .txt desde la opción \"Importar conjunto\".\n\nTambién es posible acceder a esta opción desde la pestaña Conjunto o el menú fichero.\n\nUna vez importado el conjunto, podrá ser modificado, guardado y comparado con otro.");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setOpaque(false);
 
@@ -127,7 +125,7 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
-        jTextArea2.setText("Modificar grafo\n---------------\n\nEl programa dispone de varias opciones para crear y modificar un grafo, accesibles desde la pestaña Grafo (hay que crear un nuevo grafo o importar uno existente para poder acceder a estas opciones).\n\nAñadir/Eliminar categoria:\n\nAñadir/Eliminar página:\n\nAñadir/Eliminar enlace:\n\nCambiar nombre nodo:\n");
+        jTextArea2.setText("Modificar grafo\n---------------\n\nEl programa dispone de varias opciones para crear y modificar un grafo, accesibles desde la pestaña Grafo (hay que crear un nuevo grafo o importar uno existente para poder acceder a estas opciones).\n\nAñadir/Eliminar categoria: Con los botones + y - podemos añadir y quitar categorias.\n\nAñadir/Eliminar página: Con los botones + y - podemos añadir y quitar páginas.\n\nAñadir/Eliminar enlace: Con los botones + y - podemos añadir y quitar enlaces, seleccionando el tipo. Con el botón derecho en la lista de categorias/páginas se pueden poner los nodos origen y detino en las cajas de texto para no tener que escribirlos manualmente.\n\nCambiar nombre nodo: Es posible modificar el nombre de una página o categoria.\n");
         jTextArea2.setWrapStyleWord(true);
         jTextArea2.setOpaque(false);
 
@@ -154,7 +152,7 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea3.setColumns(20);
         jTextArea3.setLineWrap(true);
         jTextArea3.setRows(5);
-        jTextArea3.setText("Ver grafo\n----------\n\nDesde la pestaña \"Grafo\" se puede visualizar el grafo en formato texto.\n\nCategorias: Muestra una lista con todas las categorias del grafo.\n\nPáginas: Muestra una lista con todas las páginas del grafo.\n\nEnlaces: Muestra una lista con todos los enlaces del grafo, indicando en cada caso los 2 nodos y el tipo de enlace entre ellos.");
+        jTextArea3.setText("Ver grafo\n----------\n\nDesde la pestaña \"Grafo\" se puede visualizar el grafo en formato texto o visualmente (aunque sin enlaces).\n\nCategorias: Muestra una lista con todas las categorias del grafo.\n\nPáginas: Muestra una lista con todas las páginas del grafo.\n\nEnlaces: Muestra una lista con todos los enlaces del grafo, indicando en cada caso los 2 nodos y el tipo de enlace entre ellos.\n\nHaciendo doble clic en la categoria o página deseada, se mostrarán sus enlaces.");
         jTextArea3.setWrapStyleWord(true);
         jTextArea3.setOpaque(false);
 
@@ -181,7 +179,7 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea4.setColumns(20);
         jTextArea4.setLineWrap(true);
         jTextArea4.setRows(5);
-        jTextArea4.setText("Algoritmo\n----------\n\nSeleccionar Páginas: Se pueden seleccionar las páginas de forma manual en la lista que aparece a la derecha en la pestaña \"Algoritmo\" y \"Seleccionar Páginas\". También es posible seleccionar todas las páginas, hacer una seleccion aleatoria o seleccionar las páginas con un número de enlaces dentro de un rango. Una vez realizada la selección hay que pulsar el botón \"Aplicar\".\n\nSeleccionar Categorias: Se pueden seleccionar las categorias de forma manual en la lista que aparece a la derecha en la pestaña \"Algoritmo\" y \"Seleccionar Categorias\". También es posible seleccionar todas las categorias, hacer una seleccion aleatoria o seleccionar las categorias con un número de enlaces dentro de un rango. Una vez realizada la selección hay que pulsar el botón \"Aplicar\".\n\nEscoger filtros: En la pestaña \"Algoritmo\" y \"Filtros\", se pueden escoger los filtros deseados para hacer el cálculo de las comunidades. Cuanto más prioridad tengo un filtro más se tendrá en cuenta. En caso de que la prioridad sea 0 no se aplicará dicho filtro. Los filtros posibles son: Nombre parecido, Páginas en común, Categorias en común, CsubC en común y CsubC en común.\n\nEscoger algoritmo: En la pantalla \"Algoritmo\" se puede escoger entre Louvain, Girvain-Newman y Clique.\n\nValor de P: Valor entre 0 i 100.\n\nEjecutar algoritmo: Una vez realizada la selección de páginas, categorias, filtros, algoritmo y establecido un valor para P, podrá ejecutarse el algoritmo con el botón \"Ejecutar\".\n\n");
+        jTextArea4.setText("Algoritmo\n----------\n\nSeleccionar Categorias: Se pueden seleccionar las categorias de forma manual en la lista que aparece a la derecha en la pestaña \"Algoritmo\" y \"Seleccionar Categorias\". También es posible seleccionar todas las categorias, hacer una seleccion aleatoria o seleccionar las categorias por intervalo. Una vez realizada la selección hay que pulsar el botón \"Aplicar\".\n\nSeleccionar Páginas: Se pueden seleccionar las páginas de forma manual en la lista que aparece a la derecha en la pestaña \"Algoritmo\" y \"Seleccionar Páginas\". También es posible seleccionar todas las páginas, hacer una seleccion aleatoria o seleccionar las páginas por intervalo. Una vez realizada la selección hay que pulsar el botón \"Aplicar\".\n\nEscoger filtros: En la pestaña \"Algoritmo\" y \"Filtros\", se pueden escoger los filtros deseados para hacer el cálculo de las comunidades. Cuanto más prioridad tengo un filtro más se tendrá en cuenta. En caso de que la prioridad sea 0 no se aplicará dicho filtro. Los filtros posibles son: Nombre parecido, Páginas en común, Categorias en común, CsubC en común y CsubC en común. Se pueden asignar al azar.\n\nEscoger algoritmo: En la pantalla \"Algoritmo\" se puede escoger entre Louvain, Girvain-Newman y Clique.\n\nFactor de cohesión (P): Valor entre 0 i 100.\n\nEjecutar algoritmo: Una vez realizada la selección de páginas, categorias, filtros, algoritmo y establecido un valor para P, podrá ejecutarse el algoritmo con el botón \"Ejecutar\".\n\n");
         jTextArea4.setWrapStyleWord(true);
         jTextArea4.setOpaque(false);
 
@@ -208,7 +206,7 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea5.setColumns(20);
         jTextArea5.setLineWrap(true);
         jTextArea5.setRows(5);
-        jTextArea5.setText("Modificar conjunto\n-------------------");
+        jTextArea5.setText("Modificar conjunto\n-------------------\n\nEs posible modificar un conjunto generado o un conjunto importado.\n\nAñadir/quitar categorias: Con los botones + - es posible añadir/quitar una categoria a/de una comunidad determinada.\n\nAñadir/quitar comunidades: Con los botones + - se puede añadir o quitar una comunidad.\n\nModificar nombre comunidad: Es posible cambiar el nombre de una comunidad concreta.\n\nListar conjunto: Es posible listar el conjunto de comunidades completo o mostrar un grupo de comunidades con más de X categorias.\n\nListar comunidades: Desde el botón listar (comunidades) se pueden ver las categorias de una comunidad en concreto. También se puede acceder a esta lista haciendo doble clic en una comunidad (lista conjunto).\n\nModificar p: Si el conjunto es generado (no importado), es posible modificar el factor de cohesión (P) para obtener otros resultados.\n\nVisualizar: Es posible visualizar el grafo convertido (no el de comunidades) con el botón \"Visualizar grafo\".");
         jTextArea5.setWrapStyleWord(true);
         jTextArea5.setOpaque(false);
 
@@ -235,7 +233,7 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea6.setColumns(20);
         jTextArea6.setLineWrap(true);
         jTextArea6.setRows(5);
-        jTextArea6.setText("Ver conjunto\n------------");
+        jTextArea6.setText("Ver conjunto\n------------\n\nEl conjunto se puede ver en formato de lista de comunidades o categorias (dentro de una comunidad). Es posible ver un conjunto importado o generado.\n\nListar conjunto: Es posible listar el conjunto de comunidades completo o mostrar un grupo de comunidades con más de X categorias.\n\nListar comunidades: Desde el botón listar (comunidades) se pueden ver las categorias de una comunidad en concreto. También se puede acceder a esta lista haciendo doble clic en una comunidad (lista conjunto).\n\nModificar p: Si el conjunto es generado (no importado), es posible modificar el factor de cohesión (P) para obtener otros resultados.\n\nVisualizar: Es posible visualizar el grafo convertido (no el de comunidades) con el botón \"Visualizar grafo\".");
         jTextArea6.setWrapStyleWord(true);
         jTextArea6.setOpaque(false);
 
@@ -262,7 +260,7 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea7.setColumns(20);
         jTextArea7.setLineWrap(true);
         jTextArea7.setRows(5);
-        jTextArea7.setText("Comparar\n----------");
+        jTextArea7.setText("Comparar\n----------\n\nEs posible comparar y mostrar estadísticas entre 2 comunidades o dos conjuntos.\n\nPara comparar dos conjuntos (generado e importado) sólo hay que pulsar el segundo botón de comparar de la pestaña \"Comparación\".\n\nPara comparar dos comunidades hay que poner el nombre manualmente o ir a la lista de comunidades de la pestaña \"Conjunto\" y seleccionar las comunidades a comparar con un clic derecho. Es posible comparar comunidades de distintos conjuntos (importado y generado).");
         jTextArea7.setWrapStyleWord(true);
         jTextArea7.setOpaque(false);
 
@@ -289,7 +287,7 @@ public class VistaManual extends javax.swing.JFrame {
         jTextArea8.setColumns(20);
         jTextArea8.setLineWrap(true);
         jTextArea8.setRows(5);
-        jTextArea8.setText("Guardar grafo\n--------------\n\n\n\n\n\n\nGuardar conjunto\n-----------------");
+        jTextArea8.setText("Guardar grafo\n--------------\n\nUna vez creado/modificado el grafo, podemos guardarlo en formato .txt, que más tarde podremos volver a importar y modificar. \n\nPara guardar un grafo hay que ir a la pestaña \"Grafo\" y pulsar el botón Exportar. También es posible hacerlo desde el menú Fichero, Exportar Grafo. En caso de no haber grafo, se creará un fichero vacío.\n\nAtención: Los nodos sin enlaces no se tendrán en cuenta a la hora de guardar el grafo o importarlo.\n\n\n\nGuardar conjunto\n-----------------\n\nDesde la pestaña \"Conjunto\" es posible guardar un conjunto generado/importado, después de hacer o no los cambios deseados.\n\nPara guardar un conjunto, sólo es necesario darle al botón \"Exportar\" y escoger la ruta y nombre del nuevo fichero.");
         jTextArea8.setWrapStyleWord(true);
         jTextArea8.setOpaque(false);
 
@@ -311,32 +309,6 @@ public class VistaManual extends javax.swing.JFrame {
         );
 
         panel.add(card8, "card8");
-
-        jTextArea9.setEditable(false);
-        jTextArea9.setColumns(20);
-        jTextArea9.setLineWrap(true);
-        jTextArea9.setRows(5);
-        jTextArea9.setWrapStyleWord(true);
-        jTextArea9.setOpaque(false);
-
-        javax.swing.GroupLayout card9Layout = new javax.swing.GroupLayout(card9);
-        card9.setLayout(card9Layout);
-        card9Layout.setHorizontalGroup(
-            card9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(card9Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTextArea9, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        card9Layout.setVerticalGroup(
-            card9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(card9Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jTextArea9, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
-        );
-
-        panel.add(card9, "card9");
 
         jButton2.setText("Importar fichero");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -442,7 +414,7 @@ public class VistaManual extends javax.swing.JFrame {
                         .addComponent(jButton8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(196, 196, 196)
                         .addComponent(jButton10))
                     .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -510,7 +482,6 @@ public class VistaManual extends javax.swing.JFrame {
     private javax.swing.JPanel card6;
     private javax.swing.JPanel card7;
     private javax.swing.JPanel card8;
-    private javax.swing.JPanel card9;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -528,7 +499,6 @@ public class VistaManual extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea6;
     private javax.swing.JTextArea jTextArea7;
     private javax.swing.JTextArea jTextArea8;
-    private javax.swing.JTextArea jTextArea9;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }

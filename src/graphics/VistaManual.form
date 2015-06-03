@@ -70,7 +70,7 @@
                       <Component id="jButton8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jButton9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="196" max="-2" attributes="0"/>
                       <Component id="jButton10" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="panel" max="32767" attributes="0"/>
@@ -122,7 +122,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Importar grafo&#xa;--------------&#xa;&#xa;Al iniciar el programa tendremos la opci&#xf3;n de crear un nuevo grafo vac&#xed;o al que a&#xf1;adir los nodos manualmente o por otro lado la opci&#xf3;n de importar un grafo previamente guardado en formato .txt.&#xa;&#xa;Para importar el grafo simplemente hay que pulsar el bot&#xf3;n &quot;Importar grafo&quot; de la pesta&#xf1;a Inicio y seleccionar el fichero deseado.&#xa;&#xa;Tambi&#xe9;n es posible acceder a esta opci&#xf3;n desde la pesta&#xf1;a Grafo,&#xa;que nos permite substituir el grafo actual por el importado&#xa;&#xa;&#xa;&#xa;Importar conjunto&#xa;------------------&#xa;&#xa;Al iniciar el programa tendremos la opci&#xf3;n de importar un conjunto&#xa;de comunidades en formato .txt desde la opci&#xf3;n &quot;Importar conjunto&quot;.&#xa;&#xa;Tambi&#xe9;n es posible acceder a esta opci&#xf3;n desde la pesta&#xf1;a conjunto.&#xa;&#xa;Una vez importado el conjunto, podr&#xe1; ser modificado, guardado y comparado con otro."/>
+                <Property name="text" type="java.lang.String" value="Importar grafo&#xa;--------------&#xa;&#xa;Al iniciar el programa tendremos la opci&#xf3;n de crear un nuevo grafo vac&#xed;o al que a&#xf1;adir los nodos manualmente o por otro lado la opci&#xf3;n de importar un grafo previamente guardado en formato .txt.&#xa;&#xa;Para importar el grafo simplemente hay que pulsar el bot&#xf3;n &quot;Importar grafo&quot; de la pesta&#xf1;a Inicio y seleccionar el fichero deseado.&#xa;&#xa;Tambi&#xe9;n es posible acceder a estas opciones desde la pesta&#xf1;a Grafo o el men&#xfa; Fichero.&#xa;&#xa;&#xa;&#xa;Importar conjunto&#xa;------------------&#xa;&#xa;Al iniciar el programa tendremos la opci&#xf3;n de importar un conjunto&#xa;de comunidades en formato .txt desde la opci&#xf3;n &quot;Importar conjunto&quot;.&#xa;&#xa;Tambi&#xe9;n es posible acceder a esta opci&#xf3;n desde la pesta&#xf1;a Conjunto o el men&#xfa; fichero.&#xa;&#xa;Una vez importado el conjunto, podr&#xe1; ser modificado, guardado y comparado con otro."/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
@@ -163,7 +163,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Modificar grafo&#xa;---------------&#xa;&#xa;El programa dispone de varias opciones para crear y modificar un grafo, accesibles desde la pesta&#xf1;a Grafo (hay que crear un nuevo grafo o importar uno existente para poder acceder a estas opciones).&#xa;&#xa;A&#xf1;adir/Eliminar categoria:&#xa;&#xa;A&#xf1;adir/Eliminar p&#xe1;gina:&#xa;&#xa;A&#xf1;adir/Eliminar enlace:&#xa;&#xa;Cambiar nombre nodo:&#xa;"/>
+                <Property name="text" type="java.lang.String" value="Modificar grafo&#xa;---------------&#xa;&#xa;El programa dispone de varias opciones para crear y modificar un grafo, accesibles desde la pesta&#xf1;a Grafo (hay que crear un nuevo grafo o importar uno existente para poder acceder a estas opciones).&#xa;&#xa;A&#xf1;adir/Eliminar categoria: Con los botones + y - podemos a&#xf1;adir y quitar categorias.&#xa;&#xa;A&#xf1;adir/Eliminar p&#xe1;gina: Con los botones + y - podemos a&#xf1;adir y quitar p&#xe1;ginas.&#xa;&#xa;A&#xf1;adir/Eliminar enlace: Con los botones + y - podemos a&#xf1;adir y quitar enlaces, seleccionando el tipo. Con el bot&#xf3;n derecho en la lista de categorias/p&#xe1;ginas se pueden poner los nodos origen y detino en las cajas de texto para no tener que escribirlos manualmente.&#xa;&#xa;Cambiar nombre nodo: Es posible modificar el nombre de una p&#xe1;gina o categoria.&#xa;"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
@@ -204,7 +204,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Ver grafo&#xa;----------&#xa;&#xa;Desde la pesta&#xf1;a &quot;Grafo&quot; se puede visualizar el grafo en formato texto.&#xa;&#xa;Categorias: Muestra una lista con todas las categorias del grafo.&#xa;&#xa;P&#xe1;ginas: Muestra una lista con todas las p&#xe1;ginas del grafo.&#xa;&#xa;Enlaces: Muestra una lista con todos los enlaces del grafo, indicando en cada caso los 2 nodos y el tipo de enlace entre ellos."/>
+                <Property name="text" type="java.lang.String" value="Ver grafo&#xa;----------&#xa;&#xa;Desde la pesta&#xf1;a &quot;Grafo&quot; se puede visualizar el grafo en formato texto o visualmente (aunque sin enlaces).&#xa;&#xa;Categorias: Muestra una lista con todas las categorias del grafo.&#xa;&#xa;P&#xe1;ginas: Muestra una lista con todas las p&#xe1;ginas del grafo.&#xa;&#xa;Enlaces: Muestra una lista con todos los enlaces del grafo, indicando en cada caso los 2 nodos y el tipo de enlace entre ellos.&#xa;&#xa;Haciendo doble clic en la categoria o p&#xe1;gina deseada, se mostrar&#xe1;n sus enlaces."/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
@@ -245,7 +245,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Algoritmo&#xa;----------&#xa;&#xa;Seleccionar P&#xe1;ginas: Se pueden seleccionar las p&#xe1;ginas de forma manual en la lista que aparece a la derecha en la pesta&#xf1;a &quot;Algoritmo&quot; y &quot;Seleccionar P&#xe1;ginas&quot;. Tambi&#xe9;n es posible seleccionar todas las p&#xe1;ginas, hacer una seleccion aleatoria o seleccionar las p&#xe1;ginas con un n&#xfa;mero de enlaces dentro de un rango. Una vez realizada la selecci&#xf3;n hay que pulsar el bot&#xf3;n &quot;Aplicar&quot;.&#xa;&#xa;Seleccionar Categorias: Se pueden seleccionar las categorias de forma manual en la lista que aparece a la derecha en la pesta&#xf1;a &quot;Algoritmo&quot; y &quot;Seleccionar Categorias&quot;. Tambi&#xe9;n es posible seleccionar todas las categorias, hacer una seleccion aleatoria o seleccionar las categorias con un n&#xfa;mero de enlaces dentro de un rango. Una vez realizada la selecci&#xf3;n hay que pulsar el bot&#xf3;n &quot;Aplicar&quot;.&#xa;&#xa;Escoger filtros: En la pesta&#xf1;a &quot;Algoritmo&quot; y &quot;Filtros&quot;, se pueden escoger los filtros deseados para hacer el c&#xe1;lculo de las comunidades. Cuanto m&#xe1;s prioridad tengo un filtro m&#xe1;s se tendr&#xe1; en cuenta. En caso de que la prioridad sea 0 no se aplicar&#xe1; dicho filtro. Los filtros posibles son: Nombre parecido, P&#xe1;ginas en com&#xfa;n, Categorias en com&#xfa;n, CsubC en com&#xfa;n y CsubC en com&#xfa;n.&#xa;&#xa;Escoger algoritmo: En la pantalla &quot;Algoritmo&quot; se puede escoger entre Louvain, Girvain-Newman y Clique.&#xa;&#xa;Valor de P: Valor entre 0 i 100.&#xa;&#xa;Ejecutar algoritmo: Una vez realizada la selecci&#xf3;n de p&#xe1;ginas, categorias, filtros, algoritmo y establecido un valor para P, podr&#xe1; ejecutarse el algoritmo con el bot&#xf3;n &quot;Ejecutar&quot;.&#xa;&#xa;"/>
+                <Property name="text" type="java.lang.String" value="Algoritmo&#xa;----------&#xa;&#xa;Seleccionar Categorias: Se pueden seleccionar las categorias de forma manual en la lista que aparece a la derecha en la pesta&#xf1;a &quot;Algoritmo&quot; y &quot;Seleccionar Categorias&quot;. Tambi&#xe9;n es posible seleccionar todas las categorias, hacer una seleccion aleatoria o seleccionar las categorias por intervalo. Una vez realizada la selecci&#xf3;n hay que pulsar el bot&#xf3;n &quot;Aplicar&quot;.&#xa;&#xa;Seleccionar P&#xe1;ginas: Se pueden seleccionar las p&#xe1;ginas de forma manual en la lista que aparece a la derecha en la pesta&#xf1;a &quot;Algoritmo&quot; y &quot;Seleccionar P&#xe1;ginas&quot;. Tambi&#xe9;n es posible seleccionar todas las p&#xe1;ginas, hacer una seleccion aleatoria o seleccionar las p&#xe1;ginas por intervalo. Una vez realizada la selecci&#xf3;n hay que pulsar el bot&#xf3;n &quot;Aplicar&quot;.&#xa;&#xa;Escoger filtros: En la pesta&#xf1;a &quot;Algoritmo&quot; y &quot;Filtros&quot;, se pueden escoger los filtros deseados para hacer el c&#xe1;lculo de las comunidades. Cuanto m&#xe1;s prioridad tengo un filtro m&#xe1;s se tendr&#xe1; en cuenta. En caso de que la prioridad sea 0 no se aplicar&#xe1; dicho filtro. Los filtros posibles son: Nombre parecido, P&#xe1;ginas en com&#xfa;n, Categorias en com&#xfa;n, CsubC en com&#xfa;n y CsubC en com&#xfa;n. Se pueden asignar al azar.&#xa;&#xa;Escoger algoritmo: En la pantalla &quot;Algoritmo&quot; se puede escoger entre Louvain, Girvain-Newman y Clique.&#xa;&#xa;Factor de cohesi&#xf3;n (P): Valor entre 0 i 100.&#xa;&#xa;Ejecutar algoritmo: Una vez realizada la selecci&#xf3;n de p&#xe1;ginas, categorias, filtros, algoritmo y establecido un valor para P, podr&#xe1; ejecutarse el algoritmo con el bot&#xf3;n &quot;Ejecutar&quot;.&#xa;&#xa;"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
@@ -286,7 +286,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Modificar conjunto&#xa;-------------------"/>
+                <Property name="text" type="java.lang.String" value="Modificar conjunto&#xa;-------------------&#xa;&#xa;Es posible modificar un conjunto generado o un conjunto importado.&#xa;&#xa;A&#xf1;adir/quitar categorias: Con los botones + - es posible a&#xf1;adir/quitar una categoria a/de una comunidad determinada.&#xa;&#xa;A&#xf1;adir/quitar comunidades: Con los botones + - se puede a&#xf1;adir o quitar una comunidad.&#xa;&#xa;Modificar nombre comunidad: Es posible cambiar el nombre de una comunidad concreta.&#xa;&#xa;Listar conjunto: Es posible listar el conjunto de comunidades completo o mostrar un grupo de comunidades con m&#xe1;s de X categorias.&#xa;&#xa;Listar comunidades: Desde el bot&#xf3;n listar (comunidades) se pueden ver las categorias de una comunidad en concreto. Tambi&#xe9;n se puede acceder a esta lista haciendo doble clic en una comunidad (lista conjunto).&#xa;&#xa;Modificar p: Si el conjunto es generado (no importado), es posible modificar el factor de cohesi&#xf3;n (P) para obtener otros resultados.&#xa;&#xa;Visualizar: Es posible visualizar el grafo convertido (no el de comunidades) con el bot&#xf3;n &quot;Visualizar grafo&quot;."/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
@@ -327,7 +327,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Ver conjunto&#xa;------------"/>
+                <Property name="text" type="java.lang.String" value="Ver conjunto&#xa;------------&#xa;&#xa;El conjunto se puede ver en formato de lista de comunidades o categorias (dentro de una comunidad). Es posible ver un conjunto importado o generado.&#xa;&#xa;Listar conjunto: Es posible listar el conjunto de comunidades completo o mostrar un grupo de comunidades con m&#xe1;s de X categorias.&#xa;&#xa;Listar comunidades: Desde el bot&#xf3;n listar (comunidades) se pueden ver las categorias de una comunidad en concreto. Tambi&#xe9;n se puede acceder a esta lista haciendo doble clic en una comunidad (lista conjunto).&#xa;&#xa;Modificar p: Si el conjunto es generado (no importado), es posible modificar el factor de cohesi&#xf3;n (P) para obtener otros resultados.&#xa;&#xa;Visualizar: Es posible visualizar el grafo convertido (no el de comunidades) con el bot&#xf3;n &quot;Visualizar grafo&quot;."/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
@@ -368,7 +368,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Comparar&#xa;----------"/>
+                <Property name="text" type="java.lang.String" value="Comparar&#xa;----------&#xa;&#xa;Es posible comparar y mostrar estad&#xed;sticas entre 2 comunidades o dos conjuntos.&#xa;&#xa;Para comparar dos conjuntos (generado e importado) s&#xf3;lo hay que pulsar el segundo bot&#xf3;n de comparar de la pesta&#xf1;a &quot;Comparaci&#xf3;n&quot;.&#xa;&#xa;Para comparar dos comunidades hay que poner el nombre manualmente o ir a la lista de comunidades de la pesta&#xf1;a &quot;Conjunto&quot; y seleccionar las comunidades a comparar con un clic derecho. Es posible comparar comunidades de distintos conjuntos (importado y generado)."/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
@@ -409,47 +409,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Guardar grafo&#xa;--------------&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;Guardar conjunto&#xa;-----------------"/>
-                <Property name="wrapStyleWord" type="boolean" value="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="card9">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card9"/>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jTextArea9" min="-2" pref="480" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                      <Component id="jTextArea9" min="-2" pref="493" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jTextArea9">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="columns" type="int" value="20"/>
-                <Property name="lineWrap" type="boolean" value="true"/>
-                <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="Guardar grafo&#xa;--------------&#xa;&#xa;Una vez creado/modificado el grafo, podemos guardarlo en formato .txt, que m&#xe1;s tarde podremos volver a importar y modificar. &#xa;&#xa;Para guardar un grafo hay que ir a la pesta&#xf1;a &quot;Grafo&quot; y pulsar el bot&#xf3;n Exportar. Tambi&#xe9;n es posible hacerlo desde el men&#xfa; Fichero, Exportar Grafo. En caso de no haber grafo, se crear&#xe1; un fichero vac&#xed;o.&#xa;&#xa;Atenci&#xf3;n: Los nodos sin enlaces no se tendr&#xe1;n en cuenta a la hora de guardar el grafo o importarlo.&#xa;&#xa;&#xa;&#xa;Guardar conjunto&#xa;-----------------&#xa;&#xa;Desde la pesta&#xf1;a &quot;Conjunto&quot; es posible guardar un conjunto generado/importado, despu&#xe9;s de hacer o no los cambios deseados.&#xa;&#xa;Para guardar un conjunto, s&#xf3;lo es necesario darle al bot&#xf3;n &quot;Exportar&quot; y escoger la ruta y nombre del nuevo fichero."/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
