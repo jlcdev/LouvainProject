@@ -246,6 +246,7 @@ public class CtrlPresentacion
     }
 
     /**
+     * Devuelve el numero de la pagina.
      * 
      * @param pagina
      * @return
@@ -262,7 +263,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve el numero de la categoria.
+     * 
      * @param categoria
      * @return
      */
@@ -275,36 +277,6 @@ public class CtrlPresentacion
         }
         sincronizacionVistaPrincipal_a_Error("La categoria no existe");
         return r;
-    }
-
-    /**
-     *
-     * @param min
-     * @param max
-     * @return
-     */
-    public ArrayList<Integer> getCatSelection(int min, int max)
-    {
-        if(max < min)
-        {
-            sincronizacionVistaPrincipal_a_Error("max < min");
-        }
-        return this.ctrlDominio.getCatSelection(min, max);
-    }
-
-    /**
-     *
-     * @param min
-     * @param max
-     * @return
-     */
-    public ArrayList<Integer> getPagSelection(int min, int max)
-    {
-        if(max < min)
-        {
-            sincronizacionVistaPrincipal_a_Error("max < min");
-        }
-        return this.ctrlDominio.getPagSelection(min, max);
     }
 
     /**
@@ -480,7 +452,7 @@ public class CtrlPresentacion
     }
 
     /**
-     * Mostra els enllaços d'un node
+     * Mostra els enllaços d'un node.
      *
      * @param category
      * @param name
@@ -497,7 +469,8 @@ public class CtrlPresentacion
 
     //pestaña algoritmo
     /**
-     *
+     *Transforma el grafo de entrada.
+     * 
      * @return
      */
     public Graph<Integer, Double> algorithmGraph()
@@ -509,7 +482,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Ejecuta el algoritmo.
+     * 
      * @param algoritmo
      * @param p
      */
@@ -545,7 +519,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Aplica la seleccion de paginas.
+     * 
      * @param al
      */
     public void aplicarSelPag(ArrayList<Integer> al)
@@ -554,7 +529,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Aplica la seleccion de categorias.
+     * 
      * @param al
      */
     public void aplicarSelCat(ArrayList<Integer> al)
@@ -563,7 +539,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Aplica los filtros.
+     * 
      * @param a
      * @param b
      * @param c
@@ -577,7 +554,8 @@ public class CtrlPresentacion
 
     //pestaña comunidades
     /**
-     *
+     *Añade una categoria a una comunidad indicada del conjunto indicado.
+     * 
      * @param categoria
      * @param comunidad
      * @param importat
@@ -594,7 +572,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Añade una comunidad al conjunto indicado.
+     * 
      * @param comunidad
      * @param importat
      * @return
@@ -610,7 +589,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Quita una categoria de la comunidad indicada del conjunto indicado.
+     * 
      * @param categoria
      * @param comunidad
      * @param importat
@@ -624,7 +604,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Quita una comunidad del conjunto indicado.
+     * 
      * @param comunidad
      * @param importat
      * @return
@@ -640,7 +621,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Modifica el nombre de una comunidad del conjunto indicado.
+     * 
      * @param anterior
      * @param nuevo
      * @param importat
@@ -654,7 +636,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Muestra el conjunto indicado.
+     * 
      * @param importat
      * @return
      */
@@ -664,15 +647,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
-     * @param importat
-     */
-    public void visualizarCto(boolean importat)
-    {
-    }
-
-    /**
-     *
+     *Muestra la comunidad del conjunto indicado.
+     * 
      * @param comunidad
      * @param importat
      * @return
@@ -688,18 +664,10 @@ public class CtrlPresentacion
         return s;
     }
 
-    /**
-     *
-     * @param comunidad
-     * @param importat
-     */
-    public void visualizarCom(String comunidad, boolean importat)
-    {
-    }
-
     //COMPARACION
     /**
-     *
+     *Comprueba si existe una comunidad del conjunto indicado.
+     * 
      * @param comunidad
      * @param imported
      * @return
@@ -710,7 +678,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve el numero de categorias de una comunidad de un conjunto indicado.
+     * 
      * @param comunidad
      * @param imported
      * @return
@@ -721,7 +690,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve las categorias en comun de dos comunidades.
+     * 
      * @param com1
      * @param importado1
      * @param com2
@@ -734,7 +704,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve el peso de una comunidad dentro de su conjunto.
+     * 
      * @param comunidad
      * @param importado
      * @return
@@ -745,7 +716,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve informacion general del conjunto indicado.
+     * 
      * @param imported
      * @return
      */
@@ -755,7 +727,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve el tiempo de ejecucion del conjunto indicado.
+     * 
      * @param imported
      * @return
      */
@@ -765,7 +738,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Comprueba si el conjunto indicado ha sido modificado.
+     * 
      * @param imported
      * @return
      */
@@ -779,7 +753,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Comprueba si existe el conjunto indicado.
+     * 
      * @param imported
      * @return
      */
@@ -789,7 +764,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve la similaridad de un conjunto para las comunidades con > 1 categoria.
+     * 
      * @param imported
      * @return
      */
@@ -799,7 +775,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve la similaridad de ambos conjuntos para las comunidades con > 1 categoria.
+     * 
      * @return
      */
     public double getPurityBoth()
@@ -808,7 +785,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve la similaridad de un conjunto para todas las comunidades.
+     * 
      * @param imported
      * @return
      */
@@ -818,7 +796,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve la similaridad para ambos conjuntos para todas las comunidades.
+     * 
      * @return
      */
     public double getAllPurityBoth()
@@ -827,7 +806,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Obtiene el conjunto de nuevo con una p distina.
+     * 
      * @param p
      */
     public void obtainCjto(int p)
@@ -837,7 +817,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Visualizar graficamente el grafo de entrada.
+     * 
      */
     public void visualizarGrafo()
     {
@@ -845,7 +826,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Visualizar graficamente el grafo transformado.
+     * 
      */
     public void visualizarGrafoGenerado()
     {
@@ -853,7 +835,8 @@ public class CtrlPresentacion
     }
 
     /**
-     *
+     *Devuelve el tiempo aproximado de ejecucion del algoritmo.
+     * 
      * @return
      */
     public Double getAproxTime()
