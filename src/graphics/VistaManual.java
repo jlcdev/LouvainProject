@@ -20,8 +20,8 @@ public class VistaManual extends javax.swing.JFrame {
      * @param pCtrlPresentacion
      */
     public VistaManual(CtrlPresentacion pCtrlPresentacion) {
-        iCtrlPresentacion = pCtrlPresentacion;  
-        initComponents();
+        this.iCtrlPresentacion = pCtrlPresentacion;  
+        this.initComponents();
         this.setLocationRelativeTo(null);
     }
     
@@ -452,47 +452,47 @@ public class VistaManual extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card1");       
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card1");       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card2");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card2");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card3");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card3");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card6");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card6");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card5");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card5");
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card4");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card4");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card7");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card7");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card8");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card8");
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        iCtrlPresentacion.sincronizacionVistaManual_a_Principal();
+        this.iCtrlPresentacion.sincronizacionVistaManual_a_Principal();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

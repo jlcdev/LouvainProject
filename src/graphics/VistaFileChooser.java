@@ -28,7 +28,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
         this.importar = true;
         this.grafo = true;
         this.importado = false;
-        initComponents();
+        this.initComponents();
         this.setLocationRelativeTo(null);       
     }
     
@@ -42,7 +42,7 @@ public class VistaFileChooser extends javax.swing.JFrame {
         if(importar) 
         {
             this.fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-            fileChooser.setApproveButtonText("Import");            
+            this.fileChooser.setApproveButtonText("Import");            
         }
         else
         {            
@@ -119,24 +119,24 @@ public class VistaFileChooser extends javax.swing.JFrame {
             case "ApproveSelection":
                 if(this.importar == true)
                 {
-                    if(this.grafo == true) iCtrlPresentacion.importarGrafo(fileChooser.getSelectedFile().toString());
-                    else iCtrlPresentacion.importarConjunto(fileChooser.getSelectedFile().toString());
+                    if(this.grafo == true) this.iCtrlPresentacion.importarGrafo(this.fileChooser.getSelectedFile().toString());
+                    else this.iCtrlPresentacion.importarConjunto(this.fileChooser.getSelectedFile().toString());
                 }
                 else
                 {
-                    File fileToBeSaved = fileChooser.getSelectedFile();
+                    File fileToBeSaved = this.fileChooser.getSelectedFile();
 
-                    if(!fileChooser.getSelectedFile().getAbsolutePath().endsWith(".txt"))
+                    if(!this.fileChooser.getSelectedFile().getAbsolutePath().endsWith(".txt"))
                     {
-                        fileToBeSaved = new File(fileChooser.getSelectedFile() + ".txt");
+                        fileToBeSaved = new File(this.fileChooser.getSelectedFile() + ".txt");
                     }
-                    if(this.grafo == true) iCtrlPresentacion.exportarGrafo(fileToBeSaved.toString());
-                    else iCtrlPresentacion.exportarConjunto(fileToBeSaved.toString(), importado);
+                    if(this.grafo == true) this.iCtrlPresentacion.exportarGrafo(fileToBeSaved.toString());
+                    else this.iCtrlPresentacion.exportarConjunto(fileToBeSaved.toString(), importado);
                 }
-                iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
+                this.iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
                 break;        
             case "CancelSelection":
-                iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
+                this.iCtrlPresentacion.sincronizacionVistaFileChooser_a_Principal();
                 break;
         }         
     }//GEN-LAST:event_fileChooserActionPerformed

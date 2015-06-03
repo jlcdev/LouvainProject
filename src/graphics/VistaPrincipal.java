@@ -78,7 +78,7 @@ public class VistaPrincipal extends javax.swing.JFrame
      */
     public void goToTab(int tab)
     {
-        tabsPrincipal.setSelectedIndex(tab);        
+        this.tabsPrincipal.setSelectedIndex(tab);        
     }
     
     /**
@@ -87,7 +87,7 @@ public class VistaPrincipal extends javax.swing.JFrame
      */
     public void activarTab(int tab)
     {
-        tabsPrincipal.setEnabledAt(tab, true);
+        this.tabsPrincipal.setEnabledAt(tab, true);
     }
     
     /**
@@ -96,7 +96,7 @@ public class VistaPrincipal extends javax.swing.JFrame
      */
     public void desactivarTab(int tab)
     {
-        tabsPrincipal.setEnabledAt(tab, false);
+        this.tabsPrincipal.setEnabledAt(tab, false);
     }
     
     private void randomSel(boolean pag)
@@ -176,8 +176,8 @@ public class VistaPrincipal extends javax.swing.JFrame
      */
     public void actualizarSet(boolean importado)
     {           
-        ArrayList<String> lista = iCtrlPresentacion.mostrarCto(importado);         
-        DefaultListModel model = (DefaultListModel) listSet.getModel();
+        ArrayList<String> lista = this.iCtrlPresentacion.mostrarCto(importado);         
+        DefaultListModel model = (DefaultListModel) this.listSet.getModel();
         model.clear();
         for(String elem : lista) model.addElement(elem+"["+this.iCtrlPresentacion.numCatCom(elem, importado)+"]");       
     }
@@ -253,15 +253,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         model = (DefaultListModel) this.listPag.getModel();
         model.clear();
         model = (DefaultListModel) this.listLinks.getModel();
-        model.clear();
-        //model = (DefaultListModel) this.listSet.getModel();
-        //model.clear();
-        //model = (DefaultListModel) this.listCom.getModel();
-        //model.clear();
+        model.clear();        
         model = (DefaultListModel) this.listLinksNode.getModel();
-        model.clear();
-        //model = (DefaultListModel) this.listSetNum.getModel();
-        //model.clear();
+        model.clear();        
         this.txtListComp.setText(null);
         this.labelInfoGraf.setText("Categorias: 0 | Páginas: 0 | Enlaces: 0");
         this.ckTodasCategorias.setSelected(false);
@@ -295,19 +289,19 @@ public class VistaPrincipal extends javax.swing.JFrame
     }
     
     private void showPopupMenu(MouseEvent e) {
-        popupComp.show(this.listSet, e.getX(), e.getY());
+        this.popupComp.show(this.listSet, e.getX(), e.getY());
     }
     
     private void showPopupMenuCat(MouseEvent e) {
-        popupCat.show(this.listCat, e.getX(), e.getY());
+        this.popupCat.show(this.listCat, e.getX(), e.getY());
     }
     
     private void showPopupMenuPag(MouseEvent e) {
-        popupPag.show(this.listPag, e.getX(), e.getY());
+        this.popupPag.show(this.listPag, e.getX(), e.getY());
     }
     
     private void showPopupMenuNum(MouseEvent e) {
-        popupCompNum.show(this.listSetNum, e.getX(), e.getY());
+        this.popupCompNum.show(this.listSetNum, e.getX(), e.getY());
     }
     
     
@@ -2211,7 +2205,7 @@ public class VistaPrincipal extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void mItemImportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemImportarGrafoActionPerformed
-        iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true, false);        
+        this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, true, false);        
     }//GEN-LAST:event_mItemImportarGrafoActionPerformed
 
     private void mItemSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemSalirMouseClicked
@@ -2223,11 +2217,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_mItemSalirActionPerformed
 
     private void mItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemAboutActionPerformed
-       this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_About();
+        this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_About();
     }//GEN-LAST:event_mItemAboutActionPerformed
 
     private void mItemManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemManualActionPerformed
-       this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Manual();
+        this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Manual();
     }//GEN-LAST:event_mItemManualActionPerformed
 
     private void mItemExportarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExportarGrafoActionPerformed
@@ -2235,11 +2229,11 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_mItemExportarGrafoActionPerformed
 
     private void mItemImportarSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemImportarSetActionPerformed
-       this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false, false);
+        this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(true, false, false);
     }//GEN-LAST:event_mItemImportarSetActionPerformed
 
     private void mItemExportarSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExportarSetActionPerformed
-       this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false, false);
+        this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false, false);
     }//GEN-LAST:event_mItemExportarSetActionPerformed
 
     private void mItemNuevoGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemNuevoGrafoActionPerformed
@@ -2287,7 +2281,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         }
         if(b)
         {
-            int[] infoC2 = iCtrlPresentacion.infoConjunto(true);
+            int[] infoC2 = this.iCtrlPresentacion.infoConjunto(true);
             this.txtListComp.append("CONJUNTO IMPORTADO:\n\n");
             this.txtListComp.append("Modificado: "+this.iCtrlPresentacion.isCtoModified(true)+"\n");
             this.txtListComp.append("Número de comunidades: "+infoC2[0]+"\n");
@@ -2370,7 +2364,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         
         if(this.iCtrlPresentacion.existsSet(importado))
         { 
-            iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false, comboTipoSet.getSelectedIndex() != 0);
+            this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_FileChooser(false, false, this.comboTipoSet.getSelectedIndex() != 0);
         }
         else 
         {
@@ -2385,19 +2379,9 @@ public class VistaPrincipal extends javax.swing.JFrame
         
         if(this.iCtrlPresentacion.existsSet(importado))
         { 
-            /*if(this.modConjunto[importado ? 1 : 0])
-            {
-                actualizarSet(importado);
-                this.modConjunto[importado ? 1 : 0] = false;
-            }
-            if(this.modConjuntoNum[importado ? 1 : 0])
-            {
-                actualizarSetNum(importado, this.minCat);
-                this.modConjuntoNum[importado ? 1 : 0] = false;
-            }*/
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card1");
-            setNum = false;
+            this.setNum = false;
         }
         else 
         {
@@ -2414,12 +2398,10 @@ public class VistaPrincipal extends javax.swing.JFrame
         if(this.iCtrlPresentacion.existsSet(importado))
         {        
             this.iCtrlPresentacion.rmvCtoCom(this.txtAddRmvCom.getText(), importado);
-            this.listSet.setSelectedIndex(1);///
-            //this.listSetNum.setSelectedIndex(1);///
+            this.listSet.setSelectedIndex(1);///            
             actualizarSet(importado);
             this.modConjunto[importado ? 1 : 0] = true;
-            //actualizarSetNum(importado, this.minCat);
-            //this.modConjuntoNum[importado ? 1 : 0] = false;  
+            
             CardLayout cl = (CardLayout)(this.panelC.getLayout());
             cl.show(this.panelC, "card1");
         }
@@ -2491,17 +2473,16 @@ public class VistaPrincipal extends javax.swing.JFrame
             boolean b = this.iCtrlPresentacion.addCtoCat(s, this.txtComToAddRmvCat.getText(), importado);
             if(b)
             {
-                ArrayList<String> lista = iCtrlPresentacion.mostrarCom(txtComToAddRmvCat.getText(), importado);          
-                DefaultListModel model = (DefaultListModel) listCom.getModel();
-                //model.clear();
-                //for(String elem : lista) model.addElement(elem);
+                //ArrayList<String> lista = this.iCtrlPresentacion.mostrarCom(this.txtComToAddRmvCat.getText(), importado);          
+                DefaultListModel model = (DefaultListModel) this.listCom.getModel();
+                
                 this.actualizarSet(importado);
                 this.modConjunto[importado ? 1 : 0] = true;
-                //this.actualizarSetNum(importado, this.minCat);
+                
                 model.addElement(s);
             }            
-            CardLayout cl = (CardLayout)(panelC.getLayout());
-            cl.show(panelC, "card2"); 
+            CardLayout cl = (CardLayout)(this.panelC.getLayout());
+            cl.show(this.panelC, "card2"); 
         }
         else 
         {
@@ -2514,27 +2495,27 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnAddCatToComActionPerformed
 
     private void btnAplicarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarFiltrosActionPerformed
-        int name = Integer.parseInt(spNombre.getValue().toString());
-        int pagComun = Integer.parseInt(spPagComun.getValue().toString());
-        int catComun = Integer.parseInt(spCatComun.getValue().toString());
-        int superComun = Integer.parseInt(spSuperComun.getValue().toString());
-        int subComun = Integer.parseInt(spSubComun.getValue().toString());
-        iCtrlPresentacion.aplicarFiltros(name,pagComun,catComun,superComun,subComun);
+        int name = Integer.parseInt(this.spNombre.getValue().toString());
+        int pagComun = Integer.parseInt(this.spPagComun.getValue().toString());
+        int catComun = Integer.parseInt(this.spCatComun.getValue().toString());
+        int superComun = Integer.parseInt(this.spSuperComun.getValue().toString());
+        int subComun = Integer.parseInt(this.spSubComun.getValue().toString());
+        this.iCtrlPresentacion.aplicarFiltros(name,pagComun,catComun,superComun,subComun);
     }//GEN-LAST:event_btnAplicarFiltrosActionPerformed
 
     private void btnSelPagRandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelPagRandActionPerformed
         randomSel(true);
-        ckTodasPaginas.setSelected(false);
+        this.ckTodasPaginas.setSelected(false);
     }//GEN-LAST:event_btnSelPagRandActionPerformed
 
     private void btnRmvSelPagNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvSelPagNameActionPerformed
-        ckTodasPaginas.setSelected(false);
+        this.ckTodasPaginas.setSelected(false);
 
-        int num = iCtrlPresentacion.getPagNum(txtPagNameSel.getText());
+        int num = this.iCtrlPresentacion.getPagNum(this.txtPagNameSel.getText());
         if(num != -1)
         {            
-            num = pagPosToId.indexOf(num); //Posició a la llista
-            int[] indices = listSelPaginas.getSelectedIndices(); //Selecció
+            num = this.pagPosToId.indexOf(num); //Posició a la llista
+            int[] indices = this.listSelPaginas.getSelectedIndices(); //Selecció
             int newIndices[] = new int[indices.length - 1]; //Selecció -1
             int j = 0;
             for(int i = 0; i < indices.length; i++)
@@ -2545,30 +2526,30 @@ public class VistaPrincipal extends javax.swing.JFrame
                     j++;
                 }
             }
-            listSelPaginas.setSelectedIndices(newIndices);
+            this.listSelPaginas.setSelectedIndices(newIndices);
         }        
     }//GEN-LAST:event_btnRmvSelPagNameActionPerformed
 
     private void btnAddSelPagNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelPagNameActionPerformed
-        ckTodasPaginas.setSelected(false);
+        this.ckTodasPaginas.setSelected(false);
 
-        int num = iCtrlPresentacion.getPagNum(txtPagNameSel.getText());
-        num = pagPosToId.indexOf(num);
+        int num = this.iCtrlPresentacion.getPagNum(this.txtPagNameSel.getText());
+        num = this.pagPosToId.indexOf(num);
         
-        int[] indices = listSelPaginas.getSelectedIndices();
+        int[] indices = this.listSelPaginas.getSelectedIndices();
         int newIndices[] = new int[indices.length + 1];
         System.arraycopy(indices, 0, newIndices, 0, indices.length);
         newIndices[indices.length] = num;
-        listSelPaginas.setSelectedIndices(newIndices);
+        this.listSelPaginas.setSelectedIndices(newIndices);
     }//GEN-LAST:event_btnAddSelPagNameActionPerformed
 
     private void btnAddSelPagRangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelPagRangActionPerformed
-        ckTodasPaginas.setSelected(false);
+        this.ckTodasPaginas.setSelected(false);
 
         try 
         {
-            int min = Integer.parseInt(txtMinPagLink.getText());            
-            int max = Integer.parseInt(txtMaxPagLink.getText());
+            int min = Integer.parseInt(this.txtMinPagLink.getText());            
+            int max = Integer.parseInt(this.txtMaxPagLink.getText());
             if(min < 0 || min>max || max >= this.pagPosToId.size()) this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("Valor incorrecto");
             else this.listSelPaginas.setSelectionInterval(min, max);
         } catch (NumberFormatException numberFormatException) 
@@ -2621,16 +2602,16 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnSelCatRandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelCatRandActionPerformed
         randomSel(false);
-        ckTodasCategorias.setSelected(false);
+        this.ckTodasCategorias.setSelected(false);
     }//GEN-LAST:event_btnSelCatRandActionPerformed
 
     private void btnAddSelCatRangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelCatRangActionPerformed
-        ckTodasCategorias.setSelected(false);
+        this.ckTodasCategorias.setSelected(false);
         
         try 
         {
-            int min = Integer.parseInt(txtMinCatLink.getText());            
-            int max = Integer.parseInt(txtMaxCatLink.getText());
+            int min = Integer.parseInt(this.txtMinCatLink.getText());            
+            int max = Integer.parseInt(this.txtMaxCatLink.getText());
             if(min < 0 || min>max || max >= this.catPosToId.size()) this.iCtrlPresentacion.sincronizacionVistaPrincipal_a_Error("Valor incorrecto");
             else this.listSelCategorias.setSelectionInterval(min, max);
         } catch (NumberFormatException numberFormatException) 
@@ -2642,13 +2623,13 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnAddSelCatRangActionPerformed
 
     private void btnRmvSelCatNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvSelCatNameActionPerformed
-        ckTodasCategorias.setSelected(false);
+        this.ckTodasCategorias.setSelected(false);
 
-        int num = iCtrlPresentacion.getCatNum(txtCatNameSel.getText());
+        int num = this.iCtrlPresentacion.getCatNum(this.txtCatNameSel.getText());
         if(num != -1)
         {
-            num = catPosToId.indexOf(num); //Posició a la llista
-            int[] indices = listSelCategorias.getSelectedIndices(); //Selecció
+            num = this.catPosToId.indexOf(num); //Posició a la llista
+            int[] indices = this.listSelCategorias.getSelectedIndices(); //Selecció
             int[] newIndices= new int[indices.length - 1]; //Selecció -1
             int j = 0;
             for(int i = 0; i < indices.length; i++)
@@ -2659,23 +2640,23 @@ public class VistaPrincipal extends javax.swing.JFrame
                     j++;
                 }
             }
-            listSelCategorias.setSelectedIndices(newIndices);
+            this.listSelCategorias.setSelectedIndices(newIndices);
         }        
     }//GEN-LAST:event_btnRmvSelCatNameActionPerformed
 
     private void btnAddSelCatNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSelCatNameActionPerformed
-        ckTodasCategorias.setSelected(false);
+        this.ckTodasCategorias.setSelected(false);
 
-        int num = iCtrlPresentacion.getCatNum(txtCatNameSel.getText());
+        int num = this.iCtrlPresentacion.getCatNum(this.txtCatNameSel.getText());
         if(num != -1)
         {        
-            num = catPosToId.indexOf(num);
+            num = this.catPosToId.indexOf(num);
 
-            int[] indices = listSelCategorias.getSelectedIndices();
+            int[] indices = this.listSelCategorias.getSelectedIndices();
             int[] newIndices = new int[indices.length + 1];
             System.arraycopy(indices, 0, newIndices, 0, indices.length);
             newIndices[indices.length] = num;
-            listSelCategorias.setSelectedIndices(newIndices);
+            this.listSelCategorias.setSelectedIndices(newIndices);
         }
 
     }//GEN-LAST:event_btnAddSelCatNameActionPerformed
@@ -2900,29 +2881,28 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void btnRmvLinkFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvLinkFromGraphActionPerformed
         this.iCtrlPresentacion.rmvGrafoEnlace(this.txtNodo1Enlace.getText(), this.txtNodo2Enlace.getText(), this.comboTipoEnlace.getSelectedItem().toString());
-        this.actualizarLinks();
+        this.actualizarLinks();        
+        this.modEnlaces = false;   
         
-        this.modEnlaces = false;        
         CardLayout cl = (CardLayout)(this.panel.getLayout());
-        cl.show(this.panel, "card3");
-        //this.labelInfoGraf.setText("Categorias: "+this.catPosToId.size()+" | "+"Páginas: "+this.pagPosToId.size()+" | "+"Enlaces: "+ this.listLinks.getModel().getSize());
+        cl.show(this.panel, "card3");        
     }//GEN-LAST:event_btnRmvLinkFromGraphActionPerformed
 
     private void btnRmvPagFromGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvPagFromGraphActionPerformed
-        int id = iCtrlPresentacion.rmvGrafoPag(txtPagToAddRmv.getText());
+        int id = this.iCtrlPresentacion.rmvGrafoPag(this.txtPagToAddRmv.getText());
         if(id != -1)
         {
-            int pos = pagPosToId.indexOf(id);
-            DefaultListModel model = (DefaultListModel) listSelPaginas.getModel();            
+            int pos = this.pagPosToId.indexOf(id);
+            DefaultListModel model = (DefaultListModel) this.listSelPaginas.getModel();            
             model.remove(pos);
-            model = (DefaultListModel) listPag.getModel();            
+            model = (DefaultListModel) this.listPag.getModel();            
             model.remove(pos);
-            listPag.setSelectedIndex(pos);
-            pagPosToId.remove(pos);
+            this.listPag.setSelectedIndex(pos);
+            this.pagPosToId.remove(pos);
             this.modEnlaces = true;
         }
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card2");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card2");
         this.labelInfoGraf.setText("Categorias: "+this.catPosToId.size()+" | "+"Páginas: "+this.pagPosToId.size()+" | "+"Enlaces: "+ this.listLinks.getModel().getSize());
     }//GEN-LAST:event_btnRmvPagFromGraphActionPerformed
 
@@ -2979,14 +2959,14 @@ public class VistaPrincipal extends javax.swing.JFrame
         int id = this.iCtrlPresentacion.addGrafoCat(s);
         if (id != -1)
         {
-            DefaultListModel model = (DefaultListModel) listSelCategorias.getModel();
+            DefaultListModel model = (DefaultListModel) this.listSelCategorias.getModel();
             model.addElement(s);
-            model = (DefaultListModel) listCat.getModel();
+            model = (DefaultListModel) this.listCat.getModel();
             model.addElement(s);
-            catPosToId.add(id);
+            this.catPosToId.add(id);
         }
-        CardLayout cl = (CardLayout)(panel.getLayout());
-        cl.show(panel, "card1");
+        CardLayout cl = (CardLayout)(this.panel.getLayout());
+        cl.show(this.panel, "card1");
         this.labelInfoGraf.setText("Categorias: "+this.catPosToId.size()+" | "+"Páginas: "+this.pagPosToId.size()+" | "+"Enlaces: "+ this.listLinks.getModel().getSize());
     }//GEN-LAST:event_btnAddCatToGraphActionPerformed
 
@@ -3269,7 +3249,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         {      
             JList list = (JList)evt.getSource();
             list.setSelectedIndex(list.locationToIndex(evt.getPoint()));
-            showPopupMenu(evt); 
+            this.showPopupMenu(evt); 
         }
     }//GEN-LAST:event_listSetMouseReleased
 
@@ -3339,8 +3319,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                 this.iCtrlPresentacion.obtainCjto(pVal);
                 this.actualizarSet(false);
                 this.actualizarSetNum(false, this.minCat);
-                this.modConjunto[0] = false;
-                //this.modConjuntoNum[0] = false;
+                this.modConjunto[0] = false;                
                 this.p = pVal;
                 this.minCat = -1;                                
             }            
@@ -3372,22 +3351,6 @@ public class VistaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_listCatMouseReleased
 
     private void listPagMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPagMouseReleased
-       /* if(!this.listPag.isSelectionEmpty())
-        {
-            if (evt.getButton() == MouseEvent.BUTTON1)
-            {
-                this.txtNodo1Enlace.setText(this.listPag.getSelectedValue().toString());
-                this.comboTipoEnlace.setSelectedIndex(3);
-            }
-            else if (evt.getButton() == MouseEvent.BUTTON3)
-            {
-                JList list = (JList)evt.getSource();
-                int row = list.locationToIndex(evt.getPoint());
-                list.setSelectedIndex(row);
-                this.txtNodo2Enlace.setText(this.listPag.getSelectedValue().toString());
-                this.comboTipoEnlace.setSelectedIndex(2);
-            }
-        }*/
         JList list = (JList)evt.getSource();
         list.setSelectedIndex(list.locationToIndex(evt.getPoint()));  
         if(evt.getButton() == MouseEvent.BUTTON3) this.showPopupMenuPag(evt);
@@ -3424,7 +3387,7 @@ public class VistaPrincipal extends javax.swing.JFrame
                         this.minCat = min;
                         this.modConjunto[importado ? 1 : 0] = false;
                     }
-                    setNum = true;
+                    this.setNum = true;
                     CardLayout cl = (CardLayout)(this.panelC.getLayout());
                     cl.show(this.panelC, "card3");
                 }
@@ -3458,7 +3421,7 @@ public class VistaPrincipal extends javax.swing.JFrame
         {
             JList list = (JList)evt.getSource();
             list.setSelectedIndex(list.locationToIndex(evt.getPoint()));
-            showPopupMenuNum(evt);
+            this.showPopupMenuNum(evt);
         }        
     }//GEN-LAST:event_listSetNumMouseReleased
 
@@ -3527,12 +3490,10 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void mItemPag1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemPag1ActionPerformed
         this.txtNodo1Enlace.setText(this.listPag.getSelectedValue().toString());
-        //this.comboTipoEnlace.setSelectedIndex(3);
     }//GEN-LAST:event_mItemPag1ActionPerformed
 
     private void mItemPag2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemPag2ActionPerformed
         this.txtNodo2Enlace.setText(this.listPag.getSelectedValue().toString());
-        //this.comboTipoEnlace.setSelectedIndex(2);
     }//GEN-LAST:event_mItemPag2ActionPerformed
 
     private void mItemCat1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemCat1MouseReleased

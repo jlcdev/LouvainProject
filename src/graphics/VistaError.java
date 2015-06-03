@@ -18,7 +18,7 @@ public class VistaError extends javax.swing.JFrame {
      */
     public VistaError(CtrlPresentacion pCtrlPresentacion) {
         this.iCtrlPresentacion = pCtrlPresentacion;
-        initComponents();        
+        this.initComponents();        
         this.setLocationRelativeTo(null);
      
     }
@@ -127,7 +127,7 @@ public class VistaError extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        iCtrlPresentacion.sincronizacionVistaError_a_Principal();
+        this.iCtrlPresentacion.sincronizacionVistaError_a_Principal();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
