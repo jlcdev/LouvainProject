@@ -86,7 +86,6 @@ public class Transformation
      */
     public static Graph<Integer, Double> entryToAlgorithm(GrafoEntrada grafo, Filters filters)
     {
-        System.out.println("Iniciando Transformación de grafoEntrada a GrafoCompartido");
         Graph<Integer, Double> graph = new Graph((int) (grafo.getCategorySize() / 1.75), 0.75f);
         ArrayList<Integer> categories = grafo.getCategories();
         for(Integer category : categories)

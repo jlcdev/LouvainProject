@@ -169,7 +169,7 @@ public class Wikipedia
                                 if(action.equalsIgnoreCase("in"))
                                 {
                                     msg("Introduce el número de la Categoría:");
-                                    algorithmController.setCategorySelectionConcrete(domainController.verNumCat(scanner.nextInt()));
+                                    algorithmController.setCategorySelectionConcrete(scanner.nextInt());
                                 }
                                 break;
                             case 4:
@@ -189,7 +189,7 @@ public class Wikipedia
                                 if(action.equalsIgnoreCase("in"))
                                 {
                                     msg("Introduce el número de la Categoría:");
-                                    algorithmController.setPageSelectionConcrete(domainController.verNumPag(scanner.nextInt()));
+                                    algorithmController.setPageSelectionConcrete(scanner.nextInt());
                                 }
                                 break;
                         }

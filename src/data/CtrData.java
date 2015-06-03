@@ -73,9 +73,9 @@ public class CtrData
     }
     
     /**
+     * Permite leer una comunidad desde un fichero
      * 
-     * 
-     * @param ctoComunidad 
+     * @param ctoComunidad CtoComunidad
      */
     public void readCtoComunidad(CtoComunidad ctoComunidad)
     {
@@ -84,6 +84,12 @@ public class CtrData
         ctoComunidad.loadFromFile(fm.readFile());
     }
     
+    /**
+     * Permite salvar un conjunto de comunidad en un fichero
+     * 
+     * @param ctoComunidad CtoComunidad
+     * @return true si se ha escrito correctamente
+     */
     public boolean writeCtoComunidad(CtoComunidad ctoComunidad)
     {
         if(this.algorithmPath == null || this.algorithmPath.isEmpty()) return false;
