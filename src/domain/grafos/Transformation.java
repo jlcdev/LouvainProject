@@ -7,8 +7,7 @@ import shared.Graph;
  * Transformation es la clase empleada para traducir el grafo de entrada al
  * grafo compartido que se utiliza en los algoritmos de detección de comunidades
  *
- * @author Joan Rodas
- * @author Javier López
+ * @author Javier López Calderón
  * @version 1.0
  * @since 01/06/2015
  */

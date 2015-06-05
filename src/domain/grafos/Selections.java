@@ -7,7 +7,7 @@ import java.util.Objects;
  * Selections es la clase empleada para almacenar todas aquellas categorias y
  * páginas que el usuario selecciona.
  *
- * @author Javier López Calderón
+ * @author Joan Rodas
  * @version 1.0
  * @since 01/06/2015
  */

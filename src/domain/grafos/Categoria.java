@@ -4,7 +4,7 @@ package domain.grafos;
  * La clase Categoria es una especialización de la clase Nodo y se emplea con
  * aquellos elementos que son creados como Categorias.
  *
- * @author Javier López Calderón
+ * @author Albert Campano
  * @version 1.0
  * @since 1/06/2015
  */

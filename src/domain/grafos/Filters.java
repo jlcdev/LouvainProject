@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Clase encargada de almacenar los filtros que se han empleado para generar el
  * conjunto de comunidades.
  *
- * @author Javier López Calderón
+ * @author Joan Rodas
  * @version 1.0
  * @since 01/06/2015
  */

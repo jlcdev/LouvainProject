@@ -4,7 +4,7 @@ package domain.grafos;
  * La clase Pagina es una especialización de la clase Nodo y se emplea con
  * aquellos elementos que son creados como Paginas.
  * 
- * @author Javier López Calderón
+ * @author Albert Campano
  * @version 1.0
  * @since 01/06/2015
  */

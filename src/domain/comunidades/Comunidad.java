@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Clase para almacenar todas las categorias que forman parte de una comunidad
  * 
- * @author Alfred Parellada
+ * @author Alfred Parellada Rodriguez
  * @version 1.0
  * @since 01/06/2015
  */

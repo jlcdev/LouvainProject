@@ -6,7 +6,7 @@ import java.util.Objects;
  * Clase base del sistema, todos los elementos del sistema se basan en esta 
  * clase para operar
  * 
- * @author Javier López Calderón
+ * @author Albert Campano
  * @version 1.0
  * @since 01/06/2015
  */

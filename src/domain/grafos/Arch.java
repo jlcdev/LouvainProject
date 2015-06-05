@@ -7,7 +7,7 @@ import java.util.Objects;
  * La información que almacena simplemente es nodo origen, nodo destino y el tipo
  * de arco que representa. Los tipo de arco posibles son: ·CsubC ·CsupC ·CP ·PC
  *
- * @author Javier López Calderón
+ * @author Albert Campano
  * @version 1.0
  * @since 1/06/2015
  */
